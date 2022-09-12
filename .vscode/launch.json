@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CLI Extension Debug (Integrated Console)",
+            "type": "python",
+            "request": "launch",
+            "python": "${command:python.interpreterPath}",
+            "program": "${workspaceRoot}/scripts/run_az.py",
+            "cwd": "${workspaceRoot}/partnercenter/",
+            "args": [
+                "partnercenter",
+                "offer",
+                "list",
+                "-o",
+                "json"
+            ],
+            "console": "integratedTerminal",
+            "preLaunchTask": "BuildWheel",
+            "env": {
+                "AZURE_EXTENSION_DIR": "${workspaceRoot}"
+            }
+        }
+    ]
+}

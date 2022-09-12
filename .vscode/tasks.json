@@ -1,0 +1,69 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "BuildWheel",
+        "command": "${config:python.pythonPath}",
+        "args": [
+          "setup.py",
+          "sdist",
+          "bdist_wheel"
+        ],
+        "type": "shell",
+        "options": {
+          "cwd": "${workspaceRoot}/partnercenter/"
+        },
+        "presentation": {
+            "echo": true,
+            "reveal": "never",
+            "focus": false,
+            "panel": "shared",
+            "showReuseMessage": true,
+            "clear": false
+        }
+      },
+      {
+        "label": "Uninstall extension",
+        "type": "shell",
+        "command": "az extension remove -n partnercenter",
+        "options": {
+          "cwd": "${workspaceRoot}/partnercenter/"
+        },
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "Install extension",
+        "type": "shell",
+        "command": "az extension add --source ./dist/partnercenter-0.1.0-py2.py3-none-any.whl -y",
+        "windows": {
+            "command": "az extension add --source .\\dist\\partnercenter-0.1.0-py2.py3-none-any.whl -y",
+        },
+        "options": {
+          "cwd": "${workspaceRoot}/partnercenter/"
+        },
+        "dependsOn": [
+            "BuildWheel"
+        ],
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "Update extension",
+        "type": "shell",
+        "command": "az extension add --source ./dist/partnercenter-0.1.0-py2.py3-none-any.whl -y",
+        "windows": {
+            "command": "az extension add --source .\\dist\\partnercenter-0.1.0-py2.py3-none-any.whl -y",
+        },
+        "options": {
+          "cwd": "${workspaceRoot}/partnercenter/"
+        },
+        "dependsOn": [
+            "Uninstall extension",
+            "BuildWheel"
+        ],
+        "group": "build",
+        "problemMatcher": []
+      }
+    ]
+  }
