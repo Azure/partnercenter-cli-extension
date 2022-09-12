@@ -1,0 +1,5 @@
+# Instructions about authoring this file - https://help.github.com/en/articles/about-code-owners
+
+# These owners will be the default owners for everything in
+# the repo. Unless a later match takes precedence,
+*       @kevinhillinger @bobjac
