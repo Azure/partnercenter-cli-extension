@@ -42,10 +42,9 @@ def bundle_offer(manifest_file):
     container_lookup_name = "/" + container_name
     container_id = get_container_id(container_lookup_name)
 
-
-
-    raise CLIError('TODO: Implement `partnercenter marketplace offer bundle`')
-
+    result = call_buildbundle(container_id, './cpa')
+    print('bundle executed with a result of' + result)
+    
 def start_container(container_name, mount_path):
     command = "docker run --name " + container_name + " -d -v /var/run/docker.sock:/var/run/docker.sock -v " + mount_path + ":/cpa mcr.microsoft.com/container-package-app:latest sleep infinity"
     return subprocess.run([command],shell=True,capture_output=True)
@@ -63,3 +62,5 @@ def get_container_id(container_name):
 
 def call_buildbundle(container_id, directory):
     command = "docker exec " + container_id + " cpa buildbundle --directory " + directory
+    print('Inside call_buildbundle with a command of: ' + command)
+    return subprocess.run([command],shell=True,capture_output=True)
