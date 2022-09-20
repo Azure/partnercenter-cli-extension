@@ -17,13 +17,13 @@ from knack.util import CLIError
 def verify_bundle(manifest_file):
     container_id = _get_container_id(manifest_file)
     result = call_verify(container_id, './cpaMount')
-    print(result)
+    _print_result(result)
 
 def build_bundle(manifest_file):
     container_id = _get_container_id(manifest_file)
     result = call_buildbundle(container_id, './cpaMount')
-    print(result)
-
+    _print_result(result)
+    
 def call_verify(container_id, directory):
     command = "docker exec " + container_id + " cpa verify --directory " + directory
     return subprocess.run([command],shell=True,capture_output=True)
@@ -44,6 +44,11 @@ def get_bundle(cmd):
 
 def list_bundle(cmd):
     raise CLIError('TODO: Implement `partnercenter marketplace offer show`')
+
+def _print_result(result):
+    output = result.stdout.decode("utf-8")
+    error = result.stderr.decode("utf-8")
+    print(output)
 
 def _get_container_id(manifest_file):
     container_name = "cpacontainer"
