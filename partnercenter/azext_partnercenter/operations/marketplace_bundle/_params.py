@@ -8,5 +8,5 @@ from azure.cli.core.commands.parameters import (get_enum_type, get_three_state_f
 
 
 def load_arguments(commands_loader, _):
-    with commands_loader.argument_context('partnercenter marketplace offer bundle') as c:
+    with commands_loader.argument_context('partnercenter marketplace bundle') as c:
         c.argument('manifest_file', help='The location of the manifest file.')
