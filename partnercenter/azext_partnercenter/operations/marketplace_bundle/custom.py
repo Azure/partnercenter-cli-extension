@@ -71,7 +71,7 @@ def _get_running_container_id(container_name):
     return ""
 
 def _start_container(container_name, mount_path):
-    container_image = "bobjac/cnab:7.0"
+    container_image = "bobjac/cnab:8.0"
     command = "docker run --name " + container_name + " -d -v /var/run/docker.sock:/var/run/docker.sock -v " + mount_path + ":/cpaMount " + container_image + " sleep infinity"
     return subprocess.run([command],shell=True,capture_output=True)
 

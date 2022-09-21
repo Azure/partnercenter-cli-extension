@@ -1,0 +1,21 @@
+applicationName: com.nonmicrosoft.testcnabpackage1
+publisher: "Not a Microsoft Corporation"
+description: "A test package for the marketplace CNAB structure. With only new cluster"
+version: 1.0.1 #Must be semver
+restrictions:
+  minCores: 6
+  minNodes: 3
+  minKubernetesVersion: 1.21
+  requireGpuNodes: False
+  openShiftAllowed: True
+  nodeType: Linux
+  newClusterRequired: True
+helmChart: "./azure-vote"
+clusterArmTemplate: "./mainTemplate.json"
+uiDefinition: "./createUIDefinition.json"
+registryServer: "youracr.azurecr.io"
+extensionRegistrationParameters:
+  defaultScope: "cluster"
+  namespace: "contoso"
+  billingIdentifier: microsoft.marketplace.example.azure-vote
+  

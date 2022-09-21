@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+  "handler": "Microsoft.Azure.CreateUIDef",
+  "version": "0.1.2-preview",
+  "parameters": {
+    "config": {
+      "basics": {
+        "location": {
+          "visible": true
+        },
+        "resourceGroup": {
+          "allowExisting": true
+        }
+      }
+    },
+    "resourceTypes": [
+      "Microsoft.ContainerService/managedClusters"
+    ],
+    "basics": [],
+    "steps": [
+      {
+        "name": "ClusterConfiguration",
+        "label": "Cluster settings",
+        "elements": [
+          {
+            "name": "ClusterResourceName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Cluster Name",
+            "defaultValue": "",
+            "toolTip": "Kubernetes service resource name",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-z0-9A-Z]{6,30}$",
+              "validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
+            },
+            "visible": true
+          },
+          {
+            "name": "extensionResourceName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Extension Resource name",
+            "defaultValue": "",
+            "toolTip": "Kubernetes extension name",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-z0-9A-Z]{6,30}$",
+              "validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
+            },
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "outputs": {
+      "resourceName": "[steps('ClusterConfiguration').ClusterResourceName]",
+      "extensionResourceName": "[steps('ClusterConfiguration').extensionResourceName]",
+      "location": "[location()]"
+    }
+  }
+}
