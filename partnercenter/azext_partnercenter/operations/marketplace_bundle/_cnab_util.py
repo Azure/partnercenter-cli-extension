@@ -43,7 +43,8 @@ def _get_container_id(manifest_file):
     return container_id
 
 def _start_container(container_name, mount_path):
-    container_image = "bobjac/cnab:8.0"
+    #container_image = "bobjac/cnab:8.0"
+    container_image = "mcr.microsoft.com/container-package-app:latest"
     command = "docker run --name " + container_name + " -d -v /var/run/docker.sock:/var/run/docker.sock -v " + mount_path + ":/cpaMount" + " -v $HOME/.azure:/root/.azure "+ container_image + " sleep infinity"
     print(command)
     return subprocess.run([command],shell=True,capture_output=True)
