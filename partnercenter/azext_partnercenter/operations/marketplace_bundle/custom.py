@@ -11,7 +11,7 @@ import time
 import docker
 from azure.cli.core.util import sdk_no_wait
 from knack.util import CLIError
-from ._cnab_util import call_verify, call_buildbundle, _print_result, _get_container_id, _list_directory, _make_local_directory, _copy_to_local_directory, _login_to_acr, _get_running_container_id, _get_mount_path, _remove_container, _start_container, _stop_container
+from ._cnab_util import call_verify, call_buildbundle, _print_result, _get_container_id, _login_to_acr, _get_acr_name
 
 # API Operations
 # pylint: disable=too-many-locals
@@ -22,7 +22,8 @@ def verify_bundle(manifest_file):
 
 def build_bundle(manifest_file):
     container_id = _get_container_id(manifest_file)
-    result = _login_to_acr(container_id)
+    acr_name = _get_acr_name(manifest_file)
+    result = _login_to_acr(container_id, acr_name)
     result = call_buildbundle(container_id, './cpalocal/cpaMount')
     _print_result(result)
     
@@ -38,6 +39,9 @@ def get_bundle(cmd):
 
 def list_bundle(cmd):
     raise CLIError('TODO: Implement `partnercenter marketplace offer show`')
+
+
+
 
 
 

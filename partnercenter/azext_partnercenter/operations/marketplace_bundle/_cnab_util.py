@@ -4,6 +4,7 @@ import re
 import subprocess
 import time
 import docker
+import yaml
 
 def call_verify(container_id, directory):
     command = "docker exec " + container_id + " cpa verify --directory " + directory
@@ -70,6 +71,17 @@ def _copy_to_local_directory(container_id, directory):
     command = "docker exec " + container_id + " cp -R /cpaMount " + directory
     return subprocess.run([command],shell=True,capture_output=True)
 
-def _login_to_acr(container_id):
-    command = "docker exec " + container_id + " az acr login -n bobjactranscontainers"
+def _login_to_acr(container_id, acr_name):
+    command = "docker exec " + container_id + " az acr login -n " + acr_name
     return subprocess.run([command],shell=True,capture_output=True)
+
+def _get_acr_name(manifest_file):
+    acr_name = ""
+    with open(manifest_file, 'r') as file:
+        manifest = yaml.safe_load(file)
+        registry_server = manifest['registryServer']
+        index = registry_server.index('.')
+        if index > -1:
+            acr_name = registry_server[:index]
+
+    return acr_name
