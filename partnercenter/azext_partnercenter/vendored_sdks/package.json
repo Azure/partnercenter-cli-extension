@@ -1,0 +1,14 @@
+{
+  "name": "partnercenter-sdk",
+  "version": "1.0.0",
+  "description": "Parnter Center ingestion client sdk",
+  "main": "index.js",
+  "scripts": {
+    "generate-api": "npx @openapitools/openapi-generator-cli generate --generator-key v1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.5.1"
+  }
+}

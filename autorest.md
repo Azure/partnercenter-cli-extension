@@ -17,6 +17,13 @@ directive:
         return lower[0].toUpperCase() + lower.slice(1);
       }
 
+      const methodPrefixMap = {
+        get: "get",
+        post: "create",
+        put: "update",
+        delete: "delete"
+      }
+
       const verb = $path[2].toLowerCase();
       const urlPath = $path[1];
       const tag = $.tags[0];
