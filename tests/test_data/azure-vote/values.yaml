@@ -1,0 +1,22 @@
+# Azure Vote UI control
+title: "Azure Vote App"
+value1: Cats
+value2: Dogs
+global:
+  azure:
+    billingIdentifier: microsoft.marketplace.example.azure-vote
+    images:
+      frontend:
+        digest: sha256:84062718347cc4f8cbba08613ddbf3bce436d28189149d9d98e0c965d8ee6c36
+        image: azure-vote-front
+        registry: docker.io/neilpeterson
+      backend:
+        digest: sha256:ad0705f2e2344c4b642449e658ef4669753d6eb70228d46267685045bf932303
+        image: redis
+        registry: docker.io/library
+# how many frontends do we want?
+replicaCount: 1
+
+# Service controls
+serviceNameFront: azure-vote-front
+serviceType: LoadBalancer
