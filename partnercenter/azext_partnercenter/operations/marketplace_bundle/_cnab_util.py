@@ -25,6 +25,7 @@ def _print_result(result):
 def _get_running_container_id(container_name):
     client = docker.APIClient(base_url='unix://var/run/docker.sock')
     ps = client.containers(False, True)
+    
     for item in ps:
         if item['Names'][0] == container_name:
             return item['Id']
@@ -41,6 +42,11 @@ def _get_container_id(manifest_file):
         container_id = _get_running_container_id(container_lookup_name)
     
     return container_id
+
+def _run_container(container_name, mount_path):
+    client = docker.APIClient(base_url='unix://var/run/docker.sock')
+    volumes = ['/var/run/docker.sock:/var/run/docker.sock', mount_path+':/cpaMount', '$HOME/.azure:/root/.azure']
+    return client.containers.run('bobjac/cnab:8.0', 'sleep infinity', detached=True, volumes=volumes, name=container_name)
 
 def _start_container(container_name, mount_path):
     container_image = "bobjac/cnab:8.0"
