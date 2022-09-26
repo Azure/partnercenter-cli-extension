@@ -1,0 +1,283 @@
+# partnercenter.PackageConfigurationClient
+
+All URIs are relative to *https://api.partner.microsoft.com/v1.0/ingestion*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**products_product_id_package_configurations_get_by_instance_id_instance_i_dinstance_id_get**](PackageConfigurationClient.md#products_product_id_package_configurations_get_by_instance_id_instance_i_dinstance_id_get) | **GET** /products/{productID}/packageConfigurations/getByInstanceID(instanceID&#x3D;{instanceID}) | Returns a paged collection of PackageConfiguration resource
+[**products_product_id_packageconfigurations_package_configuration_id_get**](PackageConfigurationClient.md#products_product_id_packageconfigurations_package_configuration_id_get) | **GET** /products/{productID}/packageconfigurations/{packageConfigurationID} | Returns a PackageConfiguration resource
+[**products_product_id_packageconfigurations_package_configuration_id_put**](PackageConfigurationClient.md#products_product_id_packageconfigurations_package_configuration_id_put) | **PUT** /products/{productID}/packageconfigurations/{packageConfigurationID} | Updates a PackageConfiguration resource
+
+
+# **products_product_id_package_configurations_get_by_instance_id_instance_i_dinstance_id_get**
+> ProductsProductIDPackageConfigurationsGetByInstanceIDInstanceIDInstanceIDGet200Response products_product_id_package_configurations_get_by_instance_id_instance_i_dinstance_id_get(product_id, instance_id, authorization)
+
+Returns a paged collection of PackageConfiguration resource
+
+Sample request:                   GET /products/{productID}/packageConfigurations/getByInstanceID(instanceID={instanceID})
+
+### Example
+
+
+```python
+import time
+import partnercenter
+from ..api import package_configuration_client
+from ..model.products_product_id_package_configurations_get_by_instance_id_instance_id_instance_id_get200_response import ProductsProductIDPackageConfigurationsGetByInstanceIDInstanceIDInstanceIDGet200Response
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.partner.microsoft.com/v1.0/ingestion
+# See configuration.py for a list of all supported configuration parameters.
+configuration = partnercenter.Configuration(
+    host = "https://api.partner.microsoft.com/v1.0/ingestion"
+)
+
+
+# Enter a context with an instance of the API client
+with partnercenter.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = package_configuration_client.PackageConfigurationClient(api_client)
+    product_id = "productID_example" # str | ID of product
+    instance_id = "instanceID_example" # str | Resource instance ID
+    authorization = "Authorization_example" # str | User authorization
+    client_request_id = "Client-Request-ID_example" # str | ID of request provIDed by user (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Returns a paged collection of PackageConfiguration resource
+        api_response = api_instance.products_product_id_package_configurations_get_by_instance_id_instance_i_dinstance_id_get(product_id, instance_id, authorization)
+        pprint(api_response)
+    except partnercenter.ApiException as e:
+        print("Exception when calling PackageConfigurationClient->products_product_id_package_configurations_get_by_instance_id_instance_i_dinstance_id_get: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Returns a paged collection of PackageConfiguration resource
+        api_response = api_instance.products_product_id_package_configurations_get_by_instance_id_instance_i_dinstance_id_get(product_id, instance_id, authorization, client_request_id=client_request_id)
+        pprint(api_response)
+    except partnercenter.ApiException as e:
+        print("Exception when calling PackageConfigurationClient->products_product_id_package_configurations_get_by_instance_id_instance_i_dinstance_id_get: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **product_id** | **str**| ID of product |
+ **instance_id** | **str**| Resource instance ID |
+ **authorization** | **str**| User authorization |
+ **client_request_id** | **str**| ID of request provIDed by user | [optional]
+
+### Return type
+
+[**ProductsProductIDPackageConfigurationsGetByInstanceIDInstanceIDInstanceIDGet200Response**](ProductsProductIDPackageConfigurationsGetByInstanceIDInstanceIDInstanceIDGet200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A PagedCollection of certain type of BasePackageConfiguration resource |  * Request-ID - ID of request generated by service <br>  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not available |  -  |
+**405** | Method not allowed |  -  |
+**409** | Conflict |  -  |
+**429** | Request rate exceeds limit |  -  |
+**0** | Unknown error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **products_product_id_packageconfigurations_package_configuration_id_get**
+> ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response products_product_id_packageconfigurations_package_configuration_id_get(product_id, package_configuration_id, authorization)
+
+Returns a PackageConfiguration resource
+
+Sample request:                    GET /products/{productID}/packageConfigurations/{packageConfigurationID}  
+
+### Example
+
+
+```python
+import time
+import partnercenter
+from ..api import package_configuration_client
+from ..model.products_product_id_packageconfigurations_package_configuration_id_get200_response import ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.partner.microsoft.com/v1.0/ingestion
+# See configuration.py for a list of all supported configuration parameters.
+configuration = partnercenter.Configuration(
+    host = "https://api.partner.microsoft.com/v1.0/ingestion"
+)
+
+
+# Enter a context with an instance of the API client
+with partnercenter.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = package_configuration_client.PackageConfigurationClient(api_client)
+    product_id = "productID_example" # str | ID of product
+    package_configuration_id = "packageConfigurationID_example" # str | PackageConfiguration ID
+    authorization = "Authorization_example" # str | User authorization
+    client_request_id = "Client-Request-ID_example" # str | ID of request provIDed by user (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Returns a PackageConfiguration resource
+        api_response = api_instance.products_product_id_packageconfigurations_package_configuration_id_get(product_id, package_configuration_id, authorization)
+        pprint(api_response)
+    except partnercenter.ApiException as e:
+        print("Exception when calling PackageConfigurationClient->products_product_id_packageconfigurations_package_configuration_id_get: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Returns a PackageConfiguration resource
+        api_response = api_instance.products_product_id_packageconfigurations_package_configuration_id_get(product_id, package_configuration_id, authorization, client_request_id=client_request_id)
+        pprint(api_response)
+    except partnercenter.ApiException as e:
+        print("Exception when calling PackageConfigurationClient->products_product_id_packageconfigurations_package_configuration_id_get: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **product_id** | **str**| ID of product |
+ **package_configuration_id** | **str**| PackageConfiguration ID |
+ **authorization** | **str**| User authorization |
+ **client_request_id** | **str**| ID of request provIDed by user | [optional]
+
+### Return type
+
+[**ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response**](ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns a PackageConfiguration resource |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not available |  -  |
+**405** | Method not allowed |  -  |
+**409** | Conflict |  -  |
+**429** | Request rate exceeds limit |  -  |
+**0** | Unknown error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **products_product_id_packageconfigurations_package_configuration_id_put**
+> ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response products_product_id_packageconfigurations_package_configuration_id_put(product_id, package_configuration_id, authorization)
+
+Updates a PackageConfiguration resource
+
+Sample request:                    PUT /products/{productID}/packageConfigurations/{packageConfigurationID} [Body PackageConfiguration]
+
+### Example
+
+
+```python
+import time
+import partnercenter
+from ..api import package_configuration_client
+from ..model.products_product_id_packageconfigurations_package_configuration_id_get200_response import ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.partner.microsoft.com/v1.0/ingestion
+# See configuration.py for a list of all supported configuration parameters.
+configuration = partnercenter.Configuration(
+    host = "https://api.partner.microsoft.com/v1.0/ingestion"
+)
+
+
+# Enter a context with an instance of the API client
+with partnercenter.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = package_configuration_client.PackageConfigurationClient(api_client)
+    product_id = "productID_example" # str | ID of product
+    package_configuration_id = "packageConfigurationID_example" # str | PackageConfiguration ID
+    authorization = "Authorization_example" # str | User authorization
+    client_request_id = "Client-Request-ID_example" # str | ID of request provIDed by user (optional)
+    products_product_id_packageconfigurations_package_configuration_id_get200_response = ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response(None) # ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response | Request body of a Microsoft.Ingestion.Api.Models.Packages.BasePackageConfiguration (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Updates a PackageConfiguration resource
+        api_response = api_instance.products_product_id_packageconfigurations_package_configuration_id_put(product_id, package_configuration_id, authorization)
+        pprint(api_response)
+    except partnercenter.ApiException as e:
+        print("Exception when calling PackageConfigurationClient->products_product_id_packageconfigurations_package_configuration_id_put: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Updates a PackageConfiguration resource
+        api_response = api_instance.products_product_id_packageconfigurations_package_configuration_id_put(product_id, package_configuration_id, authorization, client_request_id=client_request_id, products_product_id_packageconfigurations_package_configuration_id_get200_response=products_product_id_packageconfigurations_package_configuration_id_get200_response)
+        pprint(api_response)
+    except partnercenter.ApiException as e:
+        print("Exception when calling PackageConfigurationClient->products_product_id_packageconfigurations_package_configuration_id_put: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **product_id** | **str**| ID of product |
+ **package_configuration_id** | **str**| PackageConfiguration ID |
+ **authorization** | **str**| User authorization |
+ **client_request_id** | **str**| ID of request provIDed by user | [optional]
+ **products_product_id_packageconfigurations_package_configuration_id_get200_response** | [**ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response**](ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response.md)| Request body of a Microsoft.Ingestion.Api.Models.Packages.BasePackageConfiguration | [optional]
+
+### Return type
+
+[**ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response**](ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns updated PackageConfiguration resource |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not available |  -  |
+**405** | Method not allowed |  -  |
+**409** | Conflict |  -  |
+**429** | Request rate exceeds limit |  -  |
+**0** | Unknown error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
