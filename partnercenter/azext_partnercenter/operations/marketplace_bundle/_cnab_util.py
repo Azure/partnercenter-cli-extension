@@ -42,14 +42,11 @@ def _get_container_id(manifest_file):
     
     return container_id
 
-<<<<<<< HEAD
 def _run_container(container_name, mount_path):
     client = docker.APIClient(base_url='unix://var/run/docker.sock')
     volumes = ['/var/run/docker.sock:/var/run/docker.sock', mount_path+':/cpaMount', '$HOME/.azure:/root/.azure']
     return client.containers.run('bobjac/cnab:8.0', 'sleep infinity', detached=True, volumes=volumes, name=container_name)
 
-=======
->>>>>>> main
 def _start_container(container_name, mount_path):
     container_image = "bobjac/cnab:8.0"
     #container_image = "mcr.microsoft.com/container-package-app:latest"
