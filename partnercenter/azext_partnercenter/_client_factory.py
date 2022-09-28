@@ -27,6 +27,10 @@ def cf_plans(cli_ctx, *_):
     client = PlanClient(cli_ctx, *_)
     return client
 
+def cf_list(cli_ctx, *_):
+    from partnercenter.azext_partnercenter.operations.marketplace_offer._client import ListClient
+    client = ListClient(cli_ctx, *_)
+    return client
 
 def get_api_client(cli_ctx, *_):
     """Gets an instance of an sdk client"""
