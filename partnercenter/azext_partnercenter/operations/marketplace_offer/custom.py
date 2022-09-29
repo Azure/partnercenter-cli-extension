@@ -8,9 +8,10 @@ import os.path
 import re
 import subprocess
 import time
-import docker
+#import docker
 from azure.cli.core.util import sdk_no_wait
 from knack.util import CLIError
+
 
 # API Operations
 # pylint: disable=too-many-locals
@@ -29,6 +30,7 @@ def get_offer(cmd):
     raise CLIError('TODO: Implement `partnercenter marketplace offer show`')
 
 
-def list_offer(cmd):
-    raise CLIError('TODO: Implement `partnercenter marketplace offer show`')
+def list_offer(cmd, client, product_id, instance_id):
+    results = client.list(product_id, instance_id)
+    return results
 
