@@ -9,9 +9,10 @@ from knack.util import CLIError
 def verify(manifest_file):
     container = _get_container(manifest_file)
     result = container.exec_run('cpa verify --directory ./cpaMount')
+    
     #response = _parse_verify_response(result)
-
     #return response
+
     return result.output
 
 def bundle(manifest_file):
@@ -47,7 +48,6 @@ def _parse_valided_line(line):
     result = {
         'file': file_name,
         'failures': int(failures)
-
     }
 
     return result
