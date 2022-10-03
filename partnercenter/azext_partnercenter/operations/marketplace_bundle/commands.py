@@ -7,7 +7,6 @@
 from azure.cli.core.commands import CliCommandType
 from azext_partnercenter._client_factory import cf_partnercenter
 
-
 def load_command_table(commands_loader, _):
     custom_command_type = CliCommandType(operations_tmpl='azext_partnercenter.operations.marketplace_bundle.custom#{}', client_factory=cf_partnercenter)
 
