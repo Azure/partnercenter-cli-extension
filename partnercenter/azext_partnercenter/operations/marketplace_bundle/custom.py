@@ -14,6 +14,7 @@ logger = get_logger(__name__)
 # pylint: disable=too-many-locals
 def verify_bundle(manifest_file):
     result = verify(manifest_file)
+    #output = result.decode('utf-8').split('\n\n')
     #print(result)
     #_print_container_result(result)
     return result
