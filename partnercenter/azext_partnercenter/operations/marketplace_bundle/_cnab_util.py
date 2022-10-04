@@ -6,14 +6,13 @@ import yaml
 import json
 from knack.util import CLIError
 
+
 def verify(manifest_file):
     container = _get_container(manifest_file)
     result = container.exec_run('cpa verify --directory ./cpaMount')
-
     vr = VerifyResult(result.output.decode("utf-8"))
-    dict = vr.to_list()
+    return vr.to_list()
 
-    return dict
 
 def bundle(manifest_file):
     container = _get_container(manifest_file)
@@ -22,17 +21,19 @@ def bundle(manifest_file):
     result = container.exec_run('cpa buildbundle', workdir='/cpaMount')
     return result
 
+
 def _print_container_result(result):
     output = result.output.decode("utf-8")
     print(output)
+
 
 def _print_result(result):
     error = result.stderr.decode("utf-8")
     if len(error) > 0:
         print(error)
-
     output = result.stdout.decode("utf-8")
     print(output)
+
 
 def _get_container(manifest_file):
     client = docker.from_env()
@@ -44,8 +45,8 @@ def _get_container(manifest_file):
         container = _run_container(container_name, mount_path)
     except:
         raise CLIError('There was an unknow error when trying to find the cpacontainer')
-    finally:
-        return container
+    return container
+
 
 def _run_container(container_name, mount_path):
     client = docker.from_env()
@@ -54,12 +55,13 @@ def _run_container(container_name, mount_path):
     img = 'bobjac/cnab:9.0'
     cmd = 'sleep infinity'
     volumes = ['/var/run/docker.sock:/var/run/docker.sock', f'{mount_path}:/cpaMount', f'{absolute_path}:/root/.azure']
-
     container = client.containers.run(img, cmd, detach=True, volumes=volumes, name=container_name)
     return container
 
+
 def _get_mount_path(manifest_file):
     return os.path.dirname(manifest_file)
+
 
 def _get_acr_name(manifest_file):
     acr_name = ""
@@ -69,7 +71,6 @@ def _get_acr_name(manifest_file):
         index = registry_server.index('.')
         if index > -1:
             acr_name = registry_server[:index]
-
     return acr_name
 
 
@@ -87,7 +88,6 @@ class VerifyResult:
             mapped_templates = list(map(lambda x: json.loads(x), parsed_json_result['templates']))
             parsed_response['templates'] = mapped_templates
             return parsed_response
-        
         lines = parsed_json_result['stripped'].splitlines()
         lines = list(filter(None, lines))
         for idx, x in enumerate(lines):
@@ -95,17 +95,13 @@ class VerifyResult:
                 result = self._parse_valided_line(x)
                 file = result['file']
                 total_file_failures = result['failures']
-
                 if self._is_known_validation(file):
-
                     parsed_artifact = {}
                     parsed_artifact['Artifact Name'] = file
                     parsed_artifact['Total Failures'] = total_file_failures
-                                
                     if total_file_failures > 0:
                         failure_list = self._get_failure_list(lines, idx, file, total_file_failures)
                         parsed_artifact['Failures'] = failure_list
-                    
                     parsed_response.append(parsed_artifact)
                 else:
                     template_files = self._get_template_file_cnt(file)
@@ -113,20 +109,16 @@ class VerifyResult:
                         appended_templates = 0
                         current_idx = idx + 1
                         while appended_templates < template_files:
-                            current_line = lines[current_idx:current_idx+1]
-                            file_info = self._get_template_file_info(lines[current_idx]) 
+                            file_info = self._get_template_file_info(lines[current_idx])
                             parsed_artifact = {}
                             parsed_artifact['Artifact Name'] = file_info['file']
                             parsed_artifact['Total Failures'] = file_info['failures']
-                    
                             if file_info['failures'] > 0:
-                                template_failures = self._get_template_failures(current_idx+1, file_info['failures'], lines)
+                                template_failures = self._get_template_failures(current_idx + 1, file_info['failures'], lines)
                                 parsed_artifact['Failures'] = template_failures
                                 current_idx = current_idx + len(template_failures) + 1
-                            
                             parsed_response.append(parsed_artifact)
                             appended_templates = appended_templates + 1
-                            
         return parsed_response
 
     def _get_parsed_artifact(self, file_info):
@@ -142,29 +134,22 @@ class VerifyResult:
 
     def _get_template_file_cnt(self, file):
         template_files = 0
-        
         try:
             template_files = int(file)
         except ValueError:
             template_files = -1
-        
         return template_files
-        
 
     def _get_template_file_info(self, line):
         x = line.split(',')
-
         file_part = x[0].split('-')
         file_name = file_part[1].strip()
-
         failures = x[1].split()[0]
         failures = failures.strip()
-        
         result = {
             'file': file_name,
             'failures': int(failures)
         }
-
         return result
 
     def _is_known_validation(self, file):
@@ -175,20 +160,17 @@ class VerifyResult:
     def _get_failure_list(self, lines, validated_line_idx, file, total_file_failures):
         first_failure_idx = validated_line_idx + 1
         last_failure_idx = (validated_line_idx + total_file_failures) + 1
-        return lines[first_failure_idx:last_failure_idx]        
+        return lines[first_failure_idx:last_failure_idx]
 
     def _parse_valided_line(self, line):
         x = line.split(',')
-
         file_name = x[0].split()[0]
         failures = x[1].split()[0]
         failures = failures.strip()
-
         result = {
             'file': file_name,
             'failures': int(failures)
         }
-
         return result
 
     def _parse_json(self):
@@ -196,10 +178,8 @@ class VerifyResult:
         output = self.raw_string
         pattern = regex.compile(r'\{(?:[^{}]|(?R))*\}')
         returned_list = pattern.findall(output)
-
         for json_string in returned_list:
             output = output.replace(json_string, "")
-
         parsed_results = {
             'stripped': output,
             'templates': returned_list
