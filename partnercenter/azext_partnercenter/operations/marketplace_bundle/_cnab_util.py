@@ -81,9 +81,7 @@ class VerifyResult:
 
     def to_list(self):
         parsed_response = []
-
         parsed_json_result = self._parse_json()
-
         if parsed_json_result['templates']:
             mapped_templates = list(map(lambda x: json.loads(x), parsed_json_result['templates']))
             parsed_response['templates'] = mapped_templates
@@ -96,30 +94,39 @@ class VerifyResult:
                 file = result['file']
                 total_file_failures = result['failures']
                 if self._is_known_validation(file):
-                    parsed_artifact = {}
-                    parsed_artifact['Artifact Name'] = file
-                    parsed_artifact['Total Failures'] = total_file_failures
-                    if total_file_failures > 0:
-                        failure_list = self._get_failure_list(lines, idx, file, total_file_failures)
-                        parsed_artifact['Failures'] = failure_list
-                    parsed_response.append(parsed_artifact)
+                    self._update_known_validation_response(parsed_response, lines, idx, file, total_file_failures)
                 else:
-                    template_files = self._get_template_file_cnt(file)
-                    if template_files > 0:
-                        appended_templates = 0
-                        current_idx = idx + 1
-                        while appended_templates < template_files:
-                            file_info = self._get_template_file_info(lines[current_idx])
-                            parsed_artifact = {}
-                            parsed_artifact['Artifact Name'] = file_info['file']
-                            parsed_artifact['Total Failures'] = file_info['failures']
-                            if file_info['failures'] > 0:
-                                template_failures = self._get_template_failures(current_idx + 1, file_info['failures'], lines)
-                                parsed_artifact['Failures'] = template_failures
-                                current_idx = current_idx + len(template_failures) + 1
-                            parsed_response.append(parsed_artifact)
-                            appended_templates = appended_templates + 1
+                    self._update_unknown_validation_response(parsed_response, lines, idx, file)
         return parsed_response
+
+    def _update_unknown_validation_response(self, parsed_response, lines, idx, file):
+        template_files = self._get_template_file_cnt(file)
+        if template_files > 0:
+            self._update_template_validation_response(parsed_response, lines, idx, template_files)
+
+    def _update_template_validation_response(self, parsed_response, lines, idx, template_files):
+        appended_templates = 0
+        current_idx = idx + 1
+        while appended_templates < template_files:
+            file_info = self._get_template_file_info(lines[current_idx])
+            parsed_artifact = {}
+            parsed_artifact['Artifact Name'] = file_info['file']
+            parsed_artifact['Total Failures'] = file_info['failures']
+            if file_info['failures'] > 0:
+                template_failures = self._get_template_failures(current_idx + 1, file_info['failures'], lines)
+                parsed_artifact['Failures'] = template_failures
+                current_idx = current_idx + len(template_failures) + 1
+            parsed_response.append(parsed_artifact)
+            appended_templates = appended_templates + 1
+
+    def _update_known_validation_response(self, parsed_response, lines, idx, file, total_file_failures):
+        parsed_artifact = {}
+        parsed_artifact['Artifact Name'] = file
+        parsed_artifact['Total Failures'] = total_file_failures
+        if total_file_failures > 0:
+            failure_list = self._get_failure_list(lines, idx, file, total_file_failures)
+            parsed_artifact['Failures'] = failure_list
+        parsed_response.append(parsed_artifact)
 
     def _get_parsed_artifact(self, file_info):
         parsed_artifact = {}
