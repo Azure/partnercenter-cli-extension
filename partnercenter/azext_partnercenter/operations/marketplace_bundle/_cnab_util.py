@@ -6,7 +6,6 @@ import yaml
 import json
 from knack.util import CLIError
 
-
 def verify(manifest_file):
     container = _get_container(manifest_file)
     result = container.exec_run('cpa verify --directory ./cpaMount')
