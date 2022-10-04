@@ -77,7 +77,6 @@ class VerifyResult:
 
     def __init__(self, raw_string):
         self.raw_string = raw_string
-        self.known_validations = ['manifest', 'helm']
 
     def to_list(self):
         parsed_response = []
@@ -97,7 +96,8 @@ class VerifyResult:
                 file = result['file']
                 total_file_failures = result['failures']
 
-                if file.lower() in self.known_validations:
+                if self._is_known_validation(file):
+
                     parsed_artifact = {}
                     parsed_artifact['Artifact Name'] = file
                     parsed_artifact['Total Failures'] = total_file_failures
@@ -108,16 +108,10 @@ class VerifyResult:
                     
                     parsed_response.append(parsed_artifact)
                 else:
-                    template_files = 0
-                    try:
-                        template_files = int(file)
-                    except ValueError:
-                        template_files = -1
-                    
+                    template_files = self._get_template_file_cnt(file)
                     if template_files > 0:
                         appended_templates = 0
                         current_idx = idx + 1
-                        current_file = ''
                         while appended_templates < template_files:
                             current_line = lines[current_idx:current_idx+1]
                             file_info = self._get_template_file_info(lines[current_idx]) 
@@ -126,29 +120,45 @@ class VerifyResult:
                             parsed_artifact['Total Failures'] = file_info['failures']
                     
                             if file_info['failures'] > 0:
-                                failure_start_idx = current_idx + 1
-                                failure_end_idx = failure_start_idx + file_info['failures']
-                                template_failures = list(map(lambda x: x.strip(), lines[failure_start_idx:failure_end_idx]))
-                                current_idx = current_idx + len(template_failures) + 1
+                                template_failures = self._get_template_failures(current_idx+1, file_info['failures'], lines)
                                 parsed_artifact['Failures'] = template_failures
+                                current_idx = current_idx + len(template_failures) + 1
                             
                             parsed_response.append(parsed_artifact)
                             appended_templates = appended_templates + 1
                             
         return parsed_response
 
+    def _get_parsed_artifact(self, file_info):
+        parsed_artifact = {}
+        parsed_artifact['Artifact Name'] = file_info['file']
+        parsed_artifact['Total Failures'] = file_info['failures']
+        return parsed_artifact
+
+    def _get_template_failures(self, start_idx, failure_cnt, lines):
+        end_idx = start_idx + failure_cnt
+        template_failures = list(map(lambda x: x.strip(), lines[start_idx:end_idx]))
+        return template_failures
+
+    def _get_template_file_cnt(self, file):
+        template_files = 0
+        
+        try:
+            template_files = int(file)
+        except ValueError:
+            template_files = -1
+        
+        return template_files
+        
 
     def _get_template_file_info(self, line):
-        print('inside _get_template_file_info')
         x = line.split(',')
 
         file_part = x[0].split('-')
         file_name = file_part[1].strip()
-        print(f'file_name - {file_name}')
 
         failures = x[1].split()[0]
         failures = failures.strip()
-        print(f'failures - {failures}')
         
         result = {
             'file': file_name,
@@ -157,15 +167,15 @@ class VerifyResult:
 
         return result
 
+    def _is_known_validation(self, file):
+        known_validations = ['manifest', 'helm']
+        file = file.lower()
+        return file in known_validations
 
     def _get_failure_list(self, lines, validated_line_idx, file, total_file_failures):
         first_failure_idx = validated_line_idx + 1
         last_failure_idx = (validated_line_idx + total_file_failures) + 1
         return lines[first_failure_idx:last_failure_idx]        
-
-    def _get_template_failure_list(self, lines, validated_line_idx, file, total_file_failures):
-        failures = []
-        return failures
 
     def _parse_valided_line(self, line):
         x = line.split(',')
