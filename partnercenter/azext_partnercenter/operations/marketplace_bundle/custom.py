@@ -22,6 +22,7 @@ def build_bundle(manifest_file):
     result = bundle(manifest_file)
     _print_container_result(result)
 
+
 def update_bundle(instance):
     # TODO: Implement partnercenter marketplace offer update
     return instance
