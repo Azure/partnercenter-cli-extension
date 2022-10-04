@@ -109,9 +109,7 @@ class VerifyResult:
         current_idx = idx + 1
         while appended_templates < template_files:
             file_info = self._get_template_file_info(lines[current_idx])
-            parsed_artifact = {}
-            parsed_artifact['Artifact Name'] = file_info['file']
-            parsed_artifact['Total Failures'] = file_info['failures']
+            parsed_artifact = self._init_parsed_artifact(file_info['file'], file_info['failures'])
             if file_info['failures'] > 0:
                 template_failures = self._get_template_failures(current_idx + 1, file_info['failures'], lines)
                 parsed_artifact['Failures'] = template_failures
@@ -120,18 +118,17 @@ class VerifyResult:
             appended_templates = appended_templates + 1
 
     def _update_known_validation_response(self, parsed_response, lines, idx, file, total_file_failures):
-        parsed_artifact = {}
-        parsed_artifact['Artifact Name'] = file
-        parsed_artifact['Total Failures'] = total_file_failures
+        parsed_artifact = self._init_parsed_artifact(file, total_file_failures)
         if total_file_failures > 0:
             failure_list = self._get_failure_list(lines, idx, file, total_file_failures)
             parsed_artifact['Failures'] = failure_list
         parsed_response.append(parsed_artifact)
 
-    def _get_parsed_artifact(self, file_info):
+
+    def _init_parsed_artifact(self, file, failures):
         parsed_artifact = {}
-        parsed_artifact['Artifact Name'] = file_info['file']
-        parsed_artifact['Total Failures'] = file_info['failures']
+        parsed_artifact['Artifact Name'] = file
+        parsed_artifact['Total Failures'] = failures
         return parsed_artifact
 
     def _get_template_failures(self, start_idx, failure_cnt, lines):
