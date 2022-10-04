@@ -6,6 +6,7 @@ import yaml
 import json
 from knack.util import CLIError
 
+
 def verify(manifest_file):
     container = _get_container(manifest_file)
     result = container.exec_run('cpa verify --directory ./cpaMount')
@@ -52,7 +53,7 @@ def _run_container(container_name, mount_path):
     home_directory = os.path.expanduser('~')
     absolute_path = f'{home_directory}/.azure'
     img = 'bobjac/cnab:9.0'
-    #img = 'mcr.microsoft.com/container-package-app:latest'
+    # img = 'mcr.microsoft.com/container-package-app:latest'
     cmd = 'sleep infinity'
     volumes = ['/var/run/docker.sock:/var/run/docker.sock', f'{mount_path}:/cpaMount', f'{absolute_path}:/root/.azure']
     container = client.containers.run(img, cmd, detach=True, volumes=volumes, name=container_name)
@@ -123,7 +124,6 @@ class VerifyResult:
             failure_list = self._get_failure_list(lines, idx, file, total_file_failures)
             parsed_artifact['Failures'] = failure_list
         parsed_response.append(parsed_artifact)
-
 
     def _init_parsed_artifact(self, file, failures):
         parsed_artifact = {}
