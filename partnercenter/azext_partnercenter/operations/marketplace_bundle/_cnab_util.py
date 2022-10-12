@@ -83,6 +83,7 @@ class VerifyResult:
     def to_list(self):
         parsed_response = []
         parsed_json_result = self._parse_json()
+        print(parsed_json_result)
         if parsed_json_result['templates']:
             mapped_templates = list(map(lambda x: json.loads(x), parsed_json_result['templates']))
             parsed_response['templates'] = mapped_templates
@@ -108,7 +109,7 @@ class VerifyResult:
     def _update_template_validation_response(self, parsed_response, lines, idx, template_files):
         appended_templates = 0
         current_idx = idx + 1
-        while appended_templates < template_files:
+        while appended_templates < template_files and current_idx < len(lines):
             file_info = self._get_template_file_info(lines[current_idx])
             parsed_artifact = self._init_parsed_artifact(file_info['file'], file_info['failures'])
             if file_info['failures'] > 0:
