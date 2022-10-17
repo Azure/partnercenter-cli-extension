@@ -1,3 +1,4 @@
+from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (ProductClient, BranchesClient)
 from partnercenter.azext_partnercenter._client_factory import get_api_client
 from partnercenter.azext_partnercenter._util import get_combined_paged_results
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
@@ -12,8 +13,8 @@ class PlanClient():
         self._branch_client = BranchesClient(self._api_client)
 
     def list(self):
-        items = get_combined_paged_results(self._product_client.products_get, self._api_client.configuration.access_token)
-        return items
+        results = self._product_client.products_get(self._api_client.configuration.access_token)
+        return list(map(self._to_dict, results.value))
 
 
     def _to_dict(self, item):
