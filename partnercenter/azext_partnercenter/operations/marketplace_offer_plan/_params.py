@@ -4,10 +4,11 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
 
-from azure.cli.core.commands.parameters import (get_enum_type, get_three_state_flag)
+from azure.cli.core.commands.parameters import (get_enum_type,
+                                                get_three_state_flag)
 
 
 def load_arguments(commands_loader, _):
-    pass
-    # with commands_loader.argument_context('partnercenter marketplace offer') as c:
-    #     c.argument('arg', options_list=['--arg', '-a'], help='The argument help')
+    with commands_loader.argument_context('partnercenter marketplace offer plan') as c:
+        c.argument('productId', options_list=['--id'], help='The system ID of the offer in the partner center.')
+        c.argument('offerId', options_list=['--azure-offer-id', '--offer-id'], help='The offer ID')
