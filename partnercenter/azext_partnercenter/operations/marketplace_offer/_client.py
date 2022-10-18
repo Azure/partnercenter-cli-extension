@@ -25,7 +25,7 @@ class ListClient():
         
         product_client = ProductClient(self._api_client)
         result = product_client.products_post(self._api_client.configuration.access_token, microsoft_ingestion_api_models_products_azure_product=prod, _content_type="application/json")
-        return result
+        return result.to_dict()
 
 
     def _to_dict(self, item):

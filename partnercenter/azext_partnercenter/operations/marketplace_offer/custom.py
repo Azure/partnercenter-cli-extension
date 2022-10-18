@@ -17,7 +17,7 @@ from knack.util import CLIError
 # pylint: disable=too-many-locals
 def create_offer(cmd, client, offer_id, offer_alias, resource_type):
     result = client.create(offer_id, offer_alias, resource_type)
-    return [result]
+    return result
 
 def update_offer(cmd, instance, arg):
     # TODO: Implement partnercenter marketplace offer update
