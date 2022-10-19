@@ -17,9 +17,9 @@ class PlanClient:
         self._product_client = ProductClient(self._api_client)
         self._variant_client = VariantClient(self._api_client)
 
-    def list(self, resource_id):
-        product = self._product_client.products_product_id_get(resource_id, self._api_client.configuration.access_token)
-        variants = get_combined_paged_results(lambda : self._variant_client.products_product_id_variants_get(resource_id, self._api_client.configuration.access_token))
+    def list(self, offer_resource_id):
+        product = self._product_client.products_product_id_get(offer_resource_id, self._api_client.configuration.access_token)
+        variants = get_combined_paged_results(lambda : self._variant_client.products_product_id_variants_get(offer_resource_id, self._api_client.configuration.access_token))
 
         items = []
 
@@ -28,9 +28,28 @@ class PlanClient:
                 id=variant['externalID'],
                 name=variant['friendlyName'],
                 offer_id=product['externalIDs'][0]['value'],
+                state=variant['state'],
                 cloud_availabilities=variant['cloudAvailabilities'],
                 resource=Resource(id=variant['id'], type=variant['resourceType'])
             )
             items.append(item)
 
         return items
+
+
+    def get(self, offer_resource_id, plan_resource_id):
+        product = self._product_client.products_product_id_get(offer_resource_id, self._api_client.configuration.access_token)
+        variant = self._variant_client.products_product_id_variants_variant_id_get(
+                offer_resource_id,
+                plan_resource_id,
+                self._api_client.configuration.access_token)
+
+        item = Plan(
+            id=variant['externalID'],
+            name=variant['friendlyName'],
+            offer_id=product['externalIDs'][0]['value'],
+            state=variant['state'],
+            cloud_availabilities=variant['cloudAvailabilities'],
+            resource=Resource(id=variant['id'], type=variant['resourceType'])
+        )
+        return item

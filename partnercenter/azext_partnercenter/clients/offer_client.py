@@ -24,8 +24,8 @@ class OfferClient():
 
         return response.value[0]
 
-    def get(self, product_id):
-        return self._product_client.products_product_id_get(product_id,  self._api_client.configuration.access_token)
+    def get(self, resource_id):
+        return self._product_client.products_product_id_get(resource_id,  self._api_client.configuration.access_token)
     
     
     def _get_access_token(self):
