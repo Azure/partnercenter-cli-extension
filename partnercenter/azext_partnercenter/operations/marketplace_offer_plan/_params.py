@@ -10,5 +10,5 @@ from azure.cli.core.commands.parameters import (get_enum_type,
 
 def load_arguments(commands_loader, _):
     with commands_loader.argument_context('partnercenter marketplace offer plan') as c:
-        c.argument('product_id', options_list=['--product-id', '--id'], help='The system ID of the offer in the partner center.')
-        c.argument('offer_id', options_list=['--azure-offer-id', '--offer-id'], help='The offer ID')
+        c.argument('offer_resource_id', options_list=['--offer-resource-id'], help='The Offer Resource ID of the Offer for the Plan in the partner center.')
+        c.argument('offer_id', options_list=['--azure-offer-id', '--offer-id'], help='The offer ID of the Offer for the Plan.')
