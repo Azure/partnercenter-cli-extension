@@ -1,6 +1,6 @@
 from unicodedata import name
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import ListingClient
-from partnercenter.azext_partnercenter._client_factory import get_api_client
+from partnercenter.azext_partnercenter.clients import get_api_client
 import json
 
 class ListClient():
