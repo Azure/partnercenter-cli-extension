@@ -14,7 +14,7 @@ def list_plan(cmd, client):
     return results
 
 
-def create_plan(cmd, arg):
+def create_plan(cmd, client):
     raise CLIError('TODO: Implement `partnercenter marketplace offer create`')
 
 
