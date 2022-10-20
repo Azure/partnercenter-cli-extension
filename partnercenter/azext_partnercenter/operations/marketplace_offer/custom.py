@@ -15,9 +15,9 @@ from knack.util import CLIError
 
 # API Operations
 # pylint: disable=too-many-locals
-def create_offer(cmd, arg):
-    raise CLIError('TODO: Implement `partnercenter marketplace offer create`')
-
+def create_offer(cmd, client, offer_id, offer_alias, resource_type):
+    result = client.create(offer_id, offer_alias, resource_type)
+    return result
 
 def update_offer(cmd, instance, arg):
     # TODO: Implement partnercenter marketplace offer update
@@ -33,4 +33,6 @@ def get_offer(cmd):
 def list_offer(cmd, client, product_id, instance_id):
     results = client.list(product_id, instance_id)
     return results
+
+
 
