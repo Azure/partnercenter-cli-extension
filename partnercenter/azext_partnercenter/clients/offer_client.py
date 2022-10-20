@@ -4,7 +4,7 @@
 # --------------------------------------------------------------------------------------------
 
 from partnercenter.azext_partnercenter._util import get_combined_paged_results
-from partnercenter.azext_partnercenter.models import PlanListing, Resource
+from partnercenter.azext_partnercenter.models import PlanListing, Resource, ListingContact, ListingUri
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     BranchesClient, ListingClient, ProductClient)
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models import \
@@ -47,15 +47,11 @@ class OfferClient():
         
         instance_id = current_draft_module.current_draft_instance_id
 
-        results = get_combined_paged_results(lambda : 
+        listings = get_combined_paged_results(lambda : 
             self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
             resource_id, instance_id, self._get_access_token()))
 
-        print(results[0].title)
-        # for item in results:
-        #     item.openapi_types()
-
-        listings = list(map(lambda listing: PlanListing(
+        return list(map(lambda listing: PlanListing(
             title=listing.title,
             summary=listing.summary,
             description=listing.description,
@@ -63,12 +59,10 @@ class OfferClient():
             short_description=listing.short_description,
             getting_started_instructions=listing.getting_started_instructions,
             keywords=listing.keywords,
-            contacts=listing.contacts,
-            uris=listing.uris,
-            resource=Resource(id=listing.id, type=listing.type)
-        ), results))
-
-        return listings
+            contacts=list(map(lambda c : ListingContact(**c.to_dict()), listing.listing_contacts)),
+            uris=list(map(lambda c : ListingContact(**c.to_dict()), listing.listing_uris)),
+            resource=Resource(id=listing.id, type=listing.resource_type)
+        ), listings))
     
     def _get_access_token(self):
         return self._api_client.configuration.access_token
