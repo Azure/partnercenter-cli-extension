@@ -7,12 +7,12 @@
 def cf_partnercenter(cli_ctx, *_):
 
     from azure.cli.core.commands.client_factory import get_mgmt_service_client
+
     # TODO: Replace CONTOSO with the appropriate label and uncomment
     # from azure.mgmt.CONTOSO import CONTOSOManagementClient
     # return get_mgmt_service_client(cli_ctx, CONTOSOManagementClient)
     # Enter a context with an instance of the API client
     # api_client = ApiClient()
-
     # api_instance = ProductClient(api_client)
     # authorization = "Authorization_example" # str | User authorization
     # filter = "$filter_example" # str | Filter for paged collection. Filter by ResourceType or ExternalIDs with operation eq is allowed. (optional)
@@ -34,7 +34,20 @@ def cf_plans(cli_ctx, *_):
     return client
 
 
+def cf_plan_setup(cli_ctx, *_):
+    from partnercenter.azext_partnercenter.clients import PlanSetupClient
+    client = PlanSetupClient(cli_ctx, *_)
+    return client
+
+
+def cf_plan_setup(cli_ctx, *_):
+    from partnercenter.azext_partnercenter.clients import PlanListingClient
+    client = PlanListingClient(cli_ctx, *_)
+    return client
+
+
 def cf_list(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.operations.marketplace_offer._client import ListClient
+    from partnercenter.azext_partnercenter.operations.marketplace_offer._client import \
+        ListClient
     client = ListClient(cli_ctx, *_)
     return client
