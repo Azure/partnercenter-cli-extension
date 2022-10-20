@@ -21,7 +21,8 @@ def list_plan(cmd, client, offer_id=None, offer_resource_id=None):
 
     if offer is not None:
         return client.list(offer.id)
-    return
+
+    return []
 
 
 def create_plan(cmd, arg):

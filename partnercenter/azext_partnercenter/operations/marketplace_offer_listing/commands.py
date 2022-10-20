@@ -13,5 +13,6 @@ def load_command_table(commands_loader, _):
     custom_command_type = CliCommandType(operations_tmpl='azext_partnercenter.operations.marketplace_offer_listing.custom#{}', client_factory=cf_offers)
 
     with commands_loader.command_group('partnercenter marketplace offer listing', custom_command_type=custom_command_type, is_preview=True) as g:
+        g.custom_show_command('list', 'list_listing', table_transformer=None)
         g.custom_show_command('show', 'get_listing', table_transformer=None)
         g.custom_command('update', 'update_listing', supports_no_wait=True, table_transformer=None)

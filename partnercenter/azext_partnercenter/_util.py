@@ -1,11 +1,15 @@
 from urllib.parse import parse_qs, urlparse
 
 
-def get_combined_paged_results(method_with_paged_response):
+def get_combined_paged_results(method_with_paged_response, collect_as_dict_items=True):
     """Get combined paginated results from the SDK client that's generated from the Parnter Center API"""
     items = []
     response = method_with_paged_response()
-    items.extend(map(object_to_dict, response['value']))
+
+    if collect_as_dict_items:
+        items.extend(map(object_to_dict, response.value))
+    else:
+        items.extend(response.value)
 
     if ("nextLink" in response):
         next_link = response['nextLink']
@@ -14,7 +18,10 @@ def get_combined_paged_results(method_with_paged_response):
             token = _get_skip_token(next_link)
             response = method_with_paged_response(skip_token=token)
             if ("value" in response):
-                items.extend(map(object_to_dict, response['value']))
+                if collect_as_dict_items:
+                    items.extend(map(object_to_dict, response.value))
+                else:
+                    items.extend(response.value)
             next_link = None if "nextLink" not in response else response['nextLink']
 
     return items
