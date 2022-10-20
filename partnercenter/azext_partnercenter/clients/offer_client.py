@@ -37,19 +37,21 @@ class OfferClient():
     def get_listings(self, resource_id):
         module = "Listing"
         branch_listings = get_combined_paged_results(lambda : self._branches_client.products_product_id_branches_get_by_module_modulemodule_get(
-                resource_id, module, self._api_client.configuration.access_token, _spec_property_naming=True), collect_as_dict_items=False)
+                resource_id, module, self._api_client.configuration.access_token))
 
-        #print(type(branch_listings[0]))
-        current_draft_module = next((b for b in branch_listings if b.variant_id is None), None)
+        # TODO: circle back on this as not sure what to do when multiple offer listings exist
+        current_draft_module = next((b for b in branch_listings if not hasattr(b, 'variant_id')), None)
 
         if current_draft_module is None:
             return None
         
         instance_id = current_draft_module.current_draft_instance_id
 
-        results = get_combined_paged_results(lambda : self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
-            resource_id, instance_id, self._get_access_token()), collect_as_dict_items=False)
+        results = get_combined_paged_results(lambda : 
+            self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
+            resource_id, instance_id, self._get_access_token()))
 
+        print(results[0].title)
         # for item in results:
         #     item.openapi_types()
 
