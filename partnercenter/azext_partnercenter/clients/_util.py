@@ -6,12 +6,13 @@
 
 def get_api_client(cli_ctx, *_):
     """Gets an instance of an sdk client"""
-    subscription_id = cli_ctx.data['subscription_id']
+    print(f'cli_ctx - {cli_ctx}')
+    #subscription_id = cli_ctx.data['subscription_id']
 
     from azure.cli.core._profile import Profile
     profile = Profile(cli_ctx=cli_ctx)
 
-    subscription = profile.get_subscription(subscription_id)
+    #subscription = profile.get_subscription(subscription_id)
     creds, _, _ = profile.get_raw_token(resource="https://api.partner.microsoft.com")
 
     from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.api_client import ApiClient
