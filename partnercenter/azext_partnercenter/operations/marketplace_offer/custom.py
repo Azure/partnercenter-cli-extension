@@ -8,6 +8,7 @@ import os.path
 import re
 import subprocess
 import time
+from azext_partnercenter.models import offer
 #import docker
 from azure.cli.core.util import sdk_no_wait
 from knack.util import CLIError
@@ -26,8 +27,8 @@ def update_offer(cmd, instance, arg):
 def delete_offer(cmd):
     raise CLIError('TODO: Implement `partnercenter marketplace offer delete`')
 
-def get_offer(cmd):
-    raise CLIError('TODO: Implement `partnercenter marketplace offer show`')
+def get_offer(client, offer_id):
+    return client.get(offer_id)
 
 
 def list_offer(client):
