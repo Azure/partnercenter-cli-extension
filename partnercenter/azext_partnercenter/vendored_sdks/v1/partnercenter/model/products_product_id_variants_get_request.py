@@ -67,6 +67,7 @@ class ProductsProductIDVariantsGetRequest(ModelComposed):
     allowed_values = {
         ('resource_type',): {
             'AZURETESTDRIVEVARIANT': "AzureTestDriveVariant",
+            'AZURESKUVARIANT': "AzureSkuVariant",
         },
         ('state',): {
             'INACTIVE': "InActive",

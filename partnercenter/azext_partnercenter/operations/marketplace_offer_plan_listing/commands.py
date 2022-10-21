@@ -15,3 +15,4 @@ def load_command_table(commands_loader, _):
     with commands_loader.command_group('partnercenter marketplace offer plan listing', custom_command_type=custom_command_type, is_preview=True) as g:
         g.custom_show_command('show', 'get_listing', table_transformer=None)
         g.custom_command('list', 'list_listing', table_transformer=None)
+        g.custom_command('update', 'update_listing', table_transformer=None)

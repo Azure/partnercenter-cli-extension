@@ -4,6 +4,7 @@
 # --------------------------------------------------------------------------------------------
 
 from ._util import get_api_client
+
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     ListingClient, ProductClient)
 from partnercenter.azext_partnercenter._util import _get_skip_token
