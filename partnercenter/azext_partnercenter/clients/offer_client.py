@@ -28,6 +28,13 @@ class OfferClient():
     def get(self, resource_id):
         return self._product_client.products_product_id_get(resource_id,  self._api_client.configuration.access_token)
     
+    def list(self):
+        results = self._product_client.products_get(self._api_client.configuration.access_token)
+        return list(map(self._to_dict, results.value))
+
+    def delete(self, product_id):
+        results = self._product_client.products_product_id_delete(product_id, self._api_client.configuration.access_token)
+        return results
     
     def _get_access_token(self):
         return self._api_client.configuration.access_token
@@ -37,3 +44,5 @@ class OfferClient():
         """Gets the odata filter expression for filtering by Offer ID"""
         return "externalIDs/Any(i:i/type eq 'AzureOfferId' and i/value eq '{offer_id}')".format(offer_id=offer_id)
 
+    def _to_dict(self, item):
+        return item.to_dict()

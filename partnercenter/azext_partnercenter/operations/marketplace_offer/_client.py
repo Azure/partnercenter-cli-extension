@@ -10,9 +10,9 @@ class ListClient():
         self._client = ListingClient(self._api_client)
     
 
-    def list(self, product_id, instance_id):
-        results = self._client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(product_id, instance_id, self._api_client.configuration.access_token)
-        return list(map(self._to_dict, results.value))
+    # def list(self, product_id, instance_id):
+    #     results = self._client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(product_id, instance_id, self._api_client.configuration.access_token)
+    #     return list(map(self._to_dict, results.value))
 
     def create(self, offer_id, offer_alias, resource_type):
         from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import ProductClient
