@@ -22,6 +22,15 @@ class OfferClient():
         self._branches_client = BranchesClient(self._api_client)
         self._listing_client = ListingClient(self._api_client)
 
+    
+    def list(self):
+        results = get_combined_paged_results(lambda skip_token: self._product_client.products_get(self._get_access_token(), skip_token=skip_token))
+        return list(map(lambda product : Offer(
+                id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
+                name=product.name,
+                resource=Resource(id=product.id, type=product.resource_type)
+            ), results))
+
     def get(self, offer_id):
         filter_expr = self._get_filter_by_offer_id_expression(offer_id)
         response = self._product_client.products_get(self._get_access_token(), filter=filter_expr)
@@ -43,7 +52,7 @@ class OfferClient():
             return None
         
         branch_listings = get_combined_paged_results(lambda : self._branches_client.products_product_id_branches_get_by_module_modulemodule_get(
-                offer.resource.id, "Listing", self._api_client.configuration.access_token))
+                offer._resource.id, "Listing", self._api_client.configuration.access_token))
 
         # TODO: circle back on this as not sure what to do when multiple offer listings exist
         current_draft_module = next((b for b in branch_listings if not hasattr(b, 'variant_id')), None)
@@ -55,7 +64,7 @@ class OfferClient():
 
         listings = get_combined_paged_results(lambda : 
             self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
-            offer.resource.id, instance_id, self._get_access_token()))
+            offer._resource.id, instance_id, self._get_access_token()))
         
         # TODO: there should only be 1 active listing (that we can confirm as of now)
         if len(listings) == 0:

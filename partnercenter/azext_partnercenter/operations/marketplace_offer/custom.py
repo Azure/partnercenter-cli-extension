@@ -30,9 +30,8 @@ def get_offer(cmd):
     raise CLIError('TODO: Implement `partnercenter marketplace offer show`')
 
 
-def list_offer(cmd, client, product_id, instance_id):
-    results = client.list(product_id, instance_id)
-    return results
+def list_offer(client):
+    return client.list()
 
 
 

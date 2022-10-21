@@ -16,4 +16,4 @@ class Offer(Model):
         super(Offer, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
-        self.resource = kwargs.get('resource', None)
+        self._resource = kwargs.get('resource', None)
