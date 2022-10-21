@@ -7,6 +7,7 @@ from msrest.serialization import Model
 
 
 class Resource(Model):
+    """This is to track the internal id and type of the objects. It shouldn't be returned by the CLI in production."""
     _attribute_map = {
         'id': {'key': 'id', 'type': 'str'},
         'type': {'key': 'type', 'type': 'str'},

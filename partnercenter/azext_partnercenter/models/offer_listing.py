@@ -8,8 +8,7 @@ from msrest.serialization import Model
 
 class OfferListing(Model):
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'resource': {'key': 'resource', 'type': 'Resource'},
+        'id': {'key': 'id', 'type': 'str'}
     }
 
     def __init__(self, **kwargs):

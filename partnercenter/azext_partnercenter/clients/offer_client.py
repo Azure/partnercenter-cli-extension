@@ -9,6 +9,7 @@ from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis impor
     BranchesClient, ListingClient, ProductClient)
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models import \
     MicrosoftIngestionApiModelsBranchesBranch
+from partnercenter.azext_partnercenter.models import Offer
 
 from ._util import get_api_client
 
@@ -21,23 +22,28 @@ class OfferClient():
         self._branches_client = BranchesClient(self._api_client)
         self._listing_client = ListingClient(self._api_client)
 
-    def get_by_offer_id(self, offer_id):
+    def get(self, offer_id):
         filter_expr = self._get_filter_by_offer_id_expression(offer_id)
         response = self._product_client.products_get(self._get_access_token(), filter=filter_expr)
 
         if (len(response.value) == 0):
             return None
 
-        return response.value[0]
+        product = response.value[0]
 
-    def get(self, resource_id):
-        return self._product_client.products_product_id_get(resource_id,  self._api_client.configuration.access_token)
-    
+        return Offer(
+                id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
+                resource=Resource(id=product.id, type=product.resource_type)
+            )
 
-    def get_listings(self, resource_id):
-        module = "Listing"
+    def get_listing(self, offer_id):
+        offer = self.get(offer_id)
+
+        if offer is None:
+            return None
+        
         branch_listings = get_combined_paged_results(lambda : self._branches_client.products_product_id_branches_get_by_module_modulemodule_get(
-                resource_id, module, self._api_client.configuration.access_token))
+                offer.resource.id, "Listing", self._api_client.configuration.access_token))
 
         # TODO: circle back on this as not sure what to do when multiple offer listings exist
         current_draft_module = next((b for b in branch_listings if not hasattr(b, 'variant_id')), None)
@@ -49,9 +55,15 @@ class OfferClient():
 
         listings = get_combined_paged_results(lambda : 
             self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
-            resource_id, instance_id, self._get_access_token()))
+            offer.resource.id, instance_id, self._get_access_token()))
+        
+        # TODO: there should only be 1 active listing (that we can confirm as of now)
+        if len(listings) == 0:
+            return None
 
-        return list(map(lambda listing: PlanListing(
+        listing = listings[0]
+        
+        return PlanListing(
             title=listing.title,
             summary=listing.summary,
             description=listing.description,
@@ -60,9 +72,9 @@ class OfferClient():
             getting_started_instructions=listing.getting_started_instructions,
             keywords=listing.keywords,
             contacts=list(map(lambda c : ListingContact(**c.to_dict()), listing.listing_contacts)),
-            uris=list(map(lambda c : ListingContact(**c.to_dict()), listing.listing_uris)),
+            uris=list(map(lambda c : ListingUri(**c.to_dict()), listing.listing_uris)),
             resource=Resource(id=listing.id, type=listing.resource_type)
-        ), listings))
+        )
     
     def _get_access_token(self):
         return self._api_client.configuration.access_token
@@ -71,4 +83,3 @@ class OfferClient():
     def _get_filter_by_offer_id_expression(self, offer_id):
         """Gets the odata filter expression for filtering by Offer ID"""
         return "externalIDs/Any(i:i/type eq 'AzureOfferId' and i/value eq '{offer_id}')".format(offer_id=offer_id)
-

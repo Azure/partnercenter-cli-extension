@@ -8,11 +8,11 @@ from msrest.serialization import Model
 
 class ListingContact(Model):
     _attribute_map = {
-        'type': {'key': 'title', 'type': 'str'},
-        'email': {'key': 'summary', 'type': 'str'},
-        'name': {'key': 'description', 'type': 'str'},
-        'phone': {'key': 'languageCode', 'type': 'str'},
-        'uri': {'key': 'shortDescription', 'type': 'str'}
+        'type': {'key': 'type', 'type': 'str'},
+        'email': {'key': 'email', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
+        'phone': {'key': 'phone', 'type': 'str'},
+        'uri': {'key': 'uri', 'type': 'str'}
     }
 
     def __init__(self, **kwargs):

@@ -9,10 +9,11 @@ from msrest.serialization import Model
 class Offer(Model):
     _attribute_map = {
         'id': {'key': 'id', 'type': 'str'},
-        'resource': {'key': 'resource', 'type': 'Resource'},
+        'name': {'key': 'name', 'type': 'str'}
     }
 
     def __init__(self, **kwargs):
         super(Offer, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
+        self.name = kwargs.get('name', None)
         self.resource = kwargs.get('resource', None)

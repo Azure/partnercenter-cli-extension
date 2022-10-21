@@ -17,7 +17,7 @@ class PlanListing(Model):
         'contacts': {'key': 'contacts', 'type': '[ListingContact]'},
         'uris': {'key': 'uris', 'type': '[ListingUri]'},
         'getting_started_instructions': {'key': 'gettingStartedInstructions', 'type': 'str'},
-        'resource': {'key': 'resource', 'type': 'Resource'},
+        'etag': {'key': '@odata.etag', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
@@ -29,5 +29,5 @@ class PlanListing(Model):
         self.short_description = kwargs.get('short_description', None)
         self.getting_started_instructions = kwargs.get('getting_started_instructions', None)
         self.keywords = kwargs.get('keywords', [])
-        self.contacts = kwargs.get('offer_id', [])
+        self.contacts = kwargs.get('contacts', [])
         self.uris = kwargs.get('uris', [])
