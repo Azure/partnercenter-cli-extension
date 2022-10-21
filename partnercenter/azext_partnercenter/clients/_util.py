@@ -6,7 +6,6 @@
 
 def get_api_client(cli_ctx, *_):
     """Gets an instance of an sdk client"""
-    print(f'cli_ctx - {cli_ctx}')
     #subscription_id = cli_ctx.data['subscription_id']
 
     from azure.cli.core._profile import Profile
@@ -21,5 +20,6 @@ def get_api_client(cli_ctx, *_):
     
     # set authorixation header to the raw token credentials fetched 
     api_client.set_default_header("Authorization", creds[0] + " " + creds[1])
+    api_client.set_default_header("If-Match", "*")
 
     return api_client

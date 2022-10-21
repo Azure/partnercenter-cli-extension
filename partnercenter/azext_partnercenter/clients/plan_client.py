@@ -49,12 +49,10 @@ class PlanClient:
         return items
 
     def find_by_external_id(self, offer_resource_id, plan_external_id):
-        print(f'inside find_by_external_id: plan_external_id - {plan_external_id}')
         items = self.list(offer_resource_id)
         
         item: Plan
         for item in items:
-            print(f'item - {item}')
             if item.id == plan_external_id:
                 return item
         

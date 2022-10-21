@@ -4,9 +4,7 @@ from urllib.parse import parse_qs, urlparse
 def get_combined_paged_results(method_with_paged_response):
     """Get combined paginated results from the SDK client that's generated from the Parnter Center API"""
     items = []
-    print('prior to calling method_with_paged_response')
     response = method_with_paged_response()
-    print(response)
     items.extend(map(object_to_dict, response['value']))
 
     if ("nextLink" in response):

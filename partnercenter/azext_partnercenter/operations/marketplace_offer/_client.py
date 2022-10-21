@@ -6,7 +6,6 @@ import json
 class ListClient():
 
     def __init__(self, cli_ctx, *_):
-        print('Inside ListClient')
         self._api_client = get_api_client(cli_ctx, *_)
         self._client = ListingClient(self._api_client)
     
