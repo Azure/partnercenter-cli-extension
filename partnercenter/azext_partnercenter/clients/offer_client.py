@@ -4,12 +4,11 @@
 # --------------------------------------------------------------------------------------------
 
 from partnercenter.azext_partnercenter._util import get_combined_paged_results
-from partnercenter.azext_partnercenter.models import PlanListing, Resource, ListingContact, ListingUri
+from partnercenter.azext_partnercenter.models import (ListingContact,
+                                                      ListingUri, Offer,
+                                                      PlanListing, Resource)
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     BranchesClient, ListingClient, ProductClient)
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models import \
-    MicrosoftIngestionApiModelsBranchesBranch
-from partnercenter.azext_partnercenter.models import Offer
 
 from ._util import get_api_client
 

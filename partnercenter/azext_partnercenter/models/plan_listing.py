@@ -18,6 +18,13 @@ class PlanListing(Model):
         'uris': {'key': 'uris', 'type': '[ListingUri]'},
         'getting_started_instructions': {'key': 'gettingStartedInstructions', 'type': 'str'},
         'etag': {'key': '@odata.etag', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
+        'external_id': {'key': 'external_id', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
+        'offer_id': {'key': 'offerId', 'type': 'str'},
+        'description': {'key': 'description', 'type': 'str'},
+        'short_description': {'key': 'short_description', 'type': 'str'},
+        'resource': {'key': 'resource', 'type': 'Resource'},
     }
 
     def __init__(self, **kwargs):
@@ -31,3 +38,7 @@ class PlanListing(Model):
         self.keywords = kwargs.get('keywords', [])
         self.contacts = kwargs.get('contacts', [])
         self.uris = kwargs.get('uris', [])
+        self.id = kwargs.get('id', None)
+        self.external_id = kwargs.get('external_id', None)
+        self.name = kwargs.get('name', None)
+        self.offer_id = kwargs.get('offer_id', None)

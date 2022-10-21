@@ -41,13 +41,7 @@ def cf_plan_listing(cli_ctx, *_):
 
 
 def cf_plan_setup(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.clients import PlanListingClient
-    client = PlanListingClient(cli_ctx, *_)
+    from partnercenter.azext_partnercenter.clients import PlanSetupClient
+    client = PlanSetupClient(cli_ctx, *_)
     return client
 
-
-def cf_list(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.operations.marketplace_offer._client import \
-        ListClient
-    client = ListClient(cli_ctx, *_)
-    return client

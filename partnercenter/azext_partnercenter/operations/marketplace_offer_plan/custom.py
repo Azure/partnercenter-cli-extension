@@ -25,8 +25,9 @@ def list_plan(cmd, client, offer_id=None, offer_resource_id=None):
     return []
 
 
-def create_plan(cmd, arg):
-    raise CLIError('TODO: Implement `partnercenter marketplace offer create`')
+def create_plan(cmd, client, product_external_id, external_id, friendly_name):
+    result = client.create(product_external_id, external_id, friendly_name)
+    return result
 
 
 def update_plan(cmd, instance, arg):
