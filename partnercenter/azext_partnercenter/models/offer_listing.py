@@ -6,14 +6,12 @@
 from msrest.serialization import Model
 
 
-class Resource(Model):
-    """This is to track the internal id and type of the objects. It shouldn't be returned by the CLI in production."""
+class OfferListing(Model):
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'}
     }
 
     def __init__(self, **kwargs):
-        super(Resource, self).__init__(**kwargs)
+        super(OfferListing, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
-        self.type = kwargs.get('type', None)
+        self.resource = kwargs.get('resource', None)
