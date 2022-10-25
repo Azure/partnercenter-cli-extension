@@ -24,8 +24,12 @@ class PlanListingClient:
         self._listing_client = ListingClient(self._api_client)
         self._offer_client = OfferClient(cli_ctx, *_)
         self._plan_client = PlanClient(cli_ctx, *_)
+
+    def get(self, product_external_id, plan_listing_external_id):
+        return True
+
         
-    def update_plan_listing(self, product_external_id, plan_listing: PlanListing):
+    def create_or_update(self, product_external_id, plan_listing: PlanListing):
         offer = self._offer_client.get_by_offer_id(product_external_id)
         product_id = offer.id
         plan = self._plan_client.find_by_external_id(product_id, plan_listing.external_id)
@@ -53,6 +57,42 @@ class PlanListingClient:
                     # print(f'update_result - {update_result}')
                     return update_result.to_dict()
 
+    def get_plan_listing(self, product_external_id, plan_external_id):
+        product_listing_branches = self.get_product_listing_branches(product_external_id)
+        if not product_listing_branches:
+            return None
+
+        product = self._offer_client.get_by_offer_id(product_external_id)
+        if product is None:
+            return None
+
+        product_id = product.id
+
+        plan = self._plan_client.find_by_external_id(product_id, plan_external_id)
+        if plan is None:
+            return None
+
+        plan_id = plan.resource.id
+
+        for branch in product_listing_branches:
+            if branch.variant_id == plan_id:
+                instance_id = branch.current_draft_instance_id
+                authorization = self._api_client.configuration.access_token
+                result = self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(product_id, instance_id, authorization)
+                listing = result.value[0]
+                return listing
+
+        return None
+
+    def get_product_listing_branches(self, product_external_id):
+        offer = self._offer_client.get_by_offer_id(product_external_id)
+        product_id = offer.id
+        
+        module = 'Listing'
+        authorization = self._api_client.configuration.access_token
+        branches = self._branches_client.products_product_id_branches_get_by_module_modulemodule_get(product_id, module, authorization)
+
+        return list(filter(lambda x: hasattr(x, 'variant_id'), branches.value))
 
 
 

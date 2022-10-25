@@ -14,7 +14,9 @@ class PlanListing(Model):
         'offer_id': {'key': 'offerId', 'type': 'str'},
         'description': {'key': 'description', 'type': 'str'},
         'short_description': {'key': 'short_description', 'type': 'str'},
+        'language_code': {'key': 'language_code', 'type': 'str'},
         'resource': {'key': 'resource', 'type': 'Resource'},
+        'odata_etag': {'key': 'odata_etag', 'type': 'str'}
     }
 
     def __init__(self, **kwargs):
@@ -25,3 +27,5 @@ class PlanListing(Model):
         self.offer_id = kwargs.get('offer_id', None)
         self.description = kwargs.get('description', None)
         self.short_description = kwargs.get('short_description', None)
+        self.language_code = kwargs.get('language_code', None)
+        self.odata_etag = kwargs.get('odata_etag', None)
