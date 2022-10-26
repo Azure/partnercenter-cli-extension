@@ -12,8 +12,7 @@ class Plan(Model):
         'name': {'key': 'name', 'type': 'str'},
         'offer_id': {'key': 'offerId', 'type': 'str'},
         'state': {'key': 'state', 'type': 'str'},
-        'cloud_availabilities': {'key': 'cloudAvailabilities', 'type': '[str]'},
-        'resource': {'key': 'resource', 'type': 'Resource'},
+        'cloud_availabilities': {'key': 'cloudAvailabilities', 'type': '[str]'}
     }
 
     def __init__(self, **kwargs):
