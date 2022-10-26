@@ -18,4 +18,5 @@ def load_command_table(commands_loader, _):
         # g.custom_show_command('show', 'get_offer', table_transformer=None)
         g.custom_show_command('show', 'get_plan', table_transformer=None)
         g.custom_command('list', 'list_plan', table_transformer=None)
+        g.custom_command('delete', 'delete_plan', table_transformer=None)
         #g.custom_command('bundle', 'bundle_offer', supports_no_wait=True, table_transformer=None)
