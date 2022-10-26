@@ -14,4 +14,5 @@ def load_command_table(commands_loader, _):
 
     with commands_loader.command_group('partnercenter marketplace offer plan listing contact', custom_command_type=custom_command_type, is_preview=True) as g:
         g.custom_command('list', 'list_contacts', table_transformer=None)
+        g.custom_command('create', 'create_contact', table_transformer=None)
 

@@ -18,3 +18,6 @@ def list_contacts(cmd, client, plan_external_id, product_external_id, type=None,
 
    return plan_listing.listing_contacts
 
+def create_contac(cmd, client, plan_external_id, product_external_id, type=None, email=None, name=None, phone=None, uri=None):
+    
+

@@ -30,8 +30,8 @@ class PlanListingClient:
 
         
     def create_or_update(self, product_external_id, plan_listing: PlanListing):
-        offer = self._offer_client.get_by_offer_id(product_external_id)
-        product_id = offer.id
+        offer = self._offer_client.get(product_external_id)
+        product_id = offer._resource.id
         plan = self._plan_client.find_by_external_id(product_id, plan_listing.external_id)
         
         if plan is None:
@@ -62,11 +62,11 @@ class PlanListingClient:
         if not product_listing_branches:
             return None
 
-        product = self._offer_client.get_by_offer_id(product_external_id)
+        product = self._offer_client.get(product_external_id)
         if product is None:
             return None
 
-        product_id = product.id
+        product_id = product._resource.id
 
         plan = self._plan_client.find_by_external_id(product_id, plan_external_id)
         if plan is None:
@@ -85,8 +85,8 @@ class PlanListingClient:
         return None
 
     def get_product_listing_branches(self, product_external_id):
-        offer = self._offer_client.get_by_offer_id(product_external_id)
-        product_id = offer.id
+        offer = self._offer_client.get(product_external_id)
+        product_id = offer._resource.id
         
         module = 'Listing'
         authorization = self._api_client.configuration.access_token
