@@ -5,8 +5,9 @@
 
 from partnercenter.azext_partnercenter._util import (
     get_combined_paged_results, object_to_dict)
-from partnercenter.azext_partnercenter.models import PlanListing
+from partnercenter.azext_partnercenter.models import PlanListing, ListingContact
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_azure_listing import MicrosoftIngestionApiModelsListingsAzureListing
+from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_contact import MicrosoftIngestionApiModelsListingsListingContact
 from partnercenter.azext_partnercenter.clients.offer_client import OfferClient
 from partnercenter.azext_partnercenter.clients.plan_client import PlanClient
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
@@ -51,8 +52,14 @@ class PlanListingClient:
                     instance_id = branch.current_draft_instance_id
                     result = self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(product_id, instance_id, authorization)
                     listing = result.value[0]
-                    
-                    updated_listing = MicrosoftIngestionApiModelsListingsAzureListing(resource_type='AzureListing', description=plan_listing.description, short_description=plan_listing.short_description, odata_etag=listing.odata_etag)
+
+                    listing_contcts = []
+                    cur_listing: ListingContact
+                    for cur_listing in plan_listing.contacts:
+                        api_contact = MicrosoftIngestionApiModelsListingsListingContact(type=cur_listing.type, email=cur_listing.email, name=cur_listing.name, phone=cur_listing.phone, uri=cur_listing.uri)
+                        listing_contcts.append(api_contact)
+
+                    updated_listing = MicrosoftIngestionApiModelsListingsAzureListing(resource_type='AzureListing', description=plan_listing.description, short_description=plan_listing.short_description, odata_etag=listing.odata_etag, listing_contacts=listing_contcts)
                     update_result = self._listing_client.products_product_id_listings_listing_id_put(product_id, listing.id, authorization,  microsoft_ingestion_api_models_listings_azure_listing=updated_listing)
                     # print(f'update_result - {update_result}')
                     return update_result.to_dict()
