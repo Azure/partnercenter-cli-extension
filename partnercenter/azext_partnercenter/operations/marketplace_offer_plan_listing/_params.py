@@ -14,6 +14,8 @@ def load_arguments(commands_loader, _):
         c.argument('product_external_id', options_list=['--product-external-id'], help='The product external id.')
         c.argument('description', options_list=['--description'], help='The description of the plan listing.')
         c.argument('short_description', options_list=['--short-description'], help='The description of the plan listing.')
+        c.argument('language_code', options_list=['--language-code'], help='The language code of the plan listing.')
+
         # c.argument('offer_resource_id', options_list=['--offer-resource-id'], help='The Offer Resource ID of the Offer for the Plan in the partner center.')
         # c.argument('offer_id', options_list=['--offer-id'], help='The offer ID of the Offer for the Plan.')
 
