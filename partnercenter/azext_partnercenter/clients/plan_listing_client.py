@@ -39,7 +39,7 @@ class PlanListingClient:
         
         if plan is None:
             # todo: throw exception
-            print('plan is none')
+            return None
 
         plan_id = plan.resource.id
        
@@ -97,6 +97,18 @@ class PlanListingClient:
             plan_listing.contacts))
         
         
+    def delete_plan_listing_contact(self, product_external_id, plan_external_id, contact: ListingContact):
+        plan_listing = self.get_plan_listing(product_external_id, plan_external_id)
+        
+        try:
+            plan_listing.contacts.remove(contact)
+        except ValueError:
+            return None
+
+        plan_listing.external_id = plan_external_id
+        return self.create_or_update(product_external_id, plan_listing)
+
+
     def get_plan_listing(self, product_external_id, plan_external_id):
         product_listing_branches = self._get_product_listing_branches(product_external_id)
         if not product_listing_branches:
