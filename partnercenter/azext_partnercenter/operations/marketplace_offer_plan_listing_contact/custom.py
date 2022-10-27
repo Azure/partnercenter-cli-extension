@@ -17,8 +17,6 @@ def marketplace_offer_plan_listing_contact_update_get(cmd, client, plan_external
     return plan_listing
 
 def marketplace_offer_plan_listing_contact_update_set(cmd, client, plan_external_id, product_external_id, type=None, email=None, name=None, phone=None, uri=None, parameters=None):
-    print(f'inside marketplace_offer_plan_listing_contact_update_set with parameters of - {parameters}')
-
     plan_listing = PlanListing()
     plan_listing.id = parameters.id
     plan_listing.external_id = plan_external_id
@@ -33,17 +31,13 @@ def marketplace_offer_plan_listing_contact_update_set(cmd, client, plan_external
     return result
 
 def marketplace_offer_plan_listing_contact_update_custom(instance, plan_external_id, product_external_id, type=None, email=None, name=None, phone=None, uri=None):
-    print(f'instance - {instance}')
-    
     listing_contact = ListingContact()
     listing_contact.type = type
     listing_contact.email = email
     listing_contact.name = name
     listing_contact.phone = phone
     listing_contact.uri = uri
-
     instance.contacts.append(listing_contact)
-
     return instance
 
 def list_contacts(cmd, client, plan_external_id, product_external_id, type=None, email=None, name=None, phone=None, uri=None):
@@ -52,6 +46,16 @@ def list_contacts(cmd, client, plan_external_id, product_external_id, type=None,
     raise CLIError(f'There was no plan with a product id of {product_external_id} anf a plan id of {plan_external_id}')
 
    return plan_listing.listing_contacts
+
+def marketplace_offer_plan_listing_contact_delete(cmd, client, plan_external_id, product_external_id, type=None, email=None, name=None, phone=None, uri=None):
+    listing_contact = ListingContact()
+    listing_contact.type = type
+    listing_contact.email = email
+    listing_contact.name = name
+    listing_contact.phone = phone
+    listing_contact.uri = uri
+    return client.delete_plan_listing_contact(product_external_id, plan_external_id, listing_contact) 
+
 
 
 
