@@ -75,5 +75,9 @@ class PlanClient:
             resource=Resource(id=variant['id'], type=variant['resourceType'])
         )
         return item
+        
+    def delete(self, offer_resource_id, plan_resource_id):
+        results = self._variant_client.products_product_id_variants_variant_id_delete(offer_resource_id, plan_resource_id, self._api_client.configuration.access_token, async_req=True)
+        return results
 
     
