@@ -7,6 +7,7 @@ from azext_partnercenter.operations.marketplace_offer import MarketplaceOfferOpe
 from azext_partnercenter.operations.marketplace_offer_plan import MarketplaceOfferPlanOperations
 from azext_partnercenter.operations.marketplace_offer_plan_setup import MarketplaceOfferPlanSetupOperations
 from azext_partnercenter.operations.marketplace_offer_plan_listing import MarketplaceOfferPlanListingOperations
+from azext_partnercenter.operations.marketplace_offer_plan_listing_contact import MarketplaceOfferPlanListingContactOperations
 from azext_partnercenter.operations.marketplace_offer_listing import MarketplaceOfferListingOperations
 from azext_partnercenter.operations.marketplace_bundle import MarketplaceBundleOperations
 
@@ -20,7 +21,8 @@ class PartnerCenterSubGroupCommandsLoader():
             MarketplaceOfferPlanSetupOperations(self),
             MarketplaceOfferPlanListingOperations(self),
             MarketplaceBundleOperations(self),
-            MarketplaceOfferListingOperations(self)
+            MarketplaceOfferListingOperations(self),
+            MarketplaceOfferPlanListingContactOperations(self)
         ]
 
     def load_arguments(self, _):
