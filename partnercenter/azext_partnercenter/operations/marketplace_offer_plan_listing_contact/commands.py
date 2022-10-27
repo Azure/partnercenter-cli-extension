@@ -14,6 +14,7 @@ def load_command_table(commands_loader, _):
 
     with commands_loader.command_group('partnercenter marketplace offer plan listing contact', custom_command_type, is_preview=True) as g:
         g.custom_command('list', 'list_contacts', table_transformer=None)
+        g.custom_command('delete, marketplace_offer_plan_listing_contact_update_delete')
         g.generic_update_command('update',
                                     getter_name='marketplace_offer_plan_listing_contact_update_get',
                                     setter_name='marketplace_offer_plan_listing_contact_update_set',
