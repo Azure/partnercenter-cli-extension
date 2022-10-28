@@ -34,9 +34,6 @@ class PlanListingClient:
 
         
     def create_or_update(self, product_external_id, plan_listing: PlanListing):
-        print(f'Inside create_or_update')
-        for uri in plan_listing.uris:
-            print(f'uri - {uri}')
         offer = self._offer_client.get(product_external_id)
         product_id = offer._resource.id
         plan = self._plan_client.find_by_external_id(product_id, plan_listing.external_id)
@@ -70,7 +67,6 @@ class PlanListingClient:
         listing = result.value[0]
         listing_contacts = self._get_api_listing_contacts(plan_listing)
         listing_uris = self._get_api_listing_uris(plan_listing)
-        print(f'listing_uris - {len(listing_uris)}')
         for uri in listing_uris:
             print(f'api uri - {uri}')
         updated_listing = MicrosoftIngestionApiModelsListingsAzureListing(
@@ -103,9 +99,6 @@ class PlanListingClient:
         )
 
     def _get_api_listing_uris(self, plan_listing: PlanListing):
-        print(f'inside _get_api_listing_uris')
-        for uri in plan_listing.uris:
-            print(f'uri - {uri}')
         return list(map(lambda u: MicrosoftIngestionApiModelsListingsListingUri(
             type=u.type,
             subtype=u.subtype,
