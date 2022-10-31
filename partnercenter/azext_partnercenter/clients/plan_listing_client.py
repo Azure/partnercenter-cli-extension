@@ -67,8 +67,6 @@ class PlanListingClient:
         listing = result.value[0]
         listing_contacts = self._get_api_listing_contacts(plan_listing)
         listing_uris = self._get_api_listing_uris(plan_listing)
-        for uri in listing_uris:
-            print(f'api uri - {uri}')
         updated_listing = MicrosoftIngestionApiModelsListingsAzureListing(
                         resource_type='AzureListing', 
                         description=plan_listing.description, 
@@ -76,19 +74,11 @@ class PlanListingClient:
                         odata_etag=listing.odata_etag,
                         listing_uris=listing_uris,
                         listing_contacts=listing_contacts)
-        for uuri in updated_listing.listing_uris:
-            print(f'updated_listing.uri - {uuri}')
-                    
         update_result = self._listing_client.products_product_id_listings_listing_id_put(
                         product_id, 
                         listing.id, 
                         authorization,  
                         microsoft_ingestion_api_models_listings_azure_listing=updated_listing)
-
-        for resulturi in update_result.listing_uris:
-            print(f'resulturi - {resulturi}')
-            print(f'resulturi.to_dict() - {resulturi.to_dict()}')
-
         return PlanListing(
                         description=update_result.description,
                         language_code=update_result.language_code,
@@ -131,14 +121,18 @@ class PlanListingClient:
     def delete_plan_listing_uri(self, product_external_id, plan_external_id, uri: ListingUri):
         plan_listing = self.get_plan_listing(product_external_id, plan_external_id)
         
-        print(f'before the del command - {len(plan_listing.uris)}')
-        del plan_listing.uris[0]
-        print(f'after the del command - {len(plan_listing.uris)}')
         try:
             plan_listing.uris.remove(uri)
         except ValueError:
             print('value error')
 
+        plan_listing.external_id = plan_external_id
+        return self.create_or_update(product_external_id, plan_listing)
+
+    def delete_latest_plan_listing_uri(self, product_external_id, plan_external_id):
+        plan_listing = self.get_plan_listing(product_external_id, plan_external_id)
+        if len(plan_listing.uris) > 0:
+            del plan_listing.uris[0]
         plan_listing.external_id = plan_external_id
         return self.create_or_update(product_external_id, plan_listing)
 
