@@ -10,6 +10,7 @@ from partnercenter.azext_partnercenter.models.listing_uri import ListingUri
 from partnercenter.azext_partnercenter.models.resource import Resource
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_azure_listing import MicrosoftIngestionApiModelsListingsAzureListing
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_contact import MicrosoftIngestionApiModelsListingsListingContact
+from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_uri import MicrosoftIngestionApiModelsListingsListingUri
 from partnercenter.azext_partnercenter.clients.offer_client import OfferClient
 from partnercenter.azext_partnercenter.clients.plan_client import PlanClient
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
@@ -64,28 +65,37 @@ class PlanListingClient:
         instance_id = branch.current_draft_instance_id
         result = self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(product_id, instance_id, authorization)
         listing = result.value[0]
-        listing_contcats = self._get_api_listing_contacts(plan_listing)
+        listing_contacts = self._get_api_listing_contacts(plan_listing)
+        listing_uris = self._get_api_listing_uris(plan_listing)
         updated_listing = MicrosoftIngestionApiModelsListingsAzureListing(
                         resource_type='AzureListing', 
                         description=plan_listing.description, 
                         short_description=plan_listing.short_description, 
-                        odata_etag=listing.odata_etag, 
-                        listing_contacts=listing_contcats)
-                    
+                        odata_etag=listing.odata_etag,
+                        listing_uris=listing_uris,
+                        listing_contacts=listing_contacts)
         update_result = self._listing_client.products_product_id_listings_listing_id_put(
                         product_id, 
                         listing.id, 
                         authorization,  
                         microsoft_ingestion_api_models_listings_azure_listing=updated_listing)
-
         return PlanListing(
                         description=update_result.description,
                         language_code=update_result.language_code,
                         short_description=update_result.short_description,
                         contacts=list(map(lambda c : ListingContact(**c.to_dict()), update_result.listing_contacts)),
-                        uris=list(map(lambda c : ListingUri(**c.to_dict()), update_result.listing_uris)),
+                        uris=list(map(lambda c : ListingUri(type=c.type, subtype=c.subtype, uri=c.uri, display_text=c.display_text), update_result.listing_uris)),
                         resource=Resource(id=update_result.id, type=update_result.resource_type)        
         )
+
+    def _get_api_listing_uris(self, plan_listing: PlanListing):
+        return list(map(lambda u: MicrosoftIngestionApiModelsListingsListingUri(
+            type=u.type,
+            subtype=u.subtype,
+            display_text=u.display_text,
+            uri=u.uri),
+            plan_listing.uris))
+
 
     def _get_api_listing_contacts(self, plan_listing: PlanListing):
         return list(map(lambda c: MicrosoftIngestionApiModelsListingsListingContact(
@@ -95,7 +105,7 @@ class PlanListingClient:
             phone=c.phone, 
             uri=c.uri), 
             plan_listing.contacts))
-        
+    
         
     def delete_plan_listing_contact(self, product_external_id, plan_external_id, contact: ListingContact):
         plan_listing = self.get_plan_listing(product_external_id, plan_external_id)
@@ -108,6 +118,23 @@ class PlanListingClient:
         plan_listing.external_id = plan_external_id
         return self.create_or_update(product_external_id, plan_listing)
 
+    def delete_plan_listing_uri(self, product_external_id, plan_external_id, uri: ListingUri):
+        plan_listing = self.get_plan_listing(product_external_id, plan_external_id)
+        
+        try:
+            plan_listing.uris.remove(uri)
+        except ValueError:
+            print('value error')
+
+        plan_listing.external_id = plan_external_id
+        return self.create_or_update(product_external_id, plan_listing)
+
+    def delete_latest_plan_listing_uri(self, product_external_id, plan_external_id):
+        plan_listing = self.get_plan_listing(product_external_id, plan_external_id)
+        if len(plan_listing.uris) > 0:
+            del plan_listing.uris[0]
+        plan_listing.external_id = plan_external_id
+        return self.create_or_update(product_external_id, plan_listing)
 
     def get_plan_listing(self, product_external_id, plan_external_id):
         product_listing_branches = self._get_product_listing_branches(product_external_id)
