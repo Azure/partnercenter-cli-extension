@@ -19,6 +19,9 @@ def list_media(cmd, client, plan_external_id, product_external_id, type="", file
 def add_media(cmd, client, plan_external_id, product_external_id, file, type=""):
     return client.add_plan_listing_image(product_external_id, plan_external_id, type, file)
 
+def delete_media(cmd, client, plan_external_id, product_external_id, file, type=""):
+    result = client.delete_plan_listing_image(product_external_id, plan_external_id, type)
+    return result
 
 
 

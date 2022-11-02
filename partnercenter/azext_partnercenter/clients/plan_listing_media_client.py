@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+import enum
 from partnercenter.azext_partnercenter._util import (
     get_combined_paged_results, object_to_dict)
 from partnercenter.azext_partnercenter.models import PlanSetup
@@ -39,7 +40,31 @@ class PlanListingMediaClient:
         images = self._listing_image_client.products_product_id_listings_listing_id_images_get(product_id, listing_id, self._get_authorication_token(), expand="$expand=FileSasUri")
         return self._map_images(images)
 
-    def add_plan_listing_image(self, product_external_id, plan_external_id, type, file_path):
+    def delete_plan_listing_image(self, product_external_id, plan_external_id, image_type):
+        product = self._offer_client.get(product_external_id)
+        if product is None:
+            return None
+        product_id = product._resource.id
+
+        plan_listing = self._plan_listing_client.get_plan_listing(product_external_id, plan_external_id)
+        if plan_listing is None:
+            return None
+        listing_id = plan_listing.resource.id
+
+        images = self._listing_image_client.products_product_id_listings_listing_id_images_get(product_id, listing_id, self._get_authorication_token(), expand="$expand=FileSasUri")
+
+        deleted_ids = []
+        for idx, x in enumerate(images.value):
+            cur_listing_image = self._map_image(x)
+            if cur_listing_image.type == image_type:
+                image_id = cur_listing_image.id
+                result =  self._listing_image_client.products_product_id_listings_listing_id_images_image_id_delete(product_id, listing_id, image_id, self._get_authorication_token())
+                deleted_ids.append(image_id)
+
+        return deleted_ids
+
+
+    def add_plan_listing_image(self, product_external_id, plan_external_id, image_type, file_path):
         import ntpath
         file = ntpath.basename(file_path)
 
@@ -55,7 +80,7 @@ class PlanListingMediaClient:
 
         file_name = self._get_file_name(file)
 
-        listing_image = self._post_image(product_id, listing_id, "AzureLogoLarge", file_name)
+        listing_image = self._post_image(product_id, listing_id, image_type, file_name)
         self._upload_media(file_path, listing_image)
 
         return self._put_image(product_id, listing_id, listing_image)
