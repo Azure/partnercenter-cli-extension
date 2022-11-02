@@ -14,7 +14,7 @@ from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.micr
 from partnercenter.azext_partnercenter.clients.offer_client import OfferClient
 from partnercenter.azext_partnercenter.clients.plan_client import PlanClient
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
-    ProductClient, VariantClient, BranchesClient, ListingClient)
+    ProductClient, VariantClient, BranchesClient, ListingClient, ListingImageClient)
 
 from ._util import get_api_client
 
@@ -26,6 +26,7 @@ class PlanListingClient:
         self._variant_client = VariantClient(self._api_client)
         self._branches_client = BranchesClient(self._api_client)
         self._listing_client = ListingClient(self._api_client)
+        self._listing_image_client = ListingImageClient(self._api_client)
         self._offer_client = OfferClient(cli_ctx, *_)
         self._plan_client = PlanClient(cli_ctx, *_)
 

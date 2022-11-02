@@ -8,11 +8,13 @@ from .offer_client import OfferClient
 from .plan_client import PlanClient
 from .plan_setup_client import PlanSetupClient
 from .plan_listing_client import PlanListingClient
+from .plan_listing_media_client import PlanListingMediaClient
 
 __all__ = [
     'PlanClient',
     'PlanSetupClient',
     'PlanListingClient',
     'OfferClient',
+    'PlanListingMediaClient',
     'get_api_client'
 ]
