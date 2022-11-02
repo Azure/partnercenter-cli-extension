@@ -39,30 +39,51 @@ class PlanListingMediaClient:
         images = self._listing_image_client.products_product_id_listings_listing_id_images_get(product_id, listing_id, self._get_authorication_token(), expand="$expand=FileSasUri")
         return self._map_images(images)
 
-    def add_plan_listing_image(self, product_external_id, plan_external_id, type, file):
-        print(f'inside add_plan_listing_image: product_external_id - {product_external_id}')
+    def add_plan_listing_image(self, product_external_id, plan_external_id, type, file_path):
+        import ntpath
+        file = ntpath.basename(file_path)
 
         product = self._offer_client.get(product_external_id)
         if product is None:
             return None
         product_id = product._resource.id
-        print(f'product_id - {product_id}')
 
         plan_listing = self._plan_listing_client.get_plan_listing(product_external_id, plan_external_id)
         if plan_listing is None:
             return None
         listing_id = plan_listing.resource.id
-        print(f'listing_id - {listing_id}')
 
         file_name = self._get_file_name(file)
+
+        listing_image = self._post_image(product_id, listing_id, "AzureLogoLarge", file_name)
+        self._upload_media(file_path, listing_image)
+
+        return self._put_image(product_id, listing_id, listing_image)
+
+    def _put_image(self, product_id, listing_id, image: ListingImage):
+        state = "Uploaded"
+        resource_type = "ListingImage"
+        order = 0
+
+        listing_image = MicrosoftIngestionApiModelsListingsListingImage(resource_type=resource_type, file_name=image.file_name, type=image.type, state=state, order=order, file_sas_uri=image.file_sas_uri, id=image.id, odata_etag=image.odata_etag)
+
+        result = self._listing_image_client.products_product_id_listings_listing_id_images_image_id_put(product_id, listing_id, image.id, self._get_authorication_token(), microsoft_ingestion_api_models_listings_listing_image=listing_image)
+        return self._map_image(result)
+
+    def _post_image(self, product_id, listing_id, image_type, file_name):
         state = "PendingUpload"
         resource_type = "ListingImage"
         order = 0
-        listing_image = MicrosoftIngestionApiModelsListingsListingImage(resource_type=resource_type, file_name=file_name, type="AzureLogoSmall", state=state, order=order)
 
+        listing_image = MicrosoftIngestionApiModelsListingsListingImage(resource_type=resource_type, file_name=file_name, type=image_type, state=state, order=order)
         result = self._listing_image_client.products_product_id_listings_listing_id_images_post(product_id, listing_id, self._get_authorication_token(), microsoft_ingestion_api_models_listings_listing_image=listing_image)
-        print(f'result - {result}')
         return self._map_image(result)
+    
+    def _upload_media(self, upload_file_path, listing_image: ListingImage):
+        from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+        blob_client = BlobClient.from_blob_url(listing_image.file_sas_uri)
+        with open(upload_file_path, 'rb') as data:
+            result = blob_client.upload_blob(data)
 
     def _get_file_name(self, file):
         return file
