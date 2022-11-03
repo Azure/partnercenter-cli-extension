@@ -23,3 +23,10 @@ def get_api_client(cli_ctx, *_):
     api_client.set_default_header("If-Match", "*")
 
     return api_client
+
+def object_to_dict(item):
+    if (type(item) is dict or item is None):
+        return item
+    if hasattr(item, "to_dict") and callable(item.to_dict):
+        return item.to_dict()
+    return vars(item)
