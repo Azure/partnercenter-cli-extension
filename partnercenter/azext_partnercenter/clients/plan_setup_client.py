@@ -14,7 +14,6 @@ from ._util import get_api_client
 
 class PlanSetupClient:
     def __init__(self, cli_ctx, *_):
-        print('Calling PlanSetupClient')
         self._api_client = get_api_client(cli_ctx, *_)
         self._product_client = ProductClient(self._api_client)
         self._variant_client = VariantClient(self._api_client)

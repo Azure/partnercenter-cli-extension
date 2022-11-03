@@ -33,7 +33,7 @@ CLASSIFIERS = [
 ]
 
 # TODO: Add any additional SDK dependencies here
-DEPENDENCIES = ['docker']
+DEPENDENCIES = ['docker', 'azure-storage-blob', 'azure-storage-identity']
 
 with open('README.rst', 'r', encoding='utf-8') as f:
     README = f.read()
