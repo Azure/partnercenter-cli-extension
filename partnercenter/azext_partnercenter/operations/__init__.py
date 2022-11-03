@@ -21,7 +21,8 @@ class PartnerCenterSubGroupCommandsLoader():
         self.commands_loader = commands_loader
         self.subgroup_command_loaders = [
             MarketplaceOfferOperations(self),
-            MarketplaceOfferPackageOperations(self),
+            # TODO: review package as part of CLI
+            # MarketplaceOfferPackageOperations(self),
             MarketplaceOfferSubmissionOperations(self),
             MarketplaceOfferPlanOperations(self),
             MarketplaceOfferPlanSetupOperations(self),

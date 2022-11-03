@@ -23,6 +23,7 @@ class SubmissionClient(BaseClient):
         submissions = self._sdk_clients.submission_client.products_product_id_submissions_get(offer._resource.id, self._get_access_token())
         return object_to_dict(submissions)
 
+
     def get(self, offer_external_id):
        pass
 
