@@ -4,6 +4,7 @@
 # --------------------------------------------------------------------------------------------
 
 from azext_partnercenter.operations.marketplace_offer import MarketplaceOfferOperations
+from azext_partnercenter.operations.marketplace_offer_package import MarketplaceOfferPackageOperations
 from azext_partnercenter.operations.marketplace_offer_plan import MarketplaceOfferPlanOperations
 from azext_partnercenter.operations.marketplace_offer_plan_setup import MarketplaceOfferPlanSetupOperations
 from azext_partnercenter.operations.marketplace_offer_plan_listing import MarketplaceOfferPlanListingOperations
@@ -19,6 +20,7 @@ class PartnerCenterSubGroupCommandsLoader():
         self.commands_loader = commands_loader
         self.subgroup_command_loaders = [
             MarketplaceOfferOperations(self),
+            MarketplaceOfferPackageOperations(self),
             MarketplaceOfferPlanOperations(self),
             MarketplaceOfferPlanSetupOperations(self),
             MarketplaceOfferPlanListingOperations(self),
