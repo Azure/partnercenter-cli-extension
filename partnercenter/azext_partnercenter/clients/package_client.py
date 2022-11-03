@@ -19,5 +19,14 @@ class PackageClient:
     def create(self):
         pass
 
+
     def list(self, offer_external_id):
+       pass
+
+
+    def get(self, offer_external_id):
+       pass
+
+
+    def delete(self, offer_external_id):
        pass
