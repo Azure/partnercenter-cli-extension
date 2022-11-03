@@ -30,23 +30,23 @@ class OfferClient():
                 resource=Resource(id=product.id, type=product.resource_type)
             ), results))
 
-    def get(self, offer_id):
-        filter_expr = self._get_filter_by_offer_id_expression(offer_id)
-        response = self._product_client.products_get(self._get_access_token(), filter=filter_expr)
+    def get(self, offer_external_id):
+        filter_expr = self._get_filter_by_offer_id_expression(offer_external_id)
+        products = self._product_client.products_get(self._get_access_token(), filter=filter_expr)
 
-        if (len(response.value) == 0):
+        if (len(products.value) == 0):
             return None
 
-        product = response.value[0]
+        product = products.value[0]
 
         return Offer(
-                id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
-                name=product.name,
-                resource=Resource(id=product.id, type=product.resource_type)
-            )
+            id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
+            name=product.name,
+            resource=Resource(id=product.id, type=product.resource_type)
+        )
 
-    def get_listing(self, offer_id):
-        offer = self.get(offer_id)
+    def get_listing(self, offer_external_id):
+        offer = self.get(offer_external_id)
 
         if offer is None:
             return None
