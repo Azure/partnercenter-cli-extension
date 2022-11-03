@@ -13,6 +13,6 @@ def load_command_table(commands_loader, _):
 
     with commands_loader.command_group('partnercenter marketplace offer submission', custom_command_type=custom_command_type, is_preview=True) as g:
         g.custom_command('list', 'list_submission')
-        g.custom_show_command('show', 'get_submission')
-        g.custom_command('update', 'update_submission', supports_no_wait=True, table_transformer=None)
-        g.custom_command('delete', 'delete_submission', confirmation=True, supports_no_wait=True)
+        # g.custom_show_command('show', 'get_submission')
+        # g.custom_command('update', 'update_submission', supports_no_wait=True, table_transformer=None)
+        # g.custom_command('delete', 'delete_submission', confirmation=True, supports_no_wait=True)

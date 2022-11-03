@@ -5,6 +5,7 @@
 
 from msrest.serialization import Model
 
+# TODO: this model for package doesn't seem to line up with every object returned by call GET list packages
 
 class Package(Model):
     _attribute_map = {
