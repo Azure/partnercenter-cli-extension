@@ -33,6 +33,10 @@ def cf_plans(cli_ctx, *_):
     client = PlanClient(cli_ctx, *_)
     return client
 
+def cf_package(cli_ctx, *_):
+    from partnercenter.azext_partnercenter.clients import PackageClient
+    client = PackageClient(cli_ctx, *_)
+    return client
 
 def cf_plan_listing(cli_ctx, *_):
     from partnercenter.azext_partnercenter.clients import PlanListingClient
