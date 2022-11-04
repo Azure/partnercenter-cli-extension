@@ -7,13 +7,13 @@ from ._util import get_api_client
 from .offer_client import OfferClient
 from .plan_client import PlanClient
 from .plan_setup_client import PlanSetupClient
-from .plan_listing_client import PlanListingClient
+from .offer_listing_client import OfferListingClient
 from .listing_media_client import ListingMediaClient
 
 __all__ = [
     'PlanClient',
     'PlanSetupClient',
-    'PlanListingClient',
+    'OfferListingClient',
     'OfferClient',
     'ListingMediaClient',
     'get_api_client'

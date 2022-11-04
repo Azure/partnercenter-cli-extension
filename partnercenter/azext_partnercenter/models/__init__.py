@@ -6,7 +6,7 @@
 from .offer import Offer
 from .plan import Plan
 from .plan_setup import PlanSetup
-from .plan_listing import PlanListing
+from .listing import Listing
 from .resource import Resource
 from .listing_contact import ListingContact
 from .listing_uri import ListingUri
@@ -14,7 +14,7 @@ from .listing_uri import ListingUri
 __all__ = [
     'Plan',
     'PlanSetup',
-    'PlanListing',
+    'Listing',
     'Offer',
     'ListingContact',
     'ListingUri',
