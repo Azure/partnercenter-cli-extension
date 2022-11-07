@@ -4,6 +4,7 @@
 # --------------------------------------------------------------------------------------------
 
 from ._util import get_api_client
+from .base_client import BaseClient
 from .offer_client import OfferClient
 from .plan_client import PlanClient
 from .package_client import PackageClient
@@ -14,6 +15,7 @@ from .offer_listing_client import OfferListingClient
 from .listing_media_client import ListingMediaClient
 
 __all__ = [
+    'BaseClient',
     'PlanClient',
     'PackageClient',
     'SubmissionClient',

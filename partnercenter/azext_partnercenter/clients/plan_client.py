@@ -10,7 +10,7 @@ from partnercenter.azext_partnercenter._util import (
 from partnercenter.azext_partnercenter.models import (Plan, Resource)
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     ProductClient, VariantClient)
-from partnercenter.azext_partnercenter.clients.offer_client import OfferClient
+from partnercenter.azext_partnercenter.clients import OfferClient
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models import ProductsProductIDVariantsGetRequest
 
 class PlanClient:

@@ -4,8 +4,6 @@
 # --------------------------------------------------------------------------------------------
 
 from ._util import get_api_client
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import *
-from partnercenter.azext_partnercenter.clients.offer_client import OfferClient
 
 
 class BaseClient:
