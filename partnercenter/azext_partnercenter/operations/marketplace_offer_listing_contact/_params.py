@@ -9,9 +9,8 @@ from azure.cli.core.commands.parameters import (get_enum_type,
 
 
 def load_arguments(commands_loader, _):
-    with commands_loader.argument_context('partnercenter marketplace offer plan listing contact') as c:
-        c.argument('plan_external_id', options_list=['--plan-external-id'], help='The plan external id.')
-        c.argument('product_external_id', options_list=['--product-external-id'], help='The product external id.')
+    with commands_loader.argument_context('partnercenter marketplace offer listing contact') as c:
+        c.argument('product_external_id', options_list=['--offer-id'], help='The offerid.')
         c.argument('type', options_list=['--type'], help='The contact type.')
         c.argument('email', options_list=['--email'], help='The email address of the contact.')
         c.argument('name', options_list=['--name'], help='The name of the contact.')

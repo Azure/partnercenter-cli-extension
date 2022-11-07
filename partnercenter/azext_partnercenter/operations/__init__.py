@@ -6,9 +6,9 @@
 from azext_partnercenter.operations.marketplace_offer import MarketplaceOfferOperations
 from azext_partnercenter.operations.marketplace_offer_plan import MarketplaceOfferPlanOperations
 from azext_partnercenter.operations.marketplace_offer_plan_setup import MarketplaceOfferPlanSetupOperations
-from azext_partnercenter.operations.marketplace_offer_plan_listing import MarketplaceOfferPlanListingOperations
-from azext_partnercenter.operations.marketplace_offer_plan_listing_contact import MarketplaceOfferPlanListingContactOperations
-from azext_partnercenter.operations.marketplace_offer_plan_listing_uri import MarketplaceOfferPlanListingUriOperations
+from azext_partnercenter.operations.marketplace_offer_plan_listing import MarketplaceOfferListingOperations
+from azext_partnercenter.operations.marketplace_offer_listing_contact import MarketplaceOfferListingContactOperations
+from azext_partnercenter.operations.marketplace_offer_listing_uri import MarketplaceOfferListingUriOperations
 from azext_partnercenter.operations.marketplace_offer_listing import MarketplaceOfferListingOperations
 from azext_partnercenter.operations.marketplace_offer_listing_media import MarketplaceOfferListingImageOperations
 from azext_partnercenter.operations.marketplace_bundle import MarketplaceBundleOperations
@@ -21,11 +21,11 @@ class PartnerCenterSubGroupCommandsLoader():
             MarketplaceOfferOperations(self),
             MarketplaceOfferPlanOperations(self),
             MarketplaceOfferPlanSetupOperations(self),
-            MarketplaceOfferPlanListingOperations(self),
+            MarketplaceOfferListingOperations(self),
             MarketplaceBundleOperations(self),
             MarketplaceOfferListingOperations(self),
-            MarketplaceOfferPlanListingContactOperations(self),
-            MarketplaceOfferPlanListingUriOperations(self),
+            MarketplaceOfferListingContactOperations(self),
+            MarketplaceOfferListingUriOperations(self),
             MarketplaceOfferListingImageOperations(self)
         ]
 

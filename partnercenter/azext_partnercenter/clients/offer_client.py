@@ -6,7 +6,7 @@
 from partnercenter.azext_partnercenter._util import get_combined_paged_results
 from partnercenter.azext_partnercenter.models import (ListingContact,
                                                       ListingUri, Offer,
-                                                      PlanListing, Resource)
+                                                      Listing, Resource)                                               
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     BranchesClient, ListingClient, ProductClient)
 
@@ -71,15 +71,18 @@ class OfferClient():
             return None
 
         listing = listings[0]
+
+
         
-        return PlanListing(
-            title=listing.title,
-            summary=listing.summary,
-            description=listing.description,
-            language_code=listing.language_code,
-            short_description=listing.short_description,
-            getting_started_instructions=listing.getting_started_instructions,
-            keywords=listing.keywords,
+        return Listing(
+            title=listing.title if hasattr(listing, 'title') else '',
+            summary=listing.summary if hasattr(listing, 'summary') else '',
+            description=listing.description if hasattr(listing, 'description') else '',
+            language_code=listing.language_code if hasattr(listing, 'language_code') else '',
+            short_description=listing.short_description if hasattr(listing, 'short_description') else '',
+            getting_started_instructions=listing.getting_started_instructions if hasattr(listing, 'getting_started_instructions') else '',
+            #keywords=listing.keywords,
+            odata_etag=listing.odata_etag,
             contacts=list(map(lambda c : ListingContact(**c.to_dict()), listing.listing_contacts)),
             uris=list(map(lambda c : ListingUri(**c.to_dict()), listing.listing_uris)),
             resource=Resource(id=listing.id, type=listing.resource_type)

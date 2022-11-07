@@ -6,18 +6,14 @@
 from msrest.serialization import Model
 
 
-class PlanListing(Model):
+class Listing(Model):
     _attribute_map = {
         'title': {'key': 'title', 'type': 'str'},
         'summary': {'key': 'summary', 'type': 'str'},
-        # 'description': {'key': 'description', 'type': 'str'},
-        # 'language_code': {'key': 'languageCode', 'type': 'str'},
-        # 'short_description': {'key': 'shortDescription', 'type': 'str'},
         'keywords': {'key': 'keywords', 'type': '[str]'},
         'contacts': {'key': 'contacts', 'type': '[ListingContact]'},
         'uris': {'key': 'uris', 'type': '[ListingUri]'},
         'getting_started_instructions': {'key': 'gettingStartedInstructions', 'type': 'str'},
-        # 'etag': {'key': '@odata.etag', 'type': 'str'},
         'id': {'key': 'id', 'type': 'str'},
         'external_id': {'key': 'external_id', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
@@ -30,7 +26,7 @@ class PlanListing(Model):
     }
 
     def __init__(self, **kwargs):
-        super(PlanListing, self).__init__(**kwargs)
+        super(Listing, self).__init__(**kwargs)
         self.title = kwargs.get('title', None)
         self.summary = kwargs.get('summary', None)
         self.description = kwargs.get('description', None)
