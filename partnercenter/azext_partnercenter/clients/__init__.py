@@ -9,6 +9,7 @@ from .plan_client import PlanClient
 from .package_client import PackageClient
 from .submission_client import SubmissionClient
 from .plan_setup_client import PlanSetupClient
+from .plan_technicalconfiguration_client import PlanTechnicalConfigurationClient
 from .plan_listing_client import PlanListingClient
 from .plan_listing_media_client import PlanListingMediaClient
 
@@ -17,6 +18,7 @@ __all__ = [
     'PackageClient',
     'SubmissionClient',
     'PlanSetupClient',
+    'PlanTechnicalConfigurationClient',
     'PlanListingClient',
     'OfferClient',
     'PlanListingMediaClient',
