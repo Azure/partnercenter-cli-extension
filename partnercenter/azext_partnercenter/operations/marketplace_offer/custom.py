@@ -24,12 +24,8 @@ def update_offer(cmd, instance, arg):
     # TODO: Implement partnercenter marketplace offer update
     return instance
 
-def delete_offer(cmd, client, product_id):
-    results = client.delete(product_id)
-    if not results:
-        return "Deleted offer: " + product_id
-    else:
-        raise CLIError("Failed to deleted offer: " + product_id)
+def delete_offer(client, offer_id): 
+    client.delete(offer_id)
 
 def get_offer(client, offer_id):
     return client.get(offer_id)

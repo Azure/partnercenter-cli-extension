@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+from azext_partnercenter.clients.base_client import BaseClient
 from partnercenter.azext_partnercenter._util import get_combined_paged_results
 from partnercenter.azext_partnercenter.models import (ListingContact,
                                                       ListingUri, Offer,
@@ -13,15 +14,26 @@ from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis impor
 from ._util import get_api_client
 
 
-class OfferClient():
+class OfferClient(BaseClient):
 
     def __init__(self, cli_ctx, *_):
-        self._api_client = get_api_client(cli_ctx, *_)
+        BaseClient.__init__(self, cli_ctx, *_)
+
         self._product_client = ProductClient(self._api_client)
         self._branches_client = BranchesClient(self._api_client)
         self._listing_client = ListingClient(self._api_client)
 
     
+    def delete(self, offer_external_id):
+        filter_expr = self._get_filter_by_offer_id_expression(offer_external_id)
+        products = self._product_client.products_get(self._get_access_token(), filter=filter_expr)
+
+        if (len(products.value) == 0):
+            return
+        
+        product_id = products.value[0].id
+        self._product_client.products_product_id_delete(product_id, self.)
+        
     def list(self):
         results = get_combined_paged_results(lambda skip_token: self._product_client.products_get(self._get_access_token(), skip_token=skip_token))
         return list(map(lambda product : Offer(
@@ -87,11 +99,8 @@ class OfferClient():
             uris=list(map(lambda c : ListingUri(**c.to_dict()), listing.listing_uris)),
             resource=Resource(id=listing.id, type=listing.resource_type)
         )
-    
-    def _get_access_token(self):
-        return self._api_client.configuration.access_token
-    
+
 
     def _get_filter_by_offer_id_expression(self, offer_id):
-        """Gets the odata filter expression for filtering by Offer ID"""
+        """Gets the odata filter expression for filtering by Offer ID found in externalIDs collection"""
         return "externalIDs/Any(i:i/type eq 'AzureOfferId' and i/value eq '{offer_id}')".format(offer_id=offer_id)
