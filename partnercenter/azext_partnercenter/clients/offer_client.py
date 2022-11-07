@@ -3,15 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-from azext_partnercenter.clients.base_client import BaseClient
+from . import BaseClient
 from partnercenter.azext_partnercenter._util import get_combined_paged_results
 from partnercenter.azext_partnercenter.models import (ListingContact,
                                                       ListingUri, Offer,
                                                       Listing, Resource)                                               
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     BranchesClient, ListingClient, ProductClient)
-
-from ._util import get_api_client
 
 
 class OfferClient(BaseClient):
@@ -32,7 +30,9 @@ class OfferClient(BaseClient):
             return
         
         product_id = products.value[0].id
-        self._product_client.products_product_id_delete(product_id, self.)
+        response = self._product_client.products_product_id_delete(product_id, self._get_access_token())
+
+        return response
         
     def list(self):
         results = get_combined_paged_results(lambda skip_token: self._product_client.products_get(self._get_access_token(), skip_token=skip_token))
