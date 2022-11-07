@@ -58,7 +58,9 @@ class PlanClient:
         
         return None
 
-    def get(self, offer_resource_id, plan_resource_id):
+
+    def _get(self, offer_resource_id, plan_resource_id):
+        """Internal get of the plan"""
         product = self._product_client.products_product_id_get(offer_resource_id, self._api_client.configuration.access_token)
         #self._variant_client.products_product_id_variants_get()
         variant = self._variant_client.products_product_id_variants_variant_id_get(

@@ -33,10 +33,27 @@ def cf_plans(cli_ctx, *_):
     client = PlanClient(cli_ctx, *_)
     return client
 
+def cf_package(cli_ctx, *_):
+    from partnercenter.azext_partnercenter.clients import PackageClient
+    client = PackageClient(cli_ctx, *_)
+    return client
+
+
+def cf_submission(cli_ctx, *_):
+    from partnercenter.azext_partnercenter.clients import SubmissionClient
+    client = SubmissionClient(cli_ctx, *_)
+    return client
+
 
 def cf_listing(cli_ctx, *_):
     from partnercenter.azext_partnercenter.clients import OfferListingClient
     client = OfferListingClient(cli_ctx, *_)
+    return client
+
+
+def cf_plan_technicalconfiguration(cli_ctx, *_):
+    from partnercenter.azext_partnercenter.clients import PlanTechnicalConfigurationClient
+    client = PlanTechnicalConfigurationClient(cli_ctx, *_)
     return client
 
 
