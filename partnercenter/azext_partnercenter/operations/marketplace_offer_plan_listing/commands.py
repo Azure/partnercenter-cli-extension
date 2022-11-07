@@ -6,11 +6,11 @@
 
 from azure.cli.core.commands import CliCommandType
 
-from partnercenter.azext_partnercenter._client_factory import cf_plan_listing
+from partnercenter.azext_partnercenter._client_factory import cf_listing
 
 
 def load_command_table(commands_loader, _):
-    custom_command_type = CliCommandType(operations_tmpl='azext_partnercenter.operations.marketplace_offer_plan_listing.custom#{}', client_factory=cf_plan_listing)
+    custom_command_type = CliCommandType(operations_tmpl='azext_partnercenter.operations.marketplace_offer_plan_listing.custom#{}', client_factory=cf_listing)
 
     with commands_loader.command_group('partnercenter marketplace offer plan listing', custom_command_type, is_preview=True) as g:
         g.generic_update_command('update',
@@ -18,4 +18,4 @@ def load_command_table(commands_loader, _):
                                     setter_name='marketplace_offer_plan_listing_update_set',
                                     custom_func_name='marketplace_offer_plan_listing_update_custom',
                                     custom_func_type=custom_command_type,
-                                    client_factory=cf_plan_listing)
+                                    client_factory=cf_listing)
