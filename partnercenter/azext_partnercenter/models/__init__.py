@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-from .offer import Offer
+from .offer import Offer, OfferType
 from .plan import Plan
 from .plan_setup import PlanSetup
 from .listing import Listing
@@ -16,6 +16,7 @@ __all__ = [
     'PlanSetup',
     'Listing',
     'Offer',
+    'OfferType',
     'ListingContact',
     'ListingUri',
     'Resource'

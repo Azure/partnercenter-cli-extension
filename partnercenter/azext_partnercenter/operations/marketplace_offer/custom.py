@@ -16,8 +16,8 @@ from knack.util import CLIError
 
 # API Operations
 # pylint: disable=too-many-locals
-def create_offer(cmd, client, offer_id, offer_alias, resource_type):
-    result = client.create(offer_id, offer_alias, resource_type)
+def create_offer(cmd, client, offer_id, offer_alias, offer_type):
+    result = client.create(offer_id, offer_alias, offer_type)
     return result
 
 def update_offer(cmd, instance, arg):
@@ -30,6 +30,7 @@ def delete_offer(cmd, client, offer_id):
         return "Deleted offer: " + offer_id
     else:
         raise CLIError("Failed to deleted offer: " + offer_id)
+
 
 def get_offer(client, offer_id):
     return client.get(offer_id)
