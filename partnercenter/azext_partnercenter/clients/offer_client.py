@@ -32,11 +32,11 @@ class OfferClient():
                 resource=Resource(id=product.id, type=product.resource_type)
             ), results))
 
-    def create(self, offer_id, offer_alias, resource_type):
+    def create(self, offer_external_id, offer_alias, resource_type):
         external_id = MicrosoftIngestionApiModelsCommonTypeValuePair(type='AzureOfferID', value=offer_alias)
         external_ids = [external_id]
         authorization = self._get_access_token()
-        product = MicrosoftIngestionApiModelsProductsAzureProduct(external_ids=external_ids, name=offer_id, resource_type=resource_type, id=offer_id, is_modular_publishing=True)
+        product = MicrosoftIngestionApiModelsProductsAzureProduct(external_ids=external_ids, name=offer_external_id, resource_type=resource_type, id=offer_external_id, is_modular_publishing=True)
         product = self._product_client.products_post(authorization=authorization, microsoft_ingestion_api_models_products_azure_product=product)
         return Offer(
             id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
@@ -58,6 +58,11 @@ class OfferClient():
             name=product.name,
             resource=Resource(id=product.id, type=product.resource_type)
         )
+
+    def delete(self, offer_external_id):
+        offer = self.get(offer_external_id)
+        return self._product_client.products_product_id_delete(offer._resource.id, self._get_access_token())
+
 
     def get_listing(self, offer_external_id):
         offer = self.get(offer_external_id)
