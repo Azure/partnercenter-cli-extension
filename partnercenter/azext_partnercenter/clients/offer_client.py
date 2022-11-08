@@ -11,6 +11,9 @@ from partnercenter.azext_partnercenter.models import (ListingContact,
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     BranchesClient, ListingClient, ProductClient)
 
+from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_products_azure_product import MicrosoftIngestionApiModelsProductsAzureProduct
+from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_common_type_value_pair import MicrosoftIngestionApiModelsCommonTypeValuePair
+from ._util import get_api_client
 
 class OfferClient(BaseClient):
 
@@ -42,6 +45,18 @@ class OfferClient(BaseClient):
                 resource=Resource(id=product.id, type=product.resource_type)
             ), results))
 
+    def create(self, offer_external_id, offer_alias, resource_type):
+        external_id = MicrosoftIngestionApiModelsCommonTypeValuePair(type='AzureOfferID', value=offer_alias)
+        external_ids = [external_id]
+        authorization = self._get_access_token()
+        product = MicrosoftIngestionApiModelsProductsAzureProduct(external_ids=external_ids, name=offer_external_id, resource_type=resource_type, id=offer_external_id, is_modular_publishing=True)
+        product = self._product_client.products_post(authorization=authorization, microsoft_ingestion_api_models_products_azure_product=product)
+        return Offer(
+            id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
+            name=product.name,
+            resource=Resource(id=product.id, type=product.resource_type)
+        )
+
     def get(self, offer_external_id):
         filter_expr = self._get_filter_by_offer_id_expression(offer_external_id)
         products = self._product_client.products_get(self._get_access_token(), filter=filter_expr)
@@ -56,6 +71,11 @@ class OfferClient(BaseClient):
             name=product.name,
             resource=Resource(id=product.id, type=product.resource_type)
         )
+
+    def delete(self, offer_external_id):
+        offer = self.get(offer_external_id)
+        return self._product_client.products_product_id_delete(offer._resource.id, self._get_access_token())
+
 
     def get_listing(self, offer_external_id):
         offer = self.get(offer_external_id)

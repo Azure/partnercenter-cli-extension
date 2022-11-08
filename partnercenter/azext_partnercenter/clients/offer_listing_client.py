@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+from operator import is_
 from partnercenter.azext_partnercenter._util import (
     get_combined_paged_results, object_to_dict)
 from partnercenter.azext_partnercenter.models import ListingContact
@@ -31,19 +32,57 @@ class OfferListingClient:
         self._offer_client = OfferClient(cli_ctx, *_)
         self._plan_client = PlanClient(cli_ctx, *_)
 
-    def get(self, product_external_id, plan_listing_external_id):
-        return True
+    def get_plan_listing(self, product_external_id, plan_external_id):
+        product_listing_branches = self._get_product_listing_branches(product_external_id)
+        if not product_listing_branches:
+            return None
+        product = self._offer_client.get(product_external_id)
+        if product is None:
+            return None
+        product_id = product._resource.id
+        plan = self._plan_client.find_by_external_id(product_id, plan_external_id)
+        if plan is None:
+            return None
+        plan_id = plan.resource.id
+        
+        branch = next(filter(lambda b: b.variant_id == plan_id, product_listing_branches), None)
+        if branch is None:
+            return None
+        
+        instance_id = branch.current_draft_instance_id
+        result = self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
+            product_id, 
+            instance_id,
+             self._get_authorication_token())
+        listing = result.value[0]
+        return Listing(
+                        description=listing.description,
+                        title=listing.title,
+                        summary=listing.summary if hasattr(listing, 'summary') else '',
+                        language_code=listing.language_code if hasattr('language_code', 'summary') else '',
+                        short_description=listing.short_description if hasattr('short_description', 'summary') else '',
+                        contacts=list(map(lambda c : ListingContact(**c.to_dict()), listing.listing_contacts)),
+                        uris=list(map(lambda c : ListingUri(**c.to_dict()), listing.listing_uris)),
+                        odata_etag=listing.odata_etag,
+                        resource=Resource(id=listing.id, type=listing.resource_type)        
+        )
 
         
-    def create_or_update(self, offer_id, listing_model: Listing):
+    def create_or_update(self, offer_id, listing_model: Listing, plan_external_id=None):
         offer = self._offer_client.get(offer_id)
         if offer is None:
             return None
         product_id = offer._resource.id
-            
-        listing = self._offer_client.get_listing(offer_id)
+        
+        listing = None
+        if plan_external_id is None:
+            listing = self._offer_client.get_listing(offer_id)
+        else:
+            listing = self.get_plan_listing(offer_id, plan_external_id )
+
         if listing is None:
             return None
+
         listing_id = listing.resource.id
 
         listing_contacts = self._get_api_listing_contacts(listing_model)
@@ -71,6 +110,7 @@ class OfferListingClient:
                         short_description=update_result.short_description,
                         contacts=list(map(lambda c : ListingContact(**c.to_dict()), update_result.listing_contacts)),
                         uris=list(map(lambda c : ListingUri(type=c.type, subtype=c.subtype, uri=c.uri, display_text=c.display_text), update_result.listing_uris)),
+                        odata_etag=update_result.odata_etag,
                         resource=Resource(id=update_result.id, type=update_result.resource_type)        
         )
 
