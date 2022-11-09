@@ -13,17 +13,11 @@ def get_listing(client, offer_id):
     return client.get_listing(offer_id)
 
 
-def marketplace_offer_listing_update_get(client, product_external_id, summary, short_description, description):
+def marketplace_offer_listing_update_get(cmd, client, product_external_id, summary=None, short_description=None, description=None):
     listing = client.get_listing(product_external_id)    
     return listing
 
-def marketplace_offer_listing_update_custom(instance, product_external_id, summary, short_description, description):
-    instance.summary = summary
-    instance.short_description = short_description
-    instance.description = description
-    return instance
-
-def marketplace_offer_listing_update_set(cmd, client, product_external_id, summary, short_description, description, parameters=None):
+def marketplace_offer_listing_update_set(cmd, client, product_external_id, summary=None, short_description=None, description=None, parameters=None):
     listing = Listing()
     listing.id = parameters.id
     listing.title = parameters.title
@@ -36,3 +30,14 @@ def marketplace_offer_listing_update_set(cmd, client, product_external_id, summa
     listing.uris = parameters.uris
     result = client.create_or_update(product_external_id, listing)
     return result
+
+def marketplace_offer_listing_update_custom(instance, product_external_id, summary=None, short_description=None, description=None):
+    instance.summary = summary
+    instance.short_description = short_description
+    instance.description = description
+    return instance
+
+def marketplace_offer_listing_delete(cmd, client, product_external_id, summary=None, short_description=None, description=None):
+    return "Not implemented"
+
+
