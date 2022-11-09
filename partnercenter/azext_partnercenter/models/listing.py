@@ -41,3 +41,4 @@ class Listing(Model):
         self.name = kwargs.get('name', None)
         self.offer_id = kwargs.get('offer_id', None)
         self.odata_etag = kwargs.get('odata_etag', None)
+        self._resource = kwargs.get('resource', None)

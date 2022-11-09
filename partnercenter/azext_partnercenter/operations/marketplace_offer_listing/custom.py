@@ -38,6 +38,10 @@ def marketplace_offer_listing_update_custom(instance, product_external_id, summa
     return instance
 
 def marketplace_offer_listing_delete(cmd, client, product_external_id, summary=None, short_description=None, description=None):
-    return "Not implemented"
+    results = client.delete_offer_listing(product_external_id)
+    if not results:
+        return "Deleted listing for offer: " + product_external_id
+    else:
+        raise CLIError("Failed to delete listing for offer: " + product_external_id)
 
 
