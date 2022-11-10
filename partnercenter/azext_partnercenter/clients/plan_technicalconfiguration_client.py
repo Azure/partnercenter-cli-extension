@@ -49,9 +49,7 @@ class PlanTechnicalConfigurationClient(BaseClient):
             # print(object_to_dict(self._sdk.package_client.products_product_id_packages_get_endpoint.settings))
 
             package = self._sdk.package_client.products_product_id_packages_get(product.id, self._get_access_token())
-            print(object_to_dict(package))
-
-            return packages
+            return package
         except NotFoundException:
             pass
 
