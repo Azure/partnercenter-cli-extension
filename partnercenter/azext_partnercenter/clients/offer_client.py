@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-from . import BaseClient
+from ._base_client import BaseClient
 from partnercenter.azext_partnercenter._util import get_combined_paged_results
 from partnercenter.azext_partnercenter.models import (ListingContact,
                                                       ListingUri, Offer,
@@ -26,7 +26,7 @@ class OfferClient(BaseClient):
 
     
     def delete(self, offer_external_id):
-        filter_expr = self._get_filter_by_offer_id_expression(offer_external_id)
+        filter_expr = self._get_sdk_odata_filter_expression_by_external_offer_id(offer_external_id)
         products = self._product_client.products_get(self._get_access_token(), filter=filter_expr)
 
         if (len(products.value) == 0):
@@ -58,7 +58,7 @@ class OfferClient(BaseClient):
         )
 
     def get(self, offer_external_id):
-        filter_expr = self._get_filter_by_offer_id_expression(offer_external_id)
+        filter_expr = self._get_sdk_odata_filter_expression_by_external_offer_id(offer_external_id)
         products = self._product_client.products_get(self._get_access_token(), filter=filter_expr)
 
         if (len(products.value) == 0):
@@ -120,7 +120,17 @@ class OfferClient(BaseClient):
             resource=Resource(id=listing.id, type=listing.resource_type)
         )
 
+    def _get_sdk_product_by_external_offer_id(self, offer_external_id):
+        """Package Internal helper method to get the SDK product object by Offer ID"""
+        filter_expr = self._get_sdk_odata_filter_expression_by_external_offer_id(offer_external_id)
+        products = self._product_client.products_get(self._get_access_token(), filter=filter_expr)
 
-    def _get_filter_by_offer_id_expression(self, offer_id):
+        if products is None or len(products.value) == 0:
+            return None
+        
+        return products.value[0]
+
+
+    def _get_sdk_odata_filter_expression_by_external_offer_id(self, offer_id):
         """Gets the odata filter expression for filtering by Offer ID found in externalIDs collection"""
         return "externalIDs/Any(i:i/type eq 'AzureOfferId' and i/value eq '{offer_id}')".format(offer_id=offer_id)

@@ -4,8 +4,8 @@
 # --------------------------------------------------------------------------------------------
 
 
-from azext_partnercenter.clients.base_client import BaseClient
-from azext_partnercenter.clients.offer_client import OfferClient
+from ._base_client import BaseClient
+from . import OfferClient
 from ._util import object_to_dict
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     PackageClient as SdkPackageClient, ProductClient as SdkProductClient)

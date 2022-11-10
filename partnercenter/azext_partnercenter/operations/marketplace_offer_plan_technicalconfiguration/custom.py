@@ -9,5 +9,9 @@ from knack.util import CLIError
 # API Operations
 # pylint: disable=too-many-locals
 
-def show_technicalconfiguration(client, offer_id, plan_id):
+def get_technicalconfiguration(client, offer_id, plan_id):
+   client.get(offer_id, plan_id)
+
+
+def update_technicalconfiguration(client, offer_id, plan_id):
    pass
