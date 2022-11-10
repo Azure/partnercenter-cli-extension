@@ -4,7 +4,7 @@
 # --------------------------------------------------------------------------------------------
 
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
-    BranchesClient, ListingClient, ProductClient, SubmissionClient)
+    BranchesClient, ListingClient, ProductClient, SubmissionClient, PackageClient, VariantClient)
 
 
 class SdkClientProvider:
@@ -12,14 +12,22 @@ class SdkClientProvider:
     def __init__(self, api_client):
         self._api_client = api_client
         self._product_client = None
+        self._variant_client = None
         self._branches_client = None
         self._submission_client = None
+        self._package_client = None
 
     @property
     def product_client(self):
         if self._product_client is None:
             self._product_client = ProductClient(self._api_client)
         return self._product_client
+
+    @property
+    def variant_client(self):
+        if self._variant_client is None:
+            self._variant_client = VariantClient(self._api_client)
+        return self._variant_client
 
     @property
     def listing_client(self):
@@ -38,3 +46,9 @@ class SdkClientProvider:
         if self._submission_client is None:
             self._submission_client = SubmissionClient(self._api_client)
         return self._submission_client
+
+    @property
+    def package_client(self):
+        if self._package_client is None:
+            self._package_client = PackageClient(self._api_client)
+        return self._package_client

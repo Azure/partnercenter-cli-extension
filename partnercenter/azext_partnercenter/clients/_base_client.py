@@ -6,6 +6,7 @@
 from ._util import get_api_client
 from ._sdk_client_provider import SdkClientProvider
 
+
 class BaseClient:
     """Base client implementation"""
     def __init__(self, cli_ctx, *_):
