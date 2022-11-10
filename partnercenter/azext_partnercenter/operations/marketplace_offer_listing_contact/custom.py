@@ -12,11 +12,11 @@ from partnercenter.azext_partnercenter.models.listing_contact import ListingCont
 # API Operations
 # pylint: disable=too-many-locals
 
-def marketplace_offer_listing_contact_update_get(cmd, client,  product_external_id, type=None, email=None, name=None, phone=None, uri=None):
-    listing = client.get_listing(product_external_id)    
+def marketplace_offer_listing_contact_update_get(cmd, client,  offer_id, type=None, email=None, name=None, phone=None, uri=None):
+    listing = client.get_listing(offer_id)    
     return listing
 
-def marketplace_offer_listing_contact_update_set(cmd, client, product_external_id, type=None, email=None, name=None, phone=None, uri=None, parameters=None):
+def marketplace_offer_listing_contact_update_set(cmd, client, offer_id, type=None, email=None, name=None, phone=None, uri=None, parameters=None):
     listing = Listing()
     listing.id = parameters.id
     listing.title = parameters.title
@@ -27,10 +27,10 @@ def marketplace_offer_listing_contact_update_set(cmd, client, product_external_i
     listing.odata_etag = parameters.odata_etag
     listing.contacts = parameters.contacts
     listing.uris = parameters.uris
-    result = client.create_or_update(product_external_id, listing)
+    result = client.create_or_update(offer_id, listing)
     return result
 
-def marketplace_offer_listing_contact_update_custom(instance, product_external_id, type=None, email=None, name=None, phone=None, uri=None):
+def marketplace_offer_listing_contact_update_custom(instance, offer_id, type=None, email=None, name=None, phone=None, uri=None):
     listing_contact = ListingContact()
     listing_contact.type = type
     listing_contact.email = email
@@ -40,21 +40,21 @@ def marketplace_offer_listing_contact_update_custom(instance, product_external_i
     instance.contacts.append(listing_contact)
     return instance
 
-def list_contacts(cmd, client, product_external_id, type=None, email=None, name=None, phone=None, uri=None):
-   listing = client.get_listing(product_external_id)
+def list_contacts(cmd, client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
+   listing = client.get_listing(offer_id)
    if not listing:
-    raise CLIError(f'There was no plan with a product id of {product_external_id}')
+    raise CLIError(f'Listing not found for Offer "{offer_id}"')
 
    return listing.listing_contacts
 
-def marketplace_offer_listing_contact_delete(cmd, client, product_external_id, type=None, email=None, name=None, phone=None, uri=None):
+def marketplace_offer_listing_contact_delete(cmd, client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
     listing_contact = ListingContact()
     listing_contact.type = type
     listing_contact.email = email
     listing_contact.name = name
     listing_contact.phone = phone
     listing_contact.uri = uri
-    return client.delete_listing_contact(product_external_id, listing_contact) 
+    return client.delete_listing_contact(offer_id, listing_contact) 
 
 
 
