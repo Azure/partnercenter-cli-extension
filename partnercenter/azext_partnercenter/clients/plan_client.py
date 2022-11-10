@@ -29,8 +29,12 @@ class PlanClient:
         result = self._variant_client.products_product_id_variants_post(product_id=product_id, authorization=self._api_client.configuration.access_token, products_product_id_variants_get_request=prod_var_req)
         return result.to_dict()
 
-    def list(self, offer_resource_id):
-        product = self._product_client.products_product_id_get(offer_resource_id, self._api_client.configuration.access_token)
+    def list(self, offer_external_id):
+        offer = self._offer_client.get(offer_external_id)
+        if offer is None:
+            return None
+
+        offer_resource_id = offer._resource.id
         variants = get_combined_paged_results(lambda : self._variant_client.products_product_id_variants_get(offer_resource_id, self._api_client.configuration.access_token))
 
         items = []
@@ -39,7 +43,7 @@ class PlanClient:
             item = Plan(
                 id=variant['externalID'],
                 name=variant['friendlyName'],
-                offer_id=product['externalIDs'][0]['value'],
+                offer_id=offer_external_id,
                 state=variant['state'],
                 cloud_availabilities=variant['cloudAvailabilities'],
                 resource=Resource(id=variant['id'], type=variant['resourceType'])

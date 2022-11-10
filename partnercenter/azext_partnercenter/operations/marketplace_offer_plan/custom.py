@@ -10,17 +10,12 @@ from azure.cli.core.azclierror import (RequiredArgumentMissingError, ResourceNot
 # API Operations
 # pylint: disable=too-many-locals
 
-def list_plan(cmd, client, offer_id=None, offer_resource_id=None):
-    if (offer_resource_id is not None):
-        return client.list(offer_resource_id)
-
+def list_plan(cmd, client, offer_id):
     from partnercenter.azext_partnercenter._client_factory import cf_offers
-    offer = cf_offers(cmd.cli_ctx).get_by_offer_id(offer_id)
+    if (offer_id is None):
+        raise RequiredArgumentMissingError("--offer-id is required")
 
-    if offer is not None:
-        return client.list(offer.id)
-
-    return []
+    return client.list(offer_id)
 
 
 def create_plan(cmd, client, product_external_id, external_id, friendly_name):
@@ -61,14 +56,13 @@ def get_plan(cmd, client, offer_id, plan_id):
 def _get_offer_resource_id(cmd, offer_id):
     from partnercenter.azext_partnercenter._client_factory import cf_offers
     offer = cf_offers(cmd.cli_ctx).get(offer_id)
-    print(f'offer - {offer}')
-    print(f'offer._resource - {offer._resource}')
     return offer._resource.id if offer is not None else None
 
 def _get_plan_resource_id(cmd, plan_id, offer_resource_id):
     from partnercenter.azext_partnercenter._client_factory import cf_plans
     plans = cf_plans(cmd.cli_ctx).list(offer_resource_id)
-    for p in plans:
-        print(f'plan - {p}')
-        if p.id == plan_id:
-            return p.resource.id
+    return next(
+        (plan for plan in plans if plan.id == plan_id),
+        None
+    )
+
