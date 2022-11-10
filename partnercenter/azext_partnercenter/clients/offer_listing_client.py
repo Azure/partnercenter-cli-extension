@@ -83,7 +83,7 @@ class OfferListingClient:
         if listing is None:
             return None
 
-        listing_id = listing.resource.id
+        listing_id = listing._resource.id
 
         listing_contacts = self._get_api_listing_contacts(listing_model)
         listing_uris = self._get_api_listing_uris(listing_model)
@@ -133,6 +133,20 @@ class OfferListingClient:
             listing_model.contacts))
     
         
+    def delete_offer_listing(self, product_external_id):
+        product = self._offer_client.get(product_external_id)
+        if product is None:
+            return None
+        product_id = product._resource.id
+
+        listing = self._offer_client.get_listing(product_external_id)
+        if listing is None:
+            return None
+        listing_id = listing._resource.id
+
+        return self._listing_client.products_product_id_listings_listing_id_delete(product_id, listing_id, self._get_authorication_token())
+
+
     def delete_listing_contact(self, product_external_id, contact: ListingContact):
         listing = self._offer_client.get_listing(product_external_id)
         try:

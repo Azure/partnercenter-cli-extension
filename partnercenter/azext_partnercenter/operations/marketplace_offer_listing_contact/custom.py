@@ -27,7 +27,6 @@ def marketplace_offer_listing_contact_update_set(cmd, client, product_external_i
     listing.odata_etag = parameters.odata_etag
     listing.contacts = parameters.contacts
     listing.uris = parameters.uris
-
     result = client.create_or_update(product_external_id, listing)
     return result
 
