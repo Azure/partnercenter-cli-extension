@@ -15,11 +15,27 @@ def list_listing(cmd, client, offer_id=None, offer_resource_id=None):
    pass
 
 
-def marketplace_offer_plan_listing_update_get(client, offer_id, plan_id, description=None, short_description=None, language_code=None):
+def listing_update(instance, description=None, short_description=None, language_code=None):
+    instance.short_description = short_description
+    instance.description = description
+    instance.laguage_code = language_code
+    return instance
+
+def get_listing(cmd, client, offer_id=None, plan_id=None):
+    pass
+
+def add_listing(cmd, arg):
+    raise CLIError('TODO: Implement `partnercenter marketplace offer plan listing create`')
+
+
+def _listing_update_get(client, offer_id, plan_id, description=None, short_description=None, language_code=None):
+    """Internal getter for listing update"""
     plan_listing = client.get_plan_listing(offer_id, plan_id)
     return plan_listing
-    
-def marketplace_offer_plan_listing_update_set(client, offer_id, plan_id, description=None, short_description=None, language_code=None, parameters=None):
+
+  
+def _listing_update_set(client, offer_id, plan_id, description=None, short_description=None, language_code=None, parameters=None):
+    """Internal setter for listing update"""
     listing = Listing()
     listing.id = parameters.id
     listing.summary = parameters.summary
@@ -32,15 +48,3 @@ def marketplace_offer_plan_listing_update_set(client, offer_id, plan_id, descrip
     listing.uris = parameters.uris
     result = client.create_or_update(offer_id, listing, plan_id)
     return result
-
-def marketplace_offer_plan_listing_update_custom(instance, description=None, short_description=None, language_code=None):
-    instance.short_description = short_description
-    instance.description = description
-    instance.laguage_code = language_code
-    return instance
-
-def get_listing(cmd, client, offer_id=None, plan_id=None):
-    pass
-
-def add_listing(cmd, arg):
-    raise CLIError('TODO: Implement `partnercenter marketplace offer plan listing create`')
