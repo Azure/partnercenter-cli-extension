@@ -26,82 +26,82 @@ class ListingMediaClient:
         self._variant_client = VariantClient(self._api_client)
         self._listing_image_client = ListingImageClient(self._api_client)
 
-    def get_listing_images(self, product_external_id):
-        product = self._offer_client.get(product_external_id)
-        if product is None:
+    def get_listing_images(self, offer_external_id):
+        offer = self._offer_client.get(offer_external_id)
+        if offer is None:
             return None
-        product_id = product._resource.id
+        offer_resource_id = offer._resource.id
 
-        listing = self._offer_client.get_listing(product_external_id)
+        listing = self._offer_client.get_listing(offer_external_id)
         if listing is None:
             return None
-        listing_id = listing.resource.id
+        listing_resource_id = listing.resource.id
 
-        images = self._listing_image_client.products_product_id_listings_listing_id_images_get(product_id, listing_id, self._get_authorication_token(), expand="$expand=FileSasUri")
+        images = self._listing_image_client.products_product_id_listings_listing_id_images_get(offer_resource_id, listing_resource_id, self._get_authorication_token(), expand="$expand=FileSasUri")
         return self._map_images(images)
 
-    def delete_listing_image(self, product_external_id, image_type):
-        product = self._offer_client.get(product_external_id)
-        if product is None:
+    def delete_listing_image(self, offer_external_id, image_type):
+        offer = self._offer_client.get(offer_external_id)
+        if offer is None:
             return None
-        product_id = product._resource.id
+        offer_resource_id = offer._resource.id
 
-        listing = self._offer_client.get_listing(product_external_id)
+        listing = self._offer_client.get_listing(offer_external_id)
         if listing is None:
             return None
-        listing_id = listing.resource.id
+        listing_resource_id = listing.resource.id
 
-        images = self._listing_image_client.products_product_id_listings_listing_id_images_get(product_id, listing_id, self._get_authorication_token(), expand="$expand=FileSasUri")
+        images = self._listing_image_client.products_product_id_listings_listing_id_images_get(offer_resource_id, listing_resource_id, self._get_authorication_token(), expand="$expand=FileSasUri")
 
         deleted_ids = []
         for idx, x in enumerate(images.value):
             cur_listing_image = self._map_image(x)
             if cur_listing_image.type == image_type:
                 image_id = cur_listing_image.id
-                result =  self._listing_image_client.products_product_id_listings_listing_id_images_image_id_delete(product_id, listing_id, image_id, self._get_authorication_token())
+                result =  self._listing_image_client.products_product_id_listings_listing_id_images_image_id_delete(offer_resource_id, listing_resource_id, image_id, self._get_authorication_token())
                 deleted_ids.append(image_id)
 
         return deleted_ids
 
 
-    def add_listing_image(self, product_external_id, image_type, file_path):
+    def add_listing_image(self, offer_external_id, image_type, file_path):
         import ntpath
         file = ntpath.basename(file_path)
 
-        product = self._offer_client.get(product_external_id)
-        if product is None:
+        offer = self._offer_client.get(offer_external_id)
+        if offer is None:
             return None
-        product_id = product._resource.id
+        offer_resource_id = offer._resource.id
 
-        listing = self._offer_client.get_listing(product_external_id)
+        listing = self._offer_client.get_listing(offer_external_id)
         if listing is None:
             return None
-        listing_id = listing.resource.id
+        listing_resource_id = listing.resource.id
 
         file_name = self._get_file_name(file)
 
-        listing_image = self._post_image(product_id, listing_id, image_type, file_name)
+        listing_image = self._post_image(offer_resource_id, listing_resource_id, image_type, file_name)
         self._upload_media(file_path, listing_image)
 
-        return self._put_image(product_id, listing_id, listing_image)
+        return self._put_image(offer_resource_id, listing_resource_id, listing_image)
 
-    def _put_image(self, product_id, listing_id, image: ListingImage):
+    def _put_image(self, offer_resource_id, listing_resource_id, image: ListingImage):
         state = "Uploaded"
         resource_type = "ListingImage"
         order = 0
 
         listing_image = MicrosoftIngestionApiModelsListingsListingImage(resource_type=resource_type, file_name=image.file_name, type=image.type, state=state, order=order, file_sas_uri=image.file_sas_uri, id=image.id, odata_etag=image.odata_etag)
 
-        result = self._listing_image_client.products_product_id_listings_listing_id_images_image_id_put(product_id, listing_id, image.id, self._get_authorication_token(), microsoft_ingestion_api_models_listings_listing_image=listing_image)
+        result = self._listing_image_client.products_product_id_listings_listing_id_images_image_id_put(offer_resource_id, listing_resource_id, image.id, self._get_authorication_token(), microsoft_ingestion_api_models_listings_listing_image=listing_image)
         return self._map_image(result)
 
-    def _post_image(self, product_id, listing_id, image_type, file_name):
+    def _post_image(self, offer_resource_id, listing_resource_id, image_type, file_name):
         state = "PendingUpload"
         resource_type = "ListingImage"
         order = 0
 
         listing_image = MicrosoftIngestionApiModelsListingsListingImage(resource_type=resource_type, file_name=file_name, type=image_type, state=state, order=order)
-        result = self._listing_image_client.products_product_id_listings_listing_id_images_post(product_id, listing_id, self._get_authorication_token(), microsoft_ingestion_api_models_listings_listing_image=listing_image)
+        result = self._listing_image_client.products_product_id_listings_listing_id_images_post(offer_resource_id, listing_resource_id, self._get_authorication_token(), microsoft_ingestion_api_models_listings_listing_image=listing_image)
         return self._map_image(result)
     
     def _upload_media(self, upload_file_path, listing_image: ListingImage):
