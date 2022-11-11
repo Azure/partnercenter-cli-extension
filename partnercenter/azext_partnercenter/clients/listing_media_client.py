@@ -33,6 +33,7 @@ class ListingMediaClient:
         offer_resource_id = offer._resource.durable_id
 
         listing = self._offer_client.get_listing(offer_external_id)
+
         if listing is None:
             return None
         listing_resource_id = listing._resource.durable_id
@@ -114,7 +115,7 @@ class ListingMediaClient:
         return file
 
     def _map_images(self, images):
-        return images
+        return list(map(lambda x: self._map_image(x), images.value))
 
     def _map_image(self, image):
         listing_image = ListingImage(fileName=image.file_name, type=image.type, fileSasUri=image.file_sas_uri, state=image.state, order=image.order, odata_etag=image.odata_etag, id=image.id)

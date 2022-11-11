@@ -30,6 +30,8 @@ class PartnercenterScenarioTest(ScenarioTest):
         contact_name = 'Jane Doe'
         contact_phone = '4259999999'
         contact_uri = uri
+        media_type = 'AzureLogoLarge'
+        media_file = ''
 
         self.kwargs.update({
             'offer_id': offer_id,
@@ -46,7 +48,9 @@ class PartnercenterScenarioTest(ScenarioTest):
             'contact_email': contact_email,
             'contact_name': contact_name,
             'contact_phone': contact_phone,
-            'contact_uri': contact_uri
+            'contact_uri': contact_uri,
+            'media_type': media_type,
+            'media_file': media_file
         })
 
         self.cmd('partnercenter marketplace offer create --offer-id {offer_id} --offer-alias {offer_alias} --offer-type {offer_type}',
@@ -96,6 +100,18 @@ class PartnercenterScenarioTest(ScenarioTest):
 
         self.cmd('partnercenter marketplace offer listing contact delete --offer-id {offer_id} --type {contact_type} --email {contact_email} --name {contact_name} --phone {contact_phone} --uri {contact_uri}')
         result = self.cmd('partnercenter marketplace offer listing contact list --offer-id {offer_id} ')
+        self.assertEqual(len(result), 0)
+
+        result = self.cmd('partnercenter marketplace offer listing media list --offer-id {offer_id} ')
+        self.assertEqual(len(result), 0)
+
+        self.cmd('partnercenter marketplace offer listing media add --offer-id {offer_id} --type {media_type} --file {media_file}',
+                checks=[self.check('state', 'Uploaded'),
+                        self.check('type', '{media_type}')])
+
+        self.cmd('partnercenter marketplace offer listing media delete --offer-id {offer_id}')
+
+        result = self.cmd('partnercenter marketplace offer listing media list --offer-id {offer_id} ')
         self.assertEqual(len(result), 0)
 
         self.cmd('partnercenter marketplace offer delete --offer-id {offer_id} -y')
