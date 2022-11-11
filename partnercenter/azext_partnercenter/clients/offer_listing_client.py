@@ -39,13 +39,13 @@ class OfferListingClient:
         product = self._offer_client.get(product_external_id)
         if product is None:
             return None
-        product_id = product._resource.id
+        product_id = product._resource.durable_id
         plan = self._plan_client.find_by_external_id(product_id, plan_external_id)
         if plan is None:
             return None
-        plan_id = plan.resource.id
+        plan_durable_id = plan._resource.durable_id
         
-        branch = next(filter(lambda b: b.variant_id == plan_id, product_listing_branches), None)
+        branch = next(filter(lambda b: b.variant_id == plan_durable_id, product_listing_branches), None)
         if branch is None:
             return None
         
@@ -72,7 +72,7 @@ class OfferListingClient:
         offer = self._offer_client.get(offer_id)
         if offer is None:
             return None
-        product_id = offer._resource.id
+        product_id = offer._resource.durable_id
         
         listing = None
         if plan_external_id is None:
@@ -83,7 +83,7 @@ class OfferListingClient:
         if listing is None:
             return None
 
-        listing_id = listing._resource.id
+        listing_id = listing._resource.durable_id
 
         listing_contacts = self._get_api_listing_contacts(listing_model)
         listing_uris = self._get_api_listing_uris(listing_model)
@@ -137,12 +137,12 @@ class OfferListingClient:
         product = self._offer_client.get(product_external_id)
         if product is None:
             return None
-        product_id = product._resource.id
+        product_id = product._resource.durable_id
 
         listing = self._offer_client.get_listing(product_external_id)
         if listing is None:
             return None
-        listing_id = listing._resource.id
+        listing_id = listing._resource.durable_id
 
         return self._listing_client.products_product_id_listings_listing_id_delete(product_id, listing_id, self._get_authorication_token())
 
@@ -179,7 +179,7 @@ class OfferListingClient:
 
     def _get_product_listing_branches(self, product_external_id):
         offer = self._offer_client.get(product_external_id)
-        product_id = offer._resource.id
+        product_id = offer._resource.durable_id
         
         module = 'Listing'
         authorization = self._api_client.configuration.access_token

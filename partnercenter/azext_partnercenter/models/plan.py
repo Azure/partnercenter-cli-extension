@@ -22,4 +22,4 @@ class Plan(Model):
         self.offer_id = kwargs.get('offer_id', None)
         self.state = kwargs.get('state', None)
         self.cloud_availabilities = kwargs.get('cloud_availabilities', [])
-        self.resource = kwargs.get('resource', None)
+        self._resource = kwargs.get('resource', None)
