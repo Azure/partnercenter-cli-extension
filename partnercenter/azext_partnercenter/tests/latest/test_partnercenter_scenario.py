@@ -6,7 +6,6 @@
 import os
 import unittest
 
-from azure_devtools.scenario_tests import AllowLargeResponse
 from azure.cli.testsdk import (ScenarioTest, ResourceGroupPreparer)
 
 
@@ -16,12 +15,12 @@ TEST_DIR = os.path.abspath(os.path.join(os.path.abspath(__file__), '..'))
 class PartnercenterScenarioTest(ScenarioTest):
 
     def test_partnercenter_offer_container_submission(self):
-        offer_id = self.create_random_name('offer', 10)
-        offer_alias = self.create_random_name('offera', 10)
+        offer_id = self.create_random_name('o', 10)
+        offer_alias = self.create_random_name('oa', 10)
         offer_type = 'AzureContainer'
-        summary = self.create_random_name('offersummary', 15)
+        summary = self.create_random_name('os', 15)
         short_description = self.create_random_name('sd', 10)
-        description = self.create_random_name('desc', 20)
+        description = self.create_random_name('d', 20)
 
         self.kwargs.update({
             'offer_id': offer_id,
@@ -41,4 +40,4 @@ class PartnercenterScenarioTest(ScenarioTest):
                         self.check('shortDescription', '{short_description}'),
                         self.check('summary', '{summary}')])
 
-        self.cmd('partnercenter marketplace offer delete --offer-id {offer_id}')
+        self.cmd('partnercenter marketplace offer delete --offer-id {offer_id} -y')
