@@ -16,16 +16,16 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products
   response:
     body:
-      string: '{"resourceType":"AzureContainer","name":"oa000002","externalIDs":[{"type":"AzureOfferId","value":"o000001"}],"isModularPublishing":true,"id":"cef261bf-c89f-42fc-9009-d28050061e20"}'
+      string: '{"resourceType":"AzureContainer","name":"oa000002","externalIDs":[{"type":"AzureOfferId","value":"o000001"}],"isModularPublishing":true,"id":"8a79eeec-1c77-4d4c-9c7c-f257e12421d8"}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 11 Nov 2022 17:51:34 GMT
+      - Fri, 11 Nov 2022 18:45:48 GMT
       location:
-      - https://api.partner.microsoft.com/v1.0/ingestion/products/cef261bf-c89f-42fc-9009-d28050061e20
+      - https://api.partner.microsoft.com/v1.0/ingestion/products/8a79eeec-1c77-4d4c-9c7c-f257e12421d8
       request-id:
-      - ba1bc117-14b2-4b44-991e-f699ce06d163
+      - a86ada35-6774-430b-8619-398c4075a1a4
       transfer-encoding:
       - chunked
     status:
@@ -44,14 +44,14 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27o000001%27%29
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"oa000002","externalIDs":[{"type":"AzureOfferId","value":"o000001"}],"isModularPublishing":true,"id":"cef261bf-c89f-42fc-9009-d28050061e20"}]}'
+      string: '{"value":[{"resourceType":"AzureContainer","name":"oa000002","externalIDs":[{"type":"AzureOfferId","value":"o000001"}],"isModularPublishing":true,"id":"8a79eeec-1c77-4d4c-9c7c-f257e12421d8"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 11 Nov 2022 17:51:34 GMT
+      - Fri, 11 Nov 2022 18:45:48 GMT
       request-id:
-      - 5cf82708-82a5-4112-88b5-fad49c4d1ab9
+      - 6c19fd3e-c5b2-434a-9f00-8f791a0a6ca6
       transfer-encoding:
       - chunked
     status:
@@ -67,7 +67,7 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/cef261bf-c89f-42fc-9009-d28050061e20/branches/getByModule(module=Listing)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/8a79eeec-1c77-4d4c-9c7c-f257e12421d8/branches/getByModule(module=Listing)
   response:
     body:
       string: '{"value":[]}'
@@ -75,9 +75,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 11 Nov 2022 17:51:35 GMT
+      - Fri, 11 Nov 2022 18:45:49 GMT
       request-id:
-      - 0b8eafe1-4d3b-47e7-8c48-09c2e5b97e0b
+      - a6aef01d-26cc-442b-bdab-54930c62fd5d
       transfer-encoding:
       - chunked
     status:
