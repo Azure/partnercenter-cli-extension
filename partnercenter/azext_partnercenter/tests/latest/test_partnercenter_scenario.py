@@ -15,26 +15,30 @@ TEST_DIR = os.path.abspath(os.path.join(os.path.abspath(__file__), '..'))
 
 class PartnercenterScenarioTest(ScenarioTest):
 
-    @ResourceGroupPreparer(name_prefix='cli_test_partnercenter')
-    def test_partnercenter(self, resource_group):
+    def test_partnercenter_offer_container_submission(self):
+        offer_id = self.create_random_name('offer', 10)
+        offer_alias = self.create_random_name('offera', 10)
+        offer_type = 'AzureContainer'
+        summary = self.create_random_name('offersummary', 15)
+        short_description = self.create_random_name('sd', 10)
+        description = self.create_random_name('desc', 20)
 
         self.kwargs.update({
-            'name': 'test1'
+            'offer_id': offer_id,
+            'offer_alias': offer_alias,
+            'offer_type': offer_type,
+            'summary': summary,
+            'short_description': short_description,
+            'description': description
         })
 
-        self.cmd('partnercenter create -g {rg} -n {name} --tags foo=doo', checks=[
-            self.check('tags.foo', 'doo'),
-            self.check('name', '{name}')
-        ])
-        self.cmd('partnercenter update -g {rg} -n {name} --tags foo=boo', checks=[
-            self.check('tags.foo', 'boo')
-        ])
-        count = len(self.cmd('partnercenter list').get_output_in_json())
-        self.cmd('partnercenter show - {rg} -n {name}', checks=[
-            self.check('name', '{name}'),
-            self.check('resourceGroup', '{rg}'),
-            self.check('tags.foo', 'boo')
-        ])
-        self.cmd('partnercenter delete -g {rg} -n {name}')
-        final_count = len(self.cmd('partnercenter list').get_output_in_json())
-        self.assertTrue(final_count, count - 1)
+        self.cmd('partnercenter marketplace offer create --offer-id {offer_id} --offer-alias {offer_alias} --offer-type {offer_type}',
+                checks=[self.check('id', '{offer_id}'),
+                        self.check('name', '{offer_alias}')])
+        
+        self.cmd('partnercenter marketplace offer listing update --offer-id {offer_id} --summary {summary} --short-description {short_description} --description {description}',
+                checks=[self.check('description', '{description}'),
+                        self.check('shortDescription', '{short_description}'),
+                        self.check('summary', '{summary}')])
+
+        self.cmd('partnercenter marketplace offer delete --offer-id {offer_id}')
