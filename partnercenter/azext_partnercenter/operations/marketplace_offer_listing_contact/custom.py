@@ -45,7 +45,7 @@ def list_contacts(cmd, client, offer_id, type=None, email=None, name=None, phone
    if not listing:
     raise CLIError(f'Listing not found for Offer "{offer_id}"')
 
-   return listing.listing_contacts
+   return listing.contacts
 
 def marketplace_offer_listing_contact_delete(cmd, client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
     listing_contact = ListingContact()

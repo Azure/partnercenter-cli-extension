@@ -1,0 +1,86 @@
+interactions:
+- request:
+    body: '{"externalIds": [{"type": "AzureOfferID", "value": "o000001"}], "name":
+      "oa000002", "resourceType": "AzureContainer", "ID": "o000001", "isModularPublishing":
+      true}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - OpenAPI-Generator/v1/python
+    method: POST
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products
+  response:
+    body:
+      string: '{"resourceType":"AzureContainer","name":"oa000002","externalIDs":[{"type":"AzureOfferId","value":"o000001"}],"isModularPublishing":true,"id":"8a79eeec-1c77-4d4c-9c7c-f257e12421d8"}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 11 Nov 2022 18:45:48 GMT
+      location:
+      - https://api.partner.microsoft.com/v1.0/ingestion/products/8a79eeec-1c77-4d4c-9c7c-f257e12421d8
+      request-id:
+      - a86ada35-6774-430b-8619-398c4075a1a4
+      transfer-encoding:
+      - chunked
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - OpenAPI-Generator/v1/python
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27o000001%27%29
+  response:
+    body:
+      string: '{"value":[{"resourceType":"AzureContainer","name":"oa000002","externalIDs":[{"type":"AzureOfferId","value":"o000001"}],"isModularPublishing":true,"id":"8a79eeec-1c77-4d4c-9c7c-f257e12421d8"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 11 Nov 2022 18:45:48 GMT
+      request-id:
+      - 6c19fd3e-c5b2-434a-9f00-8f791a0a6ca6
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - OpenAPI-Generator/v1/python
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/8a79eeec-1c77-4d4c-9c7c-f257e12421d8/branches/getByModule(module=Listing)
+  response:
+    body:
+      string: '{"value":[]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 11 Nov 2022 18:45:49 GMT
+      request-id:
+      - a6aef01d-26cc-442b-bdab-54930c62fd5d
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1
