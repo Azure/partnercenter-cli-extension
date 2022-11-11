@@ -23,7 +23,7 @@ class PlanClient:
     def create(self, offer_external_id, plan_external_id, friendly_name):
         resource_type = "AzureSkuVariant"
         offer = self._offer_client.get(offer_external_id)
-        product_id = offer._resource.id
+        product_id = offer._resource.durable_id
 
         prod_var_req = ProductsProductIDVariantsGetRequest(resource_type=resource_type, friendly_name=friendly_name, external_id=plan_external_id)
         result = self._variant_client.products_product_id_variants_post(product_id=product_id, authorization=self._api_client.configuration.access_token, products_product_id_variants_get_request=prod_var_req)
@@ -34,7 +34,7 @@ class PlanClient:
         if offer is None:
             return None
 
-        offer_resource_id = offer._resource.id
+        offer_resource_id = offer._resource.durable_id
         variants = get_combined_paged_results(lambda : self._variant_client.products_product_id_variants_get(offer_resource_id, self._api_client.configuration.access_token))
 
         items = []
@@ -85,13 +85,13 @@ class PlanClient:
         if offer is None:
             return None
         
-        offer_resource_id = offer._resource.id
+        offer_resource_id = offer._resource.durable_id
         plan = self.find_by_external_id(offer_resource_id, plan_external_id)
         
         if plan is None:
             return None 
         
-        plan_resource_id = plan.resource.id
+        plan_resource_id = plan._resource.durable_id
         return self._variant_client.products_product_id_variants_variant_id_delete(offer_resource_id, plan_resource_id, self._api_client.configuration.access_token, async_req=True)
 
 

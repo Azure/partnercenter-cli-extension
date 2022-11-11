@@ -42,7 +42,8 @@ class OfferClient(BaseClient):
         return list(map(lambda product : Offer(
                 id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
                 name=product.name,
-                resource=Resource(id=product.id, type=product.resource_type)
+                type=product.resource_type,
+                resource=Resource(durable_id=product.id, type=product.resource_type)
             ), results))
 
     def create(self, offer_external_id, offer_alias, resource_type):
@@ -54,7 +55,8 @@ class OfferClient(BaseClient):
         return Offer(
             id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
             name=product.name,
-            resource=Resource(id=product.id, type=product.resource_type)
+            type=product.resource_type,
+            resource=Resource(durable_id=product.id, type=product.resource_type)
         )
 
     def get(self, offer_external_id):
@@ -69,12 +71,13 @@ class OfferClient(BaseClient):
         return Offer(
             id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
             name=product.name,
-            resource=Resource(id=product.id, type=product.resource_type)
+            type=product.resource_type,
+            resource=Resource(durable_id=product.id, type=product.resource_type)
         )
 
     def delete(self, offer_external_id):
         offer = self.get(offer_external_id)
-        return self._product_client.products_product_id_delete(offer._resource.id, self._get_access_token())
+        return self._product_client.products_product_id_delete(offer._resource.durable_id, self._get_access_token())
 
 
     def get_listing(self, offer_external_id):
@@ -84,7 +87,7 @@ class OfferClient(BaseClient):
             return None
         
         branch_listings = get_combined_paged_results(lambda : self._branches_client.products_product_id_branches_get_by_module_modulemodule_get(
-                offer._resource.id, "Listing", self._api_client.configuration.access_token))
+                offer._resource.durable_id, "Listing", self._api_client.configuration.access_token))
 
         # TODO: circle back on this as not sure what to do when multiple offer listings exist
         current_draft_module = next((b for b in branch_listings if not hasattr(b, 'variant_id')), None)
@@ -96,7 +99,7 @@ class OfferClient(BaseClient):
 
         listings = get_combined_paged_results(lambda : 
             self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
-            offer._resource.id, instance_id, self._get_access_token()))
+            offer._resource.durable_id, instance_id, self._get_access_token()))
         
         # TODO: there should only be 1 active listing (that we can confirm as of now)
         if len(listings) == 0:
@@ -117,7 +120,7 @@ class OfferClient(BaseClient):
             odata_etag=listing.odata_etag,
             contacts=list(map(lambda c : ListingContact(**c.to_dict()), listing.listing_contacts)),
             uris=list(map(lambda c : ListingUri(**c.to_dict()), listing.listing_uris)),
-            resource=Resource(id=listing.id, type=listing.resource_type)
+            resource=Resource(durable_id=listing.id, type=listing.resource_type)
         )
 
     def _get_sdk_product_by_external_offer_id(self, offer_external_id):
