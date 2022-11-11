@@ -74,5 +74,7 @@ class PartnercenterScenarioTest(ScenarioTest):
                         self.check('contacts', []),
                         self.check('uris', [])])
 
+        
+
 
         self.cmd('partnercenter marketplace offer delete --offer-id {offer_id} -y')
