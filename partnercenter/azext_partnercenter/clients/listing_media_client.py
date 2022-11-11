@@ -30,12 +30,12 @@ class ListingMediaClient:
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
-        offer_resource_id = offer._resource.id
+        offer_resource_id = offer._resource.durable_id
 
         listing = self._offer_client.get_listing(offer_external_id)
         if listing is None:
             return None
-        listing_resource_id = listing.resource.id
+        listing_resource_id = listing._resource.durable_id
 
         images = self._listing_image_client.products_product_id_listings_listing_id_images_get(offer_resource_id, listing_resource_id, self._get_authorication_token(), expand="$expand=FileSasUri")
         return self._map_images(images)
@@ -44,12 +44,12 @@ class ListingMediaClient:
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
-        offer_resource_id = offer._resource.id
+        offer_resource_id = offer._resource.durable_id
 
         listing = self._offer_client.get_listing(offer_external_id)
         if listing is None:
             return None
-        listing_resource_id = listing.resource.id
+        listing_resource_id = listing._resource.durable_id
 
         images = self._listing_image_client.products_product_id_listings_listing_id_images_get(offer_resource_id, listing_resource_id, self._get_authorication_token(), expand="$expand=FileSasUri")
 
@@ -71,12 +71,12 @@ class ListingMediaClient:
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
-        offer_resource_id = offer._resource.id
+        offer_resource_id = offer._resource.durable_id
 
         listing = self._offer_client.get_listing(offer_external_id)
         if listing is None:
             return None
-        listing_resource_id = listing.resource.id
+        listing_resource_id = listing._resource.durable_id
 
         file_name = self._get_file_name(file)
 

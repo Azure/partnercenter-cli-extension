@@ -7,13 +7,13 @@ from msrest.serialization import Model
 
 
 class Resource(Model):
-    """This is to track the internal id and type of the objects. It shouldn't be returned by the CLI in production."""
+    """This is to track the resource durable and external id and type of the objects."""
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
+        'durableId': {'key': 'durable_id', 'type': 'str'},
         'type': {'key': 'type', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
         super(Resource, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
+        self.durable_id = kwargs.get('durable_id', None)
         self.type = kwargs.get('type', None)
