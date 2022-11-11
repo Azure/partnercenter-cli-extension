@@ -15,6 +15,9 @@ TEST_DIR = os.path.abspath(os.path.join(os.path.abspath(__file__), '..'))
 class PartnercenterScenarioTest(ScenarioTest):
 
     def test_partnercenter_offer_container_submission(self):
+        import inspect
+        currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+        parentdir = os.path.dirname(currentdir)        
         offer_id = self.create_random_name('o', 10)
         offer_alias = self.create_random_name('oa', 10)
         offer_type = 'AzureContainer'
@@ -31,7 +34,7 @@ class PartnercenterScenarioTest(ScenarioTest):
         contact_phone = '4259999999'
         contact_uri = uri
         media_type = 'AzureLogoLarge'
-        media_file = ''
+        media_file = os.path.join(parentdir, "/testdata", "azurelogo.png")
 
         self.kwargs.update({
             'offer_id': offer_id,
