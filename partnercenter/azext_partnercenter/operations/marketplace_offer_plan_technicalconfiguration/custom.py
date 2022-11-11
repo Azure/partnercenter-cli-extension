@@ -10,7 +10,7 @@ from knack.util import CLIError
 # pylint: disable=too-many-locals
 
 def get_technicalconfiguration(client, offer_id, plan_id):
-   client.get(offer_id, plan_id)
+   return client.get(offer_id, plan_id)
 
 
 def update_technicalconfiguration(client, offer_id, plan_id):

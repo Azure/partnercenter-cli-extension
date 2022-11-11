@@ -42,6 +42,7 @@ class OfferClient(BaseClient):
         return list(map(lambda product : Offer(
                 id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
                 name=product.name,
+                type=product.resource_type,
                 resource=Resource(id=product.id, type=product.resource_type)
             ), results))
 
@@ -69,6 +70,7 @@ class OfferClient(BaseClient):
         return Offer(
             id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
             name=product.name,
+            type=product.resource_type,
             resource=Resource(id=product.id, type=product.resource_type)
         )
 
