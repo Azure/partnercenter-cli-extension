@@ -65,7 +65,7 @@ class PartnercenterScenarioTest(ScenarioTest):
                         self.check('shortDescription', '{short_description}'),
                         self.check('summary', '{summary}')])
 
-        self.cmd('az partnercenter marketplace offer listing show --offer-id {offer_id}',
+        self.cmd('partnercenter marketplace offer listing show --offer-id {offer_id}',
                 checks=[self.check('description', '{description}'),
                         self.check('shortDescription', '{short_description}'),
                         self.check('summary', '{summary}'),
