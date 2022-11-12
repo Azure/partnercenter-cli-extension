@@ -26,7 +26,7 @@ class PartnercenterScenarioTest(ScenarioTest):
         description = self.create_random_name('d', 20)
         uri = 'http://www.contoso.com'
         uri_display_text = self.create_random_name('d', 20)
-        uri_type = ''
+        uri_type = 'PrivacyUri'
         uri_sub_type = ''
         contact_type = 'Engineering'
         contact_email = 'testuser@contoso.com'
