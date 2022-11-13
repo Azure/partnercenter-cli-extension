@@ -19,7 +19,7 @@ def list_media(cmd, client, offer_id, type="", file=""):
 def add_media(cmd, client, offer_id, file, type=""):
     return client.add_listing_image(offer_id, type, file)
 
-def delete_media(cmd, client, offer_id, file, type=""):
+def delete_media(cmd, client, offer_id, type):
     result = client.delete_listing_image(offer_id, type)
     return result
 

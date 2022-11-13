@@ -137,7 +137,7 @@ class PartnercenterScenarioTest(ScenarioTest):
                         self.check('type', '{media_type}')])
 
         time.sleep(5)
-        self.cmd('partnercenter marketplace offer listing media delete --offer-id {offer_id} --yes')
+        self.cmd('partnercenter marketplace offer listing media delete --offer-id {offer_id} --type {media_type} --yes')
 
         time.sleep(5)
         result = self.cmd('partnercenter marketplace offer listing media list --offer-id {offer_id} ').get_output_in_json()
