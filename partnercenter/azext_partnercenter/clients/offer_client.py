@@ -107,8 +107,6 @@ class OfferClient(BaseClient):
 
         listing = listings[0]
 
-
-        
         return Listing(
             title=listing.title if hasattr(listing, 'title') else '',
             summary=listing.summary if hasattr(listing, 'summary') else '',
