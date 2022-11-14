@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+from azext_partnercenter.models.offer_setup import OfferSetup
 from ._base_client import BaseClient
 from partnercenter.azext_partnercenter._util import get_combined_paged_results
 from partnercenter.azext_partnercenter.models import (ListingContact,
@@ -13,6 +14,7 @@ from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis impor
 
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_products_azure_product import MicrosoftIngestionApiModelsProductsAzureProduct
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_common_type_value_pair import MicrosoftIngestionApiModelsCommonTypeValuePair
+from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_products_azure_product_setup import MicrosoftIngestionApiModelsProductsAzureProductSetup
 from ._util import get_api_client
 
 class OfferClient(BaseClient):
@@ -79,6 +81,49 @@ class OfferClient(BaseClient):
         offer = self.get(offer_external_id)
         return self._product_client.products_product_id_delete(offer._resource.durable_id, self._get_access_token())
 
+    def get_setup(self, offer_external_id):
+        offer = self.get(offer_external_id)
+        result = self._product_client.products_product_id_setup_get(offer._resource.durable_id, self._get_access_token())
+        return self._map_setup(result)
+
+    def create_setup(self, offer_external_id, test_drive_enabled, reseller_enabled, selling_option, trial_uri):
+        offer = self.get(offer_external_id)
+
+        api_enable_test_drive = bool(test_drive_enabled)
+
+        if api_enable_test_drive is False:
+            print('api_enable_test_drive is false')
+
+        print(f'enable_test_drive - {test_drive_enabled}')
+        print(f'api_enable_test_drive - {api_enable_test_drive}')
+
+        api_enable_reseller = bool(reseller_enabled)
+
+        enabled_value = 'Disabled'
+        if api_enable_reseller:
+            enabled_value = 'Enabled'
+        
+        resource_type = 'AzureProductSetup'
+        
+
+        channel_state= MicrosoftIngestionApiModelsCommonTypeValuePair(type='Reseller', value=enabled_value)
+        channel_states = [channel_state]
+        api_product_setup = MicrosoftIngestionApiModelsProductsAzureProductSetup(resource_type=resource_type, enable_test_drive=False, selling_option=selling_option,channel_states=channel_states)
+        print(f'api_product_setup - {api_product_setup}')
+        result = self._product_client.products_product_id_setup_post(offer._resource.durable_id, self._get_access_token(), microsoft_ingestion_api_models_products_azure_product_setup=api_product_setup)
+        print(f'result - {result}')
+        return result
+
+    def _map_setup(self, api_setup: MicrosoftIngestionApiModelsProductsAzureProductSetup) -> OfferSetup:
+        channel_states = list(map(lambda x: self._map_channel_state(x), api_setup.channel_states))
+        offer_setup = OfferSetup(selling_option=api_setup.selling_option, trial_uri=api_setup.trial_uri, enable_test_drive=api_setup.enable_test_drive, channel_states=channel_states)
+        return offer_setup
+
+    def _map_channel_state(self, channel_state):
+        return {
+            'type': channel_state.type,
+            'value': channel_state.value
+        }
 
     def get_listing(self, offer_external_id):
         offer = self.get(offer_external_id)
