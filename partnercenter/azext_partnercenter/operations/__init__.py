@@ -4,7 +4,6 @@
 # --------------------------------------------------------------------------------------------
 
 from azext_partnercenter.operations.marketplace_offer import MarketplaceOfferOperations
-from azext_partnercenter.operations.marketplace_offer_package import MarketplaceOfferPackageOperations
 from azext_partnercenter.operations.marketplace_offer_submission import MarketplaceOfferSubmissionOperations
 from azext_partnercenter.operations.marketplace_offer_plan import MarketplaceOfferPlanOperations
 from azext_partnercenter.operations.marketplace_offer_plan_setup import MarketplaceOfferPlanSetupOperations
@@ -22,8 +21,6 @@ class PartnerCenterSubGroupCommandsLoader():
         self.commands_loader = commands_loader
         self.subgroup_command_loaders = [
             MarketplaceOfferOperations(self),
-            # TODO: review package as part of CLI
-            # MarketplaceOfferPackageOperations(self),
             MarketplaceOfferSubmissionOperations(self),
             MarketplaceOfferPlanOperations(self),
             MarketplaceOfferPlanSetupOperations(self),
