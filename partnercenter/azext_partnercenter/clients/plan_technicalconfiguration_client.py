@@ -12,6 +12,8 @@ from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.exceptions
 
 from ._util import (get_combined_paged_results, object_to_dict, GRAPH_API_BASE_URL)
 from knack.util import CLIError
+import requests
+from ..models import ContainerPlanTechnicalConfiguration
 
 class PlanTechnicalConfigurationClient(BaseClient):
     PACKAGE_MODULE = "Package"
@@ -32,12 +34,10 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
         if variant_package_branch.product.resource_type == 'AzureContainer':
             technical_configuration = self._get_container_plan_technical_configuration(variant_package_branch.product.id, variant_package_branch.variant_id)
+            technical_configuration['planId'] = plan_external_id
         else:
-            instance_id = variant_package_branch.current_draft_instance_id
-            self._sdk.package_client.products_product_id_packages_get_endpoint.settings['endpoint_path'] += f"/getByInstanceID(instanceID={instance_id})"
-            package = self._sdk.package_client.products_product_id_packages_get(variant_package_branch.product.id, self._get_access_token())
-
-            technical_configuration = package.value
+            technical_configuration = self._get_plan_technical_configuration(variant_package_branch.product.id, variant_package_branch.variant_id)
+            technical_configuration['planId'] = plan_external_id
 
         return technical_configuration
 
@@ -76,87 +76,49 @@ class PlanTechnicalConfigurationClient(BaseClient):
                     return v
         return None
 
+
+    def _get_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
+        """Since we don't know what type of technical plan this will be for now unless we map the types to the schema, this gets any technical configuration type"""
+
+        resources = self._get_resource_tree(offer_durable_id)
+        technical_configuration = None
+
+        for r in resources:
+            if 'plan-technical-configuration' in r['id'] and plan_durable_id in r['plan']:
+                technical_configuration = r
+                del technical_configuration['$schema']
+                del technical_configuration['id']
+                del technical_configuration['product']
+                del technical_configuration['plan']
+
+        return technical_configuration
+
+
     def _get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
         """Gets the response from the Graph endpoint for the container plan technical configuration which is different than the standard ingestion API client package"""
-        endpoint = self._get_container_plan_technical_configuration_endpoint()
-        response = endpoint.call_with_http_info(
-            product_id = offer_durable_id,
-            variant_id = plan_durable_id,
-            version = '2022-03-01-preview3',
-            _host_index = None,
-            async_req = False,
-            _check_input_type = True,
-            _check_return_type = False,
-            _spec_property_naming = False,
-            _return_http_data_only = True,
-            _preload_content = True,
-            _request_timeout = None,
-            _request_auths = None
-        )
-        return object_to_dict(response)
 
-    def _get_container_plan_technical_configuration_endpoint(self):
-        return Endpoint(
-            settings={
-                'response_type': (dict,),
-                'auth': [],
-                'endpoint_path': '/container-plan-technical-configuration/{productId}/{variantId}',
-                'operation_id': 'get_container_plan_technical_configuration',
-                'http_method': 'GET',
-                'servers': [{ 'url': GRAPH_API_BASE_URL }],
-            },
-            params_map={
-                'all': [
-                    'product_id',
-                    'variant_id',
-                    'version',
-                ],
-                'required': [
-                    'product_id',
-                    'variant_id',
-                    'version'
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'variant_id':
-                        (str,),
-                    'version':
-                        (str,),
-                },
-                'attribute_map': {
-                    'product_id': 'productId',
-                    'variant_id': 'variantId',
-                    'version': '$version',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'variant_id': 'path',
-                    'version': 'query',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=self._graph_api_client
-        )
+        url = f'{GRAPH_API_BASE_URL}/container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}'
+        params = { '$version': '2022-03-01-preview3' }
+        response = requests.get(url, params, headers=self._get_request_headers())
+
+        configuration = ContainerPlanTechnicalConfiguration.parse_obj(response.json())
+        return configuration.dict(
+            exclude_unset=True, 
+            exclude={'id', '$schema', 'plan', 'product'})
+
+
+    def _get_resource_tree(self, offer_durable_id):
+        url = f'{GRAPH_API_BASE_URL}/resource-tree/product/{offer_durable_id}'
+        params = { '$version': '2022-03-01-preview3' }
+        response = requests.get(url, params, headers=self._get_request_headers())
+
+        resources = response.json()['resources']
+        return resources
+
+
+    def _get_request_headers(self):
+        return { 'Accept': 'application/json', 'Authorization': f'Bearer {self._graph_api_client.configuration.access_token}' }
+
 
     def _get_resource_tree_endpoint(self):
         return Endpoint(

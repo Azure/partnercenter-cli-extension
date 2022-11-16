@@ -14,5 +14,7 @@ class BaseClient:
         self._graph_api_client = get_api_client_for_graph(cli_ctx, *_)
         self._sdk = SdkClientProvider(self._api_client)
 
-    def _get_access_token(self):
+    def _get_access_token(self, client_name=None):
+        if client_name == 'Graph':
+            return self._graph_api_client.configuration.access_token
         return self._api_client.configuration.access_token

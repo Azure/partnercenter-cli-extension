@@ -38,6 +38,7 @@ def get_api_client_for_graph(cli_ctx, *_):
     from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.api_client import ApiClient
 
     api_client = ApiClient()
+    api_client.configuration.access_token = creds[1]
     api_client.configuration.host = GRAPH_API_BASE_URL
     api_client.configuration.server_index = 0
     
