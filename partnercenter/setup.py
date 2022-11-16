@@ -33,7 +33,7 @@ CLASSIFIERS = [
 ]
 
 # TODO: Add any additional SDK dependencies here
-DEPENDENCIES = ['docker', 'azure-storage-blob']
+DEPENDENCIES = ['docker', 'azure-storage-blob', 'requests', 'pydantic']
 
 with open('README.rst', 'r', encoding='utf-8') as f:
     README = f.read()
