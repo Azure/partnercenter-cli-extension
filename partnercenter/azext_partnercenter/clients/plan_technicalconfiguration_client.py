@@ -41,6 +41,8 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
         return technical_configuration
 
+    def create_or_update(self, offer_external_id, plan_external_id, properties=None):
+        pass
 
     def _get_variant_package_branch(self, offer_external_id, plan_external_id):
         product = self._offer_client._get_sdk_product_by_external_offer_id(offer_external_id)
