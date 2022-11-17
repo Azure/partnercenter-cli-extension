@@ -12,6 +12,7 @@ from azext_partnercenter.operations.marketplace_offer_plan_listing import Market
 from azext_partnercenter.operations.marketplace_offer_listing_contact import MarketplaceOfferListingContactOperations
 from azext_partnercenter.operations.marketplace_offer_listing_uri import MarketplaceOfferListingUriOperations
 from azext_partnercenter.operations.marketplace_offer_listing import MarketplaceOfferListingOperations
+from azext_partnercenter.operations.marketplace_offer_setup import MarketplaceOfferSetupOperations
 from azext_partnercenter.operations.marketplace_offer_listing_media import MarketplaceOfferListingImageOperations
 from azext_partnercenter.operations.marketplace_bundle import MarketplaceBundleOperations
 
@@ -26,6 +27,7 @@ class PartnerCenterSubGroupCommandsLoader():
             MarketplaceOfferPlanSetupOperations(self),
             MarketplaceOfferPlanTechnicalConfigurationOperations(self),
             MarketplaceOfferListingOperations(self),
+            MarketplaceOfferSetupOperations(self),
             MarketplaceBundleOperations(self),
             MarketplaceOfferPlanListingOperations(self),
             MarketplaceOfferListingContactOperations(self),

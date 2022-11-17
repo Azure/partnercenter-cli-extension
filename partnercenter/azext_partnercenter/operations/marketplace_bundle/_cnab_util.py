@@ -16,9 +16,13 @@ def verify(manifest_file):
 
 def bundle(manifest_file):
     container = _get_container(manifest_file)
+    print(f'container - {container}')
     acr_name = _get_acr_name(manifest_file)
+    print(f'acr_name - {acr_name}')
     result = container.exec_run('az acr login -n ' + acr_name)
+    print(f'result1 - {result}')
     result = container.exec_run('cpa buildbundle', workdir='/cpaMount')
+    print(f'result2 - {result}')
     return result
 
 
@@ -40,6 +44,7 @@ def _get_container(manifest_file):
     container_name = "cpacontainer"
     try:
         container = client.containers.get(container_name)
+        print(f'container - {container}')
     except docker.errors.NotFound:
         mount_path = _get_mount_path(manifest_file)
         container = _run_container(container_name, mount_path)
