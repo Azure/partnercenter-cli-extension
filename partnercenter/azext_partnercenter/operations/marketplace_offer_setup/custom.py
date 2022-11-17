@@ -13,9 +13,7 @@ def get_setup(client, offer_id):
     return client.get_setup(offer_id)
 
 # offer_external_id, enable_test_drive, enable_reseller, selling_option
-def create_setup(client, offer_id, reseller_enabled: bool, test_drive_enabled: bool, selling_option, trial_uri):
-    print(f'test_drive_enabled - {test_drive_enabled}')
-    print(f'reseller_enabled - {reseller_enabled}')
+def create_setup(client, offer_id, reseller_enabled=False, test_drive_enabled=False, selling_option='ListingOnly', trial_uri=''):
     return client.create_setup(offer_id, test_drive_enabled, reseller_enabled, selling_option, trial_uri)
 
 def marketplace_offer_setup_update_get(cmd, client, offer_id, summary=None, short_description=None, description=None):
@@ -26,7 +24,7 @@ def marketplace_offer_setup_update_set(cmd, client, offer_id, summary=None, shor
     listing = Listing()
     listing.id = parameters.id
     listing.title = parameters.title
-    listing.summary = parameters.summary
+    listing.summary = parameters.summaryrm 
     listing.description = parameters.description
     listing.short_description = parameters.short_description
     listing.language_code = parameters.language_code

@@ -86,32 +86,19 @@ class OfferClient(BaseClient):
         result = self._product_client.products_product_id_setup_get(offer._resource.durable_id, self._get_access_token())
         return self._map_setup(result)
 
-    def create_setup(self, offer_external_id, test_drive_enabled, reseller_enabled, selling_option, trial_uri):
+    def create_setup(self, offer_external_id, test_drive_enabled: bool, reseller_enabled: bool, selling_option, trial_uri):
         offer = self.get(offer_external_id)
 
-        api_enable_test_drive = bool(test_drive_enabled)
-
-        if api_enable_test_drive is False:
-            print('api_enable_test_drive is false')
-
-        print(f'enable_test_drive - {test_drive_enabled}')
-        print(f'api_enable_test_drive - {api_enable_test_drive}')
-
-        api_enable_reseller = bool(reseller_enabled)
-
-        enabled_value = 'Disabled'
-        if api_enable_reseller:
-            enabled_value = 'Enabled'
+        enabled_value = 'Enabled'
+        if not reseller_enabled:
+            enabled_value = 'Disabled'
         
         resource_type = 'AzureProductSetup'
         
-
         channel_state= MicrosoftIngestionApiModelsCommonTypeValuePair(type='Reseller', value=enabled_value)
         channel_states = [channel_state]
-        api_product_setup = MicrosoftIngestionApiModelsProductsAzureProductSetup(resource_type=resource_type, enable_test_drive=False, selling_option=selling_option,channel_states=channel_states)
-        print(f'api_product_setup - {api_product_setup}')
+        api_product_setup = MicrosoftIngestionApiModelsProductsAzureProductSetup(resource_type=resource_type, enable_test_drive=test_drive_enabled, selling_option=selling_option,channel_states=channel_states)
         result = self._product_client.products_product_id_setup_post(offer._resource.durable_id, self._get_access_token(), microsoft_ingestion_api_models_products_azure_product_setup=api_product_setup)
-        print(f'result - {result}')
         return result
 
     def _map_setup(self, api_setup: MicrosoftIngestionApiModelsProductsAzureProductSetup) -> OfferSetup:
