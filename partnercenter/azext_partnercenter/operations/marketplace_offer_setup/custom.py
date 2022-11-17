@@ -12,7 +12,6 @@ from partnercenter.azext_partnercenter.models.listing import Listing
 def get_setup(client, offer_id):
     return client.get_setup(offer_id)
 
-# offer_external_id, enable_test_drive, enable_reseller, selling_option
 def create_setup(client, offer_id, reseller_enabled=False, test_drive_enabled=False, selling_option='ListingOnly', trial_uri=''):
     return client.create_setup(offer_id, test_drive_enabled, reseller_enabled, selling_option, trial_uri)
 
