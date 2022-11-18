@@ -5,15 +5,8 @@
 
 from azext_partnercenter.clients import OfferClient, PlanClient
 from azext_partnercenter.clients._base_client import BaseClient
-from azext_partnercenter.vendored_sdks.v1.partnercenter.api_client import Endpoint
-
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.exceptions import \
-    NotFoundException
-
-from ._util import (get_combined_paged_results, object_to_dict, GRAPH_API_BASE_URL)
+from ._util import get_combined_paged_results
 from knack.util import CLIError
-import requests
-from ..models import ContainerPlanTechnicalConfiguration
 
 class PlanTechnicalConfigurationClient(BaseClient):
     PACKAGE_MODULE = "Package"
@@ -96,82 +89,10 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
     def _get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
         """Gets the response from the Graph endpoint for the container plan technical configuration which is different than the standard ingestion API client package"""
-
-        url = f'{GRAPH_API_BASE_URL}/container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}'
-        params = { '$version': '2022-03-01-preview3' }
-        response = requests.get(url, params, headers=self._get_request_headers())
-
-        configuration = ContainerPlanTechnicalConfiguration.parse_obj(response.json())
-        return configuration.dict(
-            exclude_unset=True, 
-            exclude={'id', '$schema', 'plan', 'product'})
+        configuration = self._graph_api_client.get_container_plan_technical_configuration(offer_durable_id, plan_durable_id)
+        return configuration
 
 
     def _get_resource_tree(self, offer_durable_id):
-        url = f'{GRAPH_API_BASE_URL}/resource-tree/product/{offer_durable_id}'
-        params = { '$version': '2022-03-01-preview3' }
-        response = requests.get(url, params, headers=self._get_request_headers())
-
-        resources = response.json()['resources']
-        return resources
-
-        return Endpoint(
-            settings={
-                'response_type': (dict,),
-                'auth': [],
-                'endpoint_path': '/resource-tree/product/{productId}',
-                'operation_id': 'resource_tree_get_product_id',
-                'http_method': 'GET',
-                'servers': [{ 'url': GRAPH_API_BASE_URL }],
-            },
-            params_map={
-                'all': [
-                    'product_id',
-                    'authorization',
-                    'version',
-                ],
-                'required': [
-                    'product_id',
-                    'version'
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'version':
-                        (str,),
-                },
-                'attribute_map': {
-                    'product_id': 'productId',
-                    'authorization': 'Authorization',
-                    'version': '$version',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'authorization': 'header',
-                    'version': 'query',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=self._graph_api_client
-        )
+        response = self._graph_api_client.get_resource_tree(offer_durable_id)
+        return response['resources']
