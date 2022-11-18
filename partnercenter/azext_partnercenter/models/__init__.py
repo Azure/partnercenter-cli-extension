@@ -10,7 +10,7 @@ from .listing import Listing
 from .resource import Resource
 from .listing_contact import ListingContact
 from .listing_uri import ListingUri
-from .container_plan_technical_configuration import *
+from ..vendored_sdks.production_ingestion.models.container_plan_technical_configuration import *
 
 __all__ = [
     'Plan',
