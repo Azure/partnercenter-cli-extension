@@ -115,12 +115,6 @@ class PlanTechnicalConfigurationClient(BaseClient):
         resources = response.json()['resources']
         return resources
 
-
-    def _get_request_headers(self):
-        return { 'Accept': 'application/json', 'Authorization': f'Bearer {self._graph_api_client.configuration.access_token}' }
-
-
-    def _get_resource_tree_endpoint(self):
         return Endpoint(
             settings={
                 'response_type': (dict,),

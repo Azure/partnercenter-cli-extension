@@ -21,12 +21,12 @@ class ProductIngestionApiClientConfiguration:
         self._base_path = "https://graph.microsoft.com/rp/product-ingestion"
         self.access_token = access_token
         self.endpoint_versions = {
-            'resource-tree': '2022-03-01-preview3'
+            'get-resource-tree': '2022-03-01-preview3'
         }
 
 
-    def get_version(self, endpoint_name):
-        return self.endpoint_versions.get(endpoint_name)
+    def get_version(self, operation_id):
+        return self.endpoint_versions.get(operation_id)
 
 
 class ProductIngestionApiClient:
@@ -36,18 +36,20 @@ class ProductIngestionApiClient:
         self._default_headers = { 'Accept': 'application/json' }
     
     def get_resource_tree(self, offer_durable_id):
+        operation_id = 'get-resource-tree'
         path = f'resource-tree/product/{offer_durable_id}'
-        response = self.__call_api('resource-tree', path)
+
+        response = self.__call_api(operation_id, path)
         return response
         
     def set_default_header(self, key, value):
         self._default_headers[key] = value
 
-    def __call_api(self, endpoint_name, path, params=None):
+    def __call_api(self, operation_id, path, params=None):
         url = f'{self.configuration._base_path}/{path}'
-        params = self.__merge_params(params, { '$version': self.configuration.get_version(endpoint_name) })
+        params = self.__merge_params(params, { '$version': self.configuration.get_version(operation_id) })
 
-        response = requests.get(url, params, headers=self._get_request_headers())
+        response = requests.get(url, params, headers=self.__get_request_headers())
         return response.json()
 
 
