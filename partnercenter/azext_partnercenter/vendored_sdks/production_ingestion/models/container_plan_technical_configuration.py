@@ -4,14 +4,14 @@
 # --------------------------------------------------------------------------------------------
 
 # Product Ingestion API
+# Implementation is through pedantic via json schema to pydantic model generation
+# This is in until we can figure out how jsonschema can be used with autorest as well as autorest support for anyof unions, etc.
 
 from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 from pydantic import BaseModel, Extra, Field, constr
 
-# Implementation is through pedantic via json schema to pydantic model generation
-# This is in until we can figure out how jsonschema can be used with autorest as well as autorest support for anyof unions, etc.
 
 class DurableId(BaseModel):
     __root__: constr(regex=r'^[a-z](-?[a-z0-9]+)*/[a-z0-9-]+(\/?[a-z0-9-])*$') = Field(

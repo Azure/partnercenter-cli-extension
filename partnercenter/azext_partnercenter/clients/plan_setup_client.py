@@ -9,7 +9,7 @@ from partnercenter.azext_partnercenter.models import PlanSetup
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     ProductClient, VariantClient)
 
-from ._util import get_api_client
+from ._client_factory import get_api_client
 
 
 class PlanSetupClient:

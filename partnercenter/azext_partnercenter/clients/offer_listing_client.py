@@ -18,7 +18,7 @@ from partnercenter.azext_partnercenter.clients.plan_client import PlanClient
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     ProductClient, VariantClient, BranchesClient, ListingClient, ListingImageClient)
 
-from ._util import get_api_client
+from ._client_factory import get_api_client
 
 
 class OfferListingClient:

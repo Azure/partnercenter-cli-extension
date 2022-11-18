@@ -3,8 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-import enum
-import os
+
 from partnercenter.azext_partnercenter._util import (
     get_combined_paged_results, object_to_dict)
 from partnercenter.azext_partnercenter.models import PlanSetup
@@ -15,7 +14,7 @@ from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis impor
     ProductClient, VariantClient, ListingImageClient)
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_image import MicrosoftIngestionApiModelsListingsListingImage
 
-from ._util import get_api_client
+from ._client_factory import get_api_client
 
 
 class ListingMediaClient:
