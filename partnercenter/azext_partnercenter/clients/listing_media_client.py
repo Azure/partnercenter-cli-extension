@@ -3,8 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-import enum
-import os
+
 from partnercenter.azext_partnercenter._util import (
     get_combined_paged_results, object_to_dict)
 from partnercenter.azext_partnercenter.models import PlanSetup
