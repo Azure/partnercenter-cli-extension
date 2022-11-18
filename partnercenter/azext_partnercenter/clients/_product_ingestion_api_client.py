@@ -4,7 +4,7 @@
 # --------------------------------------------------------------------------------------------
 
 import requests
-from ._util import get_api_client, get_api_client_for_graph
+from ._client_factory import get_api_client, get_api_client_for_graph
 from ._sdk_client_provider import SdkClientProvider
 
 

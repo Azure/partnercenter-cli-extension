@@ -4,7 +4,7 @@
 # --------------------------------------------------------------------------------------------
 
 
-from ._util import get_api_client
+from ._client_factory import get_api_client
 from partnercenter.azext_partnercenter._util import (
     get_combined_paged_results, object_to_dict)
 from partnercenter.azext_partnercenter.models import (Plan, Resource)

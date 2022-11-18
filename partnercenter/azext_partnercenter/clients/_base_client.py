@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-from ._util import get_api_client, get_api_client_for_graph
+from .._client_factory import get_api_client, get_api_client_for_graph
 from ._sdk_client_provider import SdkClientProvider
 
 

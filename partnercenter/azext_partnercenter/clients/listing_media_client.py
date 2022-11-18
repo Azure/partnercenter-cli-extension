@@ -15,7 +15,7 @@ from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis impor
     ProductClient, VariantClient, ListingImageClient)
 from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_image import MicrosoftIngestionApiModelsListingsListingImage
 
-from ._util import get_api_client
+from ._client_factory import get_api_client
 
 
 class ListingMediaClient:

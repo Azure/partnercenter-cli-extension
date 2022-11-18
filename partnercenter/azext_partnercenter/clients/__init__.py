@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-from ._util import get_api_client
 from .offer_client import OfferClient
 from .plan_client import PlanClient
 from .package_client import PackageClient
@@ -22,6 +21,5 @@ __all__ = [
     'PlanListingClient',
     'OfferListingClient',
     'OfferClient',
-    'ListingMediaClient',
-    'get_api_client'
+    'ListingMediaClient'
 ]
