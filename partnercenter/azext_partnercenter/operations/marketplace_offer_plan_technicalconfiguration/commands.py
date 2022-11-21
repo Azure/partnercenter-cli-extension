@@ -14,3 +14,6 @@ def load_command_table(commands_loader, _):
 
     with commands_loader.command_group('partnercenter marketplace offer plan technical-configuration', custom_command_type=custom_command_type, is_preview=True) as g:
         g.custom_show_command('show', 'get_technicalconfiguration')
+
+    with commands_loader.command_group('partnercenter marketplace offer plan technical-configuration bundle', custom_command_type=custom_command_type, is_preview=True) as g:
+        g.custom_command('attach', 'attach_technical_configuration_bundle', supports_no_wait=True, table_transformer=None)

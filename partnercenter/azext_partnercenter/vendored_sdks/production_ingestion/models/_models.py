@@ -119,11 +119,11 @@ class MaskedSecret(BaseModel):
     __root__: str = Field(..., title='MaskedSecret')
 
 
-class InnerError(BaseModel):
+class ValidationInnerError(BaseModel):
     resource_id: Optional[ResourceReference] = Field(None, alias='resourceId')
     code: Code
     message: Optional[str] = None
-    details: Optional[List[InnerError]] = None
+    details: Optional[List[ValidationInnerError]] = None
 
 
 class ImageRepositoryDetails(BaseModel):
@@ -158,7 +158,7 @@ class ContainerImagePlanTechnicalConfigurationProperties(BaseModel):
     )
 
 
-class Validation(InnerError):
+class Validation(ValidationInnerError):
     _schema: Optional[SchemaUri] = Field(None, alias='$schema')
     level: Level
 
@@ -178,5 +178,122 @@ class ContainerPlanTechnicalConfiguration(Resource):
     product: ResourceReference
     plan: ResourceReference
 
+    
+class ConfigureResources(BaseModel):
+    class Config:
+        extra = Extra.forbid
 
+    _schema: Optional[SchemaUri] = Field(None, alias='$schema')
+    resources: List[Resource] = Field(..., min_items=1)
+
+
+class JobStatus(Enum):
+    not_started = 'notStarted'
+    running = 'running'
+    completed = 'completed'
+
+
+class JobResult(Enum):
+    pending = 'pending'
+    succeeded = 'succeeded'
+    failed = 'failed'
+
+
+class SchemaUri(BaseModel):
+    __root__: constr(
+        regex=r'^https://(schema\.mp\.microsoft\.com)|(product-ingestion\.azureedge\.net)/schema/[a-z][a-z0-9]+(?:-[a-z0-9]+)*/\d{4}(?:-\d\d){2}(?:-dev|-preview\d+)?$'
+    ) = Field(..., title='SchemaUri')
+
+
+class Code(Enum):
+    bad_request = 'badRequest'
+    unauthorized = 'unauthorized'
+    forbidden = 'forbidden'
+    not_found = 'notFound'
+    method_not_allowed = 'methodNotAllowed'
+    request_timeout = 'requestTimeout'
+    conflict = 'conflict'
+    locked = 'locked'
+    internal_server_error = 'internalServerError'
+    not_implemented = 'notImplemented'
+    service_unavailable = 'serviceUnavailable'
+
+
+class ExternalId(BaseModel):
+    external_id: constr(
+        regex=r'^[a-z0-9][a-z0-9-_]{2,49}$', min_length=3, max_length=50
+    ) = Field(
+        ...,
+        alias='externalId',
+        description='ExternalId for product and plan references. Property reference must be named product or plan.',
+    )
+
+
+class ResourceName(BaseModel):
+    resource_name: constr(
+        regex=r'^[a-zA-Z0-9-_]+$', min_length=1, max_length=50
+    ) = Field(
+        ...,
+        alias='resourceName',
+        description='Resource Name that can be referenced using this value by another resource.',
+    )
+
+
+class DurableId(BaseModel):
+    __root__: constr(regex=r'^[a-z](-?[a-z0-9]+)*/[a-z0-9-]+(\/?[a-z0-9-])*$') = Field(
+        ..., description='A durable-id to an existing resource.', title='DurableId'
+    )
+
+
+class ErrorCode(Enum):
+    business_validation_error = 'businessValidationError'
+    collection_limit_exceeded = 'collectionLimitExceeded'
+    invalid_id = 'invalidId'
+    invalid_entity_status = 'invalidEntityStatus'
+    invalid_request = 'invalidRequest'
+    invalid_resource = 'invalidResource'
+    invalid_state = 'invalidState'
+    not_deployed = 'notDeployed'
+    not_supported = 'notSupported'
+    operation_canceled = 'operationCanceled'
+    product_locked = 'productLocked'
+    resource_not_found = 'resourceNotFound'
+    schema_validation_error = 'schemaValidationError'
+
+
+class ResourceReference(BaseModel):
+    __root__: Union[DurableId, ExternalId, ResourceName] = Field(
+        ..., title='ResourceReference'
+    )
+
+
+class InnerError(BaseModel):
+    resource_id: Optional[ResourceReference] = Field(None, alias='resourceId')
+    code: ErrorCode
+    message: Optional[str] = None
+    details: Optional[List[InnerError]] = None
+
+
+class Error(BaseModel):
+    resource_id: Optional[ResourceReference] = Field(None, alias='resourceId')
+    code: Code
+    message: Optional[str] = None
+    details: Optional[List[InnerError]] = None
+
+
+class ConfigureResourcesStatus(BaseModel):
+    class Config:
+        extra = Extra.forbid
+
+    _schema: Optional[SchemaUri] = Field(None, alias='$schema')
+    job_id: str = Field(..., alias='jobId')
+    job_status: JobStatus = Field(..., alias='jobStatus')
+    job_result: JobResult = Field(..., alias='jobResult')
+    job_start: Optional[datetime] = Field(None, alias='jobStart')
+    job_end: Optional[datetime] = Field(None, alias='jobEnd')
+    resource_uri: Optional[str] = Field(None, alias='resourceUri')
+    errors: Optional[List[Error]] = None
+
+
+ValidationInnerError.update_forward_refs()
 InnerError.update_forward_refs()
