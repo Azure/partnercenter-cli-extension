@@ -66,6 +66,7 @@ class ProductIngestionApiClient:
     
     def update_container_plan_technical_configuration_for_bundle(self, offer_durable_id, plan_durable_id,
                          properties = ContainerCnabPlanTechnicalConfigurationProperties | None):
+        """Updates the technical configuration for a 'list and sell' offer, which uses a CNAB bundle"""
         configuration = ContainerPlanTechnicalConfiguration(
             product=DurableId("product/" + offer_durable_id),
             plan=DurableId("plan/" + plan_durable_id)

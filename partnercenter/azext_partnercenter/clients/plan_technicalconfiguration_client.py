@@ -5,6 +5,8 @@
 
 from azext_partnercenter.clients import OfferClient, PlanClient
 from azext_partnercenter.clients._base_client import BaseClient
+from azext_partnercenter.vendored_sdks.production_ingestion.models import ContainerCnabPlanTechnicalConfigurationProperties
+
 from ._util import get_combined_paged_results
 from knack.util import CLIError
 
@@ -34,10 +36,19 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
         return technical_configuration
 
-    def create_or_update(self, offer_external_id, plan_external_id, properties=None):
+    def create_or_update(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         variant_package_branch = self._get_variant_package_branch(offer_external_id, plan_external_id)
         offer_durable_id = variant_package_branch.product.id
         plan_durable_id = variant_package_branch.variant_id
+
+        # here is where we receive the fragmented properties arg, update 
+        current_properties = self._graph_api_client.get_container_plan_technical_configuration(offer_durable_id, plan_durable_id)
+
+        print(current_properties)
+        
+        current_properties.payload_type = 'cnab' #this is a const
+
+
 
         result = self._graph_api_client.update_container_plan_technical_configuration_for_bundle(
             offer_durable_id, plan_durable_id, properties)
