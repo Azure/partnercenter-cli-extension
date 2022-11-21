@@ -25,11 +25,14 @@ class PlanTechnicalConfigurationClient(BaseClient):
             raise CLIError(f'Technical Configuration not found for Plan ID "{plan_external_id}"')
         
         # if the resource type is AzureContainer, use alternative API
+        offer_durable_id = variant_package_branch.product.id
+        plan_durable_id = variant_package_branch.variant_id
+        sell_through_microsoft = self._get_sell_through_microsoft(offer_durable_id)
+
         technical_configuration = None
 
         if variant_package_branch.product.resource_type == 'AzureContainer':
-            technical_configuration = self._get_container_plan_technical_configuration(variant_package_branch.product.id, variant_package_branch.variant_id)
-            technical_configuration['planId'] = plan_external_id
+            technical_configuration = self._graph_api_client.get_container_plan_technical_configuration(offer_durable_id, plan_durable_id, sell_through_microsoft)
         else:
             technical_configuration = self._get_plan_technical_configuration(variant_package_branch.product.id, variant_package_branch.variant_id)
             technical_configuration['planId'] = plan_external_id
@@ -54,6 +57,11 @@ class PlanTechnicalConfigurationClient(BaseClient):
             offer_durable_id, plan_durable_id, properties)
 
         return result
+
+    def _get_sell_through_microsoft(self, offer_durable_id):
+        sell_through_microsoft_enum_value = 'ListAndSell'
+        setup = self._sdk.product_client.products_product_id_setup_get(offer_durable_id, self._get_access_token())
+        return setup.selling_option == sell_through_microsoft_enum_value
 
     def _get_variant_package_branch(self, offer_external_id, plan_external_id):
         product = self._offer_client._get_sdk_product_by_external_offer_id(offer_external_id)
@@ -103,12 +111,6 @@ class PlanTechnicalConfigurationClient(BaseClient):
                 del technical_configuration['plan']
 
         return technical_configuration
-
-
-    def _get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
-        """Gets the response from the Graph endpoint for the container plan technical configuration which is different than the standard ingestion API client package"""
-        configuration = self._graph_api_client.get_container_plan_technical_configuration(offer_durable_id, plan_durable_id)
-        return configuration
 
 
     def _get_resource_tree(self, offer_durable_id):

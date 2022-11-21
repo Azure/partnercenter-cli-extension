@@ -7,6 +7,7 @@ from azext_partnercenter.vendored_sdks.production_ingestion.models import (Conta
 ConfigureResources, ConfigureResourcesStatus, JobStatus, ResourceReference, DurableId)
 import requests
 from time import time
+from pydantic import create_model
 
 class ProductIngestionApiClientConfiguration:
     """Configuration for the Product Ingestion API Client
@@ -78,7 +79,7 @@ class ProductIngestionApiClient:
         return self.configure_resources(configuration)
 
     
-    def get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
+    def get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id, sell_through_microsoft):
         """Gets the response from the Graph endpoint for the container plan technical configuration
         
         :return: instance of ContainerPlanTechnicalConfiguration [azext_partnercenter.vendored_sdks.production_ingestion.models.container_plan_technical_configuration]
@@ -87,9 +88,9 @@ class ProductIngestionApiClient:
         operation_id = 'get-container-plan-technical-configuration'
         path = f'container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}'
         response = self.__call_api(operation_id, path)
-
-        configuration = ContainerPlanTechnicalConfiguration.parse_obj(response.json())
-        return configuration.dict(exclude_unset=True, exclude={'id', '$schema', 'plan', 'product'})
+        
+        configuration = self._parse_technical_configuration_response(response, True)
+        return configuration
 
     
     def get_resource_tree(self, offer_durable_id):
@@ -99,7 +100,25 @@ class ProductIngestionApiClient:
 
         return self.__call_api(operation_id, path).json()
 
-    
+
+    def _parse_technical_configuration_response(self, response, sell_through_microsoft):
+        r"""If the offer setup is configured to sell through microsoft, then CNAB, otherwise it's Image
+        
+        :param response: :class:`Response <Response>` object from the Response library
+        :param sell_through_microsoft Boolean. whether this is a sell through microsoft Setup
+        """
+        json = response.json() | {}
+
+        if sell_through_microsoft:
+            # the API response is inconsistent in its object shape based on the sell through microsoft
+            # this attr must be added for deserialization purposes
+            if 'cnabReferences' not in json: 
+                json['cnabReferences'] = []
+            return ContainerCnabPlanTechnicalConfigurationProperties.parse_obj(json)
+        else:
+            return ContainerPlanTechnicalConfiguration.parse_obj(response.json())
+        
+
     def _get_configure_resources_status(self, job_id):
         path = f'configure/{job_id}/status'
         return self.__call_api('get-configure-status', path)
