@@ -13,5 +13,5 @@ def get_technicalconfiguration(client, offer_id, plan_id):
    return client.get(offer_id, plan_id)
 
 
-def update_technicalconfiguration(client, offer_id, plan_id):
+def update_technical_configuration_bundle(client, offer_id, plan_id):
    pass
