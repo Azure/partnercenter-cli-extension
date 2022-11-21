@@ -18,7 +18,7 @@ def load_arguments(commands_loader, _):
         c.argument('offer_id', options_list=['--offer-id'], help='The Offer id.')
         c.argument('plan_id', options_list=['--plan-id', '--id'], help='The Plan id.')
     
-    with commands_loader.argument_context('partnercenter marketplace offer plan technical-configuration bundle update') as c:
+    with commands_loader.argument_context('partnercenter marketplace offer plan technical-configuration bundle attach') as c:
         c.argument('cluster_extension_type', options_list=['--cluster-extension-type'], help='The Cluster Extension Type')
         c.argument('tenant_id', arg_group='CNAB Resource', options_list=['--tenant-id', '-t'], help='The Cluster Extension Type')
         c.argument('subscription_id', arg_group='CNAB Resource', options_list=['--subscription-id', '-s'], help='The Cluster Extension Type')
