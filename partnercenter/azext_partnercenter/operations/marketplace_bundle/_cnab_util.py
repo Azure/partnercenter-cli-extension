@@ -16,35 +16,16 @@ def verify(manifest_file):
 
 def bundle(manifest_file):
     container = _get_container(manifest_file)
-    print(f'container - {container}')
     acr_name = _get_acr_name(manifest_file)
-    print(f'acr_name - {acr_name}')
     result = container.exec_run('az acr login -n ' + acr_name)
-    print(f'result1 - {result}')
     result = container.exec_run('cpa buildbundle', workdir='/cpaMount')
-    print(f'result2 - {result}')
     return result
-
-
-def _print_container_result(result):
-    output = result.output.decode("utf-8")
-    print(output)
-
-
-def _print_result(result):
-    error = result.stderr.decode("utf-8")
-    if len(error) > 0:
-        print(error)
-    output = result.stdout.decode("utf-8")
-    print(output)
-
 
 def _get_container(manifest_file):
     client = docker.from_env()
     container_name = "cpacontainer"
     try:
         container = client.containers.get(container_name)
-        print(f'container - {container}')
     except docker.errors.NotFound:
         mount_path = _get_mount_path(manifest_file)
         container = _run_container(container_name, mount_path)
@@ -57,8 +38,8 @@ def _run_container(container_name, mount_path):
     client = docker.from_env()
     home_directory = os.path.expanduser('~')
     absolute_path = f'{home_directory}/.azure'
-    img = 'bobjac/cnab:9.0'
-    # img = 'mcr.microsoft.com/container-package-app:latest'
+    #img = 'bobjac/cnab:9.0'
+    img = 'mcr.microsoft.com/container-package-app:latest'
     cmd = 'sleep infinity'
     volumes = ['/var/run/docker.sock:/var/run/docker.sock', f'{mount_path}:/cpaMount', f'{absolute_path}:/root/.azure']
     container = client.containers.run(img, cmd, detach=True, volumes=volumes, name=container_name)
