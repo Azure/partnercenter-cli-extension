@@ -20,7 +20,7 @@ def verify_bundle(manifest_file):
 
 def build_bundle(manifest_file):
     result = bundle(manifest_file)
-    return result
+    return result.output
 
 
 def update_bundle(instance):
