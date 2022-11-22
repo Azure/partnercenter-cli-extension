@@ -5,7 +5,7 @@
 
 from knack.util import CLIError
 from knack.log import get_logger
-from ._cnab_util import bundle, verify, _print_container_result
+from ._cnab_util import bundle, verify
 
 
 logger = get_logger(__name__)
@@ -20,7 +20,7 @@ def verify_bundle(manifest_file):
 
 def build_bundle(manifest_file):
     result = bundle(manifest_file)
-    _print_container_result(result)
+    return result.output
 
 
 def update_bundle(instance):
