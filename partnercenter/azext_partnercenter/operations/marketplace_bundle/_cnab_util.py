@@ -21,20 +21,6 @@ def bundle(manifest_file):
     result = container.exec_run('cpa buildbundle', workdir='/cpaMount')
     return result
 
-
-def _print_container_result(result):
-    output = result.output.decode("utf-8")
-    print(output)
-
-
-def _print_result(result):
-    error = result.stderr.decode("utf-8")
-    if len(error) > 0:
-        print(error)
-    output = result.stdout.decode("utf-8")
-    print(output)
-
-
 def _get_container(manifest_file):
     client = docker.from_env()
     container_name = "cpacontainer"
