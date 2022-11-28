@@ -73,6 +73,11 @@ class ProductIngestionApiClient:
             plan=DurableId("plan/" + plan_durable_id)
         )
 
+        request = configuration.dict()
+        request['payloadType'] = 'cnab'
+        request['clusterExtensionType'] = properties.cluster_extension_type
+        request['cnabReferences'] = properties.cnab_references
+
         # TODO: need to merge ContainerPlanTechnicalConfiguration + ContainerCnabPlanTechnicalConfigurationProperties
         # while keeping ContainerPlanTechnicalConfiguration's $schema in place
 
@@ -114,7 +119,15 @@ class ProductIngestionApiClient:
             # this attr must be added for deserialization purposes
             if 'cnabReferences' not in json: 
                 json['cnabReferences'] = []
-            return ContainerCnabPlanTechnicalConfigurationProperties.parse_obj(json)
+
+            data = {
+                'cnabReferences': json['cnabReferences'] if 'cnabReferences' in json else [],
+                'payloadType': 'cnab',
+                'clusterExtensionType': json['clusterExtensionType'] if 'clusterExtensionType' in json else None
+            }
+            properties = ContainerCnabPlanTechnicalConfigurationProperties.construct(**data)
+            print(properties)
+            return properties
         else:
             return ContainerPlanTechnicalConfiguration.parse_obj(response.json())
         
