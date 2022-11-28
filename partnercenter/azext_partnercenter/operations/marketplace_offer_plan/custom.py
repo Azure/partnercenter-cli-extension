@@ -38,20 +38,8 @@ def delete_plan(cmd, client, offer_id, plan_id):
     else:
         raise CLIError("Failed to delete plan: " + plan_id + ". Error: " + results)
 
-def get_plan(cmd, client, offer_id, plan_id):
-    if (offer_id is None):
-        raise RequiredArgumentMissingError("--offer-id is required")
-    
-    internal_id = _get_offer_resource_id(cmd, offer_id)
-    if (internal_id is None):
-        raise ResourceNotFoundError('Offer not found.')
-
-    if (plan_id is None):
-        raise RequiredArgumentMissingError("--plan-id is required")
-
-    # since there is no odata filter underlying plan, we have to get them all and filter in memory
-    plans = client.list(internal_id)
-    return next((p for p in plans if p.id == plan_id), None)
+def get_plan(client, offer_id, plan_id):
+    return client.get(offer_id, plan_id)
 
 def _get_offer_resource_id(cmd, offer_id):
     from partnercenter.azext_partnercenter._client_factory import cf_offers
