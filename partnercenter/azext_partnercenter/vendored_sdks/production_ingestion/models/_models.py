@@ -8,6 +8,7 @@
 # This is in until we can figure out how jsonschema can be used with autorest as well as autorest support for anyof unions, etc.
 
 from __future__ import annotations
+from datetime import datetime
 from enum import Enum
 from typing import List, Optional, Union
 from pydantic import BaseModel, Extra, Field, constr

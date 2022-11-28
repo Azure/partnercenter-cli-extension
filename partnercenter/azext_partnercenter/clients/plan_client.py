@@ -29,6 +29,11 @@ class PlanClient:
         result = self._variant_client.products_product_id_variants_post(product_id=product_id, authorization=self._api_client.configuration.access_token, products_product_id_variants_get_request=prod_var_req)
         return result.to_dict()
 
+    
+    def get(self, offer_external_id, plan_external_id):
+        return self.find_by_external_id(offer_external_id, plan_external_id)
+
+
     def list(self, offer_external_id):
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
@@ -61,13 +66,12 @@ class PlanClient:
     )
 
     #todo: remove if automated tests show this is unneeded
-    def _get(self, offer_resource_id, plan_resource_id):
+    def _get(self, offer_durable_id, plan_durable_id):
         """Internal get of the plan"""
-        product = self._product_client.products_product_id_get(offer_resource_id, self._api_client.configuration.access_token)
-        #self._variant_client.products_product_id_variants_get()
+        product = self._product_client.products_product_id_get(offer_durable_id, self._api_client.configuration.access_token)
         variant = self._variant_client.products_product_id_variants_variant_id_get(
-                offer_resource_id,
-                plan_resource_id,
+                offer_durable_id,
+                plan_durable_id,
                 self._api_client.configuration.access_token)
 
         item = Plan(

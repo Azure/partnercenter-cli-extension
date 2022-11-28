@@ -4,10 +4,10 @@
 # --------------------------------------------------------------------------------------------
 
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (ContainerPlanTechnicalConfiguration, ContainerCnabPlanTechnicalConfigurationProperties,
-ConfigureResources, ConfigureResourcesStatus, JobStatus, ResourceReference, DurableId)
+ConfigureResources, ConfigureResourcesStatus, JobStatus, ResourceReference, DurableId, ResourceReference)
 import requests
 from time import time
-from pydantic import create_model
+from pydantic import Extra, create_model
 
 class ProductIngestionApiClientConfiguration:
     """Configuration for the Product Ingestion API Client
@@ -47,11 +47,18 @@ class ProductIngestionApiClient:
         """
 
         operation_id = 'post-configure'
-        configure_resources = ConfigureResources()
-        configure_resources.resources.append(resources)
+        configure_resources = ConfigureResources(resources=resources)
+        data = configure_resources.dict(by_alias=True)
+        data['$schema'] = 'https://product-ingestion.azureedge.net/schema/configure/2022-03-01-preview2'
 
-        response = self.__call_api(operation_id, 'configure', data=configure_resources.dict())
-        status = ConfigureResourcesStatus().parse_obj(response.json())
+        for resource in data['resources']:
+            del resource['resourceName']
+            del resource['validations']
+    
+        response = self.__call_api(operation_id, 'configure', data=data)
+
+        ConfigureResourcesStatus.Config.extra = Extra.allow
+        status = ConfigureResourcesStatus.parse_obj(response.json())
 
         if status.job_status != JobStatus.completed:
             # get the status until completed or timeout of 30 seconds
@@ -62,21 +69,33 @@ class ProductIngestionApiClient:
                     break
 
         # otherwise the status of the job is completed, so return it
-        return status.dict(exclude_unset=True, exclude={'$schema'})
+        return status
 
     
     def update_container_plan_technical_configuration_for_bundle(self, offer_durable_id, plan_durable_id,
                          properties = ContainerCnabPlanTechnicalConfigurationProperties | None):
         """Updates the technical configuration for a 'list and sell' offer, which uses a CNAB bundle"""
+
+        id = DurableId(__root__=f'container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}')
+        product_id = DurableId(__root__="product/" + offer_durable_id)
+        plan_id = DurableId(__root__="plan/" + plan_durable_id)
+
         configuration = ContainerPlanTechnicalConfiguration(
-            product=DurableId("product/" + offer_durable_id),
-            plan=DurableId("plan/" + plan_durable_id)
+            id=id.__root__,
+            product=product_id.__root__,
+            plan=plan_id.__root__
         )
+        configuration.__setattr__('payloadType', 'cnab')
+        configuration.__setattr__('clusterExtensionType', properties.cluster_extension_type)
+        configuration.__setattr__('cnabReferences', properties.cnab_references)
 
-        # TODO: need to merge ContainerPlanTechnicalConfiguration + ContainerCnabPlanTechnicalConfigurationProperties
-        # while keeping ContainerPlanTechnicalConfiguration's $schema in place
+        resource = configuration.dict(by_alias=True)
+        resource['$schema'] = 'https://product-ingestion.azureedge.net/schema/container-plan-technical-configuration/2022-03-01-preview3'
 
-        return self.configure_resources(configuration)
+        del resource['resourceName']
+        del resource['validations']
+
+        return self.configure_resources(resource)
 
     
     def get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id, sell_through_microsoft):
@@ -89,7 +108,7 @@ class ProductIngestionApiClient:
         path = f'container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}'
         response = self.__call_api(operation_id, path)
         
-        configuration = self._parse_technical_configuration_response(response, True)
+        configuration = self._parse_technical_configuration_response(response, sell_through_microsoft)
         return configuration
 
     
@@ -114,14 +133,22 @@ class ProductIngestionApiClient:
             # this attr must be added for deserialization purposes
             if 'cnabReferences' not in json: 
                 json['cnabReferences'] = []
-            return ContainerCnabPlanTechnicalConfigurationProperties.parse_obj(json)
+
+            data = {
+                'cnabReferences': json['cnabReferences'] if 'cnabReferences' in json else [],
+                'payloadType': 'cnab',
+                'clusterExtensionType': json['clusterExtensionType'] if 'clusterExtensionType' in json else None
+            }
+            properties = ContainerCnabPlanTechnicalConfigurationProperties.construct(**data)
+            return properties
         else:
             return ContainerPlanTechnicalConfiguration.parse_obj(response.json())
         
 
     def _get_configure_resources_status(self, job_id):
         path = f'configure/{job_id}/status'
-        return self.__call_api('get-configure-status', path)
+        response = self.__call_api('get-configure-status', path)
+        return ConfigureResourcesStatus.parse_obj(response.json())
         
     def set_default_header(self, key, value):
         self._default_headers[key] = value
@@ -136,7 +163,7 @@ class ProductIngestionApiClient:
         if 'get' in operation_id:
             response = requests.get(url, params, headers=self.__get_request_headers())
         if 'post' in operation_id:
-            response = requests.post(url, data=data, params=params, headers=self.__get_request_headers())
+            response = requests.post(url, json=data, params=params, headers=self.__get_request_headers())
 
         return response
 
