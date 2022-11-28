@@ -41,16 +41,3 @@ def delete_plan(cmd, client, offer_id, plan_id):
 def get_plan(client, offer_id, plan_id):
     return client.get(offer_id, plan_id)
 
-def _get_offer_resource_id(cmd, offer_id):
-    from partnercenter.azext_partnercenter._client_factory import cf_offers
-    offer = cf_offers(cmd.cli_ctx).get(offer_id)
-    return offer._resource.durable_id if offer is not None else None
-
-def _get_plan_resource_id(cmd, plan_id, internal_id):
-    from partnercenter.azext_partnercenter._client_factory import cf_plans
-    plans = cf_plans(cmd.cli_ctx).list(internal_id)
-    return next(
-        (plan for plan in plans if plan.id == plan_id),
-        None
-    )
-
