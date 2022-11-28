@@ -39,20 +39,25 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
         return technical_configuration
 
-    def add_cnab_bundle(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
+    def add_bundle(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         variant_package_branch = self._get_variant_package_branch(offer_external_id, plan_external_id)
         offer_durable_id = variant_package_branch.product.id
         plan_durable_id = variant_package_branch.variant_id
 
         # here is where we receive the fragmented properties arg, update 
-        current_properties = self._graph_api_client.get_container_plan_technical_configuration(offer_durable_id, plan_durable_id)
-
-        print(current_properties)
-
-        result = self._graph_api_client.update_container_plan_technical_configuration_for_bundle(
+        status = self._graph_api_client.update_container_plan_technical_configuration_for_bundle(
             offer_durable_id, plan_durable_id, properties)
 
-        return result
+        if len(status.errors) > 0:
+            return {
+                'errors': status.errors,
+                'result': status.job_result
+            }
+        else:
+            return {
+                'message': status.job_status.value,
+                'result': status.job_result
+            }
 
     def _get_sell_through_microsoft(self, offer_durable_id):
         sell_through_microsoft_enum_value = 'ListAndSell'
