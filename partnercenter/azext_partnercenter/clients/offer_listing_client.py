@@ -3,32 +3,17 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-from operator import is_
-from partnercenter.azext_partnercenter._util import (
-    get_combined_paged_results, object_to_dict)
 from partnercenter.azext_partnercenter.models import ListingContact
 from partnercenter.azext_partnercenter.models.listing import Listing
 from partnercenter.azext_partnercenter.models.listing_uri import ListingUri
 from partnercenter.azext_partnercenter.models.resource import Resource
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_azure_listing import MicrosoftIngestionApiModelsListingsAzureListing
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_contact import MicrosoftIngestionApiModelsListingsListingContact
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_uri import MicrosoftIngestionApiModelsListingsListingUri
-from partnercenter.azext_partnercenter.clients.offer_client import OfferClient
-from partnercenter.azext_partnercenter.clients.plan_client import PlanClient
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
-    ProductClient, VariantClient, BranchesClient, ListingClient, ListingImageClient)
+from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models import MicrosoftIngestionApiModelsListingsAzureListing, MicrosoftIngestionApiModelsListingsListingContact, MicrosoftIngestionApiModelsListingsListingUri
+from partnercenter.azext_partnercenter.clients import OfferClient, PlanClient
+from ._base_client import BaseClient
 
-from ._client_factory import get_api_client
-
-
-class OfferListingClient:
+class OfferListingClient(BaseClient):
     def __init__(self, cli_ctx, *_):
-        self._api_client = get_api_client(cli_ctx, *_)
-        self._product_client = ProductClient(self._api_client)
-        self._variant_client = VariantClient(self._api_client)
-        self._branches_client = BranchesClient(self._api_client)
-        self._listing_client = ListingClient(self._api_client)
-        self._listing_image_client = ListingImageClient(self._api_client)
+        super(OfferListingClient, self).__init__(cli_ctx, *_)
         self._offer_client = OfferClient(cli_ctx, *_)
         self._plan_client = PlanClient(cli_ctx, *_)
 
@@ -50,7 +35,7 @@ class OfferListingClient:
             return None
         
         instance_id = branch.current_draft_instance_id
-        result = self._listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
+        result = self.self._sdk.listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
             product_id, 
             instance_id,
              self._get_authorication_token())
@@ -97,7 +82,7 @@ class OfferListingClient:
                         odata_etag=listing.odata_etag,
                         listing_uris=listing_uris,
                         listing_contacts=listing_contacts)
-        update_result = self._listing_client.products_product_id_listings_listing_id_put(
+        update_result = self.self._sdk.listing_client.products_product_id_listings_listing_id_put(
                         product_id, 
                         listing_id, 
                         self._get_authorication_token(),  
@@ -144,7 +129,7 @@ class OfferListingClient:
             return None
         listing_id = listing._resource.durable_id
 
-        return self._listing_client.products_product_id_listings_listing_id_delete(product_id, listing_id, self._get_authorication_token())
+        return self.self._sdk.listing_client.products_product_id_listings_listing_id_delete(product_id, listing_id, self._get_authorication_token())
 
 
     def delete_listing_contact(self, product_external_id, contact: ListingContact):
@@ -171,19 +156,18 @@ class OfferListingClient:
             del listing.uris[0]
         return self.create_or_update(product_external_id, listing)
 
+
     def get_listing(self, product_external_id):
         return self._offer_client.get_listing(product_external_id)
 
-    def _get_authorication_token(self):
-        return self._api_client.configuration.access_token
 
     def _get_product_listing_branches(self, product_external_id):
         offer = self._offer_client.get(product_external_id)
         product_id = offer._resource.durable_id
         
         module = 'Listing'
-        authorization = self._api_client.configuration.access_token
-        branches = self._branches_client.products_product_id_branches_get_by_module_modulemodule_get(product_id, module, authorization)
+        branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
+                product_id, module, self._get_access_token())
 
         return list(filter(lambda x: hasattr(x, 'variant_id'), branches.value))
 
