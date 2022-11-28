@@ -1,14 +1,50 @@
-# Project
+# Azure CLI Extension for Partner Center
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+The Azure CLI Extension for Partner Center adds Marketplace commands to the Azure CLI 2.0.
 
-As the maintainer of this project, please make a few updates:
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+## Quickstart
+
+1. Install the Azure CLI. You must have at least v2.0.69, which you can verify with az --version command.
+
+2. Add the Azure CLI Extension for Partner Center az extension add --name partnercenter
+
+3. Run the az login command
+
+If the CLI can open your default browser, it will do so and load a sign-in page. Otherwise, you need to open a browser page and follow the instructions on the command line to enter an authorization code after navigating to https://aka.ms/devicelogin in your browser. For more information, see the Azure CLI login page.
+
+> See the [How to associate an Azure AD application with your Partner Center account](https://learn.microsoft.com/en-us/azure/marketplace/azure-app-apis#how-to-associate-an-azure-ad-application-with-your-partner-center-account)
+
+## Usage
+
+```bash
+$ az partnercenter [subgroup(s)] [command] {parameters}
+```
+
+Adding the Extension, exposes the `marketplace` group. Within the marketplace group, the following subgroups are available: 
+- `offer` - includes subgroups `setup`, `listing`, `listing media`, `plan` 
+- `bundle` - subgroup for building and verifying CNAB bundles to add to the Technical Configuration of an Offer's Plan.
+
+For usage and help content for any command, pass in the -h parameter, for example:
+
+```
+az partnercenter marketplace offer -h
+
+Group
+    az partnercenter marketplace offer
+Subgroups:
+    listing
+    plan
+    setup
+
+Commands:
+    create
+    delete
+    list
+    show
+```
+
+- You can view the various commands and its usage here - [docs.microsoft.com - Azure CLI Extension for Partner Center Reference](https://docs.microsoft.com/en-us/cli/azure/partnercenter?view=azure-cli-latest)
 
 ## Contributing
 
