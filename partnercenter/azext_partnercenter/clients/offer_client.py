@@ -94,7 +94,11 @@ class OfferClient(BaseClient):
 
     def _map_setup(self, api_setup: MicrosoftIngestionApiModelsProductsAzureProductSetup) -> OfferSetup:
         channel_states = list(map(lambda x: self._map_channel_state(x), api_setup.channel_states))
-        offer_setup = OfferSetup(selling_option=api_setup.selling_option, trial_uri=api_setup.trial_uri, enable_test_drive=api_setup.enable_test_drive, channel_states=channel_states)
+        offer_setup = OfferSetup(
+            sell_through_microsoft=(True if api_setup.selling_option == 'ListAndSell' else False),
+            trial_uri=api_setup.get('trial_uri'),
+            enable_test_drive=api_setup.enable_test_drive,
+            channel_states=channel_states)
         return offer_setup
 
     def _map_channel_state(self, channel_state):

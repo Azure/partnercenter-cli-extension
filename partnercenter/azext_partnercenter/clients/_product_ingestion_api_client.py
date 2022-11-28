@@ -76,7 +76,7 @@ class ProductIngestionApiClient:
                          properties = ContainerCnabPlanTechnicalConfigurationProperties | None):
         """Updates the technical configuration for a 'list and sell' offer, which uses a CNAB bundle"""
 
-        id = DurableId(__root__=f'container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}')
+        id = DurableId(__root__=f'container-plan-technical-configuration/{offer_durable_id}')
         product_id = DurableId(__root__="product/" + offer_durable_id)
         plan_id = DurableId(__root__="plan/" + plan_durable_id)
 
