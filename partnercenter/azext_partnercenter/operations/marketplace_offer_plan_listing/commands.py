@@ -17,6 +17,7 @@ def load_command_table(commands_loader, _):
         g.generic_update_command('update',
                                     getter_name='_listing_update_get',
                                     setter_name='_listing_update_set',
+                                    setter_type=custom_command_type,
+                                    getter_type=custom_command_type,
                                     custom_func_name='listing_update',
-                                    custom_func_type=custom_command_type,
-                                    client_factory=cf_listing)
+                                    custom_func_type=custom_command_type)
