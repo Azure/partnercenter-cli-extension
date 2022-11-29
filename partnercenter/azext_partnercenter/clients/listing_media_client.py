@@ -56,11 +56,10 @@ class ListingMediaClient:
             cur_listing_image = self._map_image(x)
             if cur_listing_image.type == image_type:
                 image_id = cur_listing_image.id
-                result =  self._listing_image_client.products_product_id_listings_listing_id_images_image_id_delete(offer_resource_id, listing_resource_id, image_id, self._get_authorication_token())
+                result = self._listing_image_client.products_product_id_listings_listing_id_images_image_id_delete(offer_resource_id, listing_resource_id, image_id, self._get_authorication_token())
                 deleted_ids.append(image_id)
 
         return deleted_ids
-
 
     def add_listing_image(self, offer_external_id, image_type, file_path):
         import ntpath
@@ -101,12 +100,13 @@ class ListingMediaClient:
         listing_image = MicrosoftIngestionApiModelsListingsListingImage(resource_type=resource_type, file_name=file_name, type=image_type, state=state, order=order)
         result = self._listing_image_client.products_product_id_listings_listing_id_images_post(offer_resource_id, listing_resource_id, self._get_authorication_token(), microsoft_ingestion_api_models_listings_listing_image=listing_image)
         return self._map_image(result)
-    
+
     def _upload_media(self, upload_file_path, listing_image: ListingImage):
         from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
         blob_client = BlobClient.from_blob_url(listing_image.file_sas_uri)
         with open(upload_file_path, 'rb') as data:
             result = blob_client.upload_blob(data)
+            return result
 
     def _get_file_name(self, file):
         return file
@@ -116,8 +116,7 @@ class ListingMediaClient:
 
     def _map_image(self, image):
         listing_image = ListingImage(fileName=image.file_name, type=image.type, fileSasUri=image.file_sas_uri, state=image.state, order=image.order, odata_etag=image.odata_etag, id=image.id)
-        return  listing_image
+        return listing_image
 
     def _get_authorication_token(self):
         return self._api_client.configuration.access_token
-

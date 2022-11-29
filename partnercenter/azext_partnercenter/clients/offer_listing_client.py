@@ -11,6 +11,7 @@ from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models imp
 from partnercenter.azext_partnercenter.clients import OfferClient, PlanClient
 from ._base_client import BaseClient
 
+
 class OfferListingClient(BaseClient):
     def __init__(self, cli_ctx, *_):
         super(OfferListingClient, self).__init__(cli_ctx, *_)
@@ -29,11 +30,11 @@ class OfferListingClient(BaseClient):
         if plan is None:
             return None
         plan_durable_id = plan._resource.durable_id
-        
+
         branch = next(filter(lambda b: b.variant_id == plan_durable_id, product_listing_branches), None)
         if branch is None:
             return None
-        
+
         instance_id = branch.current_draft_instance_id
         result = self.self._sdk.listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
             product_id, 
@@ -41,17 +42,16 @@ class OfferListingClient(BaseClient):
              self._get_authorication_token())
         listing = result.value[0]
         return Listing(
-                        description=listing.description,
-                        title=listing.title,
-                        summary=listing.summary if hasattr(listing, 'summary') else '',
-                        language_code=listing.language_code if hasattr('language_code', 'summary') else '',
-                        short_description=listing.short_description if hasattr('short_description', 'summary') else '',
-                        contacts=list(map(lambda c : ListingContact(**c.to_dict()), listing.listing_contacts)),
-                        uris=list(map(lambda c : ListingUri(**c.to_dict()), listing.listing_uris)),
-                        odata_etag=listing.odata_etag,
-                        resource=Resource(id=listing.id, type=listing.resource_type)        
+            description=listing.description,
+            title=listing.title,
+            summary=listing.summary if hasattr(listing, 'summary') else '',
+            language_code=listing.language_code if hasattr('language_code', 'summary') else '',
+            short_description=listing.short_description if hasattr('short_description', 'summary') else '',
+            contacts=list(map(lambda c: ListingContact(**c.to_dict()), listing.listing_contacts)),
+            uris=list(map(lambda c: ListingUri(**c.to_dict()), listing.listing_uris)),
+            odata_etag=listing.odata_etag,
+            resource=Resource(id=listing.id, type=listing.resource_type)        
         )
-
         
     def create_or_update(self, offer_id, listing_model: Listing, plan_external_id=None):
         offer = self._offer_client.get(offer_id)
@@ -93,8 +93,8 @@ class OfferListingClient(BaseClient):
                         summary=update_result.summary,
                         language_code=update_result.language_code,
                         short_description=update_result.short_description,
-                        contacts=list(map(lambda c : ListingContact(**c.to_dict()), update_result.listing_contacts)),
-                        uris=list(map(lambda c : ListingUri(type=c.type, subtype=c.subtype, uri=c.uri, display_text=c.display_text), update_result.listing_uris)),
+                        contacts=list(map(lambda c: ListingContact(**c.to_dict()), update_result.listing_contacts)),
+                        uris=list(map(lambda c: ListingUri(type=c.type, subtype=c.subtype, uri=c.uri, display_text=c.display_text), update_result.listing_uris)),
                         odata_etag=update_result.odata_etag,
                         resource=Resource(id=update_result.id, type=update_result.resource_type)        
         )
@@ -107,7 +107,6 @@ class OfferListingClient(BaseClient):
             uri=u.uri if u.uri is not None else ''),
             listing_model.uris))
 
-
     def _get_api_listing_contacts(self, listing_model: Listing):
         return list(map(lambda c: MicrosoftIngestionApiModelsListingsListingContact(
             type=c.type, 
@@ -116,8 +115,7 @@ class OfferListingClient(BaseClient):
             phone=c.phone, 
             uri=c.uri), 
             listing_model.contacts))
-    
-        
+
     def delete_offer_listing(self, product_external_id):
         product = self._offer_client.get(product_external_id)
         if product is None:
@@ -130,7 +128,6 @@ class OfferListingClient(BaseClient):
         listing_id = listing._resource.durable_id
 
         return self.self._sdk.listing_client.products_product_id_listings_listing_id_delete(product_id, listing_id, self._get_authorication_token())
-
 
     def delete_listing_contact(self, product_external_id, contact: ListingContact):
         listing = self._offer_client.get_listing(product_external_id)
@@ -164,7 +161,7 @@ class OfferListingClient(BaseClient):
     def _get_product_listing_branches(self, product_external_id):
         offer = self._offer_client.get(product_external_id)
         product_id = offer._resource.durable_id
-        
+
         module = 'Listing'
         branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
                 product_id, module, self._get_access_token())

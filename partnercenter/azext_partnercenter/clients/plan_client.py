@@ -11,6 +11,7 @@ from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (ProductClie
 from azext_partnercenter.clients import OfferClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.models import ProductsProductIDVariantsGetRequest
 
+
 class PlanClient:
     def __init__(self, cli_ctx, *_):
         self._api_client = get_api_client(cli_ctx, *_)
@@ -27,10 +28,8 @@ class PlanClient:
         result = self._variant_client.products_product_id_variants_post(product_id=product_id, authorization=self._api_client.configuration.access_token, products_product_id_variants_get_request=prod_var_req)
         return result.to_dict()
 
-    
     def get(self, offer_external_id, plan_external_id):
         return self.find_by_external_id(offer_external_id, plan_external_id)
-
 
     def list(self, offer_external_id):
         offer = self._offer_client.get(offer_external_id)
@@ -38,7 +37,7 @@ class PlanClient:
             return None
 
         offer_resource_id = offer._resource.durable_id
-        variants = get_combined_paged_results(lambda : self._variant_client.products_product_id_variants_get(offer_resource_id, self._api_client.configuration.access_token))
+        variants = get_combined_paged_results(lambda: self._variant_client.products_product_id_variants_get(offer_resource_id, self._api_client.configuration.access_token))
 
         items = []
 
@@ -55,22 +54,18 @@ class PlanClient:
 
         return items
 
-
     def find_by_external_id(self, offer_external_id, plan_external_id):
         plans = self.list(offer_external_id)
-        return next(
-        (plan for plan in plans if plan.id == plan_external_id),
-        None
-    )
+        return next((plan for plan in plans if plan.id == plan_external_id), None)
 
-    #todo: remove if automated tests show this is unneeded
+    # todo: remove if automated tests show this is unneeded
     def _get(self, offer_durable_id, plan_durable_id):
         """Internal get of the plan"""
         product = self._product_client.products_product_id_get(offer_durable_id, self._api_client.configuration.access_token)
         variant = self._variant_client.products_product_id_variants_variant_id_get(
-                offer_durable_id,
-                plan_durable_id,
-                self._api_client.configuration.access_token)
+            offer_durable_id,
+            plan_durable_id,
+            self._api_client.configuration.access_token)
 
         item = Plan(
             id=variant['externalID'],
@@ -81,20 +76,17 @@ class PlanClient:
             resource=Resource(id=variant['id'], type=variant['resourceType'])
         )
         return item
-        
+
     def delete(self, offer_id, plan_external_id):
         offer = self._offer_client.get(offer_id)
         if offer is None:
             return None
-        
+
         offer_resource_id = offer._resource.durable_id
         plan = self.find_by_external_id(offer_resource_id, plan_external_id)
-        
+
         if plan is None:
-            return None 
-        
+            return None
+
         plan_resource_id = plan._resource.durable_id
         return self._variant_client.products_product_id_variants_variant_id_delete(offer_resource_id, plan_resource_id, self._api_client.configuration.access_token, async_req=True)
-
-
-    
