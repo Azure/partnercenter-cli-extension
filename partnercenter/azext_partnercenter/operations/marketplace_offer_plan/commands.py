@@ -6,7 +6,7 @@
 
 from azure.cli.core.commands import CliCommandType
 
-from partnercenter.azext_partnercenter._client_factory import cf_plans
+from azext_partnercenter._client_factory import cf_plans
 
 
 def load_command_table(commands_loader, _):

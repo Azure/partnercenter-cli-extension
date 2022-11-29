@@ -5,7 +5,7 @@
 # pylint: disable=line-too-long
 
 from azure.cli.core.commands.parameters import (get_enum_type, get_three_state_flag)
-from partnercenter.azext_partnercenter.models import OfferType
+from azext_partnercenter.models import OfferType
 
 def load_arguments(commands_loader, _):
     with commands_loader.argument_context('partnercenter marketplace offer') as c:

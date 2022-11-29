@@ -4,65 +4,47 @@
 # --------------------------------------------------------------------------------------------
 
 
-def cf_partnercenter(cli_ctx, *_):
-
-    from azure.cli.core.commands.client_factory import get_mgmt_service_client
-
-    # TODO: Replace CONTOSO with the appropriate label and uncomment
-    # from azure.mgmt.CONTOSO import CONTOSOManagementClient
-    # return get_mgmt_service_client(cli_ctx, CONTOSOManagementClient)
-    # Enter a context with an instance of the API client
-    # api_client = ApiClient()
-    # api_instance = ProductClient(api_client)
-    # authorization = "Authorization_example" # str | User authorization
-    # filter = "$filter_example" # str | Filter for paged collection. Filter by ResourceType or ExternalIDs with operation eq is allowed. (optional)
-    # skip_token = "$skipToken_example" # str | Skip token for paged collection (optional)
-    # client_request_id = "Client-Request-ID_example" # str | ID of request provIDed by user (optional)
-    
-    return None
-
-
 def cf_offers(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.clients import OfferClient
+    from azext_partnercenter.clients import OfferClient
     client = OfferClient(cli_ctx, *_)
     return client
 
 
 def cf_plans(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.clients import PlanClient
+    from azext_partnercenter.clients import PlanClient
     client = PlanClient(cli_ctx, *_)
     return client
 
 def cf_package(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.clients import PackageClient
+    from azext_partnercenter.clients import PackageClient
     client = PackageClient(cli_ctx, *_)
     return client
 
 
 def cf_submission(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.clients import SubmissionClient
+    from azext_partnercenter.clients import SubmissionClient
     client = SubmissionClient(cli_ctx, *_)
     return client
 
 
 def cf_listing(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.clients import OfferListingClient
+    from azext_partnercenter.clients import OfferListingClient
     client = OfferListingClient(cli_ctx, *_)
     return client
 
 
 def cf_plan_technicalconfiguration(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.clients import PlanTechnicalConfigurationClient
+    from azext_partnercenter.clients import PlanTechnicalConfigurationClient
     client = PlanTechnicalConfigurationClient(cli_ctx, *_)
     return client
 
 
 def cf_plan_setup(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.clients import PlanSetupClient
+    from azext_partnercenter.clients import PlanSetupClient
     client = PlanSetupClient(cli_ctx, *_)
     return client
 
 def cf_listing_media(cli_ctx, *_):
-    from partnercenter.azext_partnercenter.clients import ListingMediaClient
+    from azext_partnercenter.clients import ListingMediaClient
     client = ListingMediaClient(cli_ctx, *_)
     return client

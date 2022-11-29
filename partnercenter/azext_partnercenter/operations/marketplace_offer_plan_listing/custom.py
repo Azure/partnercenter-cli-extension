@@ -6,7 +6,7 @@
 from azure.cli.core.util import sdk_no_wait
 from knack.util import CLIError
 from azure.cli.core.azclierror import (RequiredArgumentMissingError, ResourceNotFoundError)
-from partnercenter.azext_partnercenter.models.listing import Listing
+from azext_partnercenter.models.listing import Listing
 
 # API Operations
 # pylint: disable=too-many-locals
@@ -25,7 +25,7 @@ def get_listing(cmd, client, offer_id=None, plan_id=None):
     pass
 
 def add_listing(cmd, arg):
-    raise CLIError('TODO: Implement `partnercenter marketplace offer plan listing create`')
+    pass
 
 
 def _listing_update_get(client, offer_id, plan_id, description=None, short_description=None, language_code=None):

@@ -6,7 +6,7 @@
 from azure.cli.core.util import sdk_no_wait
 from knack.util import CLIError
 from azure.cli.core.azclierror import (RequiredArgumentMissingError, ResourceNotFoundError)
-from partnercenter.azext_partnercenter.models.listing import Listing
+from azext_partnercenter.models.listing import Listing
 
 
 def get_listing(client, offer_id):

@@ -11,7 +11,7 @@ from azure.cli.core.azclierror import (RequiredArgumentMissingError, ResourceNot
 # pylint: disable=too-many-locals
 
 def list_plan(cmd, client, offer_id):
-    from partnercenter.azext_partnercenter._client_factory import cf_offers
+    from azext_partnercenter._client_factory import cf_offers
     if (offer_id is None):
         raise RequiredArgumentMissingError("--offer-id is required")
 

@@ -6,7 +6,7 @@
 
 
 from azure.cli.core.commands import CliCommandType
-from partnercenter.azext_partnercenter._client_factory import cf_offers
+from azext_partnercenter._client_factory import cf_offers
 from ._format import list_output_format
 
 
