@@ -9,7 +9,7 @@ from knack.help_files import helps  # pylint: disable=unused-import
 
 helps['partnercenter'] = """
     type: group
-    short-summary: Commands to manage Partnercenters.
+    short-summary: Commands to manage Partner Center resources.
 """
 
 helps['partnercenter create'] = """
