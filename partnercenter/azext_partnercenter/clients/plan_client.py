@@ -5,13 +5,11 @@
 
 
 from ._client_factory import get_api_client
-from partnercenter.azext_partnercenter._util import (
-    get_combined_paged_results, object_to_dict)
-from partnercenter.azext_partnercenter.models import (Plan, Resource)
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
-    ProductClient, VariantClient)
-from partnercenter.azext_partnercenter.clients import OfferClient
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models import ProductsProductIDVariantsGetRequest
+from azext_partnercenter._util import get_combined_paged_results
+from azext_partnercenter.models import (Plan, Resource)
+from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (ProductClient, VariantClient)
+from azext_partnercenter.clients import OfferClient
+from azext_partnercenter.vendored_sdks.v1.partnercenter.models import ProductsProductIDVariantsGetRequest
 
 class PlanClient:
     def __init__(self, cli_ctx, *_):

@@ -6,9 +6,9 @@
 from azure.cli.core.util import sdk_no_wait
 from knack.util import CLIError
 from azure.cli.core.azclierror import (RequiredArgumentMissingError, ResourceNotFoundError)
-from partnercenter.azext_partnercenter.models.listing_uri import ListingUri
-from partnercenter.azext_partnercenter.models.listing import Listing
-from partnercenter.azext_partnercenter.models.listing_contact import ListingContact
+from azext_partnercenter.models.listing_uri import ListingUri
+from azext_partnercenter.models.listing import Listing
+from azext_partnercenter.models.listing_contact import ListingContact
 
 # API Operations
 # pylint: disable=too-many-locals
