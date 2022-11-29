@@ -7,19 +7,19 @@
 from knack.help_files import helps  # pylint: disable=unused-import
 
 
-helps['partnercenter'] = """
+helps['partnercenter marketplace'] = """
     type: group
-    short-summary: Commands to manage Partner Center resources.
+    short-summary: Commands to manage the Partner Center Marketplace.
 """
 
-helps['partnercenter create'] = """
+helps['partnercenter marketplace offer create'] = """
     type: command
-    short-summary: Create a Partnercenter.
+    short-summary: Creates a Marketplace Offer.
 """
 
-helps['partnercenter list'] = """
+helps['partnercenter marketplace offer list'] = """
     type: command
-    short-summary: List Partnercenters.
+    short-summary: Lists all Marketplace Offers.
 """
 
 # helps['partnercenter delete'] = """
