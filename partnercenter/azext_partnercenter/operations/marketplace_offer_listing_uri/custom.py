@@ -40,12 +40,13 @@ def marketplace_offer_listing_uri_update_custom(instance, product_external_id, t
     return instance
 
 
-def list_uris(cmd, client, product_external_id, type=None, subtype=None, display_text=None, uri=None):
+def list_uris(client, product_external_id, type=None, subtype=None, display_text=None, uri=None):
     plan_listing = client.get_listing(product_external_id)
     if not plan_listing:
         raise CLIError(f'There was no plan with a product id of {product_external_id}')
 
     return plan_listing.uris
+
 
 def marketplace_offer_listing_uri_delete(cmd, client, product_external_id, type=None, subtype=None, display_text=None, uri=None):
     listing_uri = ListingUri()

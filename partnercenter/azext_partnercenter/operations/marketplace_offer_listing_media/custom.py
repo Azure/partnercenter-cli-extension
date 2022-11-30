@@ -5,9 +5,9 @@
 
 
 def list_media(cmd, client, offer_id, type=None, file=None):
-   # TODO: implement beyond images
-   images = client.get_listing_images(offer_id)
-   return images
+    # TODO: implement beyond images
+    images = client.get_listing_images(offer_id)
+    return images
 
 
 def add_media(cmd, client, offer_id, file, type=None):
