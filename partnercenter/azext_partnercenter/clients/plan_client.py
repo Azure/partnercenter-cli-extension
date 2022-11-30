@@ -13,7 +13,6 @@ from azext_partnercenter.vendored_sdks.v1.partnercenter.models import ProductsPr
 from ._client_factory import get_api_client
 
 
-
 class PlanClient:
     def __init__(self, cli_ctx, *_):
         self._api_client = get_api_client(cli_ctx, *_)

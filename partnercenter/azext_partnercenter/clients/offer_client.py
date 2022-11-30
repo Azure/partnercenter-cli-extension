@@ -5,8 +5,8 @@
 
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
+# pylint: disable=no-self-use
 from azext_partnercenter.models.offer_setup import OfferSetup
-from ._base_client import BaseClient
 from partnercenter.azext_partnercenter._util import get_combined_paged_results
 from partnercenter.azext_partnercenter.models import (
     ListingContact,
@@ -18,7 +18,7 @@ from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models imp
     MicrosoftIngestionApiModelsProductsAzureProduct,
     MicrosoftIngestionApiModelsCommonTypeValuePair,
     MicrosoftIngestionApiModelsProductsAzureProductSetup)
-
+from ._base_client import BaseClient
 
 class OfferClient(BaseClient):
 
@@ -85,9 +85,9 @@ class OfferClient(BaseClient):
             resource=Resource(durable_id=product.id, type=product.resource_type)
         )
 
-    def delete(self, offer_external_id):
-        offer = self.get(offer_external_id)
-        return self._sdk.product_client.products_product_id_delete(offer._resource.durable_id, self._get_access_token())
+    # def delete(self, offer_external_id):
+    #    offer = self.get(offer_external_id)
+    #    return self._sdk.product_client.products_product_id_delete(offer._resource.durable_id, self._get_access_token())
 
     def get_setup(self, offer_external_id):
         offer = self.get(offer_external_id)

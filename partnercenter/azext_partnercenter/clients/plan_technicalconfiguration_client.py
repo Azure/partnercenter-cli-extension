@@ -5,12 +5,12 @@
 
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
+from knack.util import CLIError
 from azext_partnercenter.clients import OfferClient, PlanClient
 from azext_partnercenter.clients._base_client import BaseClient
 from azext_partnercenter.vendored_sdks.production_ingestion.models import ContainerCnabPlanTechnicalConfigurationProperties
-
 from ._util import get_combined_paged_results
-from knack.util import CLIError
+
 
 
 class PlanTechnicalConfigurationClient(BaseClient):
@@ -92,8 +92,8 @@ class PlanTechnicalConfigurationClient(BaseClient):
         resource_type = 'AzureSkuVariant'
         variants = get_combined_paged_results(lambda: self._sdk.variant_client.products_product_id_variants_get(offer_durable_id, self._get_access_token()))
         for v in variants:
-            if (v['resourceType'] == resource_type and v['state'] == 'Active'):
-                if (v['externalID'] == plan_external_id):
+            if v['resourceType'] == resource_type and v['state'] == 'Active':
+                if v['externalID'] == plan_external_id:
                     return v
         return None
 

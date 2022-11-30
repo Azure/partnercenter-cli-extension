@@ -79,31 +79,31 @@ class OfferListingClient(BaseClient):
         listing_uris = self._get_api_listing_uris(listing_model)
 
         updated_listing = MicrosoftIngestionApiModelsListingsAzureListing(
-                        resource_type='AzureListing',
-                        description=listing_model.description,
-                        title=listing_model.title,
-                        summary=listing_model.summary,
-                        short_description=listing_model.short_description,
-                        odata_etag=listing.odata_etag,
-                        listing_uris=listing_uris,
-                        listing_contacts=listing_contacts)
+            resource_type='AzureListing',
+            description=listing_model.description,
+            title=listing_model.title,
+            summary=listing_model.summary,
+            short_description=listing_model.short_description,
+            odata_etag=listing.odata_etag,
+            listing_uris=listing_uris,
+            listing_contacts=listing_contacts)
         update_result = self._sdk.listing_client.products_product_id_listings_listing_id_put(
-                        product_id,
-                        listing_id,
-                        self._get_authorication_token(),
-                        microsoft_ingestion_api_models_listings_azure_listing=updated_listing)
+            product_id,
+            listing_id,
+            self._get_authorication_token(),
+            microsoft_ingestion_api_models_listings_azure_listing=updated_listing)
         return Listing(
-                        description=update_result.description,
-                        title=update_result.title,
-                        summary=update_result.summary,
-                        language_code=update_result.language_code,
-                        short_description=update_result.short_description,
-                        contacts=list(map(lambda c: ListingContact(**c.to_dict()), update_result.listing_contacts)),
-                        uris=list(map(
-                            lambda c: ListingUri(type=c.type, subtype=c.subtype, uri=c.uri, display_text=c.display_text),
-                            update_result.listing_uris)),
-                        odata_etag=update_result.odata_etag,
-                        resource=Resource(id=update_result.id, type=update_result.resource_type)
+            description=update_result.description,
+            title=update_result.title,
+            summary=update_result.summary,
+            language_code=update_result.language_code,
+            short_description=update_result.short_description,
+            contacts=list(map(lambda c: ListingContact(**c.to_dict()), update_result.listing_contacts)),
+            uris=list(map(
+                lambda c: ListingUri(type=c.type, subtype=c.subtype, uri=c.uri, display_text=c.display_text), update_result.listing_uris)
+            ),
+            odata_etag=update_result.odata_etag,
+            resource=Resource(id=update_result.id, type=update_result.resource_type)
         )
 
     def _get_api_listing_uris(self, listing_model: Listing):
@@ -169,6 +169,6 @@ class OfferListingClient(BaseClient):
 
         module = 'Listing'
         branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
-                product_id, module, self._get_access_token())
+            product_id, module, self._get_access_token())
 
         return list(filter(lambda x: hasattr(x, 'variant_id'), branches.value))

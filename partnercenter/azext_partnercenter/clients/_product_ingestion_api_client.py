@@ -5,15 +5,15 @@
 
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
+# pylint: disable=no-self-use
+# pylint: disable=too-few-public-methods
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
-    ContainerPlanTechnicalConfiguration, 
+    ContainerPlanTechnicalConfiguration,
     ContainerCnabPlanTechnicalConfigurationProperties,
-    ConfigureResources, 
-    ConfigureResourcesStatus, 
-    JobStatus, 
-    ResourceReference, 
-    DurableId, 
-    ResourceReference)
+    ConfigureResources,
+    ConfigureResourcesStatus,
+    JobStatus,
+    DurableId)
 import requests
 from time import time
 from pydantic import Extra, create_model
@@ -80,8 +80,7 @@ class ProductIngestionApiClient:
         # otherwise the status of the job is completed, so return it
         return status
 
-    def update_container_plan_technical_configuration_for_bundle(self, offer_durable_id, plan_durable_id,
-                         properties = ContainerCnabPlanTechnicalConfigurationProperties | None):
+    def update_container_plan_technical_configuration_for_bundle(self, offer_durable_id, plan_durable_id, properties = ContainerCnabPlanTechnicalConfigurationProperties | None):
         """Updates the technical configuration for a 'list and sell' offer, which uses a CNAB bundle"""
 
         id = DurableId(__root__=f'container-plan-technical-configuration/{offer_durable_id}')

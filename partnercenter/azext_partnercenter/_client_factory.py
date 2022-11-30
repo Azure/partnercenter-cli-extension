@@ -44,6 +44,7 @@ def cf_plan_setup(cli_ctx, *_):
     client = PlanSetupClient(cli_ctx, *_)
     return client
 
+
 def cf_listing_media(cli_ctx, *_):
     from azext_partnercenter.clients import ListingMediaClient
     client = ListingMediaClient(cli_ctx, *_)
