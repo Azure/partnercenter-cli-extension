@@ -2,8 +2,8 @@
 
 
 from collections import OrderedDict
-from azext_partnercenter.models import OfferType
 import re
+
 
 def list_output_format(result):
     return _output_format(result, (lambda item: OrderedDict([
