@@ -6,6 +6,7 @@
 from azure.cli.core.azclierror import RequiredArgumentMissingError
 from knack.util import CLIError
 
+
 def list_plan(client, offer_id):
     from azext_partnercenter._client_factory import cf_offers
     if (offer_id is None):
@@ -27,7 +28,7 @@ def update_plan(instance, arg):
 def delete_plan(cmd, client, offer_id, plan_id):
     if (offer_id is None or plan_id is None):
         raise RequiredArgumentMissingError("Both --offer-id and --plan-id are required")
-    
+
     results = client.delete(offer_id, plan_id)
     if results:
         return "Deleted plan: " + plan_id
