@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+# pylint: disable=line-too-long
+# pylint: disable=protected-access
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     ContainerPlanTechnicalConfiguration, 
     ContainerCnabPlanTechnicalConfigurationProperties,

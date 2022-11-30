@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+# pylint: disable=line-too-long
+# pylint: disable=protected-access
 def get_api_client(cli_ctx, *_):
     """Gets an instance of an sdk client"""
     # subscription_id = cli_ctx.data['subscription_id']

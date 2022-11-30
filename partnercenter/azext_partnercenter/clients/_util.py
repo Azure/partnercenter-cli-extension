@@ -2,6 +2,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
+
+# pylint: disable=line-too-long
+# pylint: disable=protected-access
 from urllib.parse import parse_qs, urlparse
 
 

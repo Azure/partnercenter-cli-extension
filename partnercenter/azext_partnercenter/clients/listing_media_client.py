@@ -3,7 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-
+# pylint: disable=line-too-long
+# pylint: disable=protected-access
+# pylint: disable=no-self-use
 from partnercenter.azext_partnercenter.models.listing_image import ListingImage
 from partnercenter.azext_partnercenter.clients.offer_listing_client import OfferListingClient
 from partnercenter.azext_partnercenter.clients.offer_client import OfferClient
@@ -124,16 +126,12 @@ class ListingMediaClient:
         resource_type = "ListingImage"
         order = 0
 
-        listing_image = MicrosoftIngestionApiModelsListingsListingImage(resource_type=resource_type,
-            file_name=file_name,
-            type=image_type,
-            state=state,
-            order=order)
+        listing_image = MicrosoftIngestionApiModelsListingsListingImage(resource_type=resource_type, file_name=file_name, type=image_type, state=state, order=order)
 
         result = self._listing_image_client.products_product_id_listings_listing_id_images_post(offer_resource_id,
-            listing_resource_id,
-            self._get_authorication_token(),
-            microsoft_ingestion_api_models_listings_listing_image=listing_image)
+                                                                                                listing_resource_id,
+                                                                                                self._get_authorication_token(),
+                                                                                                microsoft_ingestion_api_models_listings_listing_image=listing_image)
 
         return self._map_image(result)
 
@@ -151,13 +149,8 @@ class ListingMediaClient:
         return list(map(lambda x: self._map_image(x), images.value))
 
     def _map_image(self, image):
-        listing_image = ListingImage(fileName=image.file_name,
-            type=image.type,
-            fileSasUri=image.file_sas_uri,
-            state=image.state,
-            order=image.order,
-            odata_etag=image.odata_etag,
-            id=image.id)
+        listing_image = ListingImage(fileName=image.file_name, type=image.type, fileSasUri=image.file_sas_uri, state=image.state,
+                                     order=image.order, odata_etag=image.odata_etag, id=image.id)
 
         return listing_image
 

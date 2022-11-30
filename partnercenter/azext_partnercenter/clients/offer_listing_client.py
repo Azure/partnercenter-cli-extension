@@ -3,11 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+# pylint: disable=line-too-long
+# pylint: disable=protected-access
 from partnercenter.azext_partnercenter.models import ListingContact
 from partnercenter.azext_partnercenter.models.listing import Listing
 from partnercenter.azext_partnercenter.models.listing_uri import ListingUri
 from partnercenter.azext_partnercenter.models.resource import Resource
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models import(
+from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models import (
     MicrosoftIngestionApiModelsListingsAzureListing,
     MicrosoftIngestionApiModelsListingsListingContact,
     MicrosoftIngestionApiModelsListingsListingUri)
@@ -98,7 +100,7 @@ class OfferListingClient(BaseClient):
                         short_description=update_result.short_description,
                         contacts=list(map(lambda c: ListingContact(**c.to_dict()), update_result.listing_contacts)),
                         uris=list(map(
-                            lambda c: ListingUri(type=c.type, subtype=c.subtype, uri=c.uri, display_text=c.display_text), 
+                            lambda c: ListingUri(type=c.type, subtype=c.subtype, uri=c.uri, display_text=c.display_text),
                             update_result.listing_uris)),
                         odata_etag=update_result.odata_etag,
                         resource=Resource(id=update_result.id, type=update_result.resource_type)

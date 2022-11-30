@@ -3,13 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-
-from ._client_factory import get_api_client
+# pylint: disable=line-too-long
+# pylint: disable=protected-access
 from azext_partnercenter._util import get_combined_paged_results
 from azext_partnercenter.models import (Plan, Resource)
 from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (ProductClient, VariantClient)
 from azext_partnercenter.clients import OfferClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.models import ProductsProductIDVariantsGetRequest
+from ._client_factory import get_api_client
+
 
 
 class PlanClient:
@@ -24,13 +26,11 @@ class PlanClient:
         offer = self._offer_client.get(offer_external_id)
         product_id = offer._resource.durable_id
 
-        prod_var_req = ProductsProductIDVariantsGetRequest(resource_type=resource_type,
-            friendly_name=friendly_name,
-            external_id=plan_external_id)
+        prod_var_req = ProductsProductIDVariantsGetRequest(resource_type=resource_type, friendly_name=friendly_name, external_id=plan_external_id)
 
         result = self._variant_client.products_product_id_variants_post(product_id=product_id,
-            authorization=self._api_client.configuration.access_token,
-            products_product_id_variants_get_request=prod_var_req)
+                                                                        authorization=self._api_client.configuration.access_token,
+                                                                        products_product_id_variants_get_request=prod_var_req)
 
         return result.to_dict()
 

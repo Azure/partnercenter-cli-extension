@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+# pylint: disable=line-too-long
+# pylint: disable=protected-access
 from azext_partnercenter.models.offer_setup import OfferSetup
 from ._base_client import BaseClient
 from partnercenter.azext_partnercenter._util import get_combined_paged_results
@@ -45,8 +47,7 @@ class OfferClient(BaseClient):
             name=product.name,
             type=product.resource_type,
             resource=Resource(durable_id=product.id, type=product.resource_type)
-            ), results)
-        )
+        ), results))
 
     def create(self, offer_external_id, offer_alias, resource_type):
         external_id = MicrosoftIngestionApiModelsCommonTypeValuePair(
@@ -56,14 +57,10 @@ class OfferClient(BaseClient):
         external_ids = [external_id]
         authorization = self._get_access_token()
 
-        product = MicrosoftIngestionApiModelsProductsAzureProduct(external_ids=external_ids,
-            name=offer_alias,
-            resource_type=resource_type,
-            id=offer_external_id,
-            is_modular_publishing=True)
+        product = MicrosoftIngestionApiModelsProductsAzureProduct(external_ids=external_ids, name=offer_alias, resource_type=resource_type,
+                                                                  id=offer_external_id, is_modular_publishing=True)
 
-        product = self._sdk.product_client.products_post(authorization=authorization,
-            microsoft_ingestion_api_models_products_azure_product=product)
+        product = self._sdk.product_client.products_post(authorization=authorization, microsoft_ingestion_api_models_products_azure_product=product)
 
         return Offer(
             id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
@@ -90,25 +87,14 @@ class OfferClient(BaseClient):
 
     def delete(self, offer_external_id):
         offer = self.get(offer_external_id)
-        return self._sdk.product_client.products_product_id_delete(offer._resource.durable_id,
-            self._get_access_token())
+        return self._sdk.product_client.products_product_id_delete(offer._resource.durable_id, self._get_access_token())
 
     def get_setup(self, offer_external_id):
         offer = self.get(offer_external_id)
-
-        result = self._sdk.product_client.products_product_id_setup_get(
-            offer._resource.durable_id,
-            self._get_access_token())
-
+        result = self._sdk.product_client.products_product_id_setup_get(offer._resource.durable_id, self._get_access_token())
         return self._map_setup(result)
 
-    def create_setup(self,
-        offer_external_id,
-        test_drive_enabled: bool,
-        reseller_enabled: bool,
-        selling_option,
-        trial_uri):
-
+    def create_setup(self, offer_external_id, test_drive_enabled: bool, reseller_enabled: bool, selling_option, trial_uri):
         offer = self.get(offer_external_id)
 
         enabled_value = 'Enabled'
@@ -119,13 +105,15 @@ class OfferClient(BaseClient):
 
         channel_state = MicrosoftIngestionApiModelsCommonTypeValuePair(type='Reseller', value=enabled_value)
         channel_states = [channel_state]
-        api_product_setup = MicrosoftIngestionApiModelsProductsAzureProductSetup(resource_type=resource_type,
+        api_product_setup = MicrosoftIngestionApiModelsProductsAzureProductSetup(
+            resource_type=resource_type,
             enable_test_drive=test_drive_enabled,
             selling_option=selling_option,
             trial_uri=trial_uri,
             channel_states=channel_states)
 
-        result = self._sdk.product_client.products_product_id_setup_post(offer._resource.durable_id,
+        result = self._sdk.product_client.products_product_id_setup_post(
+            offer._resource.durable_id,
             self._get_access_token(),
             microsoft_ingestion_api_models_products_azure_product_setup=api_product_setup)
 
