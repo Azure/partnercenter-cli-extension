@@ -23,13 +23,13 @@ def get_combined_paged_results(method_with_paged_response, collect_items_as_dict
     else:
         items.extend(response.value)
 
-    if ("nextLink" in response):
+    if "nextLink" in response:
         next_link = response['nextLink']
 
-        while (next_link is not None):
+        while next_link is not None:
             token = _get_skip_token(next_link)
             response = method_with_paged_response(token)
-            if ("value" in response):
+            if "value" in response:
                 if collect_items_as_dict:
                     items.extend(map(object_to_dict, response.value))
                 else:

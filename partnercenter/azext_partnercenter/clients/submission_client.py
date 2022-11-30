@@ -18,7 +18,9 @@ class SubmissionClient(BaseClient):
 
     def list(self, offer_external_id):
         offer = self._offer_client.get(offer_external_id)
-        submissions = self._sdk.submission_client.products_product_id_submissions_get(offer._resource.durable_id, self._get_access_token())
+        submissions = self._sdk.submission_client.products_product_id_submissions_get(
+            offer._resource.durable_id, 
+            self._get_access_token())
         return object_to_dict(submissions)
 
     def get(self, offer_external_id):

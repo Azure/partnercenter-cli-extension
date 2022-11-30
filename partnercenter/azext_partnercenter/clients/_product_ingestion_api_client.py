@@ -3,8 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-from azext_partnercenter.vendored_sdks.production_ingestion.models import (ContainerPlanTechnicalConfiguration, ContainerCnabPlanTechnicalConfigurationProperties,
-ConfigureResources, ConfigureResourcesStatus, JobStatus, ResourceReference, DurableId, ResourceReference)
+from azext_partnercenter.vendored_sdks.production_ingestion.models import (
+    ContainerPlanTechnicalConfiguration, 
+    ContainerCnabPlanTechnicalConfigurationProperties,
+    ConfigureResources, 
+    ConfigureResourcesStatus, 
+    JobStatus, 
+    ResourceReference, 
+    DurableId, 
+    ResourceReference)
 import requests
 from time import time
 from pydantic import Extra, create_model
@@ -12,7 +19,7 @@ from pydantic import Extra, create_model
 
 class ProductIngestionApiClientConfiguration:
     """Configuration for the Product Ingestion API Client
-    
+
         Attributes:
             server_resource     The server resource path that will be used to get the correct access token
     """
@@ -38,11 +45,11 @@ class ProductIngestionApiClient:
     """The Product Ingestion API client"""
     def __init__(self, access_token=None):
         self.configuration = ProductIngestionApiClientConfiguration(access_token=access_token)
-        self._default_headers = { 'Accept': 'application/json' }
+        self._default_headers = {'Accept': 'application/json'}
 
     def configure_resources(self, *resources):
         """Configures one or more resources
-        
+
         :return: response object with success / error messages
         """
 
@@ -54,7 +61,7 @@ class ProductIngestionApiClient:
         for resource in data['resources']:
             del resource['resourceName']
             del resource['validations']
-    
+
         response = self.__call_api(operation_id, 'configure', data=data)
 
         ConfigureResourcesStatus.Config.extra = Extra.allow
@@ -62,8 +69,8 @@ class ProductIngestionApiClient:
 
         if status.job_status != JobStatus.completed:
             # get the status until completed or timeout of 30 seconds
-            timeout = time() + 30 
-            while (status.job_status != JobStatus.completed):
+            timeout = time() + 30
+            while status.job_status != JobStatus.completed:
                 status = self._get_configure_resources_status(status.job_id)
                 if time() > timeout:
                     break
@@ -71,7 +78,6 @@ class ProductIngestionApiClient:
         # otherwise the status of the job is completed, so return it
         return status
 
-    
     def update_container_plan_technical_configuration_for_bundle(self, offer_durable_id, plan_durable_id,
                          properties = ContainerCnabPlanTechnicalConfigurationProperties | None):
         """Updates the technical configuration for a 'list and sell' offer, which uses a CNAB bundle"""
@@ -97,7 +103,6 @@ class ProductIngestionApiClient:
 
         return self.configure_resources(resource)
 
-    
     def get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id, sell_through_microsoft):
         """Gets the response from the Graph endpoint for the container plan technical configuration
 
@@ -110,7 +115,7 @@ class ProductIngestionApiClient:
 
         configuration = self._parse_technical_configuration_response(response, sell_through_microsoft)
         return configuration
-    
+
     def get_resource_tree(self, offer_durable_id):
         """Returns the raw response as a dictionary"""
         operation_id = 'get-resource-tree'
@@ -129,7 +134,7 @@ class ProductIngestionApiClient:
         if sell_through_microsoft:
             # the API response is inconsistent in its object shape based on the sell through microsoft
             # this attr must be added for deserialization purposes
-            if 'cnabReferences' not in json: 
+            if 'cnabReferences' not in json:
                 json['cnabReferences'] = []
 
             data = {
@@ -167,6 +172,6 @@ class ProductIngestionApiClient:
         return self._default_headers
 
     def __merge_params(self, a, b):
-        params = a.copy() if a is not None else {} 
+        params = a.copy() if a is not None else {}
         params.update(b if b is not None else {})
         return params
