@@ -3,9 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-import os.path
-from azure.cli.core.util import sdk_no_wait
 from knack.util import CLIError
+
 
 def create_offer(cmd, client, offer_id, offer_alias, offer_type):
     result = client.create(offer_id, offer_alias, offer_type)

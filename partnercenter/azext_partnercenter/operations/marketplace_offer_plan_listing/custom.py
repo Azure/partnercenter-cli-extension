@@ -2,14 +2,10 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
+# pylint: disable=too-many-locals
 
-from azure.cli.core.util import sdk_no_wait
-from knack.util import CLIError
-from azure.cli.core.azclierror import (RequiredArgumentMissingError, ResourceNotFoundError)
 from azext_partnercenter.models.listing import Listing
 
-# API Operations
-# pylint: disable=too-many-locals
 
 def list_listing(cmd, client, offer_id=None, offer_resource_id=None):
    pass
@@ -21,8 +17,10 @@ def listing_update(instance, description=None, short_description=None, language_
     instance.laguage_code = language_code
     return instance
 
+
 def get_listing(cmd, client, offer_id=None, plan_id=None):
     pass
+
 
 def add_listing(cmd, arg):
     pass

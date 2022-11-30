@@ -33,8 +33,8 @@ def _get_value_as_str(item, *args):
 
 def _get_offer_type_display_name(item):
     try:
-       value = item = item['type']
-       regex = re.compile('(?!^)(?=[A-Z])', re.MULTILINE)
-       return re.sub(regex, " ", value)
+        value = item = item['type']
+        regex = re.compile('(?!^)(?=[A-Z])', re.MULTILINE)
+        return re.sub(regex, " ", value)
     except (KeyError, TypeError, IndexError):
         return ' '

@@ -34,6 +34,7 @@ def marketplace_offer_setup_update_set(cmd, client, offer_id, summary=None, shor
     listing.odata_etag = parameters.odata_etag
     listing.contacts = parameters.contacts
     listing.uris = parameters.uris
+
     result = client.create_or_update(offer_id, listing)
     return result
 
