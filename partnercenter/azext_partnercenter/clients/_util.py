@@ -3,6 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+# pylint: disable=line-too-long
+# pylint: disable=protected-access
+from urllib.parse import parse_qs, urlparse
+
 
 def object_to_dict(item):
     if (type(item) is dict or item is None):
@@ -10,8 +14,6 @@ def object_to_dict(item):
     if hasattr(item, "to_dict") and callable(item.to_dict):
         return item.to_dict()
     return vars(item)
-
-from urllib.parse import parse_qs, urlparse
 
 
 def get_combined_paged_results(method_with_paged_response, collect_items_as_dict=False):
@@ -24,13 +26,13 @@ def get_combined_paged_results(method_with_paged_response, collect_items_as_dict
     else:
         items.extend(response.value)
 
-    if ("nextLink" in response):
+    if "nextLink" in response:
         next_link = response['nextLink']
 
-        while (next_link is not None): 
+        while next_link is not None:
             token = _get_skip_token(next_link)
             response = method_with_paged_response(token)
-            if ("value" in response):
+            if "value" in response:
                 if collect_items_as_dict:
                     items.extend(map(object_to_dict, response.value))
                 else:
@@ -39,8 +41,9 @@ def get_combined_paged_results(method_with_paged_response, collect_items_as_dict
 
     return items
 
+
 def _get_skip_token(nextLink):
     """Gets the skip token from a nextLink url found in the response of the partner center API"""
-    url_parts  = urlparse(nextLink)
+    url_parts = urlparse(nextLink)
     params = parse_qs(url_parts.query)
     return params['$skipToken'][0]
