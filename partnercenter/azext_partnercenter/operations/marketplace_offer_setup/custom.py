@@ -19,7 +19,7 @@ def create_setup(client, offer_id, reseller_enabled=False, test_drive_enabled=Fa
 
 # TODO: clean up these unused methods
 def marketplace_offer_setup_update_get(cmd, client, offer_id, summary=None, short_description=None, description=None):
-    listing = client.get_listing(offer_id)    
+    listing = client.get_listing(offer_id)
     return listing
 
 
@@ -27,7 +27,7 @@ def marketplace_offer_setup_update_set(cmd, client, offer_id, summary=None, shor
     listing = Listing()
     listing.id = parameters.id
     listing.title = parameters.title
-    listing.summary = parameters.summaryrm 
+    listing.summary = parameters.summary
     listing.description = parameters.description
     listing.short_description = parameters.short_description
     listing.language_code = parameters.language_code

@@ -5,7 +5,6 @@
 # pylint: disable=line-too-long
 
 from azure.cli.core.commands import CliCommandType
-
 from azext_partnercenter._client_factory import cf_listing_media
 
 
@@ -16,5 +15,3 @@ def load_command_table(commands_loader, _):
         g.custom_command('list', 'list_media', table_transformer=None, custom_command_type=custom_command_type)
         g.custom_command('add', 'add_media', table_transformer=None, custom_command_type=custom_command_type)
         g.custom_command('delete', 'delete_media', table_transformer=None, confirmation=True, custom_command_type=custom_command_type)
-        
-

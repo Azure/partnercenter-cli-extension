@@ -1,5 +1,7 @@
-
-
+# --------------------------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for license information.
+# --------------------------------------------------------------------------------------------
 
 from collections import OrderedDict
 import re
@@ -11,6 +13,7 @@ def list_output_format(result):
         ('NAME', _get_value_as_str(item, 'name')),
         ('TYPE', _get_offer_type_display_name(item))
     ])))
+
 
 def _output_format(result, format_group):
     if 'value' in result and isinstance(result['value'], list):

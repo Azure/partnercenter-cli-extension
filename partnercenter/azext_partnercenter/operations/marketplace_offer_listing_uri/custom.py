@@ -11,8 +11,9 @@ from azext_partnercenter.models.listing import Listing
 
 
 def marketplace_offer_listing_uri_update_get(cmd, client, product_external_id, type=None, subtype=None, display_text=None, uri=None):
-    listing = client.get_listing(product_external_id)    
+    listing = client.get_listing(product_external_id)
     return listing
+
 
 def marketplace_offer_listing_uri_update_set(cmd, client, product_external_id, type=None, subtype=None, display_text=None, uri=None, parameters=None):
     listing = Listing()
@@ -52,8 +53,5 @@ def marketplace_offer_listing_uri_delete(cmd, client, product_external_id, type=
     listing_uri.subtype = subtype
     listing_uri.display_text = display_text
     listing_uri.uri = uri
+
     return client.delete_listing_uri(product_external_id, listing_uri) 
-
-
-
-
