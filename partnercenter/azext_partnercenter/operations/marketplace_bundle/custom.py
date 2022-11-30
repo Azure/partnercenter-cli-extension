@@ -5,12 +5,10 @@
 
 from knack.util import CLIError
 from knack.log import get_logger
-from ._cnab_util import bundle, verify
+from ._cnab_util import (bundle, verify)
 
 
 logger = get_logger(__name__)
-# API Operations
-# pylint: disable=too-many-locals
 
 
 def verify_bundle(manifest_file):

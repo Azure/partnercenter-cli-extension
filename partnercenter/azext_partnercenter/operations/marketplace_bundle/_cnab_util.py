@@ -1,6 +1,5 @@
 import os
 import os.path
-import sys
 import docker
 import yaml
 import json
