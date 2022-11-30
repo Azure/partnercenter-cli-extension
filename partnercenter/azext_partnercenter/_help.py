@@ -3,36 +3,22 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
+# pylint: disable=unused-import
 
-from knack.help_files import helps  # pylint: disable=unused-import
+from .operations.marketplace_bundle._help import helps
+from .operations.marketplace_offer._help import helps
+from .operations.marketplace_offer_listing._help import helps
+from .operations.marketplace_offer_listing_contact._help import helps
+from .operations.marketplace_offer_listing_media._help import helps
+from .operations.marketplace_offer_listing_uri._help import helps
+from .operations.marketplace_offer_plan._help import helps
+from .operations.marketplace_offer_plan_listing._help import helps
+from .operations.marketplace_offer_plan_technicalconfiguration._help import helps
+from .operations.marketplace_offer_setup._help import helps
+from knack.help_files import helps
 
 
 helps['partnercenter marketplace'] = """
     type: group
     short-summary: Commands to manage the Partner Center Marketplace.
 """
-
-helps['partnercenter marketplace offer create'] = """
-    type: command
-    short-summary: Creates a Marketplace Offer.
-"""
-
-helps['partnercenter marketplace offer list'] = """
-    type: command
-    short-summary: Lists all Marketplace Offers.
-"""
-
-# helps['partnercenter delete'] = """
-#     type: command
-#     short-summary: Delete a Partnercenter.
-# """
-
-# helps['partnercenter show'] = """
-#     type: command
-#     short-summary: Show details of a Partnercenter.
-# """
-
-# helps['partnercenter update'] = """
-#     type: command
-#     short-summary: Update a Partnercenter.
-# """
