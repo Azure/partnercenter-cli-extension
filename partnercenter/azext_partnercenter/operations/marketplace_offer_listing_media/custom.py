@@ -3,28 +3,17 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-from azure.cli.core.util import sdk_no_wait
-from knack.util import CLIError
-from azure.cli.core.azclierror import (RequiredArgumentMissingError, ResourceNotFoundError)
+
+def list_media(cmd, client, offer_id, type=None, file=None):
+    # TODO: implement beyond images
+    images = client.get_listing_images(offer_id)
+    return images
 
 
-# API Operations
-# pylint: disable=too-many-locals
-
-def list_media(cmd, client, offer_id, type="", file=""):
-   # check different types.  for now, return images 
-   images = client.get_listing_images(offer_id)
-   return images
-
-def add_media(cmd, client, offer_id, file, type=""):
+def add_media(cmd, client, offer_id, file, type=None):
     return client.add_listing_image(offer_id, type, file)
+
 
 def delete_media(cmd, client, offer_id, type):
     result = client.delete_listing_image(offer_id, type)
     return result
-
-
-
-
-
-

@@ -1,6 +1,5 @@
 import os
 import os.path
-import sys
 import docker
 import yaml
 import json
@@ -21,6 +20,7 @@ def bundle(manifest_file):
     result = container.exec_run('cpa buildbundle', workdir='/cpaMount')
     return result
 
+
 def _get_container(manifest_file):
     client = docker.from_env()
     container_name = "cpacontainer"
@@ -38,7 +38,8 @@ def _run_container(container_name, mount_path):
     client = docker.from_env()
     home_directory = os.path.expanduser('~')
     absolute_path = f'{home_directory}/.azure'
-    #img = 'bobjac/cnab:9.0'
+
+    # img = 'bobjac/cnab:9.0'
     img = 'mcr.microsoft.com/container-package-app:latest'
     cmd = 'sleep infinity'
     volumes = ['/var/run/docker.sock:/var/run/docker.sock', f'{mount_path}:/cpaMount', f'{absolute_path}:/root/.azure']
@@ -62,7 +63,6 @@ def _get_acr_name(manifest_file):
 
 
 class VerifyResult:
-
     def __init__(self, raw_string):
         self.raw_string = raw_string
 

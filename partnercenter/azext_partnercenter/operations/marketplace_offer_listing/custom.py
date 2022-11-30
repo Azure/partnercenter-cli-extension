@@ -3,9 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-from azure.cli.core.util import sdk_no_wait
 from knack.util import CLIError
-from azure.cli.core.azclierror import (RequiredArgumentMissingError, ResourceNotFoundError)
 from azext_partnercenter.models.listing import Listing
 
 
@@ -13,11 +11,12 @@ def get_listing(client, offer_id):
     return client.get_listing(offer_id)
 
 
-def marketplace_offer_listing_update_get(cmd, client, offer_id, summary=None, short_description=None, description=None):
-    listing = client.get_listing(offer_id)    
+def marketplace_offer_listing_update_get(client, offer_id, summary=None, short_description=None, description=None):
+    listing = client.get_listing(offer_id)
     return listing
 
-def marketplace_offer_listing_update_set(cmd, client, offer_id, summary=None, short_description=None, description=None, parameters=None):
+
+def marketplace_offer_listing_update_set(client, offer_id, summary=None, short_description=None, description=None, parameters=None):
     listing = Listing()
     listing.id = parameters.id
     listing.title = parameters.title
@@ -31,17 +30,17 @@ def marketplace_offer_listing_update_set(cmd, client, offer_id, summary=None, sh
     result = client.create_or_update(offer_id, listing)
     return result
 
+
 def marketplace_offer_listing_update_custom(instance, offer_id, summary=None, short_description=None, description=None):
     instance.summary = summary
     instance.short_description = short_description
     instance.description = description
     return instance
 
-def marketplace_offer_listing_delete(cmd, client, offer_id, summary=None, short_description=None, description=None):
+
+def marketplace_offer_listing_delete(client, offer_id, summary=None, short_description=None, description=None):
     results = client.delete_offer_listing(offer_id)
     if not results:
         return "Deleted listing for offer: " + offer_id
     else:
         raise CLIError("Failed to delete listing for offer: " + offer_id)
-
-
