@@ -16,8 +16,8 @@ def load_command_table(commands_loader, _):
         g.custom_show_command('show', 'get_listing', table_transformer=None, custom_command_type=custom_command_type)
         g.custom_command('delete', 'marketplace_offer_listing_delete', confirmation=True, custom_command_type=custom_command_type)
         g.generic_update_command('update',
-                                    getter_name='marketplace_offer_listing_update_get',
-                                    setter_name='marketplace_offer_listing_update_set',
-                                    custom_func_name='marketplace_offer_listing_update_custom',
-                                    custom_func_type=custom_command_type,
-                                    client_factory=cf_listing)
+                                  getter_name='marketplace_offer_listing_update_get',
+                                  setter_name='marketplace_offer_listing_update_set',
+                                  custom_func_name='marketplace_offer_listing_update_custom',
+                                  custom_func_type=custom_command_type,
+                                  client_factory=cf_listing)
