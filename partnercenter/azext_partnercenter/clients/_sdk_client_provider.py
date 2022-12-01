@@ -5,7 +5,7 @@
 
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
+from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     BranchesClient, ListingClient, ProductClient, SubmissionClient, PackageClient, VariantClient, ListingImageClient)
 
 
@@ -18,6 +18,7 @@ class SdkClientProvider:
         self._branches_client = None
         self._submission_client = None
         self._package_client = None
+        self._listing_client = None
         self._listing_image_client = None
 
     @property

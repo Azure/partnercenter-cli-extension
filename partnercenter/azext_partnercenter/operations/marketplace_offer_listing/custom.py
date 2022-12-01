@@ -7,7 +7,7 @@ from knack.util import CLIError
 from azext_partnercenter.models.listing import Listing
 
 
-def get_listing(client, offer_id):
+def get(client, offer_id):
     return client.get_listing(offer_id)
 
 

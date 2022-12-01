@@ -38,7 +38,6 @@ class ProductIngestionApiClientConfiguration:
             'get-configure-status': '2022-03-01-preview2'
         }
 
-
     def get_version(self, operation_id):
         return self.endpoint_versions.get(operation_id)
 
@@ -80,7 +79,8 @@ class ProductIngestionApiClient:
         # otherwise the status of the job is completed, so return it
         return status
 
-    def update_container_plan_technical_configuration_for_bundle(self, offer_durable_id, plan_durable_id, properties = ContainerCnabPlanTechnicalConfigurationProperties | None):
+    def update_container_plan_technical_configuration_for_bundle(self, offer_durable_id, plan_durable_id,
+                                                                 properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         """Updates the technical configuration for a 'list and sell' offer, which uses a CNAB bundle"""
 
         id = DurableId(__root__=f'container-plan-technical-configuration/{offer_durable_id}')

@@ -12,7 +12,7 @@ class PartnerCenterCommandsLoader(AzCommandsLoader):
         from azure.cli.core.commands import CliCommandType
         custom_type = CliCommandType(operations_tmpl='azext_partnercenter#{}')
         super(PartnerCenterCommandsLoader, self).__init__(cli_ctx=cli_ctx, custom_command_type=custom_type)
-        
+
         from azext_partnercenter.operations import PartnerCenterSubGroupCommandsLoader
         self.subgroups_loader = PartnerCenterSubGroupCommandsLoader(self)
 

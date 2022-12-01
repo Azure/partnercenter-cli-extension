@@ -2,9 +2,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
-
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
+
 from knack.util import CLIError
 from azext_partnercenter.clients import OfferClient, PlanClient
 from azext_partnercenter.clients._base_client import BaseClient
@@ -12,12 +12,11 @@ from azext_partnercenter.vendored_sdks.production_ingestion.models import Contai
 from ._util import get_combined_paged_results
 
 
-
 class PlanTechnicalConfigurationClient(BaseClient):
     PACKAGE_MODULE = "Package"
 
     def __init__(self, cli_ctx, *_):
-        super(PlanTechnicalConfigurationClient, self).__init__(cli_ctx, *_)
+        super().__init__(cli_ctx, *_)
 
         self._offer_client = OfferClient(cli_ctx, *_)
         self._plan_client = PlanClient(cli_ctx, *_)
