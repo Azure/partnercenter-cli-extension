@@ -2,18 +2,15 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
-
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
-from partnercenter.azext_partnercenter.models import ListingContact
-from partnercenter.azext_partnercenter.models.listing import Listing
-from partnercenter.azext_partnercenter.models.listing_uri import ListingUri
-from partnercenter.azext_partnercenter.models.resource import Resource
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.models import (
+
+from azext_partnercenter.models import ListingContact, Listing, ListingUri, Resource
+from azext_partnercenter.vendored_sdks.v1.partnercenter.models import (
     MicrosoftIngestionApiModelsListingsAzureListing,
     MicrosoftIngestionApiModelsListingsListingContact,
     MicrosoftIngestionApiModelsListingsListingUri)
-from partnercenter.azext_partnercenter.clients import OfferClient, PlanClient
+from azext_partnercenter.clients import OfferClient, PlanClient
 from ._base_client import BaseClient
 
 
