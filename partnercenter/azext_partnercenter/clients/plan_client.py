@@ -14,7 +14,7 @@ from ._base_client import BaseClient
 
 class PlanClient(BaseClient):
     def __init__(self, cli_ctx, *_):
-        super(PlanClient, self).__init__(cli_ctx, *_)
+        super().__init__(cli_ctx, *_)
         self._offer_client = OfferClient(cli_ctx, *_)
 
     def create(self, offer_external_id, plan_external_id, friendly_name):

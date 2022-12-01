@@ -16,7 +16,7 @@ from ._base_client import BaseClient
 
 class OfferListingClient(BaseClient):
     def __init__(self, cli_ctx, *_):
-        super(OfferListingClient, self).__init__(cli_ctx, *_)
+        super().__init__(cli_ctx, *_)
         self._offer_client = OfferClient(cli_ctx, *_)
         self._plan_client = PlanClient(cli_ctx, *_)
 

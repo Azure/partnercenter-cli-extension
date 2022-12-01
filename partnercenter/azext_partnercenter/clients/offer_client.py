@@ -19,7 +19,7 @@ from ._base_client import BaseClient
 class OfferClient(BaseClient):
 
     def __init__(self, cli_ctx, *_):
-        super(OfferClient, self).__init__(cli_ctx, *_)
+        super().__init__(cli_ctx, *_)
 
     def delete(self, offer_external_id):
         filter_expr = self._get_sdk_odata_filter_expression_by_external_offer_id(offer_external_id)
@@ -118,7 +118,7 @@ class OfferClient(BaseClient):
     def _map_setup(self, api_setup: MicrosoftIngestionApiModelsProductsAzureProductSetup) -> OfferSetup:
         channel_states = list(map(lambda x: self._map_channel_state(x), api_setup.channel_states))
         offer_setup = OfferSetup(
-            sell_through_microsoft=(True if api_setup.selling_option == 'ListAndSell' else False),
+            sell_through_microsoft=(api_setup.selling_option == 'ListAndSell'),
             trial_uri=api_setup.get('trial_uri'),
             enable_test_drive=api_setup.enable_test_drive,
             channel_states=channel_states)
@@ -183,4 +183,4 @@ class OfferClient(BaseClient):
 
     def _get_sdk_odata_filter_expression_by_external_offer_id(self, offer_id):
         """Gets the odata filter expression for filtering by Offer ID found in externalIDs collection"""
-        return "externalIDs/Any(i:i/type eq 'AzureOfferId' and i/value eq '{offer_id}')".format(offer_id=offer_id)
+        return f'externalIDs/Any(i:i/type eq \'AzureOfferId\' and i/value eq \'{offer_id}\')'

@@ -16,7 +16,7 @@ class PlanTechnicalConfigurationClient(BaseClient):
     PACKAGE_MODULE = "Package"
 
     def __init__(self, cli_ctx, *_):
-        super(PlanTechnicalConfigurationClient, self).__init__(cli_ctx, *_)
+        super().__init__(cli_ctx, *_)
 
         self._offer_client = OfferClient(cli_ctx, *_)
         self._plan_client = PlanClient(cli_ctx, *_)
