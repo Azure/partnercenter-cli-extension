@@ -18,6 +18,7 @@ class SdkClientProvider:
         self._branches_client = None
         self._submission_client = None
         self._package_client = None
+        self._listing_client = None
         self._listing_image_client = None
 
     @property

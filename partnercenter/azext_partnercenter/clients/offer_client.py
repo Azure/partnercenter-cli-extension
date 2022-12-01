@@ -135,7 +135,7 @@ class OfferClient(BaseClient):
         if offer is None:
             return None
 
-        branch_listings = get_combined_paged_results(lambda: self._branches_client.products_product_id_branches_get_by_module_modulemodule_get(
+        branch_listings = get_combined_paged_results(lambda: self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
             offer._resource.durable_id, "Listing", self._api_client.configuration.access_token))
 
         # TODO: circle back on this as not sure what to do when multiple offer listings exist
