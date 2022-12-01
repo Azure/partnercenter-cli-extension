@@ -38,7 +38,6 @@ class ProductIngestionApiClientConfiguration:
             'get-configure-status': '2022-03-01-preview2'
         }
 
-
     def get_version(self, operation_id):
         return self.endpoint_versions.get(operation_id)
 
