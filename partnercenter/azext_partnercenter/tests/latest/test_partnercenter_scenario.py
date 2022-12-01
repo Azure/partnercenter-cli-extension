@@ -108,11 +108,11 @@ class PartnercenterScenarioTest(ScenarioTest):
         time.sleep(5)
 
         self.cmd('partnercenter marketplace offer listing contact add --offer-id {offer_id} --type {contact_type} --email {contact_email} --name "{contact_name}" --phone {contact_phone} --uri {contact_uri}',
-                checks=[self.check('contacts[0].type', '{contact_type}'),
-                        self.check('contacts[0].email', '{contact_email}'),
-                        self.check('contacts[0].name', '{contact_name}'),
-                        self.check('contacts[0].phone', '{contact_phone}'),
-                        self.check('contacts[0].uri', '{contact_uri}')])
+                 checks=[self.check('contacts[0].type', '{contact_type}'),
+                         self.check('contacts[0].email', '{contact_email}'),
+                         self.check('contacts[0].name', '{contact_name}'),
+                         self.check('contacts[0].phone', '{contact_phone}'),
+                         self.check('contacts[0].uri', '{contact_uri}')])
 
         time.sleep(5)
 
