@@ -78,14 +78,14 @@ class PartnercenterScenarioTest(ScenarioTest):
         time.sleep(5)
 
         self.cmd('partnercenter marketplace offer listing uri add --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri}',
-                checks=[self.check('description', '{description}'),
-                        self.check('shortDescription', '{short_description}'),
-                        self.check('summary', '{summary}'),
-                        self.check('contacts', []),
-                        self.check('uris[0].type', '{uri_type}'),
-                        self.check('uris[0].subtype', '{uri_sub_type}'),
-                        self.check('uris[0].displayText', '{uri_display_text}'),
-                        self.check('uris[0].uri', '{uri}')])
+                 checks=[self.check('description', '{description}'),
+                         self.check('shortDescription', '{short_description}'),
+                         self.check('summary', '{summary}'),
+                         self.check('contacts', []),
+                         self.check('uris[0].type', '{uri_type}'),
+                         self.check('uris[0].subtype', '{uri_sub_type}'),
+                         self.check('uris[0].displayText', '{uri_display_text}'),
+                         self.check('uris[0].uri', '{uri}')])
 
         time.sleep(5)
 
@@ -94,11 +94,11 @@ class PartnercenterScenarioTest(ScenarioTest):
         time.sleep(5)
 
         result = self.cmd('az partnercenter marketplace offer listing show --offer-id {offer_id}',
-                checks=[self.check('description', '{description}'),
-                        self.check('shortDescription', '{short_description}'),
-                        self.check('summary', '{summary}'),
-                        self.check('contacts', []),
-                        self.check('uris', [])])
+                          checks=[self.check('description', '{description}'),
+                                  self.check('shortDescription', '{short_description}'),
+                                  self.check('summary', '{summary}'),
+                                  self.check('contacts', []),
+                                  self.check('uris', [])])
 
         time.sleep(5)
 
@@ -126,8 +126,8 @@ class PartnercenterScenarioTest(ScenarioTest):
 
         time.sleep(5)
         self.cmd('partnercenter marketplace offer listing media add --offer-id {offer_id} --type {media_type} --file {media_file}',
-                checks=[self.check('state', 'Uploaded'),
-                        self.check('type', '{media_type}')])
+                 checks=[self.check('state', 'Uploaded'),
+                         self.check('type', '{media_type}')])
 
         time.sleep(5)
         self.cmd('partnercenter marketplace offer listing media delete --offer-id {offer_id} --type {media_type} --yes')
