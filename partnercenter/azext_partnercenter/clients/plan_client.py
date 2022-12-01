@@ -2,22 +2,20 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
-
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
+
 from azext_partnercenter._util import get_combined_paged_results
 from azext_partnercenter.models import (Plan, Resource)
 from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (ProductClient, VariantClient)
 from azext_partnercenter.clients import OfferClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.models import ProductsProductIDVariantsGetRequest
 from ._client_factory import get_api_client
+from ._base_client import BaseClient
 
-
-class PlanClient:
+class PlanClient(BaseClient):
     def __init__(self, cli_ctx, *_):
-        self._api_client = get_api_client(cli_ctx, *_)
-        self._product_client = ProductClient(self._api_client)
-        self._variant_client = VariantClient(self._api_client)
+        super(PlanClient, self).__init__(cli_ctx, *_)
         self._offer_client = OfferClient(cli_ctx, *_)
 
     def create(self, offer_external_id, plan_external_id, friendly_name):
@@ -42,7 +40,7 @@ class PlanClient:
             return None
 
         offer_resource_id = offer._resource.durable_id
-        variants = get_combined_paged_results(lambda: self._variant_client.products_product_id_variants_get(
+        variants = get_combined_paged_results(lambda: self._sdk.variant_client.products_product_id_variants_get(
             offer_resource_id,
             self._api_client.configuration.access_token))
 
@@ -68,8 +66,8 @@ class PlanClient:
     # todo: remove if automated tests show this is unneeded
     def _get(self, offer_durable_id, plan_durable_id):
         """Internal get of the plan"""
-        product = self._product_client.products_product_id_get(offer_durable_id, self._api_client.configuration.access_token)
-        variant = self._variant_client.products_product_id_variants_variant_id_get(
+        product = self._sdk.product_client.products_product_id_get(offer_durable_id, self._api_client.configuration.access_token)
+        variant = self._sdk.variant_client.products_product_id_variants_variant_id_get(
             offer_durable_id,
             plan_durable_id,
             self._api_client.configuration.access_token)
@@ -96,4 +94,4 @@ class PlanClient:
             return None
 
         plan_resource_id = plan._resource.durable_id
-        return self._variant_client.products_product_id_variants_variant_id_delete(offer_resource_id, plan_resource_id, self._api_client.configuration.access_token, async_req=True)
+        return self._sdk.variant_client.products_product_id_variants_variant_id_delete(offer_resource_id, plan_resource_id, self._api_client.configuration.access_token, async_req=True)
