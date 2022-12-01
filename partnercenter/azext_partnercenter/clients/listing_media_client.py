@@ -6,12 +6,12 @@
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
 # pylint: disable=no-self-use
-from partnercenter.azext_partnercenter.models.listing_image import ListingImage
-from partnercenter.azext_partnercenter.clients.offer_listing_client import OfferListingClient
-from partnercenter.azext_partnercenter.clients.offer_client import OfferClient
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
+from azext_partnercenter.models.listing_image import ListingImage
+from azext_partnercenter.clients.offer_listing_client import OfferListingClient
+from azext_partnercenter.clients.offer_client import OfferClient
+from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     ProductClient, VariantClient, ListingImageClient)
-from partnercenter.azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_image import (
+from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_image import (
     MicrosoftIngestionApiModelsListingsListingImage)
 
 from ._client_factory import get_api_client
