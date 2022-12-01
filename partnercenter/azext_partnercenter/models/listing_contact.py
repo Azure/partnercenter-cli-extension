@@ -24,11 +24,10 @@ class ListingContact(Model):
         self.uri = kwargs.get('uri', None)
 
     def is_equal(self, other):
-         return (
-             self.__class__ == other.__class__ and
-             self.type == other.type and
-             self.name == other.name and
-             self.email == other.email and
-             self.phone == other.phone and 
-             self.uri == other.uri)
-
+        return (
+            self.__class__ == other.__class__ and
+            self.type == other.type and
+            self.name == other.name and
+            self.email == other.email and
+            self.phone == other.phone and
+            self.uri == other.uri)

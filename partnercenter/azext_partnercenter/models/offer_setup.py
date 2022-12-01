@@ -5,6 +5,7 @@
 
 from msrest.serialization import Model
 
+
 class OfferSetup(Model):
     _attribute_map = {
         'sellThroughMicrosoft': {'key': 'sell_through_microsoft', 'type': 'bool'},
@@ -19,6 +20,3 @@ class OfferSetup(Model):
         self.trial_uri = kwargs.get('trial_uri', None)
         self.channel_states = kwargs.get('channel_states', None)
         self._resource = kwargs.get('resource', None)
-
-    
-    

@@ -27,4 +27,3 @@ class ListingImage(Model):
         self.order = kwargs.get('order', None)
         self.odata_etag = kwargs.get('odata_etag', None)
         self.id = kwargs.get('id', None)
-
