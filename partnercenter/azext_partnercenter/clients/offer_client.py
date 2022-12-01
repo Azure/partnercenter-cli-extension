@@ -15,6 +15,7 @@ from azext_partnercenter.vendored_sdks.v1.partnercenter.models import (
     MicrosoftIngestionApiModelsProductsAzureProductSetup)
 from ._base_client import BaseClient
 
+
 class OfferClient(BaseClient):
 
     def __init__(self, cli_ctx, *_):

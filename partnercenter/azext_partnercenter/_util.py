@@ -29,7 +29,7 @@ def get_combined_paged_results(method_with_paged_response, collect_items_as_dict
 
 def _get_skip_token(nextLink):
     """Gets the skip token from a nextLink url found in the response of the partner center API"""
-    url_parts  = urlparse(nextLink)
+    url_parts = urlparse(nextLink)
     params = parse_qs(url_parts.query)
     return params['$skipToken'][0]
 
