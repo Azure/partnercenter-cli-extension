@@ -11,9 +11,7 @@ from .listing_media_client import ListingMediaClient
 
 __all__ = [
     'PlanClient',
-    'PackageClient',
     'PlanTechnicalConfigurationClient',
-    'PlanListingClient',
     'OfferListingClient',
     'OfferClient',
     'ListingMediaClient'

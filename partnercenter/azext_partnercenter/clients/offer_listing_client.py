@@ -4,6 +4,7 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
+# pylint: disable=no-self-use
 
 from azext_partnercenter.models import ListingContact, Listing, ListingUri, Resource
 from azext_partnercenter.vendored_sdks.v1.partnercenter.models import (
@@ -41,7 +42,7 @@ class OfferListingClient(BaseClient):
         result = self._sdk.listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
             product_id,
             instance_id,
-            self._get_authorication_token())
+            self._get_access_token())
         listing = result.value[0]
         return Listing(
             description=listing.description,
@@ -87,7 +88,7 @@ class OfferListingClient(BaseClient):
         update_result = self._sdk.listing_client.products_product_id_listings_listing_id_put(
             product_id,
             listing_id,
-            self._get_authorication_token(),
+            self._get_access_token(),
             microsoft_ingestion_api_models_listings_azure_listing=updated_listing)
         return Listing(
             description=update_result.description,
@@ -131,7 +132,7 @@ class OfferListingClient(BaseClient):
             return None
         listing_id = listing._resource.durable_id
 
-        return self._sdk.listing_client.products_product_id_listings_listing_id_delete(product_id, listing_id, self._get_authorication_token())
+        return self._sdk.listing_client.products_product_id_listings_listing_id_delete(product_id, listing_id, self._get_access_token())
 
     def delete_listing_contact(self, product_external_id, contact: ListingContact):
         listing = self._offer_client.get_listing(product_external_id)
