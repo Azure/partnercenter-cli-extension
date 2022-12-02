@@ -4,6 +4,7 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
+# pylint: disable=no-else-return
 
 from knack.util import CLIError
 from azext_partnercenter.clients import OfferClient, PlanClient

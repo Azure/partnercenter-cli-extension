@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 # pylint: disable=too-many-locals
+# pylint: disable=line-too-long
 
 from azure.cli.core.util import sdk_no_wait
 from knack.util import CLIError

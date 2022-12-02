@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 # pylint: disable=too-many-locals
+# pylint: disable=line-too-long
 
 from azext_partnercenter.models.listing import Listing
 

@@ -9,7 +9,7 @@ from urllib.parse import parse_qs, urlparse
 
 
 def object_to_dict(item):
-    if (type(item) is dict or item is None):
+    if isinstance(item, dict) or item is None:
         return item
     if hasattr(item, "to_dict") and callable(item.to_dict):
         return item.to_dict()

@@ -16,7 +16,7 @@ class ListingContact(Model):
     }
 
     def __init__(self, **kwargs):
-        super(ListingContact, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.type = kwargs.get('type', None)
         self.name = kwargs.get('name', None)
         self.email = kwargs.get('email', None)

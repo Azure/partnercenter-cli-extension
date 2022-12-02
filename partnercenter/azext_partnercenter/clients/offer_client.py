@@ -26,7 +26,7 @@ class OfferClient(BaseClient):
         products = self._sdk.product_client.products_get(self._get_access_token(), filter=filter_expr)
 
         if len(products.value) == 0:
-            return
+            return None
 
         product_id = products.value[0].id
         response = self._sdk.product_client.products_product_id_delete(product_id, self._get_access_token())
@@ -116,7 +116,7 @@ class OfferClient(BaseClient):
         return result
 
     def _map_setup(self, api_setup: MicrosoftIngestionApiModelsProductsAzureProductSetup) -> OfferSetup:
-        channel_states = list(map(lambda x: self._map_channel_state(x), api_setup.channel_states))
+        channel_states = list(map(self._map_channel_state, api_setup.channel_states))
         offer_setup = OfferSetup(
             sell_through_microsoft=(api_setup.selling_option == 'ListAndSell'),
             trial_uri=api_setup.get('trial_uri'),
