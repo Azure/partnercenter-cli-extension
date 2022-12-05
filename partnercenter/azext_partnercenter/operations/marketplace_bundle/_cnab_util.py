@@ -7,9 +7,9 @@
 
 import os
 import os.path
+import json
 import docker
 import yaml
-import json
 from knack.util import CLIError
 
 
@@ -69,6 +69,9 @@ def _get_acr_name(manifest_file):
     return acr_name
 
 
+# pylint: disable=too-few-public-methods
+
+
 class VerifyResult:
     def __init__(self, raw_string):
         self.raw_string = raw_string
@@ -77,8 +80,10 @@ class VerifyResult:
         parsed_response = []
         parsed_json_result = self._parse_json()
         print(parsed_json_result)
+
         if parsed_json_result['templates']:
-            mapped_templates = list(map(lambda x: json.loads(x), parsed_json_result['templates']))
+            mapped_templates = list(map(json.loads, parsed_json_result['templates']))
+            parsed_response = {}
             parsed_response['templates'] = mapped_templates
             return parsed_response
         lines = parsed_json_result['stripped'].splitlines()
@@ -115,7 +120,7 @@ class VerifyResult:
     def _update_known_validation_response(self, parsed_response, lines, idx, file, total_file_failures):
         parsed_artifact = self._init_parsed_artifact(file, total_file_failures)
         if total_file_failures > 0:
-            failure_list = self._get_failure_list(lines, idx, file, total_file_failures)
+            failure_list = self._get_failure_list(lines, idx, total_file_failures)
             parsed_artifact['Failures'] = failure_list
         parsed_response.append(parsed_artifact)
 
@@ -155,7 +160,7 @@ class VerifyResult:
         file = file.lower()
         return file in known_validations
 
-    def _get_failure_list(self, lines, validated_line_idx, file, total_file_failures):
+    def _get_failure_list(self, lines, validated_line_idx, total_file_failures):
         first_failure_idx = validated_line_idx + 1
         last_failure_idx = (validated_line_idx + total_file_failures) + 1
         return lines[first_failure_idx:last_failure_idx]
@@ -172,9 +177,9 @@ class VerifyResult:
         return result
 
     def _parse_json(self):
-        import regex
+        import re
         output = self.raw_string
-        pattern = regex.compile(r'\{(?:[^{}]|(?R))*\}')
+        pattern = re.compile(r'\{(?:[^{}]|(?R))*\}')
         returned_list = pattern.findall(output)
         for json_string in returned_list:
             output = output.replace(json_string, "")

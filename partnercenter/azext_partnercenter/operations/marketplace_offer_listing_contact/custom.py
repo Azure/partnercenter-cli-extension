@@ -9,12 +9,12 @@ from azext_partnercenter.models.listing import Listing
 from azext_partnercenter.models.listing_contact import ListingContact
 
 
-def marketplace_offer_listing_contact_update_get(client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
+def marketplace_offer_listing_contact_update_get(client, offer_id):
     listing = client.get_listing(offer_id)
     return listing
 
 
-def marketplace_offer_listing_contact_update_set(client, offer_id, type=None, email=None, name=None, phone=None, uri=None, parameters=None):
+def marketplace_offer_listing_contact_update_set(client, offer_id, parameters=None):
     listing = Listing()
     listing.id = parameters.id
     listing.title = parameters.title
@@ -29,9 +29,9 @@ def marketplace_offer_listing_contact_update_set(client, offer_id, type=None, em
     return result
 
 
-def marketplace_offer_listing_contact_update_custom(instance, offer_id, type=None, email=None, name=None, phone=None, uri=None):
+def marketplace_offer_listing_contact_update_custom(instance, contact_type=None, email=None, name=None, phone=None, uri=None):
     listing_contact = ListingContact()
-    listing_contact.type = type
+    listing_contact.type = contact_type
     listing_contact.email = email
     listing_contact.name = name
     listing_contact.phone = phone
@@ -40,17 +40,17 @@ def marketplace_offer_listing_contact_update_custom(instance, offer_id, type=Non
     return instance
 
 
-def list_contacts(client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
+def list_contacts(client, offer_id):
     listing = client.get_listing(offer_id)
     if not listing:
-        raise CLIError(f'Listing not found for Offer "{offer_id}"')
+        raise CLIError(f'Listing contacts not found for Offer "{offer_id}"')
 
     return listing.contacts
 
 
-def marketplace_offer_listing_contact_delete(cmd, client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
+def marketplace_offer_listing_contact_delete(client, offer_id, contact_type=None, email=None, name=None, phone=None, uri=None):
     listing_contact = ListingContact()
-    listing_contact.type = type
+    listing_contact.type = contact_type
     listing_contact.email = email
     listing_contact.name = name
     listing_contact.phone = phone

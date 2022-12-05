@@ -3,6 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
+# pylint: disable=unused-import
+
+from ._help import helps
+
 
 class MarketplaceOfferPlanTechnicalConfigurationOperations:
     def __init__(self, parent):

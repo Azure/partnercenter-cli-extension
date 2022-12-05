@@ -14,6 +14,6 @@ class Resource(Model):
     }
 
     def __init__(self, **kwargs):
-        super(Resource, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.durable_id = kwargs.get('durable_id', None)
         self.type = kwargs.get('type', None)

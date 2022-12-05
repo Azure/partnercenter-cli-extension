@@ -4,7 +4,8 @@
 # --------------------------------------------------------------------------------------------
 
 # pylint: disable=line-too-long
-# pylint: disable=protected-access
+# pylint: disable=(too-many-instance-attributes
+
 from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
     BranchesClient, ListingClient, ProductClient, SubmissionClient, PackageClient, VariantClient, ListingImageClient)
 

@@ -146,7 +146,7 @@ class ListingMediaClient:
         return file
 
     def _map_images(self, images):
-        return list(map(lambda x: self._map_image(x), images.value))
+        return list(map(self._map_image, images.value))
 
     def _map_image(self, image):
         listing_image = ListingImage(fileName=image.file_name, type=image.type, fileSasUri=image.file_sas_uri, state=image.state,
