@@ -4,6 +4,9 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
 
+from ._help import helps
+
+
 class MarketplaceOfferPlanTechnicalConfigurationOperations:
     def __init__(self, parent):
         self.parent = parent

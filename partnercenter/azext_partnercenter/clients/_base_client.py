@@ -3,8 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-# pylint: disable=line-too-long
-# pylint: disable=protected-access
+# pylint: disable=too-few-public-methods
+
 from ._client_factory import get_api_client, get_api_client_for_graph
 from ._sdk_client_provider import SdkClientProvider
 

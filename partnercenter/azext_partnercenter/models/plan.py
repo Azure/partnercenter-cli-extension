@@ -16,7 +16,7 @@ class Plan(Model):
     }
 
     def __init__(self, **kwargs):
-        super(Plan, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
         self.offer_id = kwargs.get('offer_id', None)

@@ -3,6 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+from ._help import helps
+
+
 class MarketplaceOfferListingUriOperations:
     def __init__(self, parent):
         self.parent = parent

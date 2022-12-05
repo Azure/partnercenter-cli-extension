@@ -80,6 +80,7 @@ class VerifyResult:
         parsed_response = []
         parsed_json_result = self._parse_json()
         print(parsed_json_result)
+
         if parsed_json_result['templates']:
             mapped_templates = list(map(json.loads, parsed_json_result['templates']))
             parsed_response['templates'] = mapped_templates
@@ -175,9 +176,9 @@ class VerifyResult:
         return result
 
     def _parse_json(self):
-        import regex
+        import re
         output = self.raw_string
-        pattern = regex.compile(r'\{(?:[^{}]|(?R))*\}')
+        pattern = re.compile(r'\{(?:[^{}]|(?R))*\}')
         returned_list = pattern.findall(output)
         for json_string in returned_list:
             output = output.replace(json_string, "")

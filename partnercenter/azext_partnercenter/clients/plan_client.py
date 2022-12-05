@@ -23,10 +23,9 @@ class PlanClient(BaseClient):
         product_id = offer._resource.durable_id
 
         prod_var_req = ProductsProductIDVariantsGetRequest(resource_type=resource_type, friendly_name=friendly_name, external_id=plan_external_id)
-
-        result = self._variant_client.products_product_id_variants_post(product_id=product_id,
-                                                                        authorization=self._api_client.configuration.access_token,
-                                                                        products_product_id_variants_get_request=prod_var_req)
+        result = self._sdk.variant_client.products_product_id_variants_post(product_id=product_id,
+                                                                            authorization=self._api_client.configuration.access_token,
+                                                                            products_product_id_variants_get_request=prod_var_req)
 
         return result.to_dict()
 
@@ -62,7 +61,10 @@ class PlanClient(BaseClient):
         plans = self.list(offer_external_id)
         return next((plan for plan in plans if plan.id == plan_external_id), None)
 
-    # todo: remove if automated tests show this is unneeded
+    def get_listing(self, offer_external_id, plan_external_id):
+        plan = self.find_by_external_id(offer_external_id, plan_external_id)
+
+    # TODO: remove if automated tests show this is unneeded
     def _get(self, offer_durable_id, plan_durable_id):
         """Internal get of the plan"""
         product = self._sdk.product_client.products_product_id_get(offer_durable_id, self._api_client.configuration.access_token)

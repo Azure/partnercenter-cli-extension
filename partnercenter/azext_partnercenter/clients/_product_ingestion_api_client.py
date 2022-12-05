@@ -83,12 +83,12 @@ class ProductIngestionApiClient:
                                                                  properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         """Updates the technical configuration for a 'list and sell' offer, which uses a CNAB bundle"""
 
-        id = DurableId(__root__=f'container-plan-technical-configuration/{offer_durable_id}')
+        durable_id = DurableId(__root__=f'container-plan-technical-configuration/{offer_durable_id}')
         product_id = DurableId(__root__="product/" + offer_durable_id)
         plan_id = DurableId(__root__="plan/" + plan_durable_id)
 
         configuration = ContainerPlanTechnicalConfiguration(
-            id=id.__root__,
+            id=durable_id.__root__,
             product=product_id.__root__,
             plan=plan_id.__root__
         )
@@ -145,8 +145,8 @@ class ProductIngestionApiClient:
             }
             properties = ContainerCnabPlanTechnicalConfigurationProperties.construct(**data)
             return properties
-        else:
-            return ContainerPlanTechnicalConfiguration.parse_obj(response.json())
+
+        return ContainerPlanTechnicalConfiguration.parse_obj(response.json())
 
     def _get_configure_resources_status(self, job_id):
         path = f'configure/{job_id}/status'

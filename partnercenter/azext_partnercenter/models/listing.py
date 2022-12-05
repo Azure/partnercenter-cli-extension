@@ -26,7 +26,7 @@ class Listing(Model):
     }
 
     def __init__(self, **kwargs):
-        super(Listing, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.title = kwargs.get('title', None)
         self.summary = kwargs.get('summary', None)
         self.description = kwargs.get('description', None)

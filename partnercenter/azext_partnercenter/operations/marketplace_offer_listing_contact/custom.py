@@ -40,15 +40,15 @@ def marketplace_offer_listing_contact_update_custom(instance, offer_id, type=Non
     return instance
 
 
-def list_contacts(client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
+def list_contacts(client, offer_id):
     listing = client.get_listing(offer_id)
     if not listing:
-        raise CLIError(f'Listing not found for Offer "{offer_id}"')
+        raise CLIError(f'Listing contacts not found for Offer "{offer_id}"')
 
     return listing.contacts
 
 
-def marketplace_offer_listing_contact_delete(cmd, client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
+def marketplace_offer_listing_contact_delete(client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
     listing_contact = ListingContact()
     listing_contact.type = type
     listing_contact.email = email
