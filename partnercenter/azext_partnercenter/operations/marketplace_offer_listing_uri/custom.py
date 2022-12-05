@@ -11,26 +11,6 @@ from azext_partnercenter.models.listing_uri import ListingUri
 from azext_partnercenter.models.listing import Listing
 
 
-def marketplace_offer_listing_uri_update_get(cmd, client, product_external_id, type=None, subtype=None, display_text=None, uri=None):
-    listing = client.get_listing(product_external_id)
-    return listing
-
-
-def marketplace_offer_listing_uri_update_set(cmd, client, product_external_id, type=None, subtype=None, display_text=None, uri=None, parameters=None):
-    listing = Listing()
-    listing.id = parameters.id
-    listing.summary = parameters.summary
-    listing.title = parameters.title
-    listing.description = parameters.description
-    listing.short_description = parameters.short_description
-    listing.language_code = parameters.language_code
-    listing.odata_etag = parameters.odata_etag
-    listing.contacts = parameters.contacts
-    listing.uris = parameters.uris
-    result = client.create_or_update(product_external_id, listing)
-    return result
-
-
 def marketplace_offer_listing_uri_update_custom(instance, product_external_id, type=None, subtype=None, display_text=None, uri=None):
     listing_uri = ListingUri()
     listing_uri.type = type
@@ -57,3 +37,23 @@ def marketplace_offer_listing_uri_delete(cmd, client, product_external_id, type=
     listing_uri.uri = uri
 
     return client.delete_listing_uri(product_external_id, listing_uri)
+
+
+def _add_set(cmd, client, product_external_id, type=None, subtype=None, display_text=None, uri=None, parameters=None):
+    listing = Listing()
+    listing.id = parameters.id
+    listing.summary = parameters.summary
+    listing.title = parameters.title
+    listing.description = parameters.description
+    listing.short_description = parameters.short_description
+    listing.language_code = parameters.language_code
+    listing.odata_etag = parameters.odata_etag
+    listing.contacts = parameters.contacts
+    listing.uris = parameters.uris
+    result = client.create_or_update(product_external_id, listing)
+    return result
+
+
+def _add_get(client, product_external_id):
+    listing = client.get_listing(product_external_id)
+    return listing

@@ -9,7 +9,7 @@
 # pylint: disable=too-few-public-methods
 from time import time
 import requests
-from pydantic import Extra, create_model
+from pydantic import Extra
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     ContainerPlanTechnicalConfiguration,
     ContainerCnabPlanTechnicalConfigurationProperties,
@@ -17,6 +17,7 @@ from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     ConfigureResourcesStatus,
     JobStatus,
     DurableId)
+
 
 class ProductIngestionApiClientConfiguration:
     """Configuration for the Product Ingestion API Client

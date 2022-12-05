@@ -18,9 +18,6 @@ from ._base_client import BaseClient
 
 class OfferClient(BaseClient):
 
-    def __init__(self, cli_ctx, *_):
-        super().__init__(cli_ctx, *_)
-
     def delete(self, offer_external_id):
         filter_expr = self._get_sdk_odata_filter_expression_by_external_offer_id(offer_external_id)
         products = self._sdk.product_client.products_get(self._get_access_token(), filter=filter_expr)

@@ -4,9 +4,6 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
 
-from azure.cli.core.util import sdk_no_wait
-from knack.util import CLIError
-from azure.cli.core.azclierror import (RequiredArgumentMissingError, ResourceNotFoundError)
 from azext_partnercenter.models.listing import Listing
 
 
@@ -19,7 +16,7 @@ def create_setup(client, offer_id, reseller_enabled=False, test_drive_enabled=Fa
 
 
 # TODO: clean up these unused methods
-def marketplace_offer_setup_update_get(cmd, client, offer_id, summary=None, short_description=None, description=None):
+def marketplace_offer_setup_update_get(client, offer_id, summary=None, short_description=None, description=None):
     listing = client.get_listing(offer_id)
     return listing
 

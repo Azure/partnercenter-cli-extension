@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=unused-import
 
+from knack.help_files import helps
 from .operations.marketplace_bundle._help import helps
 from .operations.marketplace_offer._help import helps
 from .operations.marketplace_offer_listing._help import helps
@@ -15,7 +16,6 @@ from .operations.marketplace_offer_plan._help import helps
 from .operations.marketplace_offer_plan_listing._help import helps
 from .operations.marketplace_offer_plan_technicalconfiguration._help import helps
 from .operations.marketplace_offer_setup._help import helps
-from knack.help_files import helps
 
 
 helps['partnercenter marketplace'] = """
