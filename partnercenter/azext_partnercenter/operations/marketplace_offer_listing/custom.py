@@ -4,7 +4,6 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
 
-from knack.util import CLIError
 from azext_partnercenter.models.listing import Listing
 
 
@@ -40,8 +39,4 @@ def marketplace_offer_listing_update_custom(instance, summary=None, short_descri
 
 
 def marketplace_offer_listing_delete(client, offer_id):
-    results = client.delete_offer_listing(offer_id)
-    if not results:
-        return "Deleted listing for offer: " + offer_id
-    else:
-        raise CLIError("Failed to delete listing for offer: " + offer_id)
+    return client.delete_offer_listing(offer_id)

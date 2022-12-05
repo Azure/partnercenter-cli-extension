@@ -83,6 +83,7 @@ class VerifyResult:
 
         if parsed_json_result['templates']:
             mapped_templates = list(map(json.loads, parsed_json_result['templates']))
+            parsed_response = {}
             parsed_response['templates'] = mapped_templates
             return parsed_response
         lines = parsed_json_result['stripped'].splitlines()
