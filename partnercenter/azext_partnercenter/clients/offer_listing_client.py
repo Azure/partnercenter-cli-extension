@@ -21,15 +21,15 @@ class OfferListingClient(BaseClient):
         self._offer_client = OfferClient(cli_ctx, *_)
         self._plan_client = PlanClient(cli_ctx, *_)
 
-    def get_plan_listing(self, product_external_id, plan_external_id):
-        product_listing_branches = self._get_product_listing_branches(product_external_id)
+    def get_plan_listing(self, offer_external_id, plan_external_id):
+        product_listing_branches = self._get_product_listing_branches(offer_external_id)
         if not product_listing_branches:
             return None
-        product = self._offer_client.get(product_external_id)
+        product = self._offer_client.get(offer_external_id)
         if product is None:
             return None
         product_id = product._resource.durable_id
-        plan = self._plan_client.find_by_external_id(product_external_id, plan_external_id)
+        plan = self._plan_client.find_by_external_id(offer_external_id, plan_external_id)
         if plan is None:
             return None
         plan_durable_id = plan._resource.durable_id
@@ -53,6 +53,7 @@ class OfferListingClient(BaseClient):
             contacts=list(map(lambda c: ListingContact(**c.to_dict()), listing.listing_contacts)),
             uris=list(map(lambda c: ListingUri(**c.to_dict()), listing.listing_uris)),
             odata_etag=listing.odata_etag,
+            offer_id=offer_external_id,
             resource=Resource(id=listing.id, type=listing.resource_type)
         )
 

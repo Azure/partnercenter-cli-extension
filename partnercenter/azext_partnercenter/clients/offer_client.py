@@ -147,6 +147,7 @@ class OfferClient(BaseClient):
             short_description=listing.short_description if hasattr(listing, 'short_description') else '',
             getting_started_instructions=listing.getting_started_instructions if hasattr(listing, 'getting_started_instructions') else '',
             # keywords=listing.keywords,
+            offer_id=offer_external_id,
             odata_etag=listing.odata_etag,
             contacts=list(map(lambda c: ListingContact(**c.to_dict()), listing.listing_contacts)),
             uris=list(map(lambda c: ListingUri(**c.to_dict()), listing.listing_uris)),

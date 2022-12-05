@@ -45,7 +45,7 @@ class MarketplaceOfferPreparer(NoTrafficRecordingPreparer, SingleValueReplacer):
                  parameter_name='offer_id',
                  skip_delete=False,
                  dev_setting_name='AZURE_CLI_TEST_DEV_MARKETPLACE_OFFER_NAME',
-                 key='marketplace-offer',
+                 key='offer_id',
                  offer_type='AzureContainer'):
         super().__init__(name_prefix, 24)
         self.cli_ctx = get_dummy_cli()
