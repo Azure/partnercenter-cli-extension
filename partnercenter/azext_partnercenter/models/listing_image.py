@@ -19,7 +19,7 @@ class ListingImage(Model):
     }
 
     def __init__(self, **kwargs):
-        super(ListingImage, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.file_name = kwargs.get('fileName', None)
         self.type = kwargs.get('type', None)
         self.file_sas_uri = kwargs.get('fileSasUri', None)

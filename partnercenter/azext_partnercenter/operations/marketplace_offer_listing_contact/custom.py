@@ -29,9 +29,9 @@ def marketplace_offer_listing_contact_update_set(client, offer_id, parameters=No
     return result
 
 
-def marketplace_offer_listing_contact_update_custom(instance, type=None, email=None, name=None, phone=None, uri=None):
+def marketplace_offer_listing_contact_update_custom(instance, contact_type=None, email=None, name=None, phone=None, uri=None):
     listing_contact = ListingContact()
-    listing_contact.type = type
+    listing_contact.type = contact_type
     listing_contact.email = email
     listing_contact.name = name
     listing_contact.phone = phone
@@ -48,9 +48,9 @@ def list_contacts(client, offer_id):
     return listing.contacts
 
 
-def marketplace_offer_listing_contact_delete(client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
+def marketplace_offer_listing_contact_delete(client, offer_id, contact_type=None, email=None, name=None, phone=None, uri=None):
     listing_contact = ListingContact()
-    listing_contact.type = type
+    listing_contact.type = contact_type
     listing_contact.email = email
     listing_contact.name = name
     listing_contact.phone = phone
