@@ -26,21 +26,14 @@ class OfferClient(BaseClient):
             return None
 
         product_id = products.value[0].id
-        response = self._sdk.product_client.products_product_id_delete(product_id, self._get_access_token())
-
-        return response
+        self._sdk.product_client.products_product_id_delete(product_id, self._get_access_token())
+        return None
 
     def list(self):
         results = get_combined_paged_results(lambda skip_token: self._sdk.product_client.products_get(
             self._get_access_token(),
             skip_token=skip_token))
-
-        return list(map(lambda product: Offer(
-            id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
-            name=product.name,
-            type=product.resource_type,
-            resource=Resource(durable_id=product.id, type=product.resource_type)
-        ), results))
+        return list(map(self._map_product_to_offer, results))
 
     def create(self, offer_external_id, offer_alias, resource_type):
         external_id = MicrosoftIngestionApiModelsCommonTypeValuePair(
@@ -54,13 +47,7 @@ class OfferClient(BaseClient):
                                                                   id=offer_external_id, is_modular_publishing=True)
 
         product = self._sdk.product_client.products_post(authorization=authorization, microsoft_ingestion_api_models_products_azure_product=product)
-
-        return Offer(
-            id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
-            name=product.name,
-            type=product.resource_type,
-            resource=Resource(durable_id=product.id, type=product.resource_type)
-        )
+        return self._map_product_to_offer(product)
 
     def get(self, offer_external_id):
         filter_expr = self._get_sdk_odata_filter_expression_by_external_offer_id(offer_external_id)
@@ -70,17 +57,15 @@ class OfferClient(BaseClient):
             return None
 
         product = products.value[0]
+        return self._map_product_to_offer(product)
 
+    def _map_product_to_offer(self, product):
         return Offer(
             id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
-            name=product.name,
+            alias=product.name,
             type=product.resource_type,
             resource=Resource(durable_id=product.id, type=product.resource_type)
         )
-
-    # def delete(self, offer_external_id):
-    #    offer = self.get(offer_external_id)
-    #    return self._sdk.product_client.products_product_id_delete(offer._resource.durable_id, self._get_access_token())
 
     def get_setup(self, offer_external_id):
         offer = self.get(offer_external_id)
@@ -162,6 +147,7 @@ class OfferClient(BaseClient):
             short_description=listing.short_description if hasattr(listing, 'short_description') else '',
             getting_started_instructions=listing.getting_started_instructions if hasattr(listing, 'getting_started_instructions') else '',
             # keywords=listing.keywords,
+            offer_id=offer_external_id,
             odata_etag=listing.odata_etag,
             contacts=list(map(lambda c: ListingContact(**c.to_dict()), listing.listing_contacts)),
             uris=list(map(lambda c: ListingUri(**c.to_dict()), listing.listing_uris)),
