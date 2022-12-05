@@ -8,8 +8,8 @@
 from azext_partnercenter.models.listing import Listing
 
 
-def get_listing(client, offer_id=None, plan_id=None):
-    pass
+def get_listing(client, offer_id, plan_id):
+    return client.get_plan_listing(offer_id, plan_id)
 
 
 def listing_update(instance, description=None, short_description=None, language_code=None):

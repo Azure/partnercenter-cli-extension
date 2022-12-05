@@ -29,7 +29,7 @@ class OfferListingClient(BaseClient):
         if product is None:
             return None
         product_id = product._resource.durable_id
-        plan = self._plan_client.find_by_external_id(product_id, plan_external_id)
+        plan = self._plan_client.find_by_external_id(product_external_id, plan_external_id)
         if plan is None:
             return None
         plan_durable_id = plan._resource.durable_id

@@ -62,7 +62,24 @@ class PlanClient(BaseClient):
         return next((plan for plan in plans if plan.id == plan_external_id), None)
 
     def get_listing(self, offer_external_id, plan_external_id):
+        offer = self._offer_client.get(offer_external_id)
+        offer_durable_id = offer._resource.durable_id
+        branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(offer_durable_id, 'Listing',
+                                                                                                         self._get_access_token())
+
         plan = self.find_by_external_id(offer_external_id, plan_external_id)
+        branch_listing = next((b for b in branches if b['variantID'] == plan._resource.durable_id), None)
+        instance_id = branch_listing['currentDraftInstanceID']
+
+        listing = self._sdk.listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
+            offer_durable_id, instance_id, self._get_access_token()
+        )
+        return {
+            'name': listing['title'],
+            'shortDescription': listing['shortDescription'],
+            'description': listing['description']
+        }
+
 
     # TODO: remove if automated tests show this is unneeded
     def _get(self, offer_durable_id, plan_durable_id):
