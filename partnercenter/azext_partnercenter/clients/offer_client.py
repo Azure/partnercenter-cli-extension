@@ -28,7 +28,6 @@ class OfferClient(BaseClient):
         product_id = products.value[0].id
         self._sdk.product_client.products_product_id_delete(product_id, self._get_access_token())
         return None
-        
 
     def list(self):
         results = get_combined_paged_results(lambda skip_token: self._sdk.product_client.products_get(
