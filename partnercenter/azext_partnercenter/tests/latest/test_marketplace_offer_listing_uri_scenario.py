@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-import time
 from azext_partnercenter.tests.preparers import MarketplaceOfferPreparer
 from ..base import PartnerCenterScenarioTest
 from knack.log import get_logger
@@ -12,7 +11,8 @@ logger = get_logger(__name__)
 
 class PartnerCenterMarketplaceOfferListingUriScenarioTest(PartnerCenterScenarioTest):
     def setUp(self):
-        self._initialize_variables()
+        self.cmd_delay = 5 # delay each cmd by 5 sec, default
+        self._setup_arg()
         super().setUp()
 
     @MarketplaceOfferPreparer()
@@ -21,12 +21,12 @@ class PartnerCenterMarketplaceOfferListingUriScenarioTest(PartnerCenterScenarioT
                 checks=[self.check('[0].type', '{uri_type}'),
                         self.check('[0].subtype', '{uri_sub_type}'),
                         self.check('[0].displayText', '{uri_display_text}'),
-                        self.check('[0].uri', '{uri}')], delay=5)
+                        self.check('[0].uri', '{uri}')])
 
         self.cmd('partnercenter marketplace offer listing uri delete --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri} --yes', delay=5)
-        self.cmd('az partnercenter marketplace offer listing show --offer-id {offer_id}', checks=[self.check('uris', [])], delay=5)
+        self.cmd('az partnercenter marketplace offer listing show --offer-id {offer_id}', checks=[self.check('uris', [])])
 
-    def _initialize_variables(self):
+    def _setup_arg(self):
         self.kwargs.update({
             'uri': 'https://testuri',
             'uri_display_text': self.create_random_name('dt-', 10),
