@@ -28,9 +28,9 @@ def list_uri(client, offer_id):
     return plan_listing.uris
 
 
-def marketplace_offer_listing_uri_delete(client, offer_id, type=None, subtype=None, display_text=None, uri=None):
+def marketplace_offer_listing_uri_delete(client, offer_id, uri_type=None, subtype=None, display_text=None, uri=None):
     listing_uri = ListingUri()
-    listing_uri.type = type
+    listing_uri.type = uri_type
     listing_uri.subtype = subtype
     listing_uri.display_text = display_text
     listing_uri.uri = uri

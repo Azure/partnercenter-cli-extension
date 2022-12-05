@@ -9,12 +9,12 @@ from azext_partnercenter.models.listing import Listing
 from azext_partnercenter.models.listing_contact import ListingContact
 
 
-def marketplace_offer_listing_contact_update_get(client, offer_id, type=None, email=None, name=None, phone=None, uri=None):
+def marketplace_offer_listing_contact_update_get(client, offer_id):
     listing = client.get_listing(offer_id)
     return listing
 
 
-def marketplace_offer_listing_contact_update_set(client, offer_id, type=None, email=None, name=None, phone=None, uri=None, parameters=None):
+def marketplace_offer_listing_contact_update_set(client, offer_id, parameters=None):
     listing = Listing()
     listing.id = parameters.id
     listing.title = parameters.title
@@ -29,7 +29,7 @@ def marketplace_offer_listing_contact_update_set(client, offer_id, type=None, em
     return result
 
 
-def marketplace_offer_listing_contact_update_custom(instance, offer_id, type=None, email=None, name=None, phone=None, uri=None):
+def marketplace_offer_listing_contact_update_custom(instance, type=None, email=None, name=None, phone=None, uri=None):
     listing_contact = ListingContact()
     listing_contact.type = type
     listing_contact.email = email

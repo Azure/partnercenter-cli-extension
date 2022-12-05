@@ -80,7 +80,6 @@ class PlanClient(BaseClient):
             'description': listing['description']
         }
 
-
     # TODO: remove if automated tests show this is unneeded
     def _get(self, offer_durable_id, plan_durable_id):
         """Internal get of the plan"""

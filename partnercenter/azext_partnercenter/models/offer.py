@@ -15,7 +15,7 @@ class Offer(Model):
     }
 
     def __init__(self, **kwargs):
-        super(Offer, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
         self.type = kwargs.get('type', None)

@@ -12,12 +12,12 @@ def get(client, offer_id):
     return client.get_listing(offer_id)
 
 
-def marketplace_offer_listing_update_get(client, offer_id, summary=None, short_description=None, description=None):
+def marketplace_offer_listing_update_get(client, offer_id):
     listing = client.get_listing(offer_id)
     return listing
 
 
-def marketplace_offer_listing_update_set(client, offer_id, summary=None, short_description=None, description=None, parameters=None):
+def marketplace_offer_listing_update_set(client, offer_id, parameters=None):
     listing = Listing()
     listing.id = parameters.id
     listing.title = parameters.title
@@ -32,14 +32,14 @@ def marketplace_offer_listing_update_set(client, offer_id, summary=None, short_d
     return result
 
 
-def marketplace_offer_listing_update_custom(instance, offer_id, summary=None, short_description=None, description=None):
+def marketplace_offer_listing_update_custom(instance, summary=None, short_description=None, description=None):
     instance.summary = summary
     instance.short_description = short_description
     instance.description = description
     return instance
 
 
-def marketplace_offer_listing_delete(client, offer_id, summary=None, short_description=None, description=None):
+def marketplace_offer_listing_delete(client, offer_id):
     results = client.delete_offer_listing(offer_id)
     if not results:
         return "Deleted listing for offer: " + offer_id

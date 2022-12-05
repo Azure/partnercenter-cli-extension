@@ -15,7 +15,7 @@ class OfferSetup(Model):
     }
 
     def __init__(self, **kwargs):
-        super(OfferSetup, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.sell_through_microsoft = kwargs.get('sell_through_microsoft', None)
         self.trial_uri = kwargs.get('trial_uri', None)
         self.channel_states = kwargs.get('channel_states', None)

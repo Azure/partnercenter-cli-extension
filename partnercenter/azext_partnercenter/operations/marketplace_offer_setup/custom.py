@@ -36,7 +36,7 @@ def marketplace_offer_setup_update_set(client, offer_id, parameters=None):
     return result
 
 
-def marketplace_offer_setup_update_custom(instance, offer_id, summary=None, short_description=None, description=None):
+def marketplace_offer_setup_update_custom(instance, summary=None, short_description=None, description=None):
     instance.summary = summary
     instance.short_description = short_description
     instance.description = description

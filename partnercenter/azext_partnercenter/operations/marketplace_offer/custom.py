@@ -3,8 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-from knack.util import CLIError
-
 
 def create_offer(client, offer_id, offer_alias, offer_type):
     result = client.create(offer_id, offer_alias, offer_type)

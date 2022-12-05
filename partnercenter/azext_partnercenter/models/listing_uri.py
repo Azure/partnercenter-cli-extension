@@ -15,7 +15,7 @@ class ListingUri(Model):
     }
 
     def __init__(self, **kwargs):
-        super(ListingUri, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.type = kwargs.get('type', None)
         self.subtype = kwargs.get('subtype', None)
         self.display_text = kwargs.get('display_text', None)

@@ -12,6 +12,6 @@ class OfferListing(Model):
     }
 
     def __init__(self, **kwargs):
-        super(OfferListing, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self._resource = kwargs.get('resource', None)
