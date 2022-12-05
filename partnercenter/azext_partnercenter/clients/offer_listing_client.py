@@ -105,6 +105,16 @@ class OfferListingClient(BaseClient):
             resource=Resource(id=update_result.id, type=update_result.resource_type)
         )
 
+    def get_uris(self, offer_external_id):
+        listing = self.get_listing(offer_external_id)
+        return listing.uris
+
+    def update_uris(self, offer_external_id, parameters=[ListingUri]):
+        listing = self.get_listing(offer_external_id)
+        listing.uris = parameters
+        result = self.create_or_update(offer_external_id, listing)
+        return result.uris
+
     def _get_api_listing_uris(self, listing_model: Listing):
         return list(map(lambda u: MicrosoftIngestionApiModelsListingsListingUri(
             type=u.type if u.type is not None else '',
@@ -144,7 +154,7 @@ class OfferListingClient(BaseClient):
 
         return self.create_or_update(product_external_id, listing)
 
-    def delete_listing_uri(self, product_external_id, uri: ListingUri):
+    def delete_uri(self, product_external_id, uri: ListingUri):
         listing = self._offer_client.get_listing(product_external_id)
         try:
             listing.uris.remove(uri)

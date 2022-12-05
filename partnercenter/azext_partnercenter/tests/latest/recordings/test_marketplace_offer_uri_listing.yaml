@@ -12,14 +12,14 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"f9bd974b-2f5e-4ec0-8047-d300ec31c938"}]}'
+      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"386452f4-e4d1-4a30-af58-da358f8ea355"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:37 GMT
+      - Mon, 05 Dec 2022 21:34:20 GMT
       request-id:
-      - 2d5a2729-8e73-4f1c-a422-269c37e37c39
+      - effd4047-a7d7-4a83-8c44-0ac2dd543f12
       transfer-encoding:
       - chunked
     status:
@@ -35,17 +35,17 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/branches/getByModule(module=Listing)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/386452f4-e4d1-4a30-af58-da358f8ea355/branches/getByModule(module=Listing)
   response:
     body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"f51f7fd3-fad0-f11d-5a01-57d339bfac1e"}]}'
+      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"cd80a9ac-4195-bf55-dd4c-3b20e85af859"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:37 GMT
+      - Mon, 05 Dec 2022 21:34:20 GMT
       request-id:
-      - b09d6d41-5ffd-484d-9cb8-5e0716b9751d
+      - 71d40a85-4698-47b6-bb14-4c5147d28621
       transfer-encoding:
       - chunked
     status:
@@ -61,18 +61,18 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/listings/getByInstanceID(instanceID=f51f7fd3-fad0-f11d-5a01-57d339bfac1e)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/386452f4-e4d1-4a30-af58-da358f8ea355/listings/getByInstanceID(instanceID=cd80a9ac-4195-bf55-dd4c-3b20e85af859)
   response:
     body:
       string: '{"value":[{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"clitest000002
-        Alias","keywords":[],"@odata.etag":"\"510131ce-0000-0800-0000-638e5dd20000\"","id":"a93070dc-cdfe-6198-10a6-58d579d8f212"}]}'
+        Alias","keywords":[],"@odata.etag":"\"7a05e59f-0000-0800-0000-638e63d70000\"","id":"cd49340c-b74d-581d-9936-3ac2c4859bb9"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:37 GMT
+      - Mon, 05 Dec 2022 21:34:20 GMT
       request-id:
-      - fc622e13-4d15-4348-a578-c72e620bdf38
+      - b975eb28-4430-4012-8e3b-9704690e8918
       transfer-encoding:
       - chunked
     status:
@@ -91,14 +91,14 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"f9bd974b-2f5e-4ec0-8047-d300ec31c938"}]}'
+      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"386452f4-e4d1-4a30-af58-da358f8ea355"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:38 GMT
+      - Mon, 05 Dec 2022 21:34:22 GMT
       request-id:
-      - e856a39d-2d68-42fb-88f7-ae8599db5d3f
+      - 25b10bd1-b8a6-4210-b7cd-e6d13a927410
       transfer-encoding:
       - chunked
     status:
@@ -114,17 +114,17 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/branches/getByModule(module=Listing)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/386452f4-e4d1-4a30-af58-da358f8ea355/branches/getByModule(module=Listing)
   response:
     body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"f51f7fd3-fad0-f11d-5a01-57d339bfac1e"}]}'
+      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"cd80a9ac-4195-bf55-dd4c-3b20e85af859"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:38 GMT
+      - Mon, 05 Dec 2022 21:34:22 GMT
       request-id:
-      - 711b4585-1cae-4bbe-b5f5-b94320d1ff56
+      - bc833cb8-a336-4305-9bad-1af8afd281bf
       transfer-encoding:
       - chunked
     status:
@@ -140,18 +140,18 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/listings/getByInstanceID(instanceID=f51f7fd3-fad0-f11d-5a01-57d339bfac1e)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/386452f4-e4d1-4a30-af58-da358f8ea355/listings/getByInstanceID(instanceID=cd80a9ac-4195-bf55-dd4c-3b20e85af859)
   response:
     body:
       string: '{"value":[{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"clitest000002
-        Alias","keywords":[],"@odata.etag":"\"510131ce-0000-0800-0000-638e5dd20000\"","id":"a93070dc-cdfe-6198-10a6-58d579d8f212"}]}'
+        Alias","keywords":[],"@odata.etag":"\"7a05e59f-0000-0800-0000-638e63d70000\"","id":"cd49340c-b74d-581d-9936-3ac2c4859bb9"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:40 GMT
+      - Mon, 05 Dec 2022 21:34:22 GMT
       request-id:
-      - dd26fdb0-33e5-439e-92e3-ed81aa8d2d80
+      - b3a9115c-d176-4609-ab2e-9bc8320ab045
       transfer-encoding:
       - chunked
     status:
@@ -170,14 +170,14 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"f9bd974b-2f5e-4ec0-8047-d300ec31c938"}]}'
+      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"386452f4-e4d1-4a30-af58-da358f8ea355"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:40 GMT
+      - Mon, 05 Dec 2022 21:34:23 GMT
       request-id:
-      - 52e12597-749e-4fec-a932-a054db519722
+      - f14c4857-739e-4593-886d-7023bd430512
       transfer-encoding:
       - chunked
     status:
@@ -196,14 +196,14 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"f9bd974b-2f5e-4ec0-8047-d300ec31c938"}]}'
+      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"386452f4-e4d1-4a30-af58-da358f8ea355"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:40 GMT
+      - Mon, 05 Dec 2022 21:34:24 GMT
       request-id:
-      - ecc5e779-fe9c-4aab-b388-3df19e5c1367
+      - 77ccde1a-571e-42e1-95ad-d9c732a113f5
       transfer-encoding:
       - chunked
     status:
@@ -219,17 +219,17 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/branches/getByModule(module=Listing)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/386452f4-e4d1-4a30-af58-da358f8ea355/branches/getByModule(module=Listing)
   response:
     body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"f51f7fd3-fad0-f11d-5a01-57d339bfac1e"}]}'
+      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"cd80a9ac-4195-bf55-dd4c-3b20e85af859"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:41 GMT
+      - Mon, 05 Dec 2022 21:34:24 GMT
       request-id:
-      - 6a46b569-e800-4b5d-b8f7-ae03bd8216b8
+      - 5e589356-1e39-4c1c-8e70-a221b3e23207
       transfer-encoding:
       - chunked
     status:
@@ -245,18 +245,18 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/listings/getByInstanceID(instanceID=f51f7fd3-fad0-f11d-5a01-57d339bfac1e)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/386452f4-e4d1-4a30-af58-da358f8ea355/listings/getByInstanceID(instanceID=cd80a9ac-4195-bf55-dd4c-3b20e85af859)
   response:
     body:
       string: '{"value":[{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"clitest000002
-        Alias","keywords":[],"@odata.etag":"\"510131ce-0000-0800-0000-638e5dd20000\"","id":"a93070dc-cdfe-6198-10a6-58d579d8f212"}]}'
+        Alias","keywords":[],"@odata.etag":"\"7a05e59f-0000-0800-0000-638e63d70000\"","id":"cd49340c-b74d-581d-9936-3ac2c4859bb9"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:41 GMT
+      - Mon, 05 Dec 2022 21:34:24 GMT
       request-id:
-      - 56fa4260-fa64-4da1-8b6b-c48befa13ec6
+      - edac73fb-5332-429e-aebe-a40cec2728d0
       transfer-encoding:
       - chunked
     status:
@@ -264,7 +264,7 @@ interactions:
       message: OK
 - request:
     body: '{"resourceType": "AzureListing", "description": "", "title": "clitest000002
-      Alias", "summary": "", "shortDescription": "", "@odata.etag": "\"510131ce-0000-0800-0000-638e5dd20000\"",
+      Alias", "summary": "", "shortDescription": "", "@odata.etag": "\"7a05e59f-0000-0800-0000-638e63d70000\"",
       "listingUris": [{"type": "PrivacyUri", "subtype": "SubTypeUri", "displayText":
       "dt-000001", "uri": "https://testuri"}], "listingContacts": []}'
     headers:
@@ -277,316 +277,20 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: PUT
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/listings/a93070dc-cdfe-6198-10a6-58d579d8f212
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/386452f4-e4d1-4a30-af58-da358f8ea355/listings/cd49340c-b74d-581d-9936-3ac2c4859bb9
   response:
     body:
       string: '{"resourceType":"AzureListing","summary":"","listingUris":[{"type":"PrivacyUri","subtype":"SubTypeUri","displayText":"dt-000001","uri":"https://testuri"}],"listingContacts":[],"languageCode":"en-us","title":"clitest000002
-        Alias","description":"","shortDescription":"","@odata.etag":"\"510135ce-0000-0800-0000-638e5dda0000\"","id":"a93070dc-cdfe-6198-10a6-58d579d8f212"}'
+        Alias","description":"","shortDescription":"","@odata.etag":"\"7a0524a4-0000-0800-0000-638e63e10000\"","id":"cd49340c-b74d-581d-9936-3ac2c4859bb9"}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 05 Dec 2022 21:08:42 GMT
+      - Mon, 05 Dec 2022 21:34:26 GMT
       etag:
-      - '"510135ce-0000-0800-0000-638e5dda0000"'
+      - '"7a0524a4-0000-0800-0000-638e63e10000"'
       request-id:
-      - 9b4e21ce-9393-4b54-ae54-60b7d8afbd46
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"f9bd974b-2f5e-4ec0-8047-d300ec31c938"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:48 GMT
-      request-id:
-      - 312a27fd-4acd-4769-84f2-c3a8d2716f51
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/branches/getByModule(module=Listing)
-  response:
-    body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"f51f7fd3-fad0-f11d-5a01-57d339bfac1e"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:48 GMT
-      request-id:
-      - 499e1d05-3190-4656-a52e-9b453ef6b370
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/listings/getByInstanceID(instanceID=f51f7fd3-fad0-f11d-5a01-57d339bfac1e)
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureListing","summary":"","listingUris":[{"type":"PrivacyUri","subtype":"SubTypeUri","displayText":"dt-000001","uri":"https://testuri"}],"listingContacts":[],"languageCode":"en-us","title":"clitest000002
-        Alias","description":"","shortDescription":"","@odata.etag":"\"510135ce-0000-0800-0000-638e5dda0000\"","id":"a93070dc-cdfe-6198-10a6-58d579d8f212"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:48 GMT
-      request-id:
-      - 1af9e35b-2392-44ad-b890-045d8bdb8e52
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"f9bd974b-2f5e-4ec0-8047-d300ec31c938"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:49 GMT
-      request-id:
-      - 9d742819-fa23-496d-a2c0-3493f6d28dcc
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"f9bd974b-2f5e-4ec0-8047-d300ec31c938"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:49 GMT
-      request-id:
-      - a3376f7b-949c-4f27-9a66-6a39f3f45b82
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/branches/getByModule(module=Listing)
-  response:
-    body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"f51f7fd3-fad0-f11d-5a01-57d339bfac1e"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:49 GMT
-      request-id:
-      - 974c4094-43da-46fb-837f-1ca2ea0842e5
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/listings/getByInstanceID(instanceID=f51f7fd3-fad0-f11d-5a01-57d339bfac1e)
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureListing","summary":"","listingUris":[{"type":"PrivacyUri","subtype":"SubTypeUri","displayText":"dt-000001","uri":"https://testuri"}],"listingContacts":[],"languageCode":"en-us","title":"clitest000002
-        Alias","description":"","shortDescription":"","@odata.etag":"\"510135ce-0000-0800-0000-638e5dda0000\"","id":"a93070dc-cdfe-6198-10a6-58d579d8f212"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:50 GMT
-      request-id:
-      - 280e9e26-4d1f-46fc-b943-3528ae159525
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"resourceType": "AzureListing", "description": "", "title": "clitest000002
-      Alias", "summary": "", "shortDescription": "", "@odata.etag": "\"510135ce-0000-0800-0000-638e5dda0000\"",
-      "listingUris": [], "listingContacts": []}'
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: PUT
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/listings/a93070dc-cdfe-6198-10a6-58d579d8f212
-  response:
-    body:
-      string: '{"resourceType":"AzureListing","summary":"","listingUris":[],"listingContacts":[],"languageCode":"en-us","title":"clitest000002
-        Alias","description":"","shortDescription":"","@odata.etag":"\"510138ce-0000-0800-0000-638e5de20000\"","id":"a93070dc-cdfe-6198-10a6-58d579d8f212"}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:50 GMT
-      etag:
-      - '"510138ce-0000-0800-0000-638e5de20000"'
-      request-id:
-      - 531fd1a8-03db-4a14-be8f-c64ffcb1fe57
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"clitest000002 Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"f9bd974b-2f5e-4ec0-8047-d300ec31c938"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:56 GMT
-      request-id:
-      - e3150bd8-9526-49bb-a920-1bd82ff1cf69
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/branches/getByModule(module=Listing)
-  response:
-    body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"f51f7fd3-fad0-f11d-5a01-57d339bfac1e"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:56 GMT
-      request-id:
-      - ce2e4065-837b-4b43-8b3d-ffa1466c704c
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/f9bd974b-2f5e-4ec0-8047-d300ec31c938/listings/getByInstanceID(instanceID=f51f7fd3-fad0-f11d-5a01-57d339bfac1e)
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureListing","summary":"","listingUris":[],"listingContacts":[],"languageCode":"en-us","title":"clitest000002
-        Alias","description":"","shortDescription":"","@odata.etag":"\"510138ce-0000-0800-0000-638e5de20000\"","id":"a93070dc-cdfe-6198-10a6-58d579d8f212"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Mon, 05 Dec 2022 21:08:56 GMT
-      request-id:
-      - 4b1b1ee9-16d4-4929-9326-6fe7ae52df69
+      - daf8885f-f4b1-40de-a4fd-77389b56d0c4
       transfer-encoding:
       - chunked
     status:
