@@ -16,7 +16,7 @@ def marketplace_offer_listing_uri_update_custom(instance, uri_type=None, subtype
     listing_uri.subtype = subtype
     listing_uri.display_text = display_text
     listing_uri.uri = uri
-    instance.uris.append(listing_uri)
+    instance.append(listing_uri)
     return instance
 
 
@@ -39,20 +39,12 @@ def marketplace_offer_listing_uri_delete(client, offer_id, uri_type=None, subtyp
 
 
 def _add_set(client, offer_id, parameters=None):
-    listing = Listing()
-    listing.id = parameters.id
-    listing.summary = parameters.summary
-    listing.title = parameters.title
-    listing.description = parameters.description
-    listing.short_description = parameters.short_description
-    listing.language_code = parameters.language_code
-    listing.odata_etag = parameters.odata_etag
-    listing.contacts = parameters.contacts
-    listing.uris = parameters.uris
+    listing = client.get_listing(offer_id)
+    listing.uris = parameters
     result = client.create_or_update(offer_id, listing)
-    return result
+    return result.uris
 
 
-def _add_get(client, product_external_id):
-    listing = client.get_listing(product_external_id)
-    return listing
+def _add_get(client, offer_id):
+    listing = client.get_listing(offer_id)
+    return listing.uris

@@ -5,12 +5,10 @@
 
 import time
 from azext_partnercenter.tests.preparers import MarketplaceOfferPreparer
-from azure.cli.testsdk import ScenarioTest
-from knack.log import get_logger
+from ..base import PartnerCenterScenarioTest
 
-logger = get_logger(__name__)
 
-class PartnerCenterMarketplaceOfferListingScenarioTest(ScenarioTest):
+class PartnerCenterMarketplaceOfferListingScenarioTest(PartnerCenterScenarioTest):
     def setUp(self):
         self._initialize_variables()
         super().setUp()
@@ -26,16 +24,13 @@ class PartnerCenterMarketplaceOfferListingScenarioTest(ScenarioTest):
                  checks=[self.check('description', '{description}'),
                          self.check('shortDescription', '{short_description}'),
                          self.check('summary', '{summary}')])
-        time.sleep(5)
+
         self.cmd('partnercenter marketplace offer listing show --offer-id {offer_id}',
                  checks=[self.check('description', '{description}'),
                          self.check('shortDescription', '{short_description}'),
                          self.check('summary', '{summary}'),
                          self.check('contacts', []),
-                         self.check('uris', [])])
-
-        time.sleep(5)
- 
+                         self.check('uris', [])], delay=5)
 
     def _initialize_variables(self):
         self.kwargs.update({
