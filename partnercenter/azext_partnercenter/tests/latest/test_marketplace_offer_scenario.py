@@ -11,7 +11,7 @@ class PartnerCenterMarketplaceOfferScenarioTest(ScenarioTest):
         self._initialize_variables()
         super().setUp()
 
-    def test_crud_offer_scenario(self):
+    def test_marketplace_offer_scenario(self):
         self._create_offer()
         self._show_offer()
         self._list_offers_with_created_offer_in_result()

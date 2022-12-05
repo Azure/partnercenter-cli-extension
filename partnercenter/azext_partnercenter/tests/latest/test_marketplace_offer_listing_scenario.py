@@ -6,17 +6,21 @@
 import time
 from azext_partnercenter.tests.preparers import MarketplaceOfferPreparer
 from azure.cli.testsdk import ScenarioTest
+from knack.log import get_logger
 
+logger = get_logger(__name__)
 
 class PartnerCenterMarketplaceOfferListingScenarioTest(ScenarioTest):
     def setUp(self):
         self._initialize_variables()
         super().setUp()
 
-    @MarketplaceOfferPreparer(offer_type='AzureThirdPartyVirtualMachine')
-    def test_offer_listing(self):
+    @MarketplaceOfferPreparer()
+    def test_marketplace_offer_listing(self):
         self.cmd('partnercenter marketplace offer listing show --offer-id {offer_id}',
-            checks=[self.check('offerId', '{offer_id}')])
+                 checks=[self.check('description', ''),
+                         self.check('shortDescription', ''),
+                         self.check('summary', '')])
 
         self.cmd('partnercenter marketplace offer listing update --offer-id {offer_id} --summary {summary} --short-description {short_description} --description {description}',
                  checks=[self.check('description', '{description}'),
