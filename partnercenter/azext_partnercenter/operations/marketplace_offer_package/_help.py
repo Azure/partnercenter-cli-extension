@@ -7,7 +7,7 @@
 from knack.help_files import helps
 
 
-helps['partnercenter marketplace bundle'] = """
+helps['partnercenter marketplace offer package'] = """
     type: group
-    short-summary: Create and verify CNAB bundles for AKS (Azure Container offerings that you sell through Microsoft).
+    short-summary: Build and verify offer packages, including CNAB bundles for AKS (Azure Container offerings that you sell through Microsoft).
 """
