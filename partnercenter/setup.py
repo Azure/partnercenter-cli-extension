@@ -18,7 +18,7 @@ except ImportError:
 NAME = 'partnercenter'
 
 # Version extraction inspired from 'requests'
-with open(os.path.join('azext_devops', 'version.py'), 'r') as fd:
+with open(os.path.join('azext_partnercenter', 'version.py'), 'r') as fd:
     VERSION = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]',
                         fd.read(), re.MULTILINE).group(1)
 
