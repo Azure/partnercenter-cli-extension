@@ -105,6 +105,16 @@ class OfferListingClient(BaseClient):
             resource=Resource(id=update_result.id, type=update_result.resource_type)
         )
 
+    def get_contacts(self, offer_external_id):
+        listing = self.get_listing(offer_external_id)
+        return listing.contacts
+
+    def update_contacts(self, offer_external_id, parameters=[ListingContact]):
+        listing = self.get_listing(offer_external_id)
+        listing.contacts = parameters
+        result = self.create_or_update(offer_external_id, listing)
+        return result.contacts
+
     def get_uris(self, offer_external_id):
         listing = self.get_listing(offer_external_id)
         return listing.uris
@@ -145,23 +155,22 @@ class OfferListingClient(BaseClient):
 
         return self._sdk.listing_client.products_product_id_listings_listing_id_delete(product_id, listing_id, self._get_access_token())
 
-    def delete_listing_contact(self, product_external_id, contact: ListingContact):
-        listing = self._offer_client.get_listing(product_external_id)
+    def delete_listing_contact(self, offer_external_id, contact: ListingContact):
+        listing = self._offer_client.get_listing(offer_external_id)
         try:
             listing.contacts.remove(contact)
         except ValueError:
             return None
+        return self.create_or_update(offer_external_id, listing)
 
-        return self.create_or_update(product_external_id, listing)
-
-    def delete_uri(self, product_external_id, uri: ListingUri):
-        listing = self._offer_client.get_listing(product_external_id)
+    def delete_uri(self, offer_external_id, uri: ListingUri):
+        listing = self._offer_client.get_listing(offer_external_id)
         try:
             listing.uris.remove(uri)
         except ValueError:
             return None
 
-        return self.create_or_update(product_external_id, listing)
+        return self.create_or_update(offer_external_id, listing)
 
     def delete_latest_listing_uri(self, product_external_id):
         listing = self._offer_client.get_listing(product_external_id)

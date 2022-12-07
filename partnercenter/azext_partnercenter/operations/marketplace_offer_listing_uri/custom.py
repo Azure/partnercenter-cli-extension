@@ -7,7 +7,6 @@
 
 from knack.util import CLIError
 from azext_partnercenter.models.listing_uri import ListingUri
-from azext_partnercenter.models.listing import Listing
 
 
 def add_uri(instance, uri_type, subtype, display_text, uri):

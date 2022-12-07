@@ -23,7 +23,7 @@ def verify_package(client, offer_id, manifest_file=None):
 def _execute_action_by_offer_type(client, offer_id, action):
     offer = client.get(offer_id)
     if offer is None:
-        raise ResourceNotFoundError('An Offer was not found with that ID.', 'Please check the value for --offer-id.')
+        raise ResourceNotFoundError('An Offer was not found with that ID.', 'Please check the value set for parameter --offer-id.')
 
     offer_type = offer.type
 
