@@ -121,22 +121,6 @@ class PartnercenterScenarioTest(ScenarioTest):
         self.assertEqual(len(result), 0)
 
         time.sleep(5)
-        result = self.cmd('partnercenter marketplace offer listing media list --offer-id {offer_id} ').get_output_in_json()
-        self.assertEqual(len(result), 0)
-
-        time.sleep(5)
-        self.cmd('partnercenter marketplace offer listing media add --offer-id {offer_id} --type {media_type} --file {media_file}',
-                 checks=[self.check('state', 'Uploaded'),
-                         self.check('type', '{media_type}')])
-
-        time.sleep(5)
-        self.cmd('partnercenter marketplace offer listing media delete --offer-id {offer_id} --type {media_type} --yes')
-
-        time.sleep(5)
-        result = self.cmd('partnercenter marketplace offer listing media list --offer-id {offer_id} ').get_output_in_json()
-        self.assertEqual(len(result), 0)
-
-        time.sleep(5)
         self.cmd('partnercenter marketplace offer delete --offer-id {offer_id} --yes')
 
     def _get_test_media_file(self):

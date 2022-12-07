@@ -16,7 +16,7 @@ class PartnerCenterMarketplaceOfferListingUriScenarioTest(PartnerCenterScenarioT
         super().setUp()
 
     @MarketplaceOfferPreparer()
-    def test_marketplace_offer_uri_listing(self):
+    def test_marketplace_offer_listing_uri(self):
         self.cmd('partnercenter marketplace offer listing uri add --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri}',
                 checks=[self.check('[0].type', '{uri_type}'),
                         self.check('[0].subtype', '{uri_sub_type}'),
