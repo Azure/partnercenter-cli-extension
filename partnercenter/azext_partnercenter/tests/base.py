@@ -33,6 +33,7 @@ class PartnerCenterScenarioTest(ScenarioTest, ABC):
         """initialize all the args needed for the test. Called on setUp by the test scaffolding."""
         pass
 
+
 class TestData:
     """Test Data from the file system"""
 

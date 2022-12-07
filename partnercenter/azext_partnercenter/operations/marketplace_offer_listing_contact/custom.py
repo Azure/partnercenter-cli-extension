@@ -10,11 +10,11 @@ from azext_partnercenter.models.listing_contact import ListingContact
 
 def add_contact(instance, contact_type, email=None, name=None, phone=None, uri=None):
     contact = ListingContact(
-        type = contact_type,
-        email = email,
-        name = name,
-        phone = phone,
-        uri = uri
+        type=contact_type,
+        email=email,
+        name=name,
+        phone=phone,
+        uri=uri
     )
     instance.append(contact)
     return instance
@@ -29,10 +29,10 @@ def list_contact(client, offer_id):
 
 def delete_contact(client, offer_id, contact_type, email=None, name=None, phone=None, uri=None):
     contact = ListingContact(
-        type = contact_type,
-        email = email,
-        name = name,
-        phone = phone,
-        uri = uri
+        type=contact_type,
+        email=email,
+        name=name,
+        phone=phone,
+        uri=uri
     )
     return client.delete_listing_contact(offer_id, contact)

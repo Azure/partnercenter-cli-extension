@@ -2,11 +2,12 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
+# pylint: disable=line-too-long
 
-from azext_partnercenter.models import OfferType
-from ._cnab_util import (bundle, verify)
 from azure.cli.core.azclierror import (ResourceNotFoundError, InvalidArgumentValueError)
 from knack.cli import CLIError
+from azext_partnercenter.models import OfferType
+from ._cnab_util import (bundle, verify)
 
 
 ISSUES_URL = "https://github.com/Azure/partnercenter-cli-extension/issues"
@@ -15,9 +16,9 @@ ISSUES_URL = "https://github.com/Azure/partnercenter-cli-extension/issues"
 def build_package(client, offer_id, manifest_file=None):
     _execute_action_by_offer_type(client, offer_id, lambda: _build_cnab_bundle(manifest_file))
 
-    
+
 def verify_package(client, offer_id, manifest_file=None):
-    _execute_action_by_offer_type(client, offer_id, lambda: _build_cnab_bundle(manifest_file))
+    _execute_action_by_offer_type(client, offer_id, lambda: _verify_cnab_bundle(manifest_file))
 
 
 def _execute_action_by_offer_type(client, offer_id, action):

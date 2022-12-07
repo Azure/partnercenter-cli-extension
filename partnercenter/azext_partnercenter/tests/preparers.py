@@ -12,6 +12,8 @@ from azure.cli.testsdk.scenario_tests import SingleValueReplacer, AbstractPrepar
 # This preparer's traffic is not recorded.
 # As a result when tests are run in record mode, sdk calls cannot be made to return the prepared resource group.
 # Rather the deterministic prepared resource's information should be returned.
+
+
 class NoTrafficRecordingPreparer(AbstractPreparer):
     from azure.cli.testsdk.base import execute as _raw_execute
 
@@ -65,9 +67,9 @@ class MarketplaceOfferPreparer(NoTrafficRecordingPreparer, SingleValueReplacer):
             self.test_class_instance.kwargs[self.key] = name
             time.sleep(delay_return_for_partercenter_to_create_supporting_child_entities)
 
-            return {self.parameter_name: name }
+            return {self.parameter_name: name}
 
-        return {self.parameter_name: self.dev_setting_name }
+        return {self.parameter_name: self.dev_setting_name}
 
     def remove_resource(self, name, **kwargs):
         if not self.skip_delete and not self.dev_setting_name:

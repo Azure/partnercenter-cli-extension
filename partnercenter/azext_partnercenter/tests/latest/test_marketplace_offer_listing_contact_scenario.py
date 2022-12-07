@@ -5,13 +5,11 @@
 
 from azext_partnercenter.tests.preparers import MarketplaceOfferPreparer
 from ..base import PartnerCenterScenarioTest
-from knack.log import get_logger
 
-logger = get_logger(__name__)
 
 class PartnerCenterMarketplaceOfferListingContactScenarioTest(PartnerCenterScenarioTest):
     def setUp(self):
-        self.cmd_delay = 5 # delay each cmd by 5 sec, default
+        self.cmd_delay = 5  # delay each cmd by 5 sec, default
         super().setUp()
 
     @MarketplaceOfferPreparer()
@@ -24,7 +22,7 @@ class PartnerCenterMarketplaceOfferListingContactScenarioTest(PartnerCenterScena
                          self.check('[0].uri', '{contact_uri}')])
 
         self.cmd('partnercenter marketplace offer listing contact delete --yes --offer-id {offer_id} --type {contact_type} --email {contact_email} --name \'{contact_name}\' --phone {contact_phone} --uri {contact_uri}')
-        
+
         output = self.cmd('az partnercenter marketplace offer listing contact list --offer-id {offer_id}').get_output_in_json()
         assert len(output) == 0
 

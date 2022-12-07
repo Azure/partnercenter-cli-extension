@@ -5,20 +5,18 @@
 
 from azext_partnercenter.tests.preparers import MarketplaceOfferPreparer
 from ..base import PartnerCenterScenarioTest
-from knack.log import get_logger
 
-logger = get_logger(__name__)
 
 class PartnerCenterMarketplaceOfferListingMediaScenarioTest(PartnerCenterScenarioTest):
     def setUp(self):
-        self.cmd_delay = 5 # delay each cmd by 5 sec, default
+        self.cmd_delay = 5  # delay each cmd by 5 sec, default
         super().setUp()
 
     @MarketplaceOfferPreparer()
     def test_marketplace_offer_listing_media_large_logo(self):
         self.cmd('partnercenter marketplace offer listing media add --offer-id {offer_id} --type {large_logo_media_type} --file {large_logo_file}',
-            checks=[self.check('state', '{add_cmd_state}'),
-                    self.check('type', '{large_logo_media_type}')])
+                 checks=[self.check('state', '{add_cmd_state}'),
+                         self.check('type', '{large_logo_media_type}')])
 
         self.cmd('partnercenter marketplace offer listing media delete --offer-id {offer_id} --type {large_logo_media_type} --yes')
 

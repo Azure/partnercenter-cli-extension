@@ -109,7 +109,7 @@ class OfferListingClient(BaseClient):
         listing = self.get_listing(offer_external_id)
         return listing.contacts
 
-    def update_contacts(self, offer_external_id, parameters=[ListingContact]):
+    def update_contacts(self, offer_external_id, parameters=list[ListingContact]):
         listing = self.get_listing(offer_external_id)
         listing.contacts = parameters
         result = self.create_or_update(offer_external_id, listing)
@@ -119,7 +119,7 @@ class OfferListingClient(BaseClient):
         listing = self.get_listing(offer_external_id)
         return listing.uris
 
-    def update_uris(self, offer_external_id, parameters=[ListingUri]):
+    def update_uris(self, offer_external_id, parameters=list[ListingUri]):
         listing = self.get_listing(offer_external_id)
         listing.uris = parameters
         result = self.create_or_update(offer_external_id, listing)
