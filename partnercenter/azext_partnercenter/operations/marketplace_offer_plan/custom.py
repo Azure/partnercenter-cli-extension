@@ -13,11 +13,6 @@ def create_plan(client, offer_id, plan_id, friendly_name):
     return result
 
 
-def update_plan(instance):
-    # TODO: Implement partnercenter marketplace offer update
-    return instance
-
-
 def delete_plan(client, offer_id, plan_id):
     return client.delete(offer_id, plan_id)
 
