@@ -12,9 +12,9 @@ class MarketplaceBundleOperations:
         self.parent = parent
 
     def load_arguments(self, _):
-        from azext_partnercenter.operations.marketplace_bundle._params import load_arguments
+        from azext_partnercenter.operations.marketplace_offer_package._params import load_arguments
         load_arguments(self.parent.commands_loader, _)
 
     def load_command_table(self, _):
-        from azext_partnercenter.operations.marketplace_bundle.commands import load_command_table
+        from azext_partnercenter.operations.marketplace_offer_package.commands import load_command_table
         load_command_table(self.parent.commands_loader, _)

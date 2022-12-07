@@ -8,6 +8,16 @@
 def load_arguments(commands_loader, _):
     with commands_loader.argument_context('partnercenter marketplace offer listing contact') as c:
         c.argument('offer_id', options_list=['--offer-id'], help='The offerid.')
+
+    with commands_loader.argument_context('partnercenter marketplace offer listing contact add') as c:
+        c.argument('offer_external_id', options_list=['--offer-id'], help='The offerid.')
+        c.argument('contact_type', options_list=['--type'], help='The contact type.')
+        c.argument('email', options_list=['--email'], help='The email address of the contact.')
+        c.argument('name', options_list=['--name'], help='The name of the contact.')
+        c.argument('phone', options_list=['--phone'], help='The phone number of the contact.')
+        c.argument('uri', options_list=['--uri'], help='The uri associated with the contact.')
+
+    with commands_loader.argument_context('partnercenter marketplace offer listing contact delete') as c:
         c.argument('contact_type', options_list=['--type'], help='The contact type.')
         c.argument('email', options_list=['--email'], help='The email address of the contact.')
         c.argument('name', options_list=['--name'], help='The name of the contact.')

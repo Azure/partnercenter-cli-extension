@@ -9,9 +9,6 @@ from ..base import PartnerCenterScenarioTest
 
 
 class PartnerCenterMarketplaceOfferListingScenarioTest(PartnerCenterScenarioTest):
-    def setUp(self):
-        self._initialize_variables()
-        super().setUp()
 
     @MarketplaceOfferPreparer()
     def test_marketplace_offer_listing(self):
@@ -32,7 +29,7 @@ class PartnerCenterMarketplaceOfferListingScenarioTest(PartnerCenterScenarioTest
                          self.check('contacts', []),
                          self.check('uris', [])], delay=5)
 
-    def _initialize_variables(self):
+    def init_args(self):
         self.kwargs.update({
             'summary': self.create_random_name('summary-', 20),
             'short_description': self.create_random_name('short-desc-', 20),
