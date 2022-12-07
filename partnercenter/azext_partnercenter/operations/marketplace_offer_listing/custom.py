@@ -18,8 +18,3 @@ def update_listing(instance, summary=None, short_description=None, description=N
     if description is not None:
         instance.description = description
     return instance
-
-
-def delete_listing(client, offer_id):
-    return client.delete_offer_listing(offer_id)
-

@@ -57,17 +57,17 @@ class OfferListingClient(BaseClient):
             resource=Resource(id=listing.id, type=listing.resource_type)
         )
 
-    def create_or_update(self, offer_id, listing_model: Listing, plan_external_id=None):
-        offer = self._offer_client.get(offer_id)
+    def create_or_update(self, offer_external_id, listing_model: Listing, plan_external_id=None):
+        offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
         product_id = offer._resource.durable_id
 
         listing = None
         if plan_external_id is None:
-            listing = self._offer_client.get_listing(offer_id)
+            listing = self._offer_client.get_listing(offer_external_id)
         else:
-            listing = self.get_plan_listing(offer_id, plan_external_id)
+            listing = self.get_plan_listing(offer_external_id, plan_external_id)
 
         if listing is None:
             return None
@@ -178,8 +178,8 @@ class OfferListingClient(BaseClient):
             del listing.uris[0]
         return self.create_or_update(product_external_id, listing)
 
-    def get(self, product_external_id):
-        return self._offer_client.get_listing(product_external_id)
+    def get(self, offer_external_id):
+        return self._offer_client.get_listing(offer_external_id)
 
     def _get_product_listing_branches(self, product_external_id):
         offer = self._offer_client.get(product_external_id)

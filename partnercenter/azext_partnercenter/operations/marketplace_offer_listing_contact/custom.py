@@ -21,7 +21,7 @@ def add_contact(instance, contact_type, email=None, name=None, phone=None, uri=N
 
 
 def list_contact(client, offer_id):
-    listing = client.get_listing(offer_id)
+    listing = client.get(offer_id)
     if listing is None:
         raise ResourceNotFoundError('An Offer was not found with that ID.', 'Please check the value set for parameter --offer-id.')
     return listing.contacts
