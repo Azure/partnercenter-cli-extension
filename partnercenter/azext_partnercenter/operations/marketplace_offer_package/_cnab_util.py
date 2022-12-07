@@ -55,7 +55,7 @@ def _run_container(container_name, mount_path):
 
 
 def _get_mount_path(manifest_file):
-    return os.path.dirname(manifest_file)
+    return os.path.abspath(os.path.dirname(manifest_file))
 
 
 def _get_acr_name(manifest_file):

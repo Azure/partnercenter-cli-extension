@@ -40,7 +40,7 @@ class TestData:
     TEST_DIR = os.path.abspath(os.path.join(os.path.abspath(__file__), '..'))
     """The root test directory path"""
 
-    def __init__(self, test_data_dir='latest/data'):
+    def __init__(self, test_data_dir='data'):
         self.test_data_dir = os.path.join(self.TEST_DIR, test_data_dir).replace('\\', '\\\\')
         self._ensure_dir(self.test_data_dir)
 
