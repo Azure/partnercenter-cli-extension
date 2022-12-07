@@ -57,42 +57,6 @@ class PartnercenterScenarioTest(ScenarioTest):
 
         time.sleep(5)
 
-        self.cmd('partnercenter marketplace offer listing show --offer-id {offer_id}',
-                 checks=[self.check('resource.type', 'AzureListing'),
-                         self.check('title', '{offer_alias}')])
-        time.sleep(5)
-
-        self.cmd('partnercenter marketplace offer listing update --offer-id {offer_id} --summary {summary} --short-description {short_description} --description {description}',
-                 checks=[self.check('description', '{description}'),
-                         self.check('shortDescription', '{short_description}'),
-                         self.check('summary', '{summary}')])
-
-        time.sleep(5)
-        self.cmd('partnercenter marketplace offer listing show --offer-id {offer_id}',
-                 checks=[self.check('description', '{description}'),
-                         self.check('shortDescription', '{short_description}'),
-                         self.check('summary', '{summary}'),
-                         self.check('contacts', []),
-                         self.check('uris', [])])
-
-        time.sleep(5)
-
-        self.cmd('partnercenter marketplace offer listing uri add --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri}',
-                 checks=[self.check('description', '{description}'),
-                         self.check('shortDescription', '{short_description}'),
-                         self.check('summary', '{summary}'),
-                         self.check('contacts', []),
-                         self.check('uris[0].type', '{uri_type}'),
-                         self.check('uris[0].subtype', '{uri_sub_type}'),
-                         self.check('uris[0].displayText', '{uri_display_text}'),
-                         self.check('uris[0].uri', '{uri}')])
-
-        time.sleep(5)
-
-        self.cmd('partnercenter marketplace offer listing uri delete --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri} --yes')
-
-        time.sleep(5)
-
         result = self.cmd('az partnercenter marketplace offer listing show --offer-id {offer_id}',
                           checks=[self.check('description', '{description}'),
                                   self.check('shortDescription', '{short_description}'),
