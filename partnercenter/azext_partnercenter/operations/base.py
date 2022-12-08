@@ -16,7 +16,7 @@ class SubGroupOperations:
         self.load_help()
 
     def load_arguments(self, _):
-        self.load_arguments(self.parent.commands_loader, _)
+        self._load_arguments(self.parent.commands_loader, _)
 
     def load_command_table(self, _):
         self._load_command_table(self.parent.commands_loader, _)
