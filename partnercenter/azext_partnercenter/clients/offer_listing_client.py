@@ -57,6 +57,10 @@ class OfferListingClient(BaseClient):
             resource=Resource(id=listing.id, type=listing.resource_type)
         )
 
+    def update(self, offer_external_id, parameters: Listing):
+        """Update an offer listing"""
+        return self.create_or_update(offer_external_id, parameters)
+
     def create_or_update(self, offer_external_id, listing_model: Listing, plan_external_id=None):
         offer = self._offer_client.get(offer_external_id)
         if offer is None:

@@ -16,16 +16,16 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products
   response:
     body:
-      string: '{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"47e791da-273f-40e3-bce1-01966fb8e296"}'
+      string: '{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"a9ba4023-c226-47e9-87ba-9da0301b06a0"}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:20 GMT
+      - Thu, 08 Dec 2022 13:43:19 GMT
       location:
-      - https://api.partner.microsoft.com/v1.0/ingestion/products/47e791da-273f-40e3-bce1-01966fb8e296
+      - https://api.partner.microsoft.com/v1.0/ingestion/products/a9ba4023-c226-47e9-87ba-9da0301b06a0
       request-id:
-      - cf4181f1-7164-4a23-a52e-f683c5adcd3b
+      - 2b471707-ca80-4bf3-9377-1ba29881785e
       transfer-encoding:
       - chunked
     status:
@@ -44,14 +44,14 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27offertest-000001%27%29
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"47e791da-273f-40e3-bce1-01966fb8e296"}]}'
+      string: '{"value":[{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"a9ba4023-c226-47e9-87ba-9da0301b06a0"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:20 GMT
+      - Thu, 08 Dec 2022 13:43:21 GMT
       request-id:
-      - 651f2db6-d12a-4fee-929d-481c9ee7b3fe
+      - d1454e50-25fc-45df-bf39-c04513288e37
       transfer-encoding:
       - chunked
     status:
@@ -72,15 +72,15 @@ interactions:
     body:
       string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFCOUNENjczMzkwXCIsXCJtYXhcIjpcIjA1QzFDOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"thfalgou-offer-4-alias","externalIDs":[{"type":"AzureOfferId","value":"thfalgou-offer-4-id"}],"isModularPublishing":true,"id":"e0a9a297-5571-4f93-86fa-6744ca1d6afe"},{"resourceType":"AzureContainer","name":"thfalgou-offer-5-alias","externalIDs":[{"type":"AzureOfferId","value":"thfalgou-offer-5-id"}],"isModularPublishing":true,"id":"7faeda15-160d-4337-a30d-9e3989ca5007"},{"resourceType":"AzureContainer","name":"Minecraft
         as a Service (free)","externalIDs":[{"type":"AzureOfferId","value":"minecraft-as-a-service-free"}],"isModularPublishing":true,"id":"ba79e6dc-dae0-4ecb-93c4-2699d69c3d47"},{"resourceType":"AzureThirdPartyVirtualMachine","name":"vmoffer1","externalIDs":[{"type":"AzureOfferId","value":"vmoffer1"}],"isModularPublishing":true,"id":"5fdde8e0-f566-4a4a-a3d9-ef548ab5b236"},{"resourceType":"AzureContainer","name":"test-offer-toll-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offer-toll"}],"isModularPublishing":true,"id":"653aa223-2aca-4f90-bf47-244983006bed"},{"resourceType":"AzureContainer","name":"clitestl7kux2jsljxso5ftd
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestl7kux2jsljxso5ftd"}],"isModularPublishing":true,"id":"926da3c8-8729-42ad-a2d1-3e16ddc1fd9e"},{"resourceType":"AzureContainer","name":"clitestnzyf7og4ohqoounkj
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestnzyf7og4ohqoounkj"}],"isModularPublishing":true,"id":"d95a6c3d-1243-4b6c-93e1-c4cad6e5ab10"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestl7kux2jsljxso5ftd"}],"isModularPublishing":true,"id":"926da3c8-8729-42ad-a2d1-3e16ddc1fd9e"},{"resourceType":"AzureContainer","name":"clitestbopwgwneol2opt5lg
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestbopwgwneol2opt5lg"}],"isModularPublishing":true,"id":"b64138f2-9006-4227-aaf5-daf5edd070e5"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:21 GMT
+      - Thu, 08 Dec 2022 13:43:21 GMT
       request-id:
-      - e86869d8-fd17-48da-8e87-5a03c1d35b8e
+      - e6f49802-7034-411f-9ece-5a6227e89876
       transfer-encoding:
       - chunked
     status:
@@ -104,9 +104,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:21 GMT
+      - Thu, 08 Dec 2022 13:43:21 GMT
       request-id:
-      - 124031cb-d698-4bb6-8fa1-8676b67a5ec1
+      - 4d317613-5013-4113-9db1-9dcbf0c62922
       transfer-encoding:
       - chunked
     status:
@@ -130,9 +130,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:22 GMT
+      - Thu, 08 Dec 2022 13:43:22 GMT
       request-id:
-      - a295c84d-26bd-4b72-b713-2280ade296ee
+      - 69339b3d-e54f-4744-838e-dd0f6712c048
       transfer-encoding:
       - chunked
     status:
@@ -156,9 +156,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:22 GMT
+      - Thu, 08 Dec 2022 13:43:22 GMT
       request-id:
-      - ae6fec52-b32a-42cf-8eb6-43635de430cb
+      - ddec8316-faba-41f1-bb41-0e36c5a1d5dc
       transfer-encoding:
       - chunked
     status:
@@ -177,14 +177,16 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEOUNENjczMzkwXCIsXCJtYXhcIjpcIjA1QzFERkZGRkZGRkY0XCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFFNzMzOTlDRDVFXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenarioofferalias","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenarioofferid"}],"isModularPublishing":true,"id":"498cd389-ed84-4b59-99b0-d3d5cf0fb1fb"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFFNzMzOTlDRDVFXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenarioofferalias","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenarioofferid"}],"isModularPublishing":true,"id":"498cd389-ed84-4b59-99b0-d3d5cf0fb1fb"},{"resourceType":"AzureContainer","name":"clitestdll77hpwtxl7rio4r
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestdll77hpwtxl7rio4r"}],"isModularPublishing":true,"id":"9060082a-e0c4-4d0b-8916-706486e746b4"},{"resourceType":"AzureContainer","name":"clitestjb36iflooemb4kgl2
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestjb36iflooemb4kgl2"}],"isModularPublishing":true,"id":"8a2a2009-01fc-41a9-9f93-c124c4a97ba1"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:24 GMT
+      - Thu, 08 Dec 2022 13:43:22 GMT
       request-id:
-      - ea5b3aa7-d091-466d-98d3-e0f0121bc47b
+      - c1090c09-3821-43a5-9fa2-ec36c460932e
       transfer-encoding:
       - chunked
     status:
@@ -203,15 +205,15 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFFNzMzOTlDRDVFXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFNzMzOTlDRDVFXCIsXCJtYXhcIjpcIjA1QzFFOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenario","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenario"}],"isModularPublishing":true,"id":"4de943e8-a5ee-4291-8bf1-5d6f7efda678"},{"resourceType":"AzureContainer","name":"oa76sblmqh","externalIDs":[{"type":"AzureOfferId","value":"olhldim3ae"}],"isModularPublishing":true,"id":"0f183625-5c00-4719-b4cc-2462370cfb9c"},{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"47e791da-273f-40e3-bce1-01966fb8e296"},{"resourceType":"AzureContainer","name":"clitestq3no552afka57xgdi
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestq3no552afka57xgdi"}],"isModularPublishing":true,"id":"1ff46003-a3a7-49da-a48f-0a1bd5a5ad9e"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFNzMzOTlDRDVFXCIsXCJtYXhcIjpcIjA1QzFFOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenario","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenario"}],"isModularPublishing":true,"id":"4de943e8-a5ee-4291-8bf1-5d6f7efda678"},{"resourceType":"AzureContainer","name":"oa76sblmqh","externalIDs":[{"type":"AzureOfferId","value":"olhldim3ae"}],"isModularPublishing":true,"id":"0f183625-5c00-4719-b4cc-2462370cfb9c"},{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"a9ba4023-c226-47e9-87ba-9da0301b06a0"},{"resourceType":"AzureContainer","name":"clitestw46f5hfdh7ex3tp3h
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestw46f5hfdh7ex3tp3h"}],"isModularPublishing":true,"id":"8c14d9b5-6d58-45e5-bdd4-573677e4f839"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:24 GMT
+      - Thu, 08 Dec 2022 13:43:24 GMT
       request-id:
-      - fea0da52-1ac1-4f97-a332-afa4a1e4459b
+      - b3e8ec34-4cf0-4755-85ac-e912dbf06607
       transfer-encoding:
       - chunked
     status:
@@ -236,9 +238,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:25 GMT
+      - Thu, 08 Dec 2022 13:43:24 GMT
       request-id:
-      - 1741a0da-b557-4bf2-a4fc-2739271dc56e
+      - 49272749-110a-416a-9260-677a7cc6739a
       transfer-encoding:
       - chunked
     status:
@@ -257,16 +259,14 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFOUNENjczMzkwXCIsXCJtYXhcIjpcIjA1QzFFRDY3MzM5OUMyXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFRDY3MzM5OUMyXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacportal1","externalIDs":[{"type":"AzureOfferId","value":"bobjacportal1"}],"isModularPublishing":true,"id":"2dc56d05-8272-426c-bbfb-c5bf6c754fe0"},{"resourceType":"AzureContainer","name":"ashwin","externalIDs":[{"type":"AzureOfferId","value":"ashwin"}],"isModularPublishing":true,"id":"e3d9cc0f-e319-4d1b-9d1e-010b8296593b"},{"resourceType":"AzureContainer","name":"test-offerkbdqt-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offerkbdqt"}],"isModularPublishing":true,"id":"81491096-fa9a-429f-ae44-94683ddc9cc2"},{"resourceType":"AzureContainer","name":"test-offer-6mqn-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offer-6mqn"}],"isModularPublishing":true,"id":"d02da7f6-a0ad-4266-9c56-937fa21539de"},{"resourceType":"AzureContainer","name":"clitesttmgiso6zilav5nvgb
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitesttmgiso6zilav5nvgb"}],"isModularPublishing":true,"id":"2d0d0ed8-e0eb-47db-9d82-24cc1289f861"},{"resourceType":"AzureContainer","name":"clitest5t2tkwu473u3dn6hz
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest5t2tkwu473u3dn6hz"}],"isModularPublishing":true,"id":"9512790e-be67-426e-a8d3-69eb7d133864"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFRDY3MzM5OUMyXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacportal1","externalIDs":[{"type":"AzureOfferId","value":"bobjacportal1"}],"isModularPublishing":true,"id":"2dc56d05-8272-426c-bbfb-c5bf6c754fe0"},{"resourceType":"AzureContainer","name":"ashwin","externalIDs":[{"type":"AzureOfferId","value":"ashwin"}],"isModularPublishing":true,"id":"e3d9cc0f-e319-4d1b-9d1e-010b8296593b"},{"resourceType":"AzureContainer","name":"test-offerkbdqt-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offerkbdqt"}],"isModularPublishing":true,"id":"81491096-fa9a-429f-ae44-94683ddc9cc2"},{"resourceType":"AzureContainer","name":"test-offer-6mqn-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offer-6mqn"}],"isModularPublishing":true,"id":"d02da7f6-a0ad-4266-9c56-937fa21539de"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:25 GMT
+      - Thu, 08 Dec 2022 13:43:25 GMT
       request-id:
-      - 8c54aed3-241d-470a-aaa0-a5b0af1188ce
+      - 3b7f98ac-1350-4bbe-91f5-c1e5f8327624
       transfer-encoding:
       - chunked
     status:
@@ -290,9 +290,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:26 GMT
+      - Thu, 08 Dec 2022 13:43:25 GMT
       request-id:
-      - 15fa575c-56d4-4cf5-8f9a-4918747d783e
+      - 9c7c8e6d-f17d-44f1-8526-1a8bfa94b463
       transfer-encoding:
       - chunked
     status:
@@ -311,14 +311,14 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27offertest-000001%27%29
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"47e791da-273f-40e3-bce1-01966fb8e296"}]}'
+      string: '{"value":[{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"a9ba4023-c226-47e9-87ba-9da0301b06a0"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:26 GMT
+      - Thu, 08 Dec 2022 13:43:26 GMT
       request-id:
-      - bc3076ec-efe6-4d3a-8199-ee9056f52221
+      - 19fd7d48-fd71-4614-8b0b-fa64c12be81f
       transfer-encoding:
       - chunked
     status:
@@ -334,7 +334,7 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: DELETE
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/47e791da-273f-40e3-bce1-01966fb8e296
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/a9ba4023-c226-47e9-87ba-9da0301b06a0
   response:
     body:
       string: ''
@@ -342,9 +342,9 @@ interactions:
       content-length:
       - '0'
       date:
-      - Wed, 07 Dec 2022 19:09:28 GMT
+      - Thu, 08 Dec 2022 13:43:28 GMT
       request-id:
-      - ab195bcf-b2dd-44ff-a358-493b328e523c
+      - 4facb40a-20e6-4324-981e-15be73078907
     status:
       code: 204
       message: No Content
@@ -363,15 +363,15 @@ interactions:
     body:
       string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFCOUNENjczMzkwXCIsXCJtYXhcIjpcIjA1QzFDOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"thfalgou-offer-4-alias","externalIDs":[{"type":"AzureOfferId","value":"thfalgou-offer-4-id"}],"isModularPublishing":true,"id":"e0a9a297-5571-4f93-86fa-6744ca1d6afe"},{"resourceType":"AzureContainer","name":"thfalgou-offer-5-alias","externalIDs":[{"type":"AzureOfferId","value":"thfalgou-offer-5-id"}],"isModularPublishing":true,"id":"7faeda15-160d-4337-a30d-9e3989ca5007"},{"resourceType":"AzureContainer","name":"Minecraft
         as a Service (free)","externalIDs":[{"type":"AzureOfferId","value":"minecraft-as-a-service-free"}],"isModularPublishing":true,"id":"ba79e6dc-dae0-4ecb-93c4-2699d69c3d47"},{"resourceType":"AzureThirdPartyVirtualMachine","name":"vmoffer1","externalIDs":[{"type":"AzureOfferId","value":"vmoffer1"}],"isModularPublishing":true,"id":"5fdde8e0-f566-4a4a-a3d9-ef548ab5b236"},{"resourceType":"AzureContainer","name":"test-offer-toll-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offer-toll"}],"isModularPublishing":true,"id":"653aa223-2aca-4f90-bf47-244983006bed"},{"resourceType":"AzureContainer","name":"clitestl7kux2jsljxso5ftd
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestl7kux2jsljxso5ftd"}],"isModularPublishing":true,"id":"926da3c8-8729-42ad-a2d1-3e16ddc1fd9e"},{"resourceType":"AzureContainer","name":"clitestnzyf7og4ohqoounkj
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestnzyf7og4ohqoounkj"}],"isModularPublishing":true,"id":"d95a6c3d-1243-4b6c-93e1-c4cad6e5ab10"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestl7kux2jsljxso5ftd"}],"isModularPublishing":true,"id":"926da3c8-8729-42ad-a2d1-3e16ddc1fd9e"},{"resourceType":"AzureContainer","name":"clitestbopwgwneol2opt5lg
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestbopwgwneol2opt5lg"}],"isModularPublishing":true,"id":"b64138f2-9006-4227-aaf5-daf5edd070e5"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:29 GMT
+      - Thu, 08 Dec 2022 13:43:28 GMT
       request-id:
-      - d0bd6410-d5d9-42bd-91b8-155f56f1e24e
+      - 75e4d175-a1e7-41e7-830b-8f84333153fb
       transfer-encoding:
       - chunked
     status:
@@ -395,9 +395,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:29 GMT
+      - Thu, 08 Dec 2022 13:43:28 GMT
       request-id:
-      - 08c6591c-65cf-427d-882b-756ebba31009
+      - b385b549-9813-4df3-ba23-fd5d083d680c
       transfer-encoding:
       - chunked
     status:
@@ -421,9 +421,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:29 GMT
+      - Thu, 08 Dec 2022 13:43:29 GMT
       request-id:
-      - b8c0a688-6e51-4a65-aeae-5e4aea3e5101
+      - eee09d7c-ebf9-40c5-a548-e3edc0f29932
       transfer-encoding:
       - chunked
     status:
@@ -447,9 +447,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:30 GMT
+      - Thu, 08 Dec 2022 13:43:29 GMT
       request-id:
-      - aaf1ab9f-539c-4060-af72-7d0309ef12b1
+      - f1ad0597-ebe2-49d7-b56f-0faa58919e05
       transfer-encoding:
       - chunked
     status:
@@ -468,14 +468,16 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEOUNENjczMzkwXCIsXCJtYXhcIjpcIjA1QzFERkZGRkZGRkY0XCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFFNzMzOTlDRDVFXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenarioofferalias","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenarioofferid"}],"isModularPublishing":true,"id":"498cd389-ed84-4b59-99b0-d3d5cf0fb1fb"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFFNzMzOTlDRDVFXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenarioofferalias","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenarioofferid"}],"isModularPublishing":true,"id":"498cd389-ed84-4b59-99b0-d3d5cf0fb1fb"},{"resourceType":"AzureContainer","name":"clitestdll77hpwtxl7rio4r
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestdll77hpwtxl7rio4r"}],"isModularPublishing":true,"id":"9060082a-e0c4-4d0b-8916-706486e746b4"},{"resourceType":"AzureContainer","name":"clitestjb36iflooemb4kgl2
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestjb36iflooemb4kgl2"}],"isModularPublishing":true,"id":"8a2a2009-01fc-41a9-9f93-c124c4a97ba1"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:30 GMT
+      - Thu, 08 Dec 2022 13:43:29 GMT
       request-id:
-      - 5049cd28-6234-4430-87ff-808db4783b9c
+      - a82a6476-6b24-49a0-9452-3db6cf0b9f61
       transfer-encoding:
       - chunked
     status:
@@ -494,15 +496,15 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFFNzMzOTlDRDVFXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFNzMzOTlDRDVFXCIsXCJtYXhcIjpcIjA1QzFFOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenario","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenario"}],"isModularPublishing":true,"id":"4de943e8-a5ee-4291-8bf1-5d6f7efda678"},{"resourceType":"AzureContainer","name":"oa76sblmqh","externalIDs":[{"type":"AzureOfferId","value":"olhldim3ae"}],"isModularPublishing":true,"id":"0f183625-5c00-4719-b4cc-2462370cfb9c"},{"resourceType":"AzureContainer","name":"clitestq3no552afka57xgdi
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestq3no552afka57xgdi"}],"isModularPublishing":true,"id":"1ff46003-a3a7-49da-a48f-0a1bd5a5ad9e"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFNzMzOTlDRDVFXCIsXCJtYXhcIjpcIjA1QzFFOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenario","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenario"}],"isModularPublishing":true,"id":"4de943e8-a5ee-4291-8bf1-5d6f7efda678"},{"resourceType":"AzureContainer","name":"oa76sblmqh","externalIDs":[{"type":"AzureOfferId","value":"olhldim3ae"}],"isModularPublishing":true,"id":"0f183625-5c00-4719-b4cc-2462370cfb9c"},{"resourceType":"AzureContainer","name":"clitestw46f5hfdh7ex3tp3h
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestw46f5hfdh7ex3tp3h"}],"isModularPublishing":true,"id":"8c14d9b5-6d58-45e5-bdd4-573677e4f839"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:30 GMT
+      - Thu, 08 Dec 2022 13:43:30 GMT
       request-id:
-      - 31483039-53a9-497a-b2fa-329080662be7
+      - 0bed3e1d-ebb2-400b-b04a-ab2d3d31bacb
       transfer-encoding:
       - chunked
     status:
@@ -527,9 +529,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:31 GMT
+      - Thu, 08 Dec 2022 13:43:30 GMT
       request-id:
-      - 241fe395-dfec-405e-b46e-9002854e87c1
+      - b9a89ff1-591c-41aa-a9f2-0951ebdaa843
       transfer-encoding:
       - chunked
     status:
@@ -548,16 +550,14 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFOUNENjczMzkwXCIsXCJtYXhcIjpcIjA1QzFFRDY3MzM5OUMyXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFRDY3MzM5OUMyXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacportal1","externalIDs":[{"type":"AzureOfferId","value":"bobjacportal1"}],"isModularPublishing":true,"id":"2dc56d05-8272-426c-bbfb-c5bf6c754fe0"},{"resourceType":"AzureContainer","name":"ashwin","externalIDs":[{"type":"AzureOfferId","value":"ashwin"}],"isModularPublishing":true,"id":"e3d9cc0f-e319-4d1b-9d1e-010b8296593b"},{"resourceType":"AzureContainer","name":"test-offerkbdqt-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offerkbdqt"}],"isModularPublishing":true,"id":"81491096-fa9a-429f-ae44-94683ddc9cc2"},{"resourceType":"AzureContainer","name":"test-offer-6mqn-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offer-6mqn"}],"isModularPublishing":true,"id":"d02da7f6-a0ad-4266-9c56-937fa21539de"},{"resourceType":"AzureContainer","name":"clitesttmgiso6zilav5nvgb
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitesttmgiso6zilav5nvgb"}],"isModularPublishing":true,"id":"2d0d0ed8-e0eb-47db-9d82-24cc1289f861"},{"resourceType":"AzureContainer","name":"clitest5t2tkwu473u3dn6hz
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest5t2tkwu473u3dn6hz"}],"isModularPublishing":true,"id":"9512790e-be67-426e-a8d3-69eb7d133864"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFRDY3MzM5OUMyXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacportal1","externalIDs":[{"type":"AzureOfferId","value":"bobjacportal1"}],"isModularPublishing":true,"id":"2dc56d05-8272-426c-bbfb-c5bf6c754fe0"},{"resourceType":"AzureContainer","name":"ashwin","externalIDs":[{"type":"AzureOfferId","value":"ashwin"}],"isModularPublishing":true,"id":"e3d9cc0f-e319-4d1b-9d1e-010b8296593b"},{"resourceType":"AzureContainer","name":"test-offerkbdqt-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offerkbdqt"}],"isModularPublishing":true,"id":"81491096-fa9a-429f-ae44-94683ddc9cc2"},{"resourceType":"AzureContainer","name":"test-offer-6mqn-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offer-6mqn"}],"isModularPublishing":true,"id":"d02da7f6-a0ad-4266-9c56-937fa21539de"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:31 GMT
+      - Thu, 08 Dec 2022 13:43:30 GMT
       request-id:
-      - 2e222d6d-d427-4612-9797-fd0c5698db16
+      - 0473e557-1f5d-4d5c-8fa8-6ef1860fd8ba
       transfer-encoding:
       - chunked
     status:
@@ -581,9 +581,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Wed, 07 Dec 2022 19:09:33 GMT
+      - Thu, 08 Dec 2022 13:43:32 GMT
       request-id:
-      - e76f3f97-673b-4495-8473-2df2d3e04204
+      - c372c831-1e66-4667-b427-e6ee09d3d2c3
       transfer-encoding:
       - chunked
     status:
