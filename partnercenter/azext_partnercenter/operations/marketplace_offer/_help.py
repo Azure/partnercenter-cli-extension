@@ -13,29 +13,39 @@ def load_help():
         short-summary: Manage Marketplace offers.
     """
 
+
+    helps['partnercenter marketplace offer show'] = """
+        type: command
+        short-summary: Get a marketplace offer
+        examples:
+        - name: Get an offer
+          text: |-
+                az partnercenter marketplace offer show --id MyOfferId
+    """
+
     helps['partnercenter marketplace offer create'] = """
         type: command
         short-summary: Create a marketplace offer
         examples:
         - name: Create an offer
-            text: |-
+          text: |-
                 az partnercenter marketplace offer create --id MyOfferId
     """
 
-    helps['partnercenter marketplace offer create delete'] = """
+    helps['partnercenter marketplace offer delete'] = """
         type: command
         short-summary: Delete a marketplace offer
         examples:
         - name: Delete an offer
-            text: |-
+          text: |-
                 az partnercenter marketplace offer delete --id MyOfferId
     """
 
     helps['partnercenter marketplace offer create list'] = """
         type: command
-        short-summary: List marketplace offers
+        short-summary: Delete a marketplace offer
         examples:
-        - name: List offers
-            text: |-
-                az partnercenter marketplace offer list
+        - name: Delete an offer
+          text: |-
+                az partnercenter marketplace offer delete --id MyOfferId
     """

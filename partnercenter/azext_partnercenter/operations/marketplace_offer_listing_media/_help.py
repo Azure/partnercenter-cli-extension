@@ -12,3 +12,5 @@ def load_help():
         type: group
         short-summary: Manage a Marketplace Offer listing's media including images, videos, and thumbnails.
     """
+
+    
