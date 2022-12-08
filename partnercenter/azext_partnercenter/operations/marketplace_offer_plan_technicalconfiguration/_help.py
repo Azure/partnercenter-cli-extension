@@ -12,3 +12,9 @@ def load_help():
         type: group
         short-summary: Manage a Marketplace offer plan's technical configuration.
     """
+
+    helps['partnercenter marketplace offer plan technical-configuration package'] = """
+        type: group
+        short-summary: Manage packages for a plan's technical configuration.
+    """
+    
