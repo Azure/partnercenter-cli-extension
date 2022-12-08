@@ -33,7 +33,6 @@ def _execute_action_by_offer_type(client, offer_id, action):
         # if the offer type is "AzureApplication" AND the offer is setup to sell through Microsoft, we can build a CNAB bundle for it
         if offer_setup.sell_through_microsoft:
             action()
-            return
         else:
             raise InvalidArgumentValueError(f'{offer_id} offer is not setup to support a CNAB bundle. The offer type must be {OfferType.AZUREAPPLICATION} and setup to sell through Microsoft',
                                             f'Update the offer\'s setup to sell through Microsoft.\n\n   az partercenter marketplace offer setup --offer-id {offer_id} --sell-through-microsoft')
