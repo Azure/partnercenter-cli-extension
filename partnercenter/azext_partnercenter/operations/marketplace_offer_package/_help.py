@@ -7,7 +7,8 @@
 from knack.help_files import helps
 
 
-helps['partnercenter marketplace offer package'] = """
-    type: group
-    short-summary: Build and verify offer packages, including CNAB bundles for AKS (Azure Container offerings that you sell through Microsoft).
-"""
+def load_help():
+    helps['partnercenter marketplace offer package'] = """
+        type: group
+        short-summary: Build and verify offer packages, including CNAB bundles for AKS (Azure Container offerings that you sell through Microsoft).
+    """

@@ -7,7 +7,8 @@
 from knack.help_files import helps
 
 
-helps['partnercenter marketplace offer plan listing'] = """
-    type: group
-    short-summary: Manage a Marketplace offer plan's listing.
-"""
+def load_help():
+    helps['partnercenter marketplace offer plan listing'] = """
+        type: group
+        short-summary: Manage a Marketplace offer plan's listing.
+    """

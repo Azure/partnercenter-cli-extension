@@ -7,7 +7,8 @@
 from knack.help_files import helps
 
 
-helps['partnercenter marketplace offer listing media'] = """
-    type: group
-    short-summary: Manage a Marketplace Offer listing's media including images, videos, and thumbnails.
-"""
+def load_help():
+    helps['partnercenter marketplace offer listing media'] = """
+        type: group
+        short-summary: Manage a Marketplace Offer listing's media including images, videos, and thumbnails.
+    """
