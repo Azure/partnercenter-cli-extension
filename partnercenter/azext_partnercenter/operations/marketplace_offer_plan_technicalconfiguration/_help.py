@@ -17,4 +17,14 @@ def load_help():
         type: group
         short-summary: Manage packages for a plan's technical configuration.
     """
+
+    helps['partnercenter marketplace offer plan technical-configuration show'] = """
+        type: command
+        short-summary: Show a plan's technical configuration
+    """
+
+    helps['partnercenter marketplace offer plan technical-configuration package add'] = """
+        type: command
+        short-summary: Adds a package to the technical configuration of a plan
+    """
     

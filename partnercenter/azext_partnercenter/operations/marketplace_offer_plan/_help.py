@@ -22,15 +22,6 @@ def load_help():
                 az partnercenter marketplace offer plan show --offer-id MyOfferId --plan-id MyPlanId
     """
 
-    helps['partnercenter marketplace offer plan update'] = """
-        type: command
-        short-summary: Update the plan of a marketplace offer
-        examples:
-        - name: Update an offer plan
-          text: |-
-                az partnercenter marketplace offer plan update --offer-id MyOfferId --plan-id MyPlanId
-    """
-
     helps['partnercenter marketplace offer plan list'] = """
         type: command
         short-summary: List the plans of a marketplace offer
@@ -38,4 +29,23 @@ def load_help():
         - name: List an offer's plans
           text: |-
                 az partnercenter marketplace offer plan list --offer-id MyOfferId
+    """
+
+    helps['partnercenter marketplace offer plan create'] = """
+        type: command
+        short-summary: Create a plan for a marketplace offer
+        examples:
+        - name: Create a plan for an offer
+          text: |-
+                az partnercenter marketplace offer plan create --offer-id MyOfferId --plan-id MyPlanId \
+                    --friendly-name "My Plan Name"
+    """
+
+    helps['partnercenter marketplace offer plan delete'] = """
+        type: command
+        short-summary: Delete a plan for a marketplace offer
+        examples:
+        - name: Delete a plan for an offer
+          text: |-
+                az partnercenter marketplace offer plan delete --offer-id MyOfferId --plan-id MyPlanId
     """

@@ -19,7 +19,8 @@ def load_help():
         examples:
         - name: Add URI to an offer's listing
           text: |-
-                az partnercenter marketplace offer listing uri add --offer-id MyOfferId --uri https://myuri --type PrivacyUri
+                az partnercenter marketplace offer listing uri add --offer-id MyOfferId --uri https://myuri \
+                    --type PrivacyUri --subtype mySubType --display-text "My Privacy Policy"
     """
 
     helps['partnercenter marketplace offer listing uri delete'] = """

@@ -13,7 +13,7 @@ def load_help():
         short-summary: Manage the creation of offer packages, including CNAB bundles for AKS (Azure Container offerings that you sell through Microsoft).
     """
 
-    helps['partnercenter marketplace offer package build'] = """
+    helps['partnercenter marketplace offer package verify'] = """
         type: command
         short-summary: Verifies the package contents for an offer prior to building it
         examples:

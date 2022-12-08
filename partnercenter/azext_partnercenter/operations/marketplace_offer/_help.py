@@ -27,9 +27,9 @@ def load_help():
         type: command
         short-summary: Create a marketplace offer
         examples:
-        - name: Create an offer
+        - name: Create an Azure Container offer
           text: |-
-                az partnercenter marketplace offer create --id MyOfferId
+                az partnercenter marketplace offer create --id MyOfferId --alias "My Offer Alias" --type AzureContainer
     """
 
     helps['partnercenter marketplace offer delete'] = """
@@ -41,11 +41,11 @@ def load_help():
                 az partnercenter marketplace offer delete --id MyOfferId
     """
 
-    helps['partnercenter marketplace offer create list'] = """
+    helps['partnercenter marketplace offer list'] = """
         type: command
-        short-summary: Delete a marketplace offer
+        short-summary: List marketplace offers
         examples:
-        - name: Delete an offer
+        - name: List all offer
           text: |-
-                az partnercenter marketplace offer delete --id MyOfferId
+                az partnercenter marketplace offer list
     """

@@ -17,16 +17,16 @@ def load_help():
         type: command
         short-summary: Add media for a marketplace offer listing
         examples:
-        - name: Add media to an offer's listing
+        - name: Add the Large Logo to an offer's listing
           text: |-
-                az partnercenter marketplace offer listing media add --offer-id MyOfferId --type LargeLogo
+                az partnercenter marketplace offer listing media add --offer-id MyOfferId --type LargeLogo --file local/path/to/file
     """
 
     helps['partnercenter marketplace offer listing media delete'] = """
         type: command
         short-summary: Delete media for a marketplace offer listing
         examples:
-        - name: Delete a media to an offer's listing
+        - name: Delete the Large Logo for an offer's listing
           text: |-
                 az partnercenter marketplace offer listing media delete --offer-id MyOfferId --type LargeLogo
     """

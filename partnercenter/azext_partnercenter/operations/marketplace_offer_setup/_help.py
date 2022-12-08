@@ -12,3 +12,21 @@ def load_help():
         type: group
         short-summary: Manage a Marketplace Offer's setup.
     """
+
+    helps['partnercenter marketplace offer setup create'] = """
+        type: command
+        short-summary: Create a marketplace offer
+        examples:
+        - name: Create an offer setup
+          text: |-
+                az partnercenter marketplace offer setup create --offer-id MyOfferId
+    """
+
+    helps['partnercenter marketplace offer setup show'] = """
+        type: command
+        short-summary: Show the offer setup
+        examples:
+        - name: Show an offer's setup
+          text: |-
+                az partnercenter marketplace offer setup show --offer-id MyOfferId
+    """

@@ -37,5 +37,5 @@ def load_help():
         examples:
         - name: List the contacts for an offer's listing
           text: |-
-                az partnercenter marketplace offer listing contact list
+                az partnercenter marketplace offer listing contact list --offer-id MyOfferId
     """
