@@ -24,7 +24,7 @@ def load_help():
 
     helps['partnercenter marketplace offer listing uri delete'] = """
         type: command
-        short-summary: Delete uri for a marketplace offer listing
+        short-summary: Delete a URI for a marketplace offer listing
         examples:
         - name: Delete a URI for an offer's listing
           text: |-
