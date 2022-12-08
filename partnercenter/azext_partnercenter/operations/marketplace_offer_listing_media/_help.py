@@ -13,7 +13,6 @@ def load_help():
         short-summary: Manage a Marketplace Offer listing's media including images, videos, and thumbnails.
     """
 
-
     helps['partnercenter marketplace offer listing media add'] = """
         type: command
         short-summary: Add media for a marketplace offer listing
@@ -40,4 +39,3 @@ def load_help():
           text: |-
                 az partnercenter marketplace offer listing media list --offer-id MyOfferId
     """
-    
