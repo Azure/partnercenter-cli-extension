@@ -22,7 +22,6 @@ def load_help():
                 az partnercenter marketplace offer plan listing show --offer-id MyOfferId --plan-id MyPlanId
     """
 
-
     helps['partnercenter marketplace offer plan listing update'] = """
         type: command
         short-summary: Update the plan listing of a marketplace offer

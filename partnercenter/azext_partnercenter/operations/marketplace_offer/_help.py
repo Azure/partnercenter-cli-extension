@@ -13,7 +13,6 @@ def load_help():
         short-summary: Manage Marketplace offers.
     """
 
-
     helps['partnercenter marketplace offer show'] = """
         type: command
         short-summary: Get a marketplace offer

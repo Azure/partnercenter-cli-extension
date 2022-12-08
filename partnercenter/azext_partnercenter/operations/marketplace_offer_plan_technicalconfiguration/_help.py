@@ -27,4 +27,3 @@ def load_help():
         type: command
         short-summary: Adds a package to the technical configuration of a plan
     """
-    
