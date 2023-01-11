@@ -115,7 +115,7 @@ class PlanClient(BaseClient):
 
         if plan is None:
             return
-        
+
         offer_durable_id = offer._resource.durable_id
         plan_resource_id = plan._resource.durable_id
         self._sdk.variant_client.products_product_id_variants_variant_id_delete(offer_durable_id, plan_resource_id, self._api_client.configuration.access_token, async_req=True)

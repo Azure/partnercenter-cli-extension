@@ -17,13 +17,13 @@ class PartnerCenterMarketplaceOfferPlanScenarioTest(PartnerCenterScenarioTest):
         self.cmd('partnercenter marketplace offer plan create --offer-id {offer_id} --id {plan_id} -n \'{plan_name}\'',
                  checks=[self.check('id', '{plan_id}'),
                          self.check('name', '{plan_name}')])
-        
+
         self.cmd('partnercenter marketplace offer plan show --offer-id {offer_id} --id {plan_id}',
                  checks=[self.check('id', '{plan_id}'),
                          self.check('name', '{plan_name}')])
-        
+
         self.cmd('partnercenter marketplace offer plan delete --offer-id {offer_id} --id {plan_id}')
-        
+
         result = self.cmd('partnercenter marketplace offer plan list --offer-id {offer_id} ').get_output_in_json()
         self.assertEqual(len(result), 0)
 
