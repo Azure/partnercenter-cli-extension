@@ -8,10 +8,10 @@ from msrest.serialization import Model
 
 class OfferSetup(Model):
     _attribute_map = {
-        'sellThroughMicrosoft': {'key': 'sell_through_microsoft', 'type': 'bool'},
-        'trialUri': {'key': 'trial_uri', 'type': 'str'},
-        'enableTestDrive': {'key': 'enable_test_drive', 'type': 'bool'},
-        'channelStates': {'key': 'channel_states', 'type': '[dict]'}
+        'sell_through_microsoft': {'key': 'sellThroughMicrosoft', 'type': 'bool'},
+        'trial_uri': {'key': 'trialUri', 'type': 'str'},
+        'enable_test_drive': {'key': 'enableTestDrive', 'type': 'bool'},
+        'channel_states': {'key': 'channelStates', 'type': '[dict]'}
     }
 
     def __init__(self, **kwargs):
