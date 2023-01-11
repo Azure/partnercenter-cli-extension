@@ -9,7 +9,7 @@ from msrest.serialization import Model
 class Resource(Model):
     """This is to track the resource durable and external id and type of the objects."""
     _attribute_map = {
-        'durableId': {'key': 'durable_id', 'type': 'str'},
+        'durable_id': {'key': 'durableId', 'type': 'str'},
         'type': {'key': 'type', 'type': 'str'},
     }
 

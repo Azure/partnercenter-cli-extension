@@ -19,7 +19,7 @@ def load_help():
         examples:
         - name: Get an offer's plan
           text: |-
-                az partnercenter marketplace offer plan show --offer-id MyOfferId --plan-id MyPlanId
+                az partnercenter marketplace offer plan show --id MyPlanId --offer-id MyOfferId
     """
 
     helps['partnercenter marketplace offer plan list'] = """
@@ -37,8 +37,7 @@ def load_help():
         examples:
         - name: Create a plan for an offer
           text: |-
-                az partnercenter marketplace offer plan create --offer-id MyOfferId --plan-id MyPlanId \
-                    --friendly-name "My Plan Name"
+                az partnercenter marketplace offer plan create --id MyPlanId --name "My Plan Name" --offer-id MyOfferId
     """
 
     helps['partnercenter marketplace offer plan delete'] = """
@@ -47,5 +46,5 @@ def load_help():
         examples:
         - name: Delete a plan for an offer
           text: |-
-                az partnercenter marketplace offer plan delete --offer-id MyOfferId --plan-id MyPlanId
+                az partnercenter marketplace offer plan delete --id MyPlanId --offer-id MyOfferId
     """

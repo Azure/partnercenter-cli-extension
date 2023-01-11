@@ -17,17 +17,23 @@ class PlanClient(BaseClient):
         super().__init__(cli_ctx, *_)
         self._offer_client = OfferClient(cli_ctx, *_)
 
-    def create(self, offer_external_id, plan_external_id, friendly_name):
+    def create(self, offer_external_id, plan_external_id, name):
         resource_type = "AzureSkuVariant"
         offer = self._offer_client.get(offer_external_id)
         product_id = offer._resource.durable_id
 
-        prod_var_req = ProductsProductIDVariantsGetRequest(resource_type=resource_type, friendly_name=friendly_name, external_id=plan_external_id)
+        prod_var_req = ProductsProductIDVariantsGetRequest(resource_type=resource_type, friendly_name=name, external_id=plan_external_id)
         result = self._sdk.variant_client.products_product_id_variants_post(product_id=product_id,
                                                                             authorization=self._api_client.configuration.access_token,
                                                                             products_product_id_variants_get_request=prod_var_req)
-
-        return result.to_dict()
+        return Plan(
+            id=result.external_id,
+            name=result.friendly_name,
+            offer_id=offer_external_id,
+            state=result.state,
+            cloud_availabilities=result.cloud_availabilities,
+            resource=Resource(durable_id=result.id, type=result.resource_type)
+        )
 
     def get(self, offer_external_id, plan_external_id):
         return self.find_by_external_id(offer_external_id, plan_external_id)
@@ -35,11 +41,11 @@ class PlanClient(BaseClient):
     def list(self, offer_external_id):
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
-            return None
+            return []
 
-        offer_resource_id = offer._resource.durable_id
+        offer_durable_id = offer._resource.durable_id
         variants = get_combined_paged_results(lambda: self._sdk.variant_client.products_product_id_variants_get(
-            offer_resource_id,
+            offer_durable_id,
             self._api_client.configuration.access_token))
 
         items = []
@@ -51,7 +57,7 @@ class PlanClient(BaseClient):
                 offer_id=offer_external_id,
                 state=variant['state'],
                 cloud_availabilities=variant['cloudAvailabilities'],
-                resource=Resource(id=variant['id'], type=variant['resourceType'])
+                resource=Resource(durable_id=variant['id'], type=variant['resourceType'])
             )
             items.append(item)
 
@@ -99,16 +105,17 @@ class PlanClient(BaseClient):
         )
         return item
 
-    def delete(self, offer_id, plan_external_id):
-        offer = self._offer_client.get(offer_id)
-        if offer is None:
-            return None
+    def delete(self, offer_external_id, plan_external_id):
+        offer = self._offer_client.get(offer_external_id)
 
-        offer_resource_id = offer._resource.durable_id
-        plan = self.find_by_external_id(offer_resource_id, plan_external_id)
+        if offer is None:
+            return
+
+        plan = self.find_by_external_id(offer_external_id, plan_external_id)
 
         if plan is None:
-            return None
-
+            return
+        
+        offer_durable_id = offer._resource.durable_id
         plan_resource_id = plan._resource.durable_id
-        return self._sdk.variant_client.products_product_id_variants_variant_id_delete(offer_resource_id, plan_resource_id, self._api_client.configuration.access_token, async_req=True)
+        self._sdk.variant_client.products_product_id_variants_variant_id_delete(offer_durable_id, plan_resource_id, self._api_client.configuration.access_token, async_req=True)

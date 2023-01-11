@@ -61,7 +61,7 @@ class OfferClient(BaseClient):
 
     def _map_product_to_offer(self, product):
         return Offer(
-            id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
+            id=(next((x for x in product['externalIDs'] if x['type'] == "AzureOfferId"), None))['value'],
             alias=product.name,
             type=product.resource_type,
             resource=Resource(durable_id=product.id, type=product.resource_type)
