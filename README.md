@@ -1,19 +1,36 @@
-# Azure CLI Extension for Partner Center
+# Partner Center Azure CLI Extension (Preview)
 
-The Azure CLI Extension for Partner Center adds Marketplace commands to the Azure CLI 2.0.
-
+The Partner Center CLI Extension adds Partner Center commands to the Azure CLI 2.0. 
 
 ## Quickstart
 
 1. Install the Azure CLI. You must have at least v2.0.69, which you can verify with az --version command.
-
-2. Add the Azure CLI Extension for Partner Center az extension add --name partnercenter
-
+2. Add the Partner Center Azure CLI Extension
 3. Run the az login command
 
 If the CLI can open your default browser, it will do so and load a sign-in page. Otherwise, you need to open a browser page and follow the instructions on the command line to enter an authorization code after navigating to https://aka.ms/devicelogin in your browser. For more information, see the Azure CLI login page.
 
 > See the [How to associate an Azure AD application with your Partner Center account](https://learn.microsoft.com/en-us/azure/marketplace/azure-app-apis#how-to-associate-an-azure-ad-application-with-your-partner-center-account)
+
+### 2. Adding the Partner Center CLI extension
+
+The extension is the officially listed Azure CLI extension for Partner Center.
+
+```bash
+az extension add --name partnercenter
+```
+
+> IMPORTANT: Due to being still preview, the latest version of the extension that's been published to the official Azure CLI extensions index may be different than 
+the latest version we've released. To add the latest, unpublished version that's been released: 
+
+1. Go to the [releases](https://github.com/Azure/partnercenter-cli-extension/releases)
+2. Choose the version you'd like to add to your Azure CLI instance
+3. Right-click on the *.whl file and copy the URL
+4. Finally, install the extension using the wheel URL
+
+```bash
+az extension add --source https://github.com/Azure/partnercenter-cli-extension/releases/download/v0.1.1-alpha/partnercenter-0.1.1-py3-none-any.whl
+```
 
 ## Usage
 
@@ -21,9 +38,11 @@ If the CLI can open your default browser, it will do so and load a sign-in page.
 $ az partnercenter [subgroup(s)] [command] {parameters}
 ```
 
-Adding the Extension, exposes the `marketplace` group. Within the marketplace group, the following subgroups are available: 
-- `offer` - includes subgroups `setup`, `listing`, `listing media`, `plan` 
-- `bundle` - subgroup for building and verifying CNAB bundles to add to the Technical Configuration of an Offer's Plan.
+Adding the Extension, exposes the `marketplace` group. Within the marketplace group, here are some of the primary subgroups available: 
+
+- `offer` - includes subgroups `package`, `setup`, `listing`, `listing media`, `plan` 
+- `offer plan` - includes subgroups `technical-configuration`
+- `offer plan technical-configuration` - includes subgroup `package`
 
 For usage and help content for any command, pass in the -h parameter, for example:
 
@@ -34,6 +53,7 @@ Group
     az partnercenter marketplace offer
 Subgroups:
     listing
+    package
     plan
     setup
 
@@ -44,7 +64,7 @@ Commands:
     show
 ```
 
-- You can view the various commands and its usage here - [docs.microsoft.com - Azure CLI Extension for Partner Center Reference](https://docs.microsoft.com/en-us/cli/azure/partnercenter?view=azure-cli-latest)
+- You can view the various commands and its usage here - [docs.microsoft.com - Azure CLI Extension for Partner Center Reference](https://learn.microsoft.com/en-us/cli/azure/service-page/partner%20center%20azure%20marketplace?view=azure-cli-latest)
 
 ## Contributing
 
