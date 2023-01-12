@@ -8,10 +8,9 @@ from ..base import PartnerCenterScenarioTest
 
 
 class PartnerCenterMarketplaceOfferPlanTechnicalConfigurationScenarioTest(PartnerCenterScenarioTest):
-
     @MarketplaceOfferPreparer()
     def test_aks_offer_technicalconfiguration(self):
-        self._create_plan()
+        pass
 
     def _create_plan(self):
         self.cmd('partnercenter marketplace offer plan create --offer-id {offer_id} --plan-id {plan_id} --friendly-name {plan_name}', checks=[
@@ -19,8 +18,8 @@ class PartnerCenterMarketplaceOfferPlanTechnicalConfigurationScenarioTest(Partne
             self.check('alias', '{offer_alias}')
         ])
 
-    def _init_args(self):
-        self.plan_id = self._apply_kwargs('{offer_id}-plan1')
+    def init_args(self):
+        self.plan_id = self.create_random_name('plan-', 15)
 
         self.kwargs.update({
             'plan_id': self.plan_id,

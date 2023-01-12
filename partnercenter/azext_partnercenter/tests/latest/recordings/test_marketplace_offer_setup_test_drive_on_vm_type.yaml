@@ -1,0 +1,192 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - OpenAPI-Generator/v1/python
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000001%27%29
+  response:
+    body:
+      string: '{"value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"clitest000001
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"8f3373ce-0884-4991-be84-8ee257f1c40e"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 12 Jan 2023 13:50:20 GMT
+      request-id:
+      - 77eb6186-fded-4c76-af4d-83bdf9932b3e
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - OpenAPI-Generator/v1/python
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000001%27%29
+  response:
+    body:
+      string: '{"value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"clitest000001
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"8f3373ce-0884-4991-be84-8ee257f1c40e"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 12 Jan 2023 13:50:21 GMT
+      request-id:
+      - 74d6b6a3-7c4a-4874-979c-55ad2d39ec9a
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - OpenAPI-Generator/v1/python
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/8f3373ce-0884-4991-be84-8ee257f1c40e/setup
+  response:
+    body:
+      string: '{"resourceType":"AzureProductSetup","sellingOption":"ListAndSell","trialUri":"","enableTestDrive":false,"channelStates":[{"type":"Reseller","value":"Disabled"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 12 Jan 2023 13:50:22 GMT
+      request-id:
+      - ddb242d7-8808-49aa-b69b-e46496298306
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - OpenAPI-Generator/v1/python
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000001%27%29
+  response:
+    body:
+      string: '{"value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"clitest000001
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"8f3373ce-0884-4991-be84-8ee257f1c40e"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 12 Jan 2023 13:50:22 GMT
+      request-id:
+      - 1564eafe-261f-4b46-a451-06f3ba42c16e
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"resourceType": "AzureProductSetup", "enableTestDrive": true, "sellingOption":
+      "ListAndSell", "trialUri": "", "channelStates": [{"type": "Reseller", "value":
+      "Disabled"}], "testDriveType": "AzureResourceManager"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - OpenAPI-Generator/v1/python
+    method: POST
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/8f3373ce-0884-4991-be84-8ee257f1c40e/setup
+  response:
+    body:
+      string: '{"resourceType":"AzureProductSetup","sellingOption":"ListAndSell","trialUri":"","enableTestDrive":true,"testDriveType":"AzureResourceManager","channelStates":[{"type":"Reseller","value":"Disabled"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 12 Jan 2023 13:50:23 GMT
+      request-id:
+      - 713c695d-4d1b-46ea-b181-7a422beecfc8
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - OpenAPI-Generator/v1/python
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000001%27%29
+  response:
+    body:
+      string: '{"value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"clitest000001
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"8f3373ce-0884-4991-be84-8ee257f1c40e"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 12 Jan 2023 13:50:25 GMT
+      request-id:
+      - dc020ff0-952c-40c7-9d48-8eda91c1efeb
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - OpenAPI-Generator/v1/python
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/8f3373ce-0884-4991-be84-8ee257f1c40e/setup
+  response:
+    body:
+      string: '{"resourceType":"AzureProductSetup","sellingOption":"ListAndSell","trialUri":"","enableTestDrive":true,"testDriveType":"AzureResourceManager","channelStates":[{"type":"Reseller","value":"Disabled"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 12 Jan 2023 13:50:25 GMT
+      request-id:
+      - 4d522b84-8e2b-49a2-bdea-ed23ad750ba8
+      transfer-encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1

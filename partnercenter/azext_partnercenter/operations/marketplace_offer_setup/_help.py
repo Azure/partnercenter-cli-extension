@@ -13,13 +13,13 @@ def load_help():
         short-summary: Manage a Marketplace Offer's setup.
     """
 
-    helps['partnercenter marketplace offer setup create'] = """
+    helps['partnercenter marketplace offer setup update'] = """
         type: command
-        short-summary: Create a marketplace offer
+        short-summary: Update a marketplace offer
         examples:
-        - name: Create an offer setup
+        - name: Update an offer setup
           text: |-
-                az partnercenter marketplace offer setup create --offer-id MyOfferId
+                az partnercenter marketplace offer setup update --offer-id MyOfferId --sell-through-microsoft true
     """
 
     helps['partnercenter marketplace offer setup show'] = """
