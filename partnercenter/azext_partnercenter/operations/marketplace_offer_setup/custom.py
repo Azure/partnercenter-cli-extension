@@ -11,8 +11,20 @@ def get_setup(client, offer_id):
     return client.get_setup(offer_id)
 
 
-def create_setup(client, offer_id, reseller_enabled=False, test_drive_enabled=False, selling_option='ListingOnly', trial_uri=''):
-    return client.create_setup(offer_id, test_drive_enabled, reseller_enabled, selling_option, trial_uri)
+def update_setup(instance, reseller=None, test_drive=None, sell_through_microsoft=None, trial_uri=None):
+    if reseller is not None:
+        instance.reseller_enabled = reseller
+
+    if test_drive is not None:
+        instance.test_drive = test_drive
+
+    if sell_through_microsoft is not None:
+        instance.sell_through_microsoft = sell_through_microsoft
+
+    if trial_uri is not None:
+        instance.trial_uri = trial_uri
+
+    return instance
 
 
 # TODO: clean up these unused methods

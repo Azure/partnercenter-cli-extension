@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-import time
 from azext_partnercenter.tests.preparers import MarketplaceOfferPreparer
 from ..base import PartnerCenterScenarioTest
 

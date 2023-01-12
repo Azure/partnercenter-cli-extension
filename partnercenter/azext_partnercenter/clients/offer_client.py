@@ -61,7 +61,7 @@ class OfferClient(BaseClient):
 
     def _map_product_to_offer(self, product):
         return Offer(
-            id=(next((x for x in product.externalIDs if x['type'] == "AzureOfferId"), None))['value'],
+            id=(next((x for x in product['externalIDs'] if x['type'] == "AzureOfferId"), None))['value'],
             alias=product.name,
             type=product.resource_type,
             resource=Resource(durable_id=product.id, type=product.resource_type)
@@ -70,40 +70,48 @@ class OfferClient(BaseClient):
     def get_setup(self, offer_external_id):
         offer = self.get(offer_external_id)
         result = self._sdk.product_client.products_product_id_setup_get(offer._resource.durable_id, self._get_access_token())
-        return self._map_setup(result)
+        return self._map_setup(offer_external_id, result)
 
-    def create_setup(self, offer_external_id, test_drive_enabled: bool, reseller_enabled: bool, selling_option, trial_uri):
-        offer = self.get(offer_external_id)
+    def update_setup(self, parameters: OfferSetup):
+        offer = self.get(parameters.id)
 
-        enabled_value = 'Enabled'
-        if not reseller_enabled:
-            enabled_value = 'Disabled'
-
-        resource_type = 'AzureProductSetup'
-
-        channel_state = MicrosoftIngestionApiModelsCommonTypeValuePair(type='Reseller', value=enabled_value)
+        channel_state = MicrosoftIngestionApiModelsCommonTypeValuePair(type='Reseller', value='Enabled' if parameters.reseller else 'Disabled')
         channel_states = [channel_state]
-        api_product_setup = MicrosoftIngestionApiModelsProductsAzureProductSetup(
-            resource_type=resource_type,
-            enable_test_drive=test_drive_enabled,
-            selling_option=selling_option,
-            trial_uri=trial_uri,
-            channel_states=channel_states)
 
-        result = self._sdk.product_client.products_product_id_setup_post(
+        kwargs = {
+            'resource_type': 'AzureProductSetup',
+            'enable_test_drive': parameters.test_drive,
+            'selling_option': 'ListAndSell' if parameters.sell_through_microsoft else 'ListingOnly',
+            'trial_uri': parameters.trial_uri,
+            'channel_states': channel_states
+        }
+
+        # test drive option is only valid for VM and Azure App offer types
+        if parameters.test_drive:
+            kwargs['test_drive_type'] = 'AzureResourceManager'
+
+        api_product_setup = MicrosoftIngestionApiModelsProductsAzureProductSetup(**kwargs)
+
+        # TODO: check for failure, esure update occurred before trying to fetch latest setup instance
+        self._sdk.product_client.products_product_id_setup_post(
             offer._resource.durable_id,
             self._get_access_token(),
             microsoft_ingestion_api_models_products_azure_product_setup=api_product_setup)
 
-        return result
+        offer_setup = self.get_setup(parameters.id)
+        return offer_setup
 
-    def _map_setup(self, api_setup: MicrosoftIngestionApiModelsProductsAzureProductSetup) -> OfferSetup:
-        channel_states = list(map(self._map_channel_state, api_setup.channel_states))
+    def _map_setup(self, offer_external_id, api_setup: MicrosoftIngestionApiModelsProductsAzureProductSetup) -> OfferSetup:
+        reseller = (next((x for x in api_setup.channel_states if x['type'] == "Reseller"), None))['value'] == 'Enabled'
+        sell_through_microsoft = (api_setup.selling_option == 'ListAndSell')
+
         offer_setup = OfferSetup(
-            sell_through_microsoft=(api_setup.selling_option == 'ListAndSell'),
-            trial_uri=api_setup.get('trial_uri'),
-            enable_test_drive=api_setup.enable_test_drive,
-            channel_states=channel_states)
+            id=offer_external_id,
+            reseller=reseller,
+            test_drive=api_setup.enable_test_drive,
+            sell_through_microsoft=sell_through_microsoft,
+            trial_uri=api_setup.trial_uri,
+        )
         return offer_setup
 
     def _map_channel_state(self, channel_state):

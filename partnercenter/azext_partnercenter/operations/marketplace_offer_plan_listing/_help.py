@@ -28,6 +28,6 @@ def load_help():
         examples:
         - name: Get an offer's plan listing
           text: |-
-                az partnercenter marketplace offer plan listing update --offer-id MyOfferId --plan-id MyPlanId \
-                    --description "Plan listing description"
+                az partnercenter marketplace offer plan listing update --offer-id MyOfferId \
+                    --plan-id MyPlanId --description "Plan listing description"
     """

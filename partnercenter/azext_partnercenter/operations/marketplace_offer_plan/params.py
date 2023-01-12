@@ -11,4 +11,4 @@ def load_arguments(commands_loader, _):
         c.argument('plan_id', options_list=['--plan-id', '--id'], help='The Plan ID')
 
     with commands_loader.argument_context('partnercenter marketplace offer plan create') as c:
-        c.argument('friendly_name', options_list=['--friendly-name'], help='The friendly name')
+        c.argument('name', options_list=['--name', '-n'], help='The friendly name of the Plan.')
