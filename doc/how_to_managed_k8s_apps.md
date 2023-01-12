@@ -1,4 +1,4 @@
-# How to Manage Kubernetes qpps
+# Managing Kubernetes apps
 
 ## Creating a Marketplace Offer as a Kubernetes app
 
