@@ -11,15 +11,17 @@ from .validators import validate_test_drive
 
 class Arg(str, Enum):
     """Setup command Arguments"""
-    reseller = 'reseller',
-    test_drive = 'test_drive',
+    reseller = 'reseller'
+    test_drive = 'test_drive'
     sell_through_microsoft = 'sell_through_microsoft'
+
 
 arg_help = {
     Arg.reseller: 'Indicates to enable the reseller channel for the offer.',
     Arg.test_drive: """Whether test drive is enabled for the offer. The test drive option in the Microsoft commercial marketplace lets you configure a hands-on, self-guided tour of your product's key features""",
     Arg.sell_through_microsoft: """Whether to sell through microsoft or list the offer through the marketplace and process transactions independently."""
 }
+
 
 def load_arguments(commands_loader, _):
     with commands_loader.argument_context('partnercenter marketplace offer setup') as c:

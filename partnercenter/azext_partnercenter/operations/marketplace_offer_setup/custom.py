@@ -22,7 +22,7 @@ def update_setup(instance, reseller=None, test_drive=None, sell_through_microsof
         instance.sell_through_microsoft = sell_through_microsoft
 
     if trial_uri is not None:
-         instance.trial_uri = trial_uri
+        instance.trial_uri = trial_uri
 
     return instance
 

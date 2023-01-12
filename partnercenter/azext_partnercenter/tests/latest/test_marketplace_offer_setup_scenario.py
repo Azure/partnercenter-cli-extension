@@ -39,7 +39,7 @@ class PartnerCenterMarketplaceOfferSetupScenarioTest(PartnerCenterScenarioTest):
     def _offer_setup_show_returns_initial_default_values(self):
         result = self.cmd('partnercenter marketplace offer setup show --id {offer_id}').get_output_in_json()
 
-        self.assertTrue(result['reseller']);
+        self.assertTrue(result['reseller'])
         self.assertFalse(result['sellThroughMicrosoft'])
         self.assertFalse(result['testDrive'])
         self.assertEqual('', result['trialUri'])
