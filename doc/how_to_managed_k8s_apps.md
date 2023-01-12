@@ -66,15 +66,14 @@ az partnercenter marketplace offer package build --offer-id $offer_id --manifest
 
 #### Build command
 
-The `...offer package build` command is equivalent to the `cpa buildbundle` command for the packaging tool, but easier. The CLI will handle the following:
+The `offer package build` command is equivalent to the `cpa buildbundle` command for the packaging tool, but easier. The CLI will handle the following:
 
-1. The package commands on the CLI required an offer ID. This is because it performs additional checks on the offer.
+1. Perform additional checks on the offer using the offer ID
 2. All the docker container instance setup, including setting the ACR instance and calling `az acr login`. We will use the ACR information in the `manifest.yaml`
 
 ## Adding the package to the offer
 
-> CLUSTER EXTENSION TYPE: The `--cluster-extension-type` is the billing identifier of your offer in AKS. More information can be found
-> [here](https://learn.microsoft.com/en-us/azure/aks/cluster-extensions#usage-of-cluster-extensions) about the cluster extension
+The `--cluster-extension-type` is the billing identifier of your offer in AKS. More information can be found [here](https://learn.microsoft.com/en-us/azure/aks/cluster-extensions#usage-of-cluster-extensions) about the cluster extension
 
 
 ```bash
@@ -91,7 +90,7 @@ image_tag=0.0.1
 image_name="${image_repository}:${image_tag}"
 image_digest=$(az acr repository show --name $acr_name --image $image_name --query digest --output tsv)
 
-# offer & plan
+# offer, plan, and cluster extension information
 offer_id=myOfferId
 plan_id=myPlanId
 cluster_extension_type=your.clusterExtension
@@ -108,13 +107,19 @@ az partnercenter marketplace offer plan technical-configuration package add \
     --digest $image_digest \
     --repository $image_repository \
     --tag $image_tag
+```
 
-# view the technical configuration with the CNAB package
+View the technical configuration of the plan with the CNAB reference once it's been added.
+
+```bash
 az partnercenter marketplace offer plan technical-configuration show \
     --offer-id $offer_id \
     --plan-id $plan_id
+```
 
-# example configuration return result
+Result of the show command: 
+
+```json
 {
   "clusterExtensionType": "your.clusterExtension",
   "cnabReferences": [
