@@ -5,7 +5,15 @@
 
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
+# pylint: disable=too-few-public-methods
+
 from urllib.parse import parse_qs, urlparse
+import json
+
+
+class Expando:
+    def __init__(self, dict_instance) -> None:
+        self.__dict__.update(dict_instance)
 
 
 def object_to_dict(item):
@@ -14,6 +22,10 @@ def object_to_dict(item):
     if hasattr(item, "to_dict") and callable(item.to_dict):
         return item.to_dict()
     return vars(item)
+
+
+def dict_to_object(dict_instance):
+    return json.loads(json.dumps(dict_instance), object_hook=Expando)
 
 
 def get_combined_paged_results(method_with_paged_response, collect_items_as_dict=False):

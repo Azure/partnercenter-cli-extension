@@ -7,13 +7,13 @@
 # pylint: disable=no-self-use
 
 from azext_partnercenter.models.offer_setup import OfferSetup
-from azext_partnercenter._util import get_combined_paged_results
 from azext_partnercenter.models import (ListingContact, ListingUri, Offer, Listing, Resource)
 from azext_partnercenter.vendored_sdks.v1.partnercenter.models import (
     MicrosoftIngestionApiModelsProductsAzureProduct,
     MicrosoftIngestionApiModelsCommonTypeValuePair,
     MicrosoftIngestionApiModelsProductsAzureProductSetup)
 from ._base_client import BaseClient
+from ._util import get_combined_paged_results
 
 
 class OfferClient(BaseClient):

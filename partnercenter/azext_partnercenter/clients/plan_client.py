@@ -5,10 +5,10 @@
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
 
-from azext_partnercenter._util import get_combined_paged_results
 from azext_partnercenter.models import (Plan, Resource)
 from azext_partnercenter.clients import OfferClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.models import ProductsProductIDVariantsGetRequest
+from ._util import get_combined_paged_results
 from ._base_client import BaseClient
 
 
@@ -67,6 +67,7 @@ class PlanClient(BaseClient):
         plans = self.list(offer_external_id)
         return next((plan for plan in plans if plan.id == plan_external_id), None)
 
+    # TODO: remove get_listing
     def get_listing(self, offer_external_id, plan_external_id):
         offer = self._offer_client.get(offer_external_id)
         offer_durable_id = offer._resource.durable_id
