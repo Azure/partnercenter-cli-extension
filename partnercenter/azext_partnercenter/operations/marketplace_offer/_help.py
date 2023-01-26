@@ -48,3 +48,12 @@ def load_help():
           text: |-
                 az partnercenter marketplace offer list
     """
+
+    helps['partnercenter marketplace offer publish'] = """
+        type: command
+        short-summary: Publish marketplace offers
+        examples:
+        - name: Publish all offer
+          text: |-
+                az partnercenter marketplace offer publish --id myOfferId --target live
+    """

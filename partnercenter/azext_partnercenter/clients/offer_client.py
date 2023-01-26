@@ -59,6 +59,12 @@ class OfferClient(BaseClient):
         product = products.value[0]
         return self._map_product_to_offer(product)
 
+    def publish(self, offer_external_id, target, submission_id=None):
+        # 1. get the submissions
+        # 2. if the the sub id is none, use the one that's in draft
+        # 3. exeucte the product ingestion api client
+        pass
+
     def _map_product_to_offer(self, product):
         return Offer(
             id=(next((x for x in product['externalIDs'] if x['type'] == "AzureOfferId"), None))['value'],

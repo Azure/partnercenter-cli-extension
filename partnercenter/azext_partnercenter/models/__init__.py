@@ -10,6 +10,7 @@ from .resource import Resource
 from .listing_contact import ListingContact
 from .listing_uri import ListingUri
 from .plan_listing import PlanListing
+from .target_type import TargetType
 
 __all__ = [
     'Plan',
@@ -19,5 +20,6 @@ __all__ = [
     'OfferType',
     'ListingContact',
     'ListingUri',
+    'TargetType',
     'Resource'
 ]
