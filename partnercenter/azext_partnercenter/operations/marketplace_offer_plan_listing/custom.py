@@ -5,37 +5,24 @@
 # pylint: disable=too-many-locals
 # pylint: disable=line-too-long
 
-from azext_partnercenter.models.listing import Listing
+from azure.cli.core.azclierror import ResourceNotFoundError
 
 
 def get_listing(client, offer_id, plan_id):
-    return client.get_plan_listing(offer_id, plan_id)
+    listing = client.get(offer_id, plan_id)
+
+    if listing is None:
+        raise ResourceNotFoundError('Plan not found.', f'Please create a plan on offer [{offer_id}] with ID [{plan_id}] using the create command.')
+    return listing
 
 
-def listing_update(instance, description=None, short_description=None, language_code=None):
-    instance.short_description = short_description
-    instance.description = description
-    instance.laguage_code = language_code
+def update_listing(instance, name=None, summary=None, description=None):
+    if name is not None:
+        instance.name = name
+
+    if summary is not None:
+        instance.summary = summary
+
+    if description is not None:
+        instance.description = description
     return instance
-
-
-def _listing_update_get(client, offer_id, plan_id):
-    """Internal getter for listing update"""
-    plan_listing = client.get_plan_listing(offer_id, plan_id)
-    return plan_listing
-
-
-def _listing_update_set(client, offer_id, plan_id, parameters=None):
-    """Internal setter for listing update"""
-    listing = Listing()
-    listing.id = parameters.id
-    listing.summary = parameters.summary
-    listing.title = parameters.title
-    listing.description = parameters.description
-    listing.short_description = parameters.short_description
-    listing.language_code = parameters.language_code
-    listing.odata_etag = parameters.odata_etag
-    listing.contacts = parameters.contacts
-    listing.uris = parameters.uris
-    result = client.create_or_update(offer_id, listing, plan_id)
-    return result

@@ -60,7 +60,7 @@ class MarketplaceOfferPreparer(NoTrafficRecordingPreparer, SingleValueReplacer):
     def create_resource(self, name, **kwargs):
         if not self.dev_setting_name:
             import time
-            delay_return_for_partercenter_to_create_supporting_child_entities = 3
+            delay_return_for_partercenter_to_create_supporting_child_entities = 5
 
             template = 'az partnercenter marketplace offer create --id  {} -a \'{}\' -t {}'
             self.live_only_execute(self.cli_ctx, template.format(name, f'{name} Alias', self.offer_type))
