@@ -59,11 +59,11 @@ class OfferClient(BaseClient):
         product = products.value[0]
         return self._map_product_to_offer(product)
 
-    def publish(self, offer_external_id, target, submission_id=None):
-        # 1. get the submissions
-        # 2. if the the sub id is none, use the one that's in draft
-        # 3. exeucte the product ingestion api client
-        pass
+    def publish(self, offer_external_id, target):
+        """Publishes all draft changes for the offer to the target environment"""
+        offer = self.get(offer_external_id)
+        result = self._graph_api_client.publish_submission(target, offer._resource.durable_id)
+        return result
 
     def _map_product_to_offer(self, product):
         return Offer(
