@@ -12,6 +12,8 @@ import requests
 from pydantic import Extra
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     Submission,
+    ResourceTarget,
+    TargetType,
     ContainerPlanTechnicalConfiguration,
     ContainerCnabPlanTechnicalConfigurationProperties,
     ConfigureResources,
@@ -109,7 +111,7 @@ class ProductIngestionApiClient:
     def get_submissions(self, offer_durable_id):
         """Gets the response from the Graph endpoint of submissions
 
-        :return: instance of ContainerPlanTechnicalConfiguration [azext_partnercenter.vendored_sdks.production_ingestion.models.container_plan_technical_configuration]
+        :return: list of Submission [azext_partnercenter.vendored_sdks.product_ingestion.models]
         """
         response = self.__call_api('get-submission', f'submission/{offer_durable_id}')
         json = response.json() | {}
@@ -120,12 +122,33 @@ class ProductIngestionApiClient:
     def get_submission(self, offer_durable_id, submission_id):
         """Gets the response from the Graph endpoint of submissions
 
-        :return: instance of ContainerPlanTechnicalConfiguration [azext_partnercenter.vendored_sdks.production_ingestion.models.container_plan_technical_configuration]
+        :return: instance of Submission [azext_partnercenter.vendored_sdks.product_ingestion.models]
         """
         response = self.__call_api('get-submission', f'submission/{offer_durable_id}/{submission_id}')
         json = response.json() | {}
 
         return Submission.parse_obj(json)
+
+    def publish_submission(self, target: TargetType, offer_durable_id, submission_id=None):
+        """Publishes a product, either all its draft changes or a specific submission using the submission_id"""
+        product_id = DurableId(__root__="product/" + offer_durable_id)
+        durable_id = DurableId(__root__=f"submission/{offer_durable_id}/{submission_id}") if submission_id is not None else None
+        submission = Submission(
+            id=durable_id.__root__,
+            product=product_id.__root__,
+            target=ResourceTarget(target_type=target)
+        )
+        resource = submission.dict(by_alias=True)
+        resource['$schema'] = 'https://product-ingestion.azureedge.net/schema/submission/2022-03-01-preview2'
+
+        # if there isn't a submission id provided, this will cause all draft changes to be submitted
+        # the id property must be expicitly removed so the API processes it correctly
+        # see: https://learn.microsoft.com/en-us/azure/marketplace/product-ingestion-api#method-1-publish-all-draft-resources
+
+        if submission_id is None: 
+            del resource['id']
+
+        return self.configure_resources(resource)
 
     def get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id, sell_through_microsoft):
         """Gets the response from the Graph endpoint for the container plan technical configuration

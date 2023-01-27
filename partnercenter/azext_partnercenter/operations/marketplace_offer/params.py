@@ -18,5 +18,4 @@ def load_arguments(commands_loader, _):
         c.argument('offer_type', options_list=['--type', '-t'], arg_type=get_enum_type(OfferType), help='The type of offer to create.')
 
     with commands_loader.argument_context('partnercenter marketplace offer publish') as c:
-        c.argument('target', options_list=['--target'], arg_type=get_enum_type(TargetType), help='The target environment type. If you do not include the submission id, the change is made to the draft state.')
-        c.argument('submission_id', options_list=['--submission-id', '-sid'], help='The submission ID of the submission to publish. This is optional.')
+        c.argument('target', options_list=['--target'], arg_type=get_enum_type(TargetType), help='The target environment type to publish all draft resources')

@@ -13,5 +13,5 @@ def list_submission(client, offer_id):
     return client.list(offer_id)
 
 
-def publish_submission(client, offer_id, submission_id, target=TargetType.Live):
+def publish_submission(client, offer_id, submission_id, target):
     return client.publish(offer_id, submission_id, target)

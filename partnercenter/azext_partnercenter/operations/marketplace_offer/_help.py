@@ -51,9 +51,10 @@ def load_help():
 
     helps['partnercenter marketplace offer publish'] = """
         type: command
-        short-summary: Publish marketplace offers
+        short-summary: Publishes all draft changes made to a marketplace offer.
+        long-summary:  This command publishes every change that's in draft. If you want to target a specific submission, use offer submission commands
         examples:
-        - name: Publish all offer
+        - name: Publish all draft changes for an offer
           text: |-
-                az partnercenter marketplace offer publish --id myOfferId --target live
+                az partnercenter marketplace offer publish --id myOfferId --target preview
     """
