@@ -7,7 +7,8 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class TargetType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """The publish target types"""
+    """The publish target type environments"""
 
+    Draft = "draft"
     Live = "live"
     Preview = "preview"
