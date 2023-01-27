@@ -11,6 +11,7 @@ from .listing_contact import ListingContact
 from .listing_uri import ListingUri
 from .plan_listing import PlanListing
 from .target_type import TargetType
+from .offer_submission import OfferSubmission
 
 __all__ = [
     'Plan',
@@ -18,6 +19,7 @@ __all__ = [
     'PlanListing',
     'Offer',
     'OfferType',
+    'OfferSubmission',
     'ListingContact',
     'ListingUri',
     'TargetType',

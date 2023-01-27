@@ -14,6 +14,7 @@ from azext_partnercenter.operations.marketplace_offer_listing import Marketplace
 from azext_partnercenter.operations.marketplace_offer_setup import MarketplaceOfferSetupOperations
 from azext_partnercenter.operations.marketplace_offer_listing_media import MarketplaceOfferListingImageOperations
 from azext_partnercenter.operations.marketplace_offer_package import MarketplaceOfferPackageOperations
+from azext_partnercenter.operations.marketplace_offer_submission import MarketplaceOfferSubmissionOperations
 
 
 class PartnerCenterSubGroupCommandsLoader():
@@ -26,6 +27,7 @@ class PartnerCenterSubGroupCommandsLoader():
             MarketplaceOfferListingOperations(self),
             MarketplaceOfferSetupOperations(self),
             MarketplaceOfferPackageOperations(self),
+            MarketplaceOfferSubmissionOperations(self),
             MarketplaceOfferPlanListingOperations(self),
             MarketplaceOfferListingContactOperations(self),
             MarketplaceOfferListingUriOperations(self),
