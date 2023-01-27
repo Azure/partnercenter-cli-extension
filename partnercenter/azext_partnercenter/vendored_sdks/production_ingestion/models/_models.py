@@ -295,6 +295,79 @@ class ConfigureResourcesStatus(BaseModel):
     resource_uri: Optional[str] = Field(None, alias='resourceUri')
     errors: Optional[List[Error]] = None
 
+# Submission support
+
+
+class TargetType(Enum):
+    flight = 'flight'
+    sandbox = 'sandbox'
+    draft = 'draft'
+    preview = 'preview'
+    live = 'live'
+    certification = 'certification'
+    retail = 'retail'
+
+
+class LifecycleState(Enum):
+    not_available = 'notAvailable'
+    never_used = 'neverUsed'
+    test = 'test'
+    preview = 'preview'
+    generally_available = 'generallyAvailable'
+    deprecated = 'deprecated'
+    decommissioned = 'decommissioned'
+    deleted = 'deleted'
+
+
+class DeprecationScheduleReason(Enum):
+    critical_security_issue = 'criticalSecurityIssue'
+    end_of_support = 'endOfSupport'
+    other = 'other'
+
+
+class AlternativeProduct(BaseModel):
+    class Config:
+        extra = Extra.forbid
+
+    product: ResourceReference
+
+
+class AlternativePlan(BaseModel):
+    class Config:
+        extra = Extra.forbid
+
+    plan: ResourceReference
+
+
+class DeprecationSchedule(BaseModel):
+    class Config:
+        extra = Extra.forbid
+
+    _schema: Optional[SchemaUri] = Field(None, alias='$schema')
+    date: Optional[date] = None
+    date_offset: Optional[str] = Field(None, alias='dateOffset')
+    reason: Optional[DeprecationScheduleReason] = None
+    alternative: Optional[Union[AlternativeProduct, AlternativePlan]] = None
+
+
+class ResourceTarget(BaseModel):
+    target_type: TargetType = Field(..., alias='targetType')
+
+
+class Submission(Resource):
+    _schema: Optional[SchemaUri] = Field(None, alias='$schema')
+    product: ResourceReference
+    target: ResourceTarget
+    status: Optional[JobStatus] = None
+    lifecycle_state: Optional[LifecycleState] = Field(
+        'generallyAvailable', alias='lifecycleState'
+    )
+    deprecation_schedule: Optional[DeprecationSchedule] = Field(
+        None, alias='deprecationSchedule'
+    )
+    result: Optional[JobResult] = None
+    created: Optional[datetime] = None
+
 
 ValidationInnerError.update_forward_refs()
 InnerError.update_forward_refs()
