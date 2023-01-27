@@ -16,10 +16,20 @@ class OfferSubmissionClient(BaseClient):
         self._offer_client = OfferClient(cli_ctx, *_)
 
     def get(self, offer_external_id, submission_id) -> OfferSubmission:
-       pass
+        pass
 
     def list(self, offer_external_id):
-        pass
+        offer = self._offer_client.get(offer_external_id)
+        result = self._graph_api_client.get_submissions(offer._resource.durable_id)
+        return list(map(lambda x: OfferSubmission(
+            id = x.id.__root__.split('/')[-1],
+            offer_id = offer_external_id,
+            lifecycle_state = x.lifecycle_state,
+            target = x.target.target_type,
+            status = x.status,
+            result = x.result,
+            created = x.created
+        ), result))
 
     def publish(self, offer_external_id, submission_id, target):
         pass

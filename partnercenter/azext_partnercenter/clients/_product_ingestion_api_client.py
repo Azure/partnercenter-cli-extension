@@ -11,6 +11,7 @@ from time import time
 import requests
 from pydantic import Extra
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
+    Submission,
     ContainerPlanTechnicalConfiguration,
     ContainerCnabPlanTechnicalConfigurationProperties,
     ConfigureResources,
@@ -35,7 +36,8 @@ class ProductIngestionApiClientConfiguration:
             'get-resource-tree': '2022-03-01-preview3',
             'get-container-plan-technical-configuration': '2022-03-01-preview3',
             'post-configure': '2022-03-01-preview2',
-            'get-configure-status': '2022-03-01-preview2'
+            'get-configure-status': '2022-03-01-preview2',
+            'get-submission': '2022-03-01-preview2'
         }
 
     def get_version(self, operation_id):
@@ -103,6 +105,17 @@ class ProductIngestionApiClient:
         del resource['validations']
 
         return self.configure_resources(resource)
+
+    def get_submissions(self, offer_durable_id):
+        """Gets the response from the Graph endpoint of submissions
+
+        :return: instance of ContainerPlanTechnicalConfiguration [azext_partnercenter.vendored_sdks.production_ingestion.models.container_plan_technical_configuration]
+        """
+        response = self.__call_api('get-submission', f'submission/{offer_durable_id}')
+        json = response.json() | {}
+
+        submissions = list(map(Submission.parse_obj, json['value']))
+        return submissions
 
     def get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id, sell_through_microsoft):
         """Gets the response from the Graph endpoint for the container plan technical configuration
