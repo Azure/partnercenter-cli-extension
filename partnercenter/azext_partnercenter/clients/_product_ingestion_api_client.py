@@ -11,6 +11,9 @@ from time import time
 import requests
 from pydantic import Extra
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
+    Submission,
+    ResourceTarget,
+    TargetType,
     ContainerPlanTechnicalConfiguration,
     ContainerCnabPlanTechnicalConfigurationProperties,
     ConfigureResources,
@@ -35,7 +38,8 @@ class ProductIngestionApiClientConfiguration:
             'get-resource-tree': '2022-03-01-preview3',
             'get-container-plan-technical-configuration': '2022-03-01-preview3',
             'post-configure': '2022-03-01-preview2',
-            'get-configure-status': '2022-03-01-preview2'
+            'get-configure-status': '2022-03-01-preview2',
+            'get-submission': '2022-03-01-preview2'
         }
 
     def get_version(self, operation_id):
@@ -56,14 +60,17 @@ class ProductIngestionApiClient:
 
         operation_id = 'post-configure'
         configure_resources = ConfigureResources(resources=resources)
-        data = configure_resources.dict(by_alias=True)
+        data = configure_resources.dict(by_alias=True, exclude_unset=True)
         data['$schema'] = 'https://product-ingestion.azureedge.net/schema/configure/2022-03-01-preview2'
 
         for resource in data['resources']:
-            del resource['resourceName']
-            del resource['validations']
+            if 'resourceName' in resource.keys():
+                del resource['resourceName']
+            if 'validations' in resource.keys():
+                del resource['validations']
 
         response = self.__call_api(operation_id, 'configure', data=data)
+        response.raise_for_status()
 
         ConfigureResourcesStatus.Config.extra = Extra.allow
         status = ConfigureResourcesStatus.parse_obj(response.json())
@@ -103,6 +110,49 @@ class ProductIngestionApiClient:
         del resource['validations']
 
         return self.configure_resources(resource)
+
+    def get_submissions(self, offer_durable_id):
+        """Gets the response from the Graph endpoint of submissions
+
+        :return: list of Submission [azext_partnercenter.vendored_sdks.product_ingestion.models]
+        """
+        response = self.__call_api('get-submission', f'submission/{offer_durable_id}')
+        json = response.json() | {}
+
+        submissions = list(map(Submission.parse_obj, json['value']))
+        return submissions
+
+    def get_submission(self, offer_durable_id, submission_id):
+        """Gets the response from the Graph endpoint of submissions
+
+        :return: instance of Submission [azext_partnercenter.vendored_sdks.product_ingestion.models]
+        """
+        response = self.__call_api('get-submission', f'submission/{offer_durable_id}/{submission_id}')
+        json = response.json() | {}
+
+        return Submission.parse_obj(json)
+
+    def publish_submission(self, target, offer_durable_id, submission_id=None):
+        """Publishes a product, either all its draft changes or a specific submission using the submission_id"""
+        product_id = DurableId(__root__="product/" + offer_durable_id)
+        durable_id = DurableId(__root__=f"submission/{offer_durable_id}/{submission_id}") if submission_id is not None else None
+
+        resource = {
+            '$schema': 'https://product-ingestion.azureedge.net/schema/submission/2022-03-01-preview2',
+            'id': (None if durable_id is None else durable_id.__root__),
+            'product': product_id.__root__,
+            'target': { 'targetType': target }
+        }
+
+        # if there isn't a submission id provided, this will cause all draft changes to be submitted
+        # the id property must be expicitly removed so the API processes it correctly
+        # see: https://learn.microsoft.com/en-us/azure/marketplace/product-ingestion-api#method-1-publish-all-draft-resources
+
+        if durable_id is None: 
+           del resource['id']
+
+        result = self.configure_resources(resource)
+        return result.dict(exclude={'$schema'}, exclude_unset=True)
 
     def get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id, sell_through_microsoft):
         """Gets the response from the Graph endpoint for the container plan technical configuration

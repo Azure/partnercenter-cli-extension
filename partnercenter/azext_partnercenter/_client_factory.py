@@ -27,6 +27,11 @@ def cf_offer_listing(cli_ctx, *_):
     client = OfferListingClient(cli_ctx, *_)
     return client
 
+def cf_offer_submission(cli_ctx, *_):
+    from azext_partnercenter.clients import OfferSubmissionClient
+    client = OfferSubmissionClient(cli_ctx, *_)
+    return client
+
 
 def cf_plan_technicalconfiguration(cli_ctx, *_):
     from azext_partnercenter.clients import PlanTechnicalConfigurationClient

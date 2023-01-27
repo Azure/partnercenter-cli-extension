@@ -24,3 +24,7 @@ def get_offer(client, offer_id):
 
 def list_offer(client):
     return client.list()
+
+
+def publish_offer(client, offer_id, target):
+    return client.publish(offer_id, target)
