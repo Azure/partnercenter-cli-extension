@@ -117,6 +117,16 @@ class ProductIngestionApiClient:
         submissions = list(map(Submission.parse_obj, json['value']))
         return submissions
 
+    def get_submission(self, offer_durable_id, submission_id):
+        """Gets the response from the Graph endpoint of submissions
+
+        :return: instance of ContainerPlanTechnicalConfiguration [azext_partnercenter.vendored_sdks.production_ingestion.models.container_plan_technical_configuration]
+        """
+        response = self.__call_api('get-submission', f'submission/{offer_durable_id}/{submission_id}')
+        json = response.json() | {}
+
+        return Submission.parse_obj(json)
+
     def get_container_plan_technical_configuration(self, offer_durable_id, plan_durable_id, sell_through_microsoft):
         """Gets the response from the Graph endpoint for the container plan technical configuration
 
