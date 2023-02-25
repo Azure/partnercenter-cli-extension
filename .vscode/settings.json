@@ -1,3 +1,8 @@
 {
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "python.testing.pytestArgs": [
+        "partnercenter/azext_partnercenter/tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
