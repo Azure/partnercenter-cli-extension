@@ -4,10 +4,6 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "msazurermtools.azurerm-vscode-tools",
-        "ms-azuretools.vscode-bicep",
-        "ms-dotnettools.csharp",
-        "ms-azuretools.vscode-docker",
         "editorconfig.editorconfig",
         "github.vscode-pull-request-github",
         "ms-python.python"
