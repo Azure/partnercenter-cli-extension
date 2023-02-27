@@ -35,7 +35,7 @@ jobs:
           
           cd partnercenter
           python setup.py sdist bdist_wheel
-          az extension add --source dist/partnercenter-0.2.1-py3-none-any.whl --yes
+          az extension add --source dist/partnercenter-*.whl --yes
       - run: |
           cd partnercenter
           python -m pip install pytest azure-cli-core azure-cli-testsdk
