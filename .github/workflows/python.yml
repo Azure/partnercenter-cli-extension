@@ -38,6 +38,7 @@ jobs:
           az extension add --source dist/partnercenter-*.whl --yes
       - run: |
           cd partnercenter
-          python -m pip install pytest azure-cli-core azure-cli-testsdk
+          python -m pip install pytest pytest-github-actions-annotate-failures
+          python -m pip install azure-cli-core azure-cli-testsdk
           python -m pip install .[test]
           python -m pytest azext_partnercenter/tests/
