@@ -20,8 +20,7 @@
   },
   "features": {
     "github-cli": "latest",
-    "azure-cli": "latest",
-    "ghcr.io/devcontainers/features/python:1": {}
+    "azure-cli": "latest"
   },
   "postCreateCommand": ".devcontainer/postCreateCommand.sh"
 }
