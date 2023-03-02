@@ -19,8 +19,7 @@
     }
   },
   "features": {
-    "github-cli": "latest",
-    "azure-cli": "latest"
+    "github-cli": "latest"
   },
   "postCreateCommand": ".devcontainer/postCreateCommand.sh"
 }
