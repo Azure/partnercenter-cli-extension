@@ -25,16 +25,7 @@ jobs:
       - name: azdev linter
         run: |
           source env/bin/activate
-          OUTPUT=$(azdev linter partnercenter)
-          echo $OUTPUT
-          echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
-      - name: Post result to PR
-        uses: mshick/add-pr-comment@v1
-        with:
-          message: ${{ env.MESSAGE }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
-          allow-repeats: false # This is the default
+          azdev linter partnercenter
 
   azdev-test:
     runs-on: ubuntu-latest
