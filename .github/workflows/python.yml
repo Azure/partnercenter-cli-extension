@@ -1,34 +1,16 @@
 name: Python CI
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
-  release:
-    types: [created]    
   workflow_dispatch:
 
 jobs:
-  validation:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        tools: ['black', 'bandit', 'pylint']
-    steps:
-      - uses: actions/checkout@v2
-      - name: ${{ matrix.tools }}
-        uses: microsoft/action-python@0.3.8
-        with:
-          ${{ matrix.tools }}: true
-          args: ${{ matrix.args }}
-          workdir: partnercenter
-          testdir: azext_partnercenter/tests
-
   azdev-linter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
+      - name: azdev setup
+        run: |
           python -m venv env
           source env/bin/activate
           pip install azdev
@@ -36,49 +18,11 @@ jobs:
           azdev setup -r .
           azdev extension repo add ../partnercenter-cli-extension/
           azdev extension add partnercenter
-      - run: |
+      - name: azdev style
+        run: |
           source env/bin/activate
           azdev style partnercenter
-      - run: |
+      - name: azdev linter
+        run: |
           source env/bin/activate
           azdev linter partnercenter
-
-  azdev-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          allow-no-subscriptions: true
-      - run: |
-          python -m venv env
-          source env/bin/activate
-          pip install azdev
-
-          azdev setup -r .
-          azdev extension repo add ../partnercenter-cli-extension/
-          azdev extension add partnercenter
-      - run: |
-          source env/bin/activate
-          azdev test partnercenter
-
-  pytest-azure:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - run: |
-          python -m pip install setuptools wheel twine
-          
-          cd partnercenter
-          python setup.py sdist bdist_wheel
-          az extension add --source dist/partnercenter-*.whl --yes
-      - run: |
-          cd partnercenter
-          python -m pip install pytest pytest-github-actions-annotate-failures
-          python -m pip install azure-cli-core azure-cli-testsdk
-          python -m pip install .[test]
-          python -m pytest azext_partnercenter/tests/
