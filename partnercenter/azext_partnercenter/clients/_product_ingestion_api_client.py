@@ -12,8 +12,6 @@ import requests
 from pydantic import Extra
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     Submission,
-    ResourceTarget,
-    TargetType,
     ContainerPlanTechnicalConfiguration,
     ContainerCnabPlanTechnicalConfigurationProperties,
     ConfigureResources,
@@ -141,15 +139,15 @@ class ProductIngestionApiClient:
             '$schema': 'https://product-ingestion.azureedge.net/schema/submission/2022-03-01-preview2',
             'id': (None if durable_id is None else durable_id.__root__),
             'product': product_id.__root__,
-            'target': { 'targetType': target }
+            'target': {'targetType': target}
         }
 
         # if there isn't a submission id provided, this will cause all draft changes to be submitted
         # the id property must be expicitly removed so the API processes it correctly
         # see: https://learn.microsoft.com/en-us/azure/marketplace/product-ingestion-api#method-1-publish-all-draft-resources
 
-        if durable_id is None: 
-           del resource['id']
+        if durable_id is None:
+            del resource['id']
 
         result = self.configure_resources(resource)
         return result.dict(exclude={'$schema'}, exclude_unset=True)

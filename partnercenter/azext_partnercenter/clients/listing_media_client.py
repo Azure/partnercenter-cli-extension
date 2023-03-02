@@ -30,7 +30,7 @@ class ListingMediaClient:
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
-        offer_resource_id = offer._resource.durable_id
+        offer_resource_id = offer.resource.durable_id
 
         listing = self._offer_client.get_listing(offer_external_id)
 
@@ -49,7 +49,7 @@ class ListingMediaClient:
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
-        offer_resource_id = offer._resource.durable_id
+        offer_resource_id = offer.resource.durable_id
 
         listing = self._offer_client.get_listing(offer_external_id)
         if listing is None:
@@ -83,7 +83,7 @@ class ListingMediaClient:
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
-        offer_resource_id = offer._resource.durable_id
+        offer_resource_id = offer.resource.durable_id
 
         listing = self._offer_client.get_listing(offer_external_id)
         if listing is None:
