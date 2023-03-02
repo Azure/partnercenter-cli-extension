@@ -32,7 +32,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: azure/login@v1
-        if: secrets.AZURE_CREDENTIALS
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - run: |
@@ -43,7 +42,6 @@ jobs:
           azdev extension repo add ../partnercenter-cli-extension/
           azdev extension add partnercenter
       - name: azdev test
-        if: secrets.AZURE_CREDENTIALS
         run: |
           source env/bin/activate
           azdev test partnercenter
