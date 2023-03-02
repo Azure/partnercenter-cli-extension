@@ -8,12 +8,16 @@ from knack.help_files import helps
 
 
 def load_help():
-    helps['partnercenter marketplace offer plan'] = """
+    helps[
+        "partnercenter marketplace offer plan"
+    ] = """
         type: group
         short-summary: Manage a Marketplace offer plans.
     """
 
-    helps['partnercenter marketplace offer plan show'] = """
+    helps[
+        "partnercenter marketplace offer plan show"
+    ] = """
         type: command
         short-summary: Get the plan of a marketplace offer
         examples:
@@ -22,7 +26,9 @@ def load_help():
                 az partnercenter marketplace offer plan show --id MyPlanId --offer-id MyOfferId
     """
 
-    helps['partnercenter marketplace offer plan list'] = """
+    helps[
+        "partnercenter marketplace offer plan list"
+    ] = """
         type: command
         short-summary: List the plans of a marketplace offer
         examples:
@@ -31,16 +37,23 @@ def load_help():
                 az partnercenter marketplace offer plan list --offer-id MyOfferId
     """
 
-    helps['partnercenter marketplace offer plan create'] = """
+    helps[
+        "partnercenter marketplace offer plan create"
+    ] = """
         type: command
         short-summary: Create a plan for a marketplace offer
         examples:
         - name: Create a plan for an offer
           text: |-
                 az partnercenter marketplace offer plan create --id MyPlanId --name "My Plan Name" --offer-id MyOfferId
+        - name: Create a Managed Application plan in an Application offer
+          text: |-
+                az partnercenter marketplace offer plan create --id MyPlanId --name "My Plan Name" --offer-id MyOfferId --subtype managed-app
     """
 
-    helps['partnercenter marketplace offer plan delete'] = """
+    helps[
+        "partnercenter marketplace offer plan delete"
+    ] = """
         type: command
         short-summary: Delete a plan for a marketplace offer
         examples:
