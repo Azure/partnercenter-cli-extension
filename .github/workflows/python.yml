@@ -40,10 +40,13 @@ jobs:
           azdev extension repo add ../partnercenter-cli-extension/
           azdev extension add partnercenter
       - run: |
+          source env/bin/activate
           azdev style partnercenter
       - run: |
+          source env/bin/activate
           azdev linter partnercenter
       - run: |
+          source env/bin/activate
           azdev test partnercenter
 
   pytest-azure:
