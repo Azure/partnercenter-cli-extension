@@ -55,7 +55,7 @@ class PlanListingClient(BaseClient):
         )
 
     def _get_listing_instance(self, offer, plan_external_id):
-        offer_durable_id = offer._resource.durable_id
+        offer_durable_id = offer.resource.durable_id
 
         branches = get_combined_paged_results(lambda: self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
                                               offer_durable_id, "Listing", self._get_access_token()))
