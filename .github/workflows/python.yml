@@ -28,10 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          allow-no-subscriptions: true
       - run: |
           python -m venv env
           source env/bin/activate
@@ -46,6 +42,23 @@ jobs:
       - run: |
           source env/bin/activate
           azdev linter partnercenter
+
+  azdev-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          allow-no-subscriptions: true
+      - run: |
+          python -m venv env
+          source env/bin/activate
+          pip install azdev
+
+          azdev setup -r .
+          azdev extension repo add ../partnercenter-cli-extension/
+          azdev extension add partnercenter
       - run: |
           source env/bin/activate
           azdev test partnercenter
