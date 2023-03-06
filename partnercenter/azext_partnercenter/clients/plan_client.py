@@ -64,6 +64,7 @@ class PlanClient(BaseClient):
                     resource=Resource(durable_id=variant['id'], type=variant['resourceType'])
                 )
                 items.append(item)
+
         return items
 
     def find_by_external_id(self, offer_external_id, plan_external_id):
