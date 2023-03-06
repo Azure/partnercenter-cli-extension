@@ -5,7 +5,7 @@
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
 
-from azext_partnercenter.models import Plan, Resource
+from azext_partnercenter.models import (Plan, Resource)
 from azext_partnercenter.clients import OfferClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.models import ProductsProductIDVariantsGetRequest
 from ._util import get_combined_paged_results
@@ -47,26 +47,23 @@ class PlanClient(BaseClient):
             return []
 
         offer_durable_id = offer._resource.durable_id
-        variants = get_combined_paged_results(
-            lambda: self._sdk.variant_client.products_product_id_variants_get(
-                offer_durable_id, self._api_client.configuration.access_token
-            )
-        )
+        variants = get_combined_paged_results(lambda: self._sdk.variant_client.products_product_id_variants_get(
+            offer_durable_id,
+            self._api_client.configuration.access_token))
 
         items = []
 
         for variant in variants:
             if "externalID" in variant:
                 item = Plan(
-                    id=variant["externalID"],
-                    name=variant["friendlyName"],
+                    id=variant['externalID'],
+                    name=variant['friendlyName'],
                     offer_id=offer_external_id,
-                    state=variant["state"],
-                    cloud_availabilities=variant["cloudAvailabilities"],
-                    resource=Resource(durable_id=variant["id"], type=variant["resourceType"]),
+                    state=variant['state'],
+                    cloud_availabilities=variant['cloudAvailabilities'],
+                    resource=Resource(durable_id=variant['id'], type=variant['resourceType'])
                 )
                 items.append(item)
-
         return items
 
     def find_by_external_id(self, offer_external_id, plan_external_id):
@@ -96,20 +93,19 @@ class PlanClient(BaseClient):
     # TODO: remove if automated tests show this is unneeded
     def _get(self, offer_durable_id, plan_durable_id):
         """Internal get of the plan"""
-        product = self._sdk.product_client.products_product_id_get(
-            offer_durable_id, self._api_client.configuration.access_token
-        )
+        product = self._sdk.product_client.products_product_id_get(offer_durable_id, self._api_client.configuration.access_token)
         variant = self._sdk.variant_client.products_product_id_variants_variant_id_get(
-            offer_durable_id, plan_durable_id, self._api_client.configuration.access_token
-        )
+            offer_durable_id,
+            plan_durable_id,
+            self._api_client.configuration.access_token)
 
         item = Plan(
-            id=variant["externalID"],
-            name=variant["friendlyName"],
-            offer_id=product["externalIDs"][0]["value"],
-            state=variant["state"],
-            cloud_availabilities=variant["cloudAvailabilities"],
-            resource=Resource(id=variant["id"], type=variant["resourceType"]),
+            id=variant['externalID'],
+            name=variant['friendlyName'],
+            offer_id=product['externalIDs'][0]['value'],
+            state=variant['state'],
+            cloud_availabilities=variant['cloudAvailabilities'],
+            resource=Resource(id=variant['id'], type=variant['resourceType'])
         )
         return item
 
