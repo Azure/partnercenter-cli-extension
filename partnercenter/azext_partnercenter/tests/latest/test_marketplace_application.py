@@ -11,8 +11,8 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
         ... create         --offer-id $OFFER_ID --alias $OFFER_ID --type AzureApplication
         ... listing show   --offer-id $OFFER_ID
         ... listing update --offer-id $OFFER_ID --summary "a storage offer" --short-description "a short description" --description @description.html
-        ... setup   show   --ofer-id $OFFER_ID
-        ... setup   update --ofer-id $OFFER_ID --reseller false --sell-through-microsoft false --test-drive false
+        ... setup   show   --offer-id $OFFER_ID
+        ... setup   update --offer-id $OFFER_ID --reseller false --sell-through-microsoft false --test-drive false
 
         az partnercenter marketplace offer plan...
         ... create         --offer-id $OFFER_ID --plan-id $PLAN_ID --name $PLAN_ID
@@ -27,10 +27,11 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
         self._show_offer_listing()
         self._update_offer_listing()
         self._show_offer_setup()
-        # self._update_offer_setup()
+        self._update_offer_setup()
 
         self._create_st_plan()
         # self._update_plan_listing()
+        # self._show_plan_tech_config()
 
         self._delete_offer()
 
@@ -43,8 +44,8 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
         ... create         --offer-id $OFFER_ID --alias $OFFER_ID --type AzureApplication
         ... listing show   --offer-id $OFFER_ID
         ... listing update --offer-id $OFFER_ID --summary "a storage offer" --short-description "a short description" --description @description.html
-        ... setup   show   --ofer-id $OFFER_ID
-        ... setup   update --ofer-id $OFFER_ID --reseller false --sell-through-microsoft false --test-drive false
+        ... setup   show   --offer-id $OFFER_ID
+        ... setup   update --offer-id $OFFER_ID --reseller false --sell-through-microsoft false --test-drive false
 
         az partnercenter marketplace offer plan...
         ... create         --offer-id $OFFER_ID --plan-id $PLAN_ID --name $PLAN_ID --subtype managed-application
@@ -58,7 +59,7 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
         self._show_offer_listing()
         self._update_offer_listing()
         self._show_offer_setup()
-        # self._update_offer_setup()
+        self._update_offer_setup()
 
         self._create_ma_plan()
         # self._update_plan_listing()
@@ -111,7 +112,7 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
 
     def _update_offer_setup(self):
         self.cmd(
-            "partnercenter marketplace offer setup update --offer-id {offer_id} --reseller false --sell-through-microsoft false --test-drive false"
+            "partnercenter marketplace offer setup update --offer-id {offer_id}"
         )
 
     def _delete_offer(self):
