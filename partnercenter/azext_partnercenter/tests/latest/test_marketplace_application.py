@@ -13,6 +13,23 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
         self._delete_offer()
 
     def test_managed_app_create(self):
+        """
+        OFFER_ID=offertest1
+        PLAN_ID=plantest1
+
+        az partnercenter marketplace offer...
+        ... create         --offer-id $OFFER_ID --alias $OFFER_ID --type AzureApplication
+        ... listing show   --offer-id $OFFER_ID
+        ... listing update --offer-id $OFFER_ID --summary "a storage offer" --description @description.html
+
+        az partnercenter marketplace offer plan...
+        ... create         --offer-id $OFFER_ID --plan-id $PLAN_ID --name $PLAN_ID --subtype managed-application
+        ... listing show   --offer-id $OFFER_ID --plan-id $PLAN_ID
+        ... listing update --offer-id $OFFER_ID --plan-id $PLAN_ID --summary "a storage offer" --description @description.html
+
+        az partnercenter marketplace offer plan technical-configuration...
+        ... show --offer-id $OFFER_ID --plan-id $PLAN_ID
+        """
         self._create_offer()
         self._show_offer_listing()
         # self._update_offer_listing()
