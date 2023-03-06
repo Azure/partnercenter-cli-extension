@@ -61,15 +61,16 @@ class PlanClient(BaseClient):
         items = []
 
         for variant in variants:
-            item = Plan(
-                id=variant["externalID"],
-                name=variant["friendlyName"],
-                offer_id=offer_external_id,
-                state=variant["state"],
-                cloud_availabilities=variant["cloudAvailabilities"],
-                resource=Resource(durable_id=variant["id"], type=variant["resourceType"]),
-            )
-            items.append(item)
+            if "externalID" in variant:
+                item = Plan(
+                    id=variant["externalID"],
+                    name=variant["friendlyName"],
+                    offer_id=offer_external_id,
+                    state=variant["state"],
+                    cloud_availabilities=variant["cloudAvailabilities"],
+                    resource=Resource(durable_id=variant["id"], type=variant["resourceType"]),
+                )
+                items.append(item)
 
         return items
 

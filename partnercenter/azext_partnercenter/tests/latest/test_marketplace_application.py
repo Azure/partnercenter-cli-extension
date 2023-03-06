@@ -2,25 +2,21 @@ from azure.cli.testsdk import ScenarioTest
 
 
 class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
-    def test_solution_template_create(self):
+    def test_solution_template_creation(self):
         """
         OFFER_ID=offertest1
         PLAN_ID=stPlanTest1
 
-        az partnercenter marketplace offer...
-        ... create         --offer-id $OFFER_ID --alias $OFFER_ID --type AzureApplication
-        ... listing show   --offer-id $OFFER_ID
-        ... listing update --offer-id $OFFER_ID --summary "a storage offer" --short-description "a short description" --description @description.html
-        ... setup   show   --offer-id $OFFER_ID
-        ... setup   update --offer-id $OFFER_ID --reseller false --sell-through-microsoft false --test-drive false
-
-        az partnercenter marketplace offer plan...
-        ... create         --offer-id $OFFER_ID --plan-id $PLAN_ID --name $PLAN_ID
-        ... listing show   --offer-id $OFFER_ID --plan-id $PLAN_ID
-        ... listing update --offer-id $OFFER_ID --plan-id $PLAN_ID --summary "a storage offer" --description @description.html
-
-        az partnercenter marketplace offer plan technical-configuration...
-        ... show --offer-id $OFFER_ID --plan-id $PLAN_ID
+        az partnercenter marketplace
+        ... offer                           create --offer-id $OFFER_ID --alias $OFFER_ID --type AzureApplication
+        ... ... listing                     show   --offer-id $OFFER_ID
+        ... ... listing                     update --offer-id $OFFER_ID --summary "a storage offer" --short-description "a short description" --description @description.html
+        ... ... setup                       show   --offer-id $OFFER_ID
+        ... ... setup                       update --offer-id $OFFER_ID --reseller false --sell-through-microsoft false --test-drive false
+        ... ... plan                        create --offer-id $OFFER_ID --plan-id $PLAN_ID --name $PLAN_ID
+        ... ... ... listing                 show   --offer-id $OFFER_ID --plan-id $PLAN_ID
+        ... ... ... listing                 update --offer-id $OFFER_ID --plan-id $PLAN_ID --summary "a storage offer" --description @description.html
+        ... ... ... technical-configuration show   --offer-id $OFFER_ID --plan-id $PLAN_ID
         """
         self._create_offer()
 
@@ -30,30 +26,26 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
         self._update_offer_setup()
 
         self._create_st_plan()
-        # self._update_plan_listing()
+        self._update_plan_listing()
         # self._show_plan_tech_config()
 
         self._delete_offer()
 
-    def test_managed_app_create(self):
+    def test_managed_app_creation(self):
         """
         OFFER_ID=offertest1
         PLAN_ID=maPlanTest1
 
-        az partnercenter marketplace offer...
-        ... create         --offer-id $OFFER_ID --alias $OFFER_ID --type AzureApplication
-        ... listing show   --offer-id $OFFER_ID
-        ... listing update --offer-id $OFFER_ID --summary "a storage offer" --short-description "a short description" --description @description.html
-        ... setup   show   --offer-id $OFFER_ID
-        ... setup   update --offer-id $OFFER_ID --reseller false --sell-through-microsoft false --test-drive false
-
-        az partnercenter marketplace offer plan...
-        ... create         --offer-id $OFFER_ID --plan-id $PLAN_ID --name $PLAN_ID --subtype managed-application
-        ... listing show   --offer-id $OFFER_ID --plan-id $PLAN_ID
-        ... listing update --offer-id $OFFER_ID --plan-id $PLAN_ID --summary "a storage offer" --description @description.html
-
-        az partnercenter marketplace offer plan technical-configuration...
-        ... show --offer-id $OFFER_ID --plan-id $PLAN_ID
+        az partnercenter marketplace
+        ... offer                           create --offer-id $OFFER_ID --alias $OFFER_ID --type AzureApplication
+        ... ... listing                     show   --offer-id $OFFER_ID
+        ... ... listing                     update --offer-id $OFFER_ID --summary "a storage offer" --short-description "a short description" --description @description.html
+        ... ... setup                       show   --offer-id $OFFER_ID
+        ... ... setup                       update --offer-id $OFFER_ID --reseller false --sell-through-microsoft false --test-drive false
+        ... ... plan                        create --offer-id $OFFER_ID --plan-id $PLAN_ID --name $PLAN_ID --subtype managed-application
+        ... ... ... listing                 show   --offer-id $OFFER_ID --plan-id $PLAN_ID
+        ... ... ... listing                 update --offer-id $OFFER_ID --plan-id $PLAN_ID --summary "a storage offer" --description @description.html
+        ... ... ... technical-configuration show   --offer-id $OFFER_ID --plan-id $PLAN_ID
         """
         self._create_offer()
         self._show_offer_listing()
@@ -62,7 +54,7 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
         self._update_offer_setup()
 
         self._create_ma_plan()
-        # self._update_plan_listing()
+        self._update_plan_listing()
         # self._show_plan_tech_config()
 
         self._delete_offer()
@@ -84,7 +76,7 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
                 "plan_id": self.plan_id,
                 "plan_name": self.plan_id + "name",
                 "plan_summary": "Unreal Cloud DDC for Unreal Engine game development.",
-                "plan_description": "@description.html",
+                "plan_description": "Unreal Cloud DDC for Unreal Engine game development.",  # "@description.html",
             },
         )
 
