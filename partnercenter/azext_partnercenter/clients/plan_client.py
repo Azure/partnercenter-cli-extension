@@ -35,7 +35,7 @@ class PlanClient(BaseClient):
             state=result.state,
             cloud_availabilities=result.cloud_availabilities,
             resource=Resource(durable_id=result.id, type=result.resource_type),
-            subtype=subtype
+            subtype=subtype,
         )
 
     def get(self, offer_external_id, plan_external_id):
