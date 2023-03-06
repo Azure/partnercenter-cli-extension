@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# python -m venv env
+python -m venv env
 source env/bin/activate
-# pip install azdev
+pip install azdev
 
 azdev setup -r .
 azdev extension repo add .

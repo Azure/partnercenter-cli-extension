@@ -4,5 +4,7 @@
         "partnercenter/azext_partnercenter/tests"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
+    "python.terminal.activateEnvInCurrentTerminal": true    
 }
