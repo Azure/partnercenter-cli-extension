@@ -2,11 +2,12 @@
 
 ## Creating a Marketplace Application Offer
 
-
 Here is how to define a Azure Application using the CLI:
 
 1. Create your offer as an AzureApplication type
-2. update the offer setup to sell through Microsoft
+2. Update your offer's listing with a summary, short description and description.
+3. Create a Plan and define the Plan's Subtype.
+4. Update your plan's listing with a summary and description.
 
 > NOTE: offer type cannot be changed once the offer is created. If the offer type is not AzureApplication, create a new offer
 
@@ -20,9 +21,6 @@ az partnercenter marketplace offer create \
     --offer-id $offer_id \
     --type AzureApplication \
     --alias "My App Alias"
-az partnercenter marketplace offer setup update \
-    --offer-id $offer_id \
-    --sell-through-microsoft true
 az partnercenter marketplace offer listing update \
     --offer-id $offer_id \
     --summary '{summary}' \
@@ -38,6 +36,7 @@ az partnercenter marketplace offer plan create \
     --offer-id $offer_id \
     --plan-id $plan_id \
     --name 'Test Plan'
+    --subtype managed-application
 az partnercenter marketplace offer plan listing update \
     --offer-id $offer_id \
     --plan-id $plan_id \
