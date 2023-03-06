@@ -5,7 +5,7 @@ source env/bin/activate
 # pip install azdev
 
 azdev setup -r .
-azdev extension repo add ../partnercenter-cli-extension/
+azdev extension repo add .
 azdev extension add partnercenter
 
 clientId=$(echo $AZURE_CREDENTIALS | jq -r .clientId)
