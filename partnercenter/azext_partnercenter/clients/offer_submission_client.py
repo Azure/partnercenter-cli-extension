@@ -30,12 +30,13 @@ class OfferSubmissionClient(BaseClient):
         result = self._graph_api_client.publish_submission(target, offer._resource.durable_id, submission_id)
         return result
 
-    def _map_submission(self, s: Submission) -> OfferSubmission:
+    @staticmethod
+    def _map_submission(s: Submission) -> OfferSubmission:
         return OfferSubmission(
-            id = s.id.__root__.split('/')[-1],
-            lifecycle_state = s.lifecycle_state,
-            target = s.target.target_type,
-            status = s.status,
-            result = s.result,
-            created = s.created
+            id=s.id.__root__.split('/')[-1],
+            lifecycle_state=s.lifecycle_state,
+            target=s.target.target_type,
+            status=s.status,
+            result=s.result,
+            created=s.created
         )
