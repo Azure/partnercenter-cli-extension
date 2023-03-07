@@ -1,0 +1,23 @@
+name: Python CI
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  azdev-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: azdev setup
+        run: |
+          python -m venv env
+          source env/bin/activate
+          pip install azdev
+          azdev setup -r .
+          azdev extension repo add .
+          azdev extension add partnercenter
+      - name: azdev style
+        run: |
+          source env/bin/activate
+          azdev style partnercenter
