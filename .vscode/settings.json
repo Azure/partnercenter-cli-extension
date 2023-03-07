@@ -5,6 +5,6 @@
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-    "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
+    "python.defaultInterpreterPath": "/home/codespace/env/bin/python",
     "python.terminal.activateEnvInCurrentTerminal": true    
 }

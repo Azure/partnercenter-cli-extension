@@ -1,12 +1,8 @@
 #!/bin/bash
 
-python -m venv env
-source env/bin/activate
-pip install azdev
+source /workspaces/partnercenter-cli-extension/env/bin/activate
 
-azdev setup -r .
-azdev extension repo add .
-azdev extension add partnercenter
+azdev setup -r . -e partnercenter
 
 clientId=$(echo $AZURE_CREDENTIALS | jq -r .clientId)
 clientSecret=$(echo $AZURE_CREDENTIALS | jq -r .clientSecret)

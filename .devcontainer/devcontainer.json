@@ -5,19 +5,11 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "editorconfig.editorconfig",
-        "github.vscode-pull-request-github",
-        "ms-python.python"
-      ],
-      "settings": {
-        "editor.detectIndentation": false,
-        "python.testing.pytestArgs": [
-            "partnercenter/azext_partnercenter/tests"
-        ],
-        "python.testing.unittestEnabled": false,
-        "python.testing.pytestEnabled": true,
-        "python.envFile": "${workspaceFolder}/.env"
-      }
+		"editorconfig.editorconfig",
+		"github.vscode-pull-request-github",
+		"ms-python.python",
+		"ms-azuretools.vscode-docker"
+	]
     }
   },
   "features": {
