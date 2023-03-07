@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source /workspaces/partnercenter-cli-extension/env/bin/activate
+source /home/codespace/env/bin/activate
 
-azdev setup -r . -e partnercenter
+azdev setup -r . -e partnercenter -d requirements.txt
 
 clientId=$(echo $AZURE_CREDENTIALS | jq -r .clientId)
 clientSecret=$(echo $AZURE_CREDENTIALS | jq -r .clientSecret)

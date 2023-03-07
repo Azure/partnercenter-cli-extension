@@ -13,3 +13,5 @@ RUN cd ${HOME} \
         azdev \
         azure-cli \
         azure-cli-testsdk
+
+ENV PATH="${HOME}/env/bin:$PATH"
