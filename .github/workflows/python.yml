@@ -21,3 +21,7 @@ jobs:
         run: |
           source env/bin/activate
           azdev style partnercenter
+      - name: azdev linter
+        run: |
+          source env/bin/activate
+          azdev linter partnercenter
