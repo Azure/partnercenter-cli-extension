@@ -47,13 +47,6 @@ DEPENDENCIES = [
     'pydantic'
 ]
 
-EXTRA_DEPENDENCIES = {
-    'test': [
-        'azure-cli-core',
-        'azure-cli-testsdk',
-    ]
-}
-
 with open('README.rst', 'r', encoding='utf-8') as f:
     README = f.read()
 with open('HISTORY.rst', 'r', encoding='utf-8') as f:
@@ -71,6 +64,5 @@ setup(
     classifiers=CLASSIFIERS,
     packages=find_packages(),
     install_requires=DEPENDENCIES,
-    extra_requires=EXTRA_DEPENDENCIES,
     package_data={'azext_partnercenter': ['azext_metadata.json']},
 )
