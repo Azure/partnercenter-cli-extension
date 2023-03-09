@@ -12,5 +12,5 @@
     "python.analysis.autoImportCompletions": true,
     "python.analysis.typeCheckingMode": "off",
     "python.linting.flake8Enabled": true,
-    "python.linting.flake8Path": "/home/codespace/env/bin/python/flake8"
+    "python.linting.flake8Path": "/home/codespace/env/bin/flake8"
 }
