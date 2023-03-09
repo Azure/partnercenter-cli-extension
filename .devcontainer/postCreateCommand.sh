@@ -4,20 +4,4 @@
 
 source /home/codespace/env/bin/activate
 
-azdev setup -r . -e partnercenter -d requirements.txt
-
-if [ -z "$AZURE_CREDENTIALS" ]; then
-    echo "Skipping login. Credentials not found."
-else
-
-    clientId=$(echo $AZURE_CREDENTIALS | jq -r .clientId)
-    clientSecret=$(echo $AZURE_CREDENTIALS | jq -r .clientSecret)
-    tenantId=$(echo $AZURE_CREDENTIALS | jq -r .tenantId)
-
-    az login \
-        --service-principal \
-        -u $clientId \
-        -p $clientSecret \
-        --tenant $tenantId \
-        --allow-no-subscriptions
-fi
+azdev setup --repo . --ext partnercenter --deps-from requirements.txt

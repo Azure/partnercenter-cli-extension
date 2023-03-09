@@ -14,5 +14,6 @@
   "features": {
     "github-cli": "latest"
   },
-  "postCreateCommand": ".devcontainer/postCreateCommand.sh"
+  "postCreateCommand": ".devcontainer/postCreateCommand.sh",
+  "postStartCommand": ""
 }
