@@ -17,11 +17,11 @@ jobs:
           azdev setup -r .
           azdev extension repo add .
           azdev extension add partnercenter
-      - name: azdev style
-        run: |
-          source env/bin/activate
-          azdev style partnercenter
       - name: azdev linter
         run: |
           source env/bin/activate
           azdev linter partnercenter
+      - name: azdev style
+        run: |
+          source env/bin/activate
+          azdev style partnercenter
