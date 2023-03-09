@@ -4,11 +4,11 @@
   "customizations": {
     "vscode": {
       "extensions": [
-		"editorconfig.editorconfig",
-		"github.vscode-pull-request-github",
-		"ms-python.python",
-		"ms-azuretools.vscode-docker"
-	]
+        "editorconfig.editorconfig",
+        "github.vscode-pull-request-github",
+        "ms-python.python",
+        "ms-azuretools.vscode-docker"
+      ]
     }
   },
   "features": {
