@@ -11,7 +11,7 @@
 		"ms-python.pylint",
 		"ms-python.vscode-pylance",
 		"ms-python.flake8"
-	]
+	  ]
     }
   },
   "features": {
