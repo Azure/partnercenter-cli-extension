@@ -11,11 +11,13 @@
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.autoImportCompletions": true,
     "python.analysis.typeCheckingMode": "off",
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Path": "/home/codespace/env/bin/flake8",
     "pylint.args": [
         "--rcfile",
         ".pylintrc"
     ],
-    "pylint.importStrategy": "fromEnvironment"
+    "pylint.importStrategy": "fromEnvironment",
+    "flake8.args": [
+        "--config=.flake8"
+    ],
+    "flake8.importStrategy": "fromEnvironment"
 }
