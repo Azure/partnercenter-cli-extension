@@ -24,93 +24,40 @@ from ..model_utils import (  # noqa: F401
     file_type,
     none_type,
     validate_get_composed_info,
-    OpenApiModel,
+    OpenApiModel
 )
 from ..exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from ..model.microsoft_ingestion_api_models_common_type_value_pair import (
-        MicrosoftIngestionApiModelsCommonTypeValuePair,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_azure_application_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesAzureApplicationPackageConfiguration,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_azure_managed_application_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesAzureManagedApplicationPackageConfiguration,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_azure_policy import (
-        MicrosoftIngestionApiModelsPackagesAzurePolicy,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_azure_resource_manager_test_drive_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesAzureResourceManagerTestDrivePackageConfiguration,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_azure_solution_template_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesAzureSolutionTemplatePackageConfiguration,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_dynamics365_business_central_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralPackageConfiguration,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_dynamics365_business_central_test_drive_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralTestDrivePackageConfiguration,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_dynamics365_customer_engagement_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementPackageConfiguration,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_dynamics365_customer_engagement_test_drive_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementTestDrivePackageConfiguration,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_dynamics365_operations_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesDynamics365OperationsPackageConfiguration,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_dynamics365_operations_test_drive_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesDynamics365OperationsTestDrivePackageConfiguration,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_package_region_availability import (
-        MicrosoftIngestionApiModelsPackagesPackageRegionAvailability,
-    )
-    from ..model.microsoft_ingestion_api_models_packages_role_authorization import (
-        MicrosoftIngestionApiModelsPackagesRoleAuthorization,
-    )
-
-    globals()["MicrosoftIngestionApiModelsCommonTypeValuePair"] = MicrosoftIngestionApiModelsCommonTypeValuePair
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesAzureApplicationPackageConfiguration"
-    ] = MicrosoftIngestionApiModelsPackagesAzureApplicationPackageConfiguration
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesAzureManagedApplicationPackageConfiguration"
-    ] = MicrosoftIngestionApiModelsPackagesAzureManagedApplicationPackageConfiguration
-    globals()["MicrosoftIngestionApiModelsPackagesAzurePolicy"] = MicrosoftIngestionApiModelsPackagesAzurePolicy
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesAzureResourceManagerTestDrivePackageConfiguration"
-    ] = MicrosoftIngestionApiModelsPackagesAzureResourceManagerTestDrivePackageConfiguration
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesAzureSolutionTemplatePackageConfiguration"
-    ] = MicrosoftIngestionApiModelsPackagesAzureSolutionTemplatePackageConfiguration
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralPackageConfiguration"
-    ] = MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralPackageConfiguration
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralTestDrivePackageConfiguration"
-    ] = MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralTestDrivePackageConfiguration
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementPackageConfiguration"
-    ] = MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementPackageConfiguration
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementTestDrivePackageConfiguration"
-    ] = MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementTestDrivePackageConfiguration
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesDynamics365OperationsPackageConfiguration"
-    ] = MicrosoftIngestionApiModelsPackagesDynamics365OperationsPackageConfiguration
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesDynamics365OperationsTestDrivePackageConfiguration"
-    ] = MicrosoftIngestionApiModelsPackagesDynamics365OperationsTestDrivePackageConfiguration
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesPackageRegionAvailability"
-    ] = MicrosoftIngestionApiModelsPackagesPackageRegionAvailability
-    globals()[
-        "MicrosoftIngestionApiModelsPackagesRoleAuthorization"
-    ] = MicrosoftIngestionApiModelsPackagesRoleAuthorization
+    from ..model.microsoft_ingestion_api_models_common_type_value_pair import MicrosoftIngestionApiModelsCommonTypeValuePair
+    from ..model.microsoft_ingestion_api_models_packages_azure_application_package_configuration import MicrosoftIngestionApiModelsPackagesAzureApplicationPackageConfiguration
+    from ..model.microsoft_ingestion_api_models_packages_azure_managed_application_package_configuration import MicrosoftIngestionApiModelsPackagesAzureManagedApplicationPackageConfiguration
+    from ..model.microsoft_ingestion_api_models_packages_azure_policy import MicrosoftIngestionApiModelsPackagesAzurePolicy
+    from ..model.microsoft_ingestion_api_models_packages_azure_resource_manager_test_drive_package_configuration import MicrosoftIngestionApiModelsPackagesAzureResourceManagerTestDrivePackageConfiguration
+    from ..model.microsoft_ingestion_api_models_packages_azure_solution_template_package_configuration import MicrosoftIngestionApiModelsPackagesAzureSolutionTemplatePackageConfiguration
+    from ..model.microsoft_ingestion_api_models_packages_dynamics365_business_central_package_configuration import MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralPackageConfiguration
+    from ..model.microsoft_ingestion_api_models_packages_dynamics365_business_central_test_drive_package_configuration import MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralTestDrivePackageConfiguration
+    from ..model.microsoft_ingestion_api_models_packages_dynamics365_customer_engagement_package_configuration import MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementPackageConfiguration
+    from ..model.microsoft_ingestion_api_models_packages_dynamics365_customer_engagement_test_drive_package_configuration import MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementTestDrivePackageConfiguration
+    from ..model.microsoft_ingestion_api_models_packages_dynamics365_operations_package_configuration import MicrosoftIngestionApiModelsPackagesDynamics365OperationsPackageConfiguration
+    from ..model.microsoft_ingestion_api_models_packages_dynamics365_operations_test_drive_package_configuration import MicrosoftIngestionApiModelsPackagesDynamics365OperationsTestDrivePackageConfiguration
+    from ..model.microsoft_ingestion_api_models_packages_package_region_availability import MicrosoftIngestionApiModelsPackagesPackageRegionAvailability
+    from ..model.microsoft_ingestion_api_models_packages_role_authorization import MicrosoftIngestionApiModelsPackagesRoleAuthorization
+    globals()['MicrosoftIngestionApiModelsCommonTypeValuePair'] = MicrosoftIngestionApiModelsCommonTypeValuePair
+    globals()['MicrosoftIngestionApiModelsPackagesAzureApplicationPackageConfiguration'] = MicrosoftIngestionApiModelsPackagesAzureApplicationPackageConfiguration
+    globals()['MicrosoftIngestionApiModelsPackagesAzureManagedApplicationPackageConfiguration'] = MicrosoftIngestionApiModelsPackagesAzureManagedApplicationPackageConfiguration
+    globals()['MicrosoftIngestionApiModelsPackagesAzurePolicy'] = MicrosoftIngestionApiModelsPackagesAzurePolicy
+    globals()['MicrosoftIngestionApiModelsPackagesAzureResourceManagerTestDrivePackageConfiguration'] = MicrosoftIngestionApiModelsPackagesAzureResourceManagerTestDrivePackageConfiguration
+    globals()['MicrosoftIngestionApiModelsPackagesAzureSolutionTemplatePackageConfiguration'] = MicrosoftIngestionApiModelsPackagesAzureSolutionTemplatePackageConfiguration
+    globals()['MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralPackageConfiguration'] = MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralPackageConfiguration
+    globals()['MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralTestDrivePackageConfiguration'] = MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralTestDrivePackageConfiguration
+    globals()['MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementPackageConfiguration'] = MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementPackageConfiguration
+    globals()['MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementTestDrivePackageConfiguration'] = MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementTestDrivePackageConfiguration
+    globals()['MicrosoftIngestionApiModelsPackagesDynamics365OperationsPackageConfiguration'] = MicrosoftIngestionApiModelsPackagesDynamics365OperationsPackageConfiguration
+    globals()['MicrosoftIngestionApiModelsPackagesDynamics365OperationsTestDrivePackageConfiguration'] = MicrosoftIngestionApiModelsPackagesDynamics365OperationsTestDrivePackageConfiguration
+    globals()['MicrosoftIngestionApiModelsPackagesPackageRegionAvailability'] = MicrosoftIngestionApiModelsPackagesPackageRegionAvailability
+    globals()['MicrosoftIngestionApiModelsPackagesRoleAuthorization'] = MicrosoftIngestionApiModelsPackagesRoleAuthorization
 
 
 class ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response(ModelComposed):
@@ -138,20 +85,21 @@ class ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
     """
 
     allowed_values = {
-        ("resource_type",): {
-            "AZURERESOURCEMANAGERTESTDRIVEPACKAGECONFIGURATION": "AzureResourceManagerTestDrivePackageConfiguration",
+        ('resource_type',): {
+            'AZURERESOURCEMANAGERTESTDRIVEPACKAGECONFIGURATION': "AzureResourceManagerTestDrivePackageConfiguration",
         },
-        ("package_type",): {
-            "ADDON": "AddOn",
-            "CONNECT": "Connect",
+        ('package_type',): {
+            'ADDON': "AddOn",
+            'CONNECT': "Connect",
         },
-        ("base_license_model",): {
-            "RESOURCE": "Resource",
-            "USER": "User",
+        ('base_license_model',): {
+            'RESOURCE': "Resource",
+            'USER': "User",
         },
     }
 
-    validations = {}
+    validations = {
+    }
 
     @cached_property
     def additional_properties_type():
@@ -160,17 +108,7 @@ class ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
         of type self, this must run after the class is loaded
         """
         lazy_import()
-        return (
-            bool,
-            date,
-            datetime,
-            dict,
-            float,
-            int,
-            list,
-            str,
-            none_type,
-        )  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -186,121 +124,94 @@ class ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
         """
         lazy_import()
         return {
-            "resource_type": (str,),  # noqa: E501
-            "id": (str,),  # noqa: E501
-            "odata_etag": (str,),  # noqa: E501
-            "package_type": (str,),  # noqa: E501
-            "application_installation_uri": (str,),  # noqa: E501
-            "package_references": ([MicrosoftIngestionApiModelsCommonTypeValuePair],),  # noqa: E501
-            "base_license_model": (str,),  # noqa: E501
-            "require_s2_s_outbound_and_crm_secure_store_access": (
-                bool,
-                none_type,
-            ),  # noqa: E501
-            "application_configuration_uri": (str,),  # noqa: E501
-            "package_location_uri": (str,),  # noqa: E501
-            "package_region_availabilities": (
-                [MicrosoftIngestionApiModelsPackagesPackageRegionAvailability],
-            ),  # noqa: E501
-            "multiple_packages_in_package_file": (
-                bool,
-                none_type,
-            ),  # noqa: E501
-            "release_version": (str,),  # noqa: E501
-            "solution_identifier": (str,),  # noqa: E501
-            "azure_active_directory_application_id": (str,),  # noqa: E501
-            "azure_active_directory_application_key": (str,),  # noqa: E501
-            "azure_active_directory_tenant_id": (str,),  # noqa: E501
-            "test_drive_duration": (
-                int,
-                none_type,
-            ),  # noqa: E501
-            "azure_active_directory_tenant_name": (str,),  # noqa: E501
-            "max_concurrent_test_drives": (
-                int,
-                none_type,
-            ),  # noqa: E501
-            "instance_uri": (str,),  # noqa: E501
-            "role_name": (str,),  # noqa: E501
-            "instance_web_api_uri": (str,),  # noqa: E501
-            "trial_legal_entity": (str,),  # noqa: E501
-            "version": (str,),  # noqa: E501
-            "allow_jit_access": (
-                bool,
-                none_type,
-            ),  # noqa: E501
-            "can_enable_customer_actions": (
-                bool,
-                none_type,
-            ),  # noqa: E501
-            "allowed_customer_actions": ([str],),  # noqa: E501
-            "public_azure_tenant_id": (str,),  # noqa: E501
-            "public_azure_authorizations": ([MicrosoftIngestionApiModelsPackagesRoleAuthorization],),  # noqa: E501
-            "azure_government_tenant_id": (str,),  # noqa: E501
-            "azure_government_authorizations": ([MicrosoftIngestionApiModelsPackagesRoleAuthorization],),  # noqa: E501
-            "policies": ([MicrosoftIngestionApiModelsPackagesAzurePolicy],),  # noqa: E501
-            "regions": ([str],),  # noqa: E501
-            "hot_instances": (
-                int,
-                none_type,
-            ),  # noqa: E501
-            "warm_instances": (
-                int,
-                none_type,
-            ),  # noqa: E501
-            "cold_instances": (
-                int,
-                none_type,
-            ),  # noqa: E501
-            "azure_subscription_id": (str,),  # noqa: E501
+            'resource_type': (str,),  # noqa: E501
+            'id': (str,),  # noqa: E501
+            'odata_etag': (str,),  # noqa: E501
+            'package_type': (str,),  # noqa: E501
+            'application_installation_uri': (str,),  # noqa: E501
+            'package_references': ([MicrosoftIngestionApiModelsCommonTypeValuePair],),  # noqa: E501
+            'base_license_model': (str,),  # noqa: E501
+            'require_s2_s_outbound_and_crm_secure_store_access': (bool, none_type,),  # noqa: E501
+            'application_configuration_uri': (str,),  # noqa: E501
+            'package_location_uri': (str,),  # noqa: E501
+            'package_region_availabilities': ([MicrosoftIngestionApiModelsPackagesPackageRegionAvailability],),  # noqa: E501
+            'multiple_packages_in_package_file': (bool, none_type,),  # noqa: E501
+            'release_version': (str,),  # noqa: E501
+            'solution_identifier': (str,),  # noqa: E501
+            'azure_active_directory_application_id': (str,),  # noqa: E501
+            'azure_active_directory_application_key': (str,),  # noqa: E501
+            'azure_active_directory_tenant_id': (str,),  # noqa: E501
+            'test_drive_duration': (int, none_type,),  # noqa: E501
+            'azure_active_directory_tenant_name': (str,),  # noqa: E501
+            'max_concurrent_test_drives': (int, none_type,),  # noqa: E501
+            'instance_uri': (str,),  # noqa: E501
+            'role_name': (str,),  # noqa: E501
+            'instance_web_api_uri': (str,),  # noqa: E501
+            'trial_legal_entity': (str,),  # noqa: E501
+            'version': (str,),  # noqa: E501
+            'allow_jit_access': (bool, none_type,),  # noqa: E501
+            'can_enable_customer_actions': (bool, none_type,),  # noqa: E501
+            'allowed_customer_actions': ([str],),  # noqa: E501
+            'public_azure_tenant_id': (str,),  # noqa: E501
+            'public_azure_authorizations': ([MicrosoftIngestionApiModelsPackagesRoleAuthorization],),  # noqa: E501
+            'azure_government_tenant_id': (str,),  # noqa: E501
+            'azure_government_authorizations': ([MicrosoftIngestionApiModelsPackagesRoleAuthorization],),  # noqa: E501
+            'policies': ([MicrosoftIngestionApiModelsPackagesAzurePolicy],),  # noqa: E501
+            'regions': ([str],),  # noqa: E501
+            'hot_instances': (int, none_type,),  # noqa: E501
+            'warm_instances': (int, none_type,),  # noqa: E501
+            'cold_instances': (int, none_type,),  # noqa: E501
+            'azure_subscription_id': (str,),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
         return None
 
+
     attribute_map = {
-        "resource_type": "resourceType",  # noqa: E501
-        "id": "ID",  # noqa: E501
-        "odata_etag": "@odata.etag",  # noqa: E501
-        "package_type": "packageType",  # noqa: E501
-        "application_installation_uri": "applicationInstallationUri",  # noqa: E501
-        "package_references": "packageReferences",  # noqa: E501
-        "base_license_model": "baseLicenseModel",  # noqa: E501
-        "require_s2_s_outbound_and_crm_secure_store_access": "requireS2SOutboundAndCrmSecureStoreAccess",  # noqa: E501
-        "application_configuration_uri": "applicationConfigurationUri",  # noqa: E501
-        "package_location_uri": "packageLocationUri",  # noqa: E501
-        "package_region_availabilities": "packageRegionAvailabilities",  # noqa: E501
-        "multiple_packages_in_package_file": "multiplePackagesInPackageFile",  # noqa: E501
-        "release_version": "releaseVersion",  # noqa: E501
-        "solution_identifier": "solutionIdentifier",  # noqa: E501
-        "azure_active_directory_application_id": "azureActiveDirectoryApplicationID",  # noqa: E501
-        "azure_active_directory_application_key": "azureActiveDirectoryApplicationKey",  # noqa: E501
-        "azure_active_directory_tenant_id": "azureActiveDirectoryTenantID",  # noqa: E501
-        "test_drive_duration": "testDriveDuration",  # noqa: E501
-        "azure_active_directory_tenant_name": "azureActiveDirectoryTenantName",  # noqa: E501
-        "max_concurrent_test_drives": "maxConcurrentTestDrives",  # noqa: E501
-        "instance_uri": "instanceUri",  # noqa: E501
-        "role_name": "roleName",  # noqa: E501
-        "instance_web_api_uri": "instanceWebApiUri",  # noqa: E501
-        "trial_legal_entity": "trialLegalEntity",  # noqa: E501
-        "version": "version",  # noqa: E501
-        "allow_jit_access": "allowJitAccess",  # noqa: E501
-        "can_enable_customer_actions": "canEnableCustomerActions",  # noqa: E501
-        "allowed_customer_actions": "allowedCustomerActions",  # noqa: E501
-        "public_azure_tenant_id": "publicAzureTenantID",  # noqa: E501
-        "public_azure_authorizations": "publicAzureAuthorizations",  # noqa: E501
-        "azure_government_tenant_id": "azureGovernmentTenantID",  # noqa: E501
-        "azure_government_authorizations": "azureGovernmentAuthorizations",  # noqa: E501
-        "policies": "policies",  # noqa: E501
-        "regions": "regions",  # noqa: E501
-        "hot_instances": "hotInstances",  # noqa: E501
-        "warm_instances": "warmInstances",  # noqa: E501
-        "cold_instances": "coldInstances",  # noqa: E501
-        "azure_subscription_id": "azureSubscriptionID",  # noqa: E501
+        'resource_type': 'resourceType',  # noqa: E501
+        'id': 'ID',  # noqa: E501
+        'odata_etag': '@odata.etag',  # noqa: E501
+        'package_type': 'packageType',  # noqa: E501
+        'application_installation_uri': 'applicationInstallationUri',  # noqa: E501
+        'package_references': 'packageReferences',  # noqa: E501
+        'base_license_model': 'baseLicenseModel',  # noqa: E501
+        'require_s2_s_outbound_and_crm_secure_store_access': 'requireS2SOutboundAndCrmSecureStoreAccess',  # noqa: E501
+        'application_configuration_uri': 'applicationConfigurationUri',  # noqa: E501
+        'package_location_uri': 'packageLocationUri',  # noqa: E501
+        'package_region_availabilities': 'packageRegionAvailabilities',  # noqa: E501
+        'multiple_packages_in_package_file': 'multiplePackagesInPackageFile',  # noqa: E501
+        'release_version': 'releaseVersion',  # noqa: E501
+        'solution_identifier': 'solutionIdentifier',  # noqa: E501
+        'azure_active_directory_application_id': 'azureActiveDirectoryApplicationID',  # noqa: E501
+        'azure_active_directory_application_key': 'azureActiveDirectoryApplicationKey',  # noqa: E501
+        'azure_active_directory_tenant_id': 'azureActiveDirectoryTenantID',  # noqa: E501
+        'test_drive_duration': 'testDriveDuration',  # noqa: E501
+        'azure_active_directory_tenant_name': 'azureActiveDirectoryTenantName',  # noqa: E501
+        'max_concurrent_test_drives': 'maxConcurrentTestDrives',  # noqa: E501
+        'instance_uri': 'instanceUri',  # noqa: E501
+        'role_name': 'roleName',  # noqa: E501
+        'instance_web_api_uri': 'instanceWebApiUri',  # noqa: E501
+        'trial_legal_entity': 'trialLegalEntity',  # noqa: E501
+        'version': 'version',  # noqa: E501
+        'allow_jit_access': 'allowJitAccess',  # noqa: E501
+        'can_enable_customer_actions': 'canEnableCustomerActions',  # noqa: E501
+        'allowed_customer_actions': 'allowedCustomerActions',  # noqa: E501
+        'public_azure_tenant_id': 'publicAzureTenantID',  # noqa: E501
+        'public_azure_authorizations': 'publicAzureAuthorizations',  # noqa: E501
+        'azure_government_tenant_id': 'azureGovernmentTenantID',  # noqa: E501
+        'azure_government_authorizations': 'azureGovernmentAuthorizations',  # noqa: E501
+        'policies': 'policies',  # noqa: E501
+        'regions': 'regions',  # noqa: E501
+        'hot_instances': 'hotInstances',  # noqa: E501
+        'warm_instances': 'warmInstances',  # noqa: E501
+        'cold_instances': 'coldInstances',  # noqa: E501
+        'azure_subscription_id': 'azureSubscriptionID',  # noqa: E501
     }
 
-    read_only_vars = {}
+    read_only_vars = {
+    }
 
     @classmethod
     @convert_js_args_to_python_args
@@ -378,21 +289,24 @@ class ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
             azure_subscription_id (str): [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop("_check_type", True)
-        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
-        _path_to_item = kwargs.pop("_path_to_item", ())
-        _configuration = kwargs.pop("_configuration", None)
-        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
+        _check_type = kwargs.pop('_check_type', True)
+        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
+        _path_to_item = kwargs.pop('_path_to_item', ())
+        _configuration = kwargs.pop('_configuration', None)
+        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
 
         self = super(OpenApiModel, cls).__new__(cls)
 
         if args:
             for arg in args:
                 if isinstance(arg, dict):
-                    kwargs |= arg
+                    kwargs.update(arg)
                 else:
                     raise ApiTypeError(
-                        f"Invalid positional arguments={args} passed to {self.__class__.__name__}. Remove those invalid positional arguments.",
+                        "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                            args,
+                            self.__class__.__name__,
+                        ),
                         path_to_item=_path_to_item,
                         valid_classes=(self.__class__,),
                     )
@@ -405,44 +319,41 @@ class ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         constant_args = {
-            "_check_type": _check_type,
-            "_path_to_item": _path_to_item,
-            "_spec_property_naming": _spec_property_naming,
-            "_configuration": _configuration,
-            "_visited_composed_classes": self._visited_composed_classes,
+            '_check_type': _check_type,
+            '_path_to_item': _path_to_item,
+            '_spec_property_naming': _spec_property_naming,
+            '_configuration': _configuration,
+            '_visited_composed_classes': self._visited_composed_classes,
         }
-        composed_info = validate_get_composed_info(constant_args, kwargs, self)
+        composed_info = validate_get_composed_info(
+            constant_args, kwargs, self)
         self._composed_instances = composed_info[0]
         self._var_name_to_model_instances = composed_info[1]
         self._additional_properties_model_instances = composed_info[2]
         discarded_args = composed_info[3]
 
         for var_name, var_value in kwargs.items():
-            if (
-                var_name in discarded_args
-                and self._configuration is not None
-                and self._configuration.discard_unknown_keys
-                and self._additional_properties_model_instances
-            ):
+            if var_name in discarded_args and \
+                        self._configuration is not None and \
+                        self._configuration.discard_unknown_keys and \
+                        self._additional_properties_model_instances:
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
 
         return self
 
-    required_properties = set(
-        [
-            "_data_store",
-            "_check_type",
-            "_spec_property_naming",
-            "_path_to_item",
-            "_configuration",
-            "_visited_composed_classes",
-            "_composed_instances",
-            "_var_name_to_model_instances",
-            "_additional_properties_model_instances",
-        ]
-    )
+    required_properties = set([
+        '_data_store',
+        '_check_type',
+        '_spec_property_naming',
+        '_path_to_item',
+        '_configuration',
+        '_visited_composed_classes',
+        '_composed_instances',
+        '_var_name_to_model_instances',
+        '_additional_properties_model_instances',
+    ])
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
@@ -519,19 +430,22 @@ class ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
             azure_subscription_id (str): [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop("_check_type", True)
-        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
-        _path_to_item = kwargs.pop("_path_to_item", ())
-        _configuration = kwargs.pop("_configuration", None)
-        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
+        _check_type = kwargs.pop('_check_type', True)
+        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
+        _path_to_item = kwargs.pop('_path_to_item', ())
+        _configuration = kwargs.pop('_configuration', None)
+        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
 
         if args:
             for arg in args:
                 if isinstance(arg, dict):
-                    kwargs |= arg
+                    kwargs.update(arg)
                 else:
                     raise ApiTypeError(
-                        f"Invalid positional arguments={args} passed to {self.__class__.__name__}. Remove those invalid positional arguments.",
+                        "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                            args,
+                            self.__class__.__name__,
+                        ),
                         path_to_item=_path_to_item,
                         valid_classes=(self.__class__,),
                     )
@@ -544,33 +458,30 @@ class ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         constant_args = {
-            "_check_type": _check_type,
-            "_path_to_item": _path_to_item,
-            "_spec_property_naming": _spec_property_naming,
-            "_configuration": _configuration,
-            "_visited_composed_classes": self._visited_composed_classes,
+            '_check_type': _check_type,
+            '_path_to_item': _path_to_item,
+            '_spec_property_naming': _spec_property_naming,
+            '_configuration': _configuration,
+            '_visited_composed_classes': self._visited_composed_classes,
         }
-        composed_info = validate_get_composed_info(constant_args, kwargs, self)
+        composed_info = validate_get_composed_info(
+            constant_args, kwargs, self)
         self._composed_instances = composed_info[0]
         self._var_name_to_model_instances = composed_info[1]
         self._additional_properties_model_instances = composed_info[2]
         discarded_args = composed_info[3]
 
         for var_name, var_value in kwargs.items():
-            if (
-                var_name in discarded_args
-                and self._configuration is not None
-                and self._configuration.discard_unknown_keys
-                and self._additional_properties_model_instances
-            ):
+            if var_name in discarded_args and \
+                        self._configuration is not None and \
+                        self._configuration.discard_unknown_keys and \
+                        self._additional_properties_model_instances:
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
             if var_name in self.read_only_vars:
-                raise ApiAttributeError(
-                    f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
-                    f"class with read only attributes."
-                )
+                raise ApiAttributeError(f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
+                                     f"class with read only attributes.")
 
     @cached_property
     def _composed_schemas():
@@ -583,18 +494,20 @@ class ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
         # loading
         lazy_import()
         return {
-            "anyOf": [],
-            "allOf": [],
-            "oneOf": [
-                MicrosoftIngestionApiModelsPackagesAzureApplicationPackageConfiguration,
-                MicrosoftIngestionApiModelsPackagesAzureManagedApplicationPackageConfiguration,
-                MicrosoftIngestionApiModelsPackagesAzureResourceManagerTestDrivePackageConfiguration,
-                MicrosoftIngestionApiModelsPackagesAzureSolutionTemplatePackageConfiguration,
-                MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralPackageConfiguration,
-                MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralTestDrivePackageConfiguration,
-                MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementPackageConfiguration,
-                MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementTestDrivePackageConfiguration,
-                MicrosoftIngestionApiModelsPackagesDynamics365OperationsPackageConfiguration,
-                MicrosoftIngestionApiModelsPackagesDynamics365OperationsTestDrivePackageConfiguration,
-            ],
+          'anyOf': [
+          ],
+          'allOf': [
+          ],
+          'oneOf': [
+              MicrosoftIngestionApiModelsPackagesAzureApplicationPackageConfiguration,
+              MicrosoftIngestionApiModelsPackagesAzureManagedApplicationPackageConfiguration,
+              MicrosoftIngestionApiModelsPackagesAzureResourceManagerTestDrivePackageConfiguration,
+              MicrosoftIngestionApiModelsPackagesAzureSolutionTemplatePackageConfiguration,
+              MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralPackageConfiguration,
+              MicrosoftIngestionApiModelsPackagesDynamics365BusinessCentralTestDrivePackageConfiguration,
+              MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementPackageConfiguration,
+              MicrosoftIngestionApiModelsPackagesDynamics365CustomerEngagementTestDrivePackageConfiguration,
+              MicrosoftIngestionApiModelsPackagesDynamics365OperationsPackageConfiguration,
+              MicrosoftIngestionApiModelsPackagesDynamics365OperationsTestDrivePackageConfiguration,
+          ],
         }

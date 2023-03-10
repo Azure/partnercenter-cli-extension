@@ -10,25 +10,8 @@ from azure.cli.testsdk import ScenarioTest
 
 
 class PartnerCenterScenarioTest(ScenarioTest, ABC):
-    def __init__(
-        self,
-        method_name,
-        config_file=None,
-        recording_name=None,
-        recording_processors=None,
-        replay_processors=None,
-        recording_patches=None,
-        replay_patches=None,
-    ):
-        super().__init__(
-            method_name,
-            config_file,
-            recording_name,
-            recording_processors,
-            replay_processors,
-            recording_patches,
-            replay_patches,
-        )
+    def __init__(self, method_name, config_file=None, recording_name=None, recording_processors=None, replay_processors=None, recording_patches=None, replay_patches=None):
+        super().__init__(method_name, config_file, recording_name, recording_processors, replay_processors, recording_patches, replay_patches)
         self.cmd_delay = 0
         self.test_data = TestData()
 
@@ -38,10 +21,11 @@ class PartnerCenterScenarioTest(ScenarioTest, ABC):
 
     def cmd(self, command, checks=None, expect_failure=False, delay=0):
         """cmd that supports adding a delay into the execution of a command."""
-        if delay > 0:
-            time.sleep(delay)
-        elif self.cmd_delay > 0:
-            time.sleep(self.cmd_delay)
+        if delay > 0 or self.cmd_delay > 0:
+            if delay > 0:
+                time.sleep(delay)
+            else:
+                time.sleep(self.cmd_delay)
         return super().cmd(command, checks=checks, expect_failure=expect_failure)
 
     @abstractmethod
@@ -53,11 +37,11 @@ class PartnerCenterScenarioTest(ScenarioTest, ABC):
 class TestData:
     """Test Data from the file system"""
 
-    TEST_DIR = os.path.abspath(os.path.join(os.path.abspath(__file__), ".."))
+    TEST_DIR = os.path.abspath(os.path.join(os.path.abspath(__file__), '..'))
     """The root test directory path"""
 
-    def __init__(self, test_data_dir="data"):
-        self.test_data_dir = os.path.join(self.TEST_DIR, test_data_dir).replace("\\", "\\\\")
+    def __init__(self, test_data_dir='data'):
+        self.test_data_dir = os.path.join(self.TEST_DIR, test_data_dir).replace('\\', '\\\\')
         self._ensure_dir(self.test_data_dir)
 
         self.data = {}
@@ -72,7 +56,7 @@ class TestData:
 
     def add(self, file_path):
         """Adds the test data file to the set of test data and returns the absolute path for the test data file"""
-        abs_file_path = os.path.join(self.test_data_dir, file_path).replace("\\", "\\\\")
+        abs_file_path = os.path.join(self.test_data_dir, file_path).replace('\\', '\\\\')
         self.data[file_path] = abs_file_path
 
         return abs_file_path

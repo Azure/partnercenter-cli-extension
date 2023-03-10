@@ -6,9 +6,7 @@
 
 from azext_partnercenter.operations.marketplace_offer import MarketplaceOfferOperations
 from azext_partnercenter.operations.marketplace_offer_plan import MarketplaceOfferPlanOperations
-from azext_partnercenter.operations.marketplace_offer_plan_technicalconfiguration import (
-    MarketplaceOfferPlanTechnicalConfigurationOperations,
-)
+from azext_partnercenter.operations.marketplace_offer_plan_technicalconfiguration import MarketplaceOfferPlanTechnicalConfigurationOperations
 from azext_partnercenter.operations.marketplace_offer_plan_listing import MarketplaceOfferPlanListingOperations
 from azext_partnercenter.operations.marketplace_offer_listing_contact import MarketplaceOfferListingContactOperations
 from azext_partnercenter.operations.marketplace_offer_listing_uri import MarketplaceOfferListingUriOperations
@@ -19,7 +17,7 @@ from azext_partnercenter.operations.marketplace_offer_package import Marketplace
 from azext_partnercenter.operations.marketplace_offer_submission import MarketplaceOfferSubmissionOperations
 
 
-class PartnerCenterSubGroupCommandsLoader:
+class PartnerCenterSubGroupCommandsLoader():
     def __init__(self, commands_loader):
         self.commands_loader = commands_loader
         self.subgroup_command_loaders = [
@@ -33,7 +31,7 @@ class PartnerCenterSubGroupCommandsLoader:
             MarketplaceOfferPlanListingOperations(self),
             MarketplaceOfferListingContactOperations(self),
             MarketplaceOfferListingUriOperations(self),
-            MarketplaceOfferListingImageOperations(self),
+            MarketplaceOfferListingImageOperations(self)
         ]
 
     def load_arguments(self, _):

@@ -8,16 +8,12 @@ from knack.help_files import helps
 
 
 def load_help():
-    helps[
-        "partnercenter marketplace offer"
-    ] = """
+    helps['partnercenter marketplace offer'] = """
         type: group
         short-summary: Manage Marketplace offers.
     """
 
-    helps[
-        "partnercenter marketplace offer show"
-    ] = """
+    helps['partnercenter marketplace offer show'] = """
         type: command
         short-summary: Get a marketplace offer
         examples:
@@ -26,9 +22,7 @@ def load_help():
                 az partnercenter marketplace offer show --id MyOfferId
     """
 
-    helps[
-        "partnercenter marketplace offer create"
-    ] = """
+    helps['partnercenter marketplace offer create'] = """
         type: command
         short-summary: Create a marketplace offer
         examples:
@@ -37,9 +31,7 @@ def load_help():
                 az partnercenter marketplace offer create --id MyOfferId --alias "My Offer Alias" --type AzureContainer
     """
 
-    helps[
-        "partnercenter marketplace offer delete"
-    ] = """
+    helps['partnercenter marketplace offer delete'] = """
         type: command
         short-summary: Delete a marketplace offer
         examples:
@@ -48,9 +40,7 @@ def load_help():
                 az partnercenter marketplace offer delete --id MyOfferId
     """
 
-    helps[
-        "partnercenter marketplace offer list"
-    ] = """
+    helps['partnercenter marketplace offer list'] = """
         type: command
         short-summary: List marketplace offers
         examples:
@@ -59,9 +49,7 @@ def load_help():
                 az partnercenter marketplace offer list
     """
 
-    helps[
-        "partnercenter marketplace offer publish"
-    ] = """
+    helps['partnercenter marketplace offer publish'] = """
         type: command
         short-summary: Publishes all draft changes made to a marketplace offer.
         long-summary:  This command publishes every change that's in draft. If you want to target a specific submission, use offer submission commands

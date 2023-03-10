@@ -19,11 +19,9 @@ from ..model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types,
+    validate_and_convert_types
 )
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_cosell_cosell_asset import (
-    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsCosellCosellAsset,
-)
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_cosell_cosell_asset import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsCosellCosellAsset
 from ..model.microsoft_ingestion_api_models_cosell_cosell_asset import MicrosoftIngestionApiModelsCosellCosellAsset
 
 
@@ -40,274 +38,341 @@ class CosellAssetClient(object):
         self.api_client = api_client
         self.products_product_id_cosell_assets_cosell_asset_id_delete_endpoint = _Endpoint(
             settings={
-                "response_type": None,
-                "auth": [],
-                "endpoint_path": "/products/{productID}/cosellAssets/{cosellAssetID}",
-                "operation_id": "products_product_id_cosell_assets_cosell_asset_id_delete",
-                "http_method": "DELETE",
-                "servers": None,
+                'response_type': None,
+                'auth': [],
+                'endpoint_path': '/products/{productID}/cosellAssets/{cosellAssetID}',
+                'operation_id': 'products_product_id_cosell_assets_cosell_asset_id_delete',
+                'http_method': 'DELETE',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "cosell_asset_id",
+                'all': [
+                    'product_id',
+                    'cosell_asset_id',
                 ],
-                "required": [
-                    "product_id",
-                    "cosell_asset_id",
+                'required': [
+                    'product_id',
+                    'cosell_asset_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "cosell_asset_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "cosell_asset_id": "cosellAssetID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "cosell_asset_id": "path",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'cosell_asset_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'cosell_asset_id': 'cosellAssetID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'cosell_asset_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
         self.products_product_id_cosell_assets_cosell_asset_id_get_endpoint = _Endpoint(
             settings={
-                "response_type": (MicrosoftIngestionApiModelsCosellCosellAsset,),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/cosellAssets/{cosellAssetID}",
-                "operation_id": "products_product_id_cosell_assets_cosell_asset_id_get",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsCosellCosellAsset,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/cosellAssets/{cosellAssetID}',
+                'operation_id': 'products_product_id_cosell_assets_cosell_asset_id_get',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "cosell_asset_id",
+                'all': [
+                    'product_id',
+                    'cosell_asset_id',
                 ],
-                "required": [
-                    "product_id",
-                    "cosell_asset_id",
+                'required': [
+                    'product_id',
+                    'cosell_asset_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "cosell_asset_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "cosell_asset_id": "cosellAssetID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "cosell_asset_id": "path",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'cosell_asset_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'cosell_asset_id': 'cosellAssetID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'cosell_asset_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
         self.products_product_id_cosell_assets_cosell_asset_id_put_endpoint = _Endpoint(
             settings={
-                "response_type": (MicrosoftIngestionApiModelsCosellCosellAsset,),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/cosellAssets/{cosellAssetID}",
-                "operation_id": "products_product_id_cosell_assets_cosell_asset_id_put",
-                "http_method": "PUT",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsCosellCosellAsset,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/cosellAssets/{cosellAssetID}',
+                'operation_id': 'products_product_id_cosell_assets_cosell_asset_id_put',
+                'http_method': 'PUT',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "cosell_asset_id",
-                    "microsoft_ingestion_api_models_cosell_cosell_asset",
+                'all': [
+                    'product_id',
+                    'cosell_asset_id',
+                    'microsoft_ingestion_api_models_cosell_cosell_asset',
                 ],
-                "required": [
-                    "product_id",
-                    "cosell_asset_id",
+                'required': [
+                    'product_id',
+                    'cosell_asset_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "cosell_asset_id": (str,),
-                    "microsoft_ingestion_api_models_cosell_cosell_asset": (
-                        MicrosoftIngestionApiModelsCosellCosellAsset,
-                    ),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "cosell_asset_id": "cosellAssetID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "cosell_asset_id": "path",
-                    "microsoft_ingestion_api_models_cosell_cosell_asset": "body",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'cosell_asset_id':
+                        (str,),
+                    'microsoft_ingestion_api_models_cosell_cosell_asset':
+                        (MicrosoftIngestionApiModelsCosellCosellAsset,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'cosell_asset_id': 'cosellAssetID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'cosell_asset_id': 'path',
+                    'microsoft_ingestion_api_models_cosell_cosell_asset': 'body',
+                },
+                'collection_format_map': {
+                }
             },
-            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
-            api_client=api_client,
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
         )
         self.products_product_id_cosell_assets_get_endpoint = _Endpoint(
             settings={
-                "response_type": (
-                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsCosellCosellAsset,
-                ),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/cosellAssets",
-                "operation_id": "products_product_id_cosell_assets_get",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsCosellCosellAsset,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/cosellAssets',
+                'operation_id': 'products_product_id_cosell_assets_get',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
+                'all': [
+                    'product_id',
                 ],
-                "required": [
-                    "product_id",
+                'required': [
+                    'product_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
         self.products_product_id_cosell_assets_get_by_instance_id_instance_i_dinstance_id_get_endpoint = _Endpoint(
             settings={
-                "response_type": (
-                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsCosellCosellAsset,
-                ),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/cosellAssets/getByInstanceID(instanceID={instanceID})",
-                "operation_id": "products_product_id_cosell_assets_get_by_instance_id_instance_i_dinstance_id_get",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsCosellCosellAsset,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/cosellAssets/getByInstanceID(instanceID={instanceID})',
+                'operation_id': 'products_product_id_cosell_assets_get_by_instance_id_instance_i_dinstance_id_get',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "instance_id",
+                'all': [
+                    'product_id',
+                    'instance_id',
                 ],
-                "required": [
-                    "product_id",
-                    "instance_id",
+                'required': [
+                    'product_id',
+                    'instance_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "instance_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "instance_id": "instanceID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "instance_id": "path",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'instance_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'instance_id': 'instanceID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'instance_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
         self.products_product_id_cosell_assets_post_endpoint = _Endpoint(
             settings={
-                "response_type": (MicrosoftIngestionApiModelsCosellCosellAsset,),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/cosellAssets",
-                "operation_id": "products_product_id_cosell_assets_post",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsCosellCosellAsset,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/cosellAssets',
+                'operation_id': 'products_product_id_cosell_assets_post',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "microsoft_ingestion_api_models_cosell_cosell_asset",
+                'all': [
+                    'product_id',
+                    'microsoft_ingestion_api_models_cosell_cosell_asset',
                 ],
-                "required": [
-                    "product_id",
+                'required': [
+                    'product_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "microsoft_ingestion_api_models_cosell_cosell_asset": (
-                        MicrosoftIngestionApiModelsCosellCosellAsset,
-                    ),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "microsoft_ingestion_api_models_cosell_cosell_asset": "body",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'microsoft_ingestion_api_models_cosell_cosell_asset':
+                        (MicrosoftIngestionApiModelsCosellCosellAsset,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'microsoft_ingestion_api_models_cosell_cosell_asset': 'body',
+                },
+                'collection_format_map': {
+                }
             },
-            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
-            api_client=api_client,
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
         )
 
-    def products_product_id_cosell_assets_cosell_asset_id_delete(self, product_id, cosell_asset_id, **kwargs):
+    def products_product_id_cosell_assets_cosell_asset_id_delete(
+        self,
+        product_id,
+        cosell_asset_id,
+        **kwargs
+    ):
         """Deletes a CosellAsset  # noqa: E501
 
         Deletes a CosellAsset  # noqa: E501
@@ -358,21 +423,43 @@ class CosellAssetClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["cosell_asset_id"] = cosell_asset_id
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['cosell_asset_id'] = \
+            cosell_asset_id
         return self.products_product_id_cosell_assets_cosell_asset_id_delete_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_cosell_assets_cosell_asset_id_get(self, product_id, cosell_asset_id, **kwargs):
+    def products_product_id_cosell_assets_cosell_asset_id_get(
+        self,
+        product_id,
+        cosell_asset_id,
+        **kwargs
+    ):
         """Returns a CosellAsset  # noqa: E501
 
         Returns a CosellAsset  # noqa: E501
@@ -423,21 +510,43 @@ class CosellAssetClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["cosell_asset_id"] = cosell_asset_id
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['cosell_asset_id'] = \
+            cosell_asset_id
         return self.products_product_id_cosell_assets_cosell_asset_id_get_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_cosell_assets_cosell_asset_id_put(self, product_id, cosell_asset_id, **kwargs):
+    def products_product_id_cosell_assets_cosell_asset_id_put(
+        self,
+        product_id,
+        cosell_asset_id,
+        **kwargs
+    ):
         """Updates a CosellAsset  # noqa: E501
 
         Updates a CosellAsset  # noqa: E501
@@ -489,21 +598,42 @@ class CosellAssetClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["cosell_asset_id"] = cosell_asset_id
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['cosell_asset_id'] = \
+            cosell_asset_id
         return self.products_product_id_cosell_assets_cosell_asset_id_put_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_cosell_assets_get(self, product_id, **kwargs):
+    def products_product_id_cosell_assets_get(
+        self,
+        product_id,
+        **kwargs
+    ):
         """Returns a paged collection of CosellAsset resources for product  # noqa: E501
 
         Returns a paged collection of CosellAsset resources for product  # noqa: E501
@@ -553,21 +683,40 @@ class CosellAssetClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
         return self.products_product_id_cosell_assets_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_cosell_assets_get_by_instance_id_instance_i_dinstance_id_get(
-        self, product_id, instance_id, **kwargs
+        self,
+        product_id,
+        instance_id,
+        **kwargs
     ):
         """Returns a paged collection of CosellAsset resources for given CosellListing instanceID  # noqa: E501
 
@@ -619,23 +768,42 @@ class CosellAssetClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["instance_id"] = instance_id
-        return self.products_product_id_cosell_assets_get_by_instance_id_instance_i_dinstance_id_get_endpoint.call_with_http_info(
-            **kwargs
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
         )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['instance_id'] = \
+            instance_id
+        return self.products_product_id_cosell_assets_get_by_instance_id_instance_i_dinstance_id_get_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_cosell_assets_post(self, product_id, **kwargs):
+    def products_product_id_cosell_assets_post(
+        self,
+        product_id,
+        **kwargs
+    ):
         """Create a CosellAsset  # noqa: E501
 
         Create a CosellAsset  # noqa: E501
@@ -686,15 +854,32 @@ class CosellAssetClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
         return self.products_product_id_cosell_assets_post_endpoint.call_with_http_info(**kwargs)
+

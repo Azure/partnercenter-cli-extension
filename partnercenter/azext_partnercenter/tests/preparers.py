@@ -40,19 +40,15 @@ class NoTrafficRecordingPreparer(AbstractPreparer):
 
 # Marketplace Offer Preparer and its shorthand decorator
 
-
 # pylint: disable=line-too-long
 # pylint: disable=too-many-instance-attributes
 class MarketplaceOfferPreparer(NoTrafficRecordingPreparer, SingleValueReplacer):
-    def __init__(
-        self,
-        name_prefix="clitest",
-        parameter_name="offer_id",
-        skip_delete=False,
-        dev_setting_name="AZURE_CLI_TEST_DEV_MARKETPLACE_OFFER_NAME",
-        key="offer_id",
-        offer_type="AzureContainer",
-    ):
+    def __init__(self, name_prefix='clitest',
+                 parameter_name='offer_id',
+                 skip_delete=False,
+                 dev_setting_name='AZURE_CLI_TEST_DEV_MARKETPLACE_OFFER_NAME',
+                 key='offer_id',
+                 offer_type='AzureContainer'):
         super().__init__(name_prefix, 24)
         self.cli_ctx = get_dummy_cli()
         self.offer_type = offer_type
@@ -64,11 +60,10 @@ class MarketplaceOfferPreparer(NoTrafficRecordingPreparer, SingleValueReplacer):
     def create_resource(self, name, **kwargs):
         if not self.dev_setting_name:
             import time
-
             delay_return_for_partercenter_to_create_supporting_child_entities = 5
 
-            template = "az partnercenter marketplace offer create --id  {} -a '{}' -t {}"
-            self.live_only_execute(self.cli_ctx, template.format(name, f"{name} Alias", self.offer_type))
+            template = 'az partnercenter marketplace offer create --id  {} -a \'{}\' -t {}'
+            self.live_only_execute(self.cli_ctx, template.format(name, f'{name} Alias', self.offer_type))
             self.test_class_instance.kwargs[self.key] = name
             time.sleep(delay_return_for_partercenter_to_create_supporting_child_entities)
 
@@ -78,7 +73,4 @@ class MarketplaceOfferPreparer(NoTrafficRecordingPreparer, SingleValueReplacer):
 
     def remove_resource(self, name, **kwargs):
         if not self.skip_delete and not self.dev_setting_name:
-            self.live_only_execute(
-                self.cli_ctx,
-                f"az partnercenter marketplace offer delete --id {name} --yes",
-            )
+            self.live_only_execute(self.cli_ctx, 'az partnercenter marketplace offer delete --id {} --yes'.format(name))

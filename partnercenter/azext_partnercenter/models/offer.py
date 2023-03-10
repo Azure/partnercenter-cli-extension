@@ -9,17 +9,17 @@ from msrest.serialization import Model
 
 class Offer(Model):
     _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "alias": {"key": "alias", "type": "str"},
-        "type": {"key": "type", "type": "str"},
+        'id': {'key': 'id', 'type': 'str'},
+        'alias': {'key': 'alias', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'}
     }
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.id = kwargs.get("id")
-        self.alias = kwargs.get("alias")
-        self.type = kwargs.get("type")
-        self._resource = kwargs.get("resource")
+        self.id = kwargs.get('id', None)
+        self.alias = kwargs.get('alias', None)
+        self.type = kwargs.get('type', None)
+        self._resource = kwargs.get('resource', None)
 
 
 class OfferType(str, Enum, metaclass=CaseInsensitiveEnumMeta):

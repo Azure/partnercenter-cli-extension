@@ -8,30 +8,22 @@ from knack.help_files import helps
 
 
 def load_help():
-    helps[
-        "partnercenter marketplace offer plan technical-configuration"
-    ] = """
+    helps['partnercenter marketplace offer plan technical-configuration'] = """
         type: group
         short-summary: Manage a Marketplace offer plan's technical configuration.
     """
 
-    helps[
-        "partnercenter marketplace offer plan technical-configuration package"
-    ] = """
+    helps['partnercenter marketplace offer plan technical-configuration package'] = """
         type: group
         short-summary: Manage packages for a plan's technical configuration.
     """
 
-    helps[
-        "partnercenter marketplace offer plan technical-configuration show"
-    ] = """
+    helps['partnercenter marketplace offer plan technical-configuration show'] = """
         type: command
         short-summary: Show a plan's technical configuration
     """
 
-    helps[
-        "partnercenter marketplace offer plan technical-configuration package add"
-    ] = """
+    helps['partnercenter marketplace offer plan technical-configuration package add'] = """
         type: command
         short-summary: Adds a package to the technical configuration of a plan
     """

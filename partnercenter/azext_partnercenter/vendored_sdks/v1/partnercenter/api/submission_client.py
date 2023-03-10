@@ -19,29 +19,15 @@ from ..model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types,
+    validate_and_convert_types
 )
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_submissions_certification_report import (
-    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsCertificationReport,
-)
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_submissions_submission import (
-    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsSubmission,
-)
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_submissions_validation_item import (
-    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsValidationItem,
-)
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_submissions_workflow_detail import (
-    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsWorkflowDetail,
-)
-from ..model.microsoft_ingestion_api_models_submissions_submission import (
-    MicrosoftIngestionApiModelsSubmissionsSubmission,
-)
-from ..model.microsoft_ingestion_api_models_submissions_submission_creation_request import (
-    MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest,
-)
-from ..model.microsoft_ingestion_api_models_submissions_workflow_detail import (
-    MicrosoftIngestionApiModelsSubmissionsWorkflowDetail,
-)
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_submissions_certification_report import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsCertificationReport
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_submissions_submission import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsSubmission
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_submissions_validation_item import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsValidationItem
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_submissions_workflow_detail import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsWorkflowDetail
+from ..model.microsoft_ingestion_api_models_submissions_submission import MicrosoftIngestionApiModelsSubmissionsSubmission
+from ..model.microsoft_ingestion_api_models_submissions_submission_creation_request import MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest
+from ..model.microsoft_ingestion_api_models_submissions_workflow_detail import MicrosoftIngestionApiModelsSubmissionsWorkflowDetail
 
 
 class SubmissionClient(object):
@@ -57,450 +43,548 @@ class SubmissionClient(object):
         self.api_client = api_client
         self.products_product_id_submissions_get_endpoint = _Endpoint(
             settings={
-                "response_type": (
-                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsSubmission,
-                ),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/submissions",
-                "operation_id": "products_product_id_submissions_get",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsSubmission,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/submissions',
+                'operation_id': 'products_product_id_submissions_get',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "authorization",
-                    "filter",
-                    "expand",
-                    "client_request_id",
+                'all': [
+                    'product_id',
+                    'authorization',
+                    'filter',
+                    'expand',
+                    'client_request_id',
                 ],
-                "required": [
-                    "product_id",
-                    "authorization",
+                'required': [
+                    'product_id',
+                    'authorization',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "authorization": (str,),
-                    "filter": (str,),
-                    "expand": (str,),
-                    "client_request_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "authorization": "Authorization",
-                    "filter": "$filter",
-                    "expand": "$expand",
-                    "client_request_id": "Client-Request-ID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "authorization": "header",
-                    "filter": "query",
-                    "expand": "query",
-                    "client_request_id": "header",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'authorization':
+                        (str,),
+                    'filter':
+                        (str,),
+                    'expand':
+                        (str,),
+                    'client_request_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'authorization': 'Authorization',
+                    'filter': '$filter',
+                    'expand': '$expand',
+                    'client_request_id': 'Client-Request-ID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'authorization': 'header',
+                    'filter': 'query',
+                    'expand': 'query',
+                    'client_request_id': 'header',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
         self.products_product_id_submissions_post_endpoint = _Endpoint(
             settings={
-                "response_type": (MicrosoftIngestionApiModelsSubmissionsSubmission,),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/submissions",
-                "operation_id": "products_product_id_submissions_post",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsSubmissionsSubmission,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/submissions',
+                'operation_id': 'products_product_id_submissions_post',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "authorization",
-                    "client_request_id",
-                    "microsoft_ingestion_api_models_submissions_submission_creation_request",
+                'all': [
+                    'product_id',
+                    'authorization',
+                    'client_request_id',
+                    'microsoft_ingestion_api_models_submissions_submission_creation_request',
                 ],
-                "required": [
-                    "product_id",
-                    "authorization",
+                'required': [
+                    'product_id',
+                    'authorization',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "authorization": (str,),
-                    "client_request_id": (str,),
-                    "microsoft_ingestion_api_models_submissions_submission_creation_request": (
-                        MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest,
-                    ),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "authorization": "Authorization",
-                    "client_request_id": "Client-Request-ID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "authorization": "header",
-                    "client_request_id": "header",
-                    "microsoft_ingestion_api_models_submissions_submission_creation_request": "body",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'authorization':
+                        (str,),
+                    'client_request_id':
+                        (str,),
+                    'microsoft_ingestion_api_models_submissions_submission_creation_request':
+                        (MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'authorization': 'Authorization',
+                    'client_request_id': 'Client-Request-ID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'authorization': 'header',
+                    'client_request_id': 'header',
+                    'microsoft_ingestion_api_models_submissions_submission_creation_request': 'body',
+                },
+                'collection_format_map': {
+                }
             },
-            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
-            api_client=api_client,
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
         )
         self.products_product_id_submissions_submission_id_delete_endpoint = _Endpoint(
             settings={
-                "response_type": None,
-                "auth": [],
-                "endpoint_path": "/products/{productID}/submissions/{submissionID}",
-                "operation_id": "products_product_id_submissions_submission_id_delete",
-                "http_method": "DELETE",
-                "servers": None,
+                'response_type': None,
+                'auth': [],
+                'endpoint_path': '/products/{productID}/submissions/{submissionID}',
+                'operation_id': 'products_product_id_submissions_submission_id_delete',
+                'http_method': 'DELETE',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
-                    "client_request_id",
+                'all': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
+                    'client_request_id',
                 ],
-                "required": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
+                'required': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "submission_id": (str,),
-                    "authorization": (str,),
-                    "client_request_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "submission_id": "submissionID",
-                    "authorization": "Authorization",
-                    "client_request_id": "Client-Request-ID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "submission_id": "path",
-                    "authorization": "header",
-                    "client_request_id": "header",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'submission_id':
+                        (str,),
+                    'authorization':
+                        (str,),
+                    'client_request_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'submission_id': 'submissionID',
+                    'authorization': 'Authorization',
+                    'client_request_id': 'Client-Request-ID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'submission_id': 'path',
+                    'authorization': 'header',
+                    'client_request_id': 'header',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
         self.products_product_id_submissions_submission_id_get_endpoint = _Endpoint(
             settings={
-                "response_type": (MicrosoftIngestionApiModelsSubmissionsSubmission,),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/submissions/{submissionID}",
-                "operation_id": "products_product_id_submissions_submission_id_get",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsSubmissionsSubmission,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/submissions/{submissionID}',
+                'operation_id': 'products_product_id_submissions_submission_id_get',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
-                    "expand",
-                    "client_request_id",
+                'all': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
+                    'expand',
+                    'client_request_id',
                 ],
-                "required": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
+                'required': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "submission_id": (str,),
-                    "authorization": (str,),
-                    "expand": (str,),
-                    "client_request_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "submission_id": "submissionID",
-                    "authorization": "Authorization",
-                    "expand": "$expand",
-                    "client_request_id": "Client-Request-ID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "submission_id": "path",
-                    "authorization": "header",
-                    "expand": "query",
-                    "client_request_id": "header",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'submission_id':
+                        (str,),
+                    'authorization':
+                        (str,),
+                    'expand':
+                        (str,),
+                    'client_request_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'submission_id': 'submissionID',
+                    'authorization': 'Authorization',
+                    'expand': '$expand',
+                    'client_request_id': 'Client-Request-ID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'submission_id': 'path',
+                    'authorization': 'header',
+                    'expand': 'query',
+                    'client_request_id': 'header',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
         self.products_product_id_submissions_submission_id_promote_post_endpoint = _Endpoint(
             settings={
-                "response_type": (MicrosoftIngestionApiModelsSubmissionsWorkflowDetail,),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/submissions/{submissionID}/promote",
-                "operation_id": "products_product_id_submissions_submission_id_promote_post",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsSubmissionsWorkflowDetail,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/submissions/{submissionID}/promote',
+                'operation_id': 'products_product_id_submissions_submission_id_promote_post',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
-                    "client_request_id",
+                'all': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
+                    'client_request_id',
                 ],
-                "required": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
+                'required': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "submission_id": (str,),
-                    "authorization": (str,),
-                    "client_request_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "submission_id": "submissionID",
-                    "authorization": "Authorization",
-                    "client_request_id": "Client-Request-ID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "submission_id": "path",
-                    "authorization": "header",
-                    "client_request_id": "header",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'submission_id':
+                        (str,),
+                    'authorization':
+                        (str,),
+                    'client_request_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'submission_id': 'submissionID',
+                    'authorization': 'Authorization',
+                    'client_request_id': 'Client-Request-ID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'submission_id': 'path',
+                    'authorization': 'header',
+                    'client_request_id': 'header',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
         self.products_product_id_submissions_submission_id_reports_get_endpoint = _Endpoint(
             settings={
-                "response_type": (
-                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsCertificationReport,
-                ),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/submissions/{submissionID}/reports",
-                "operation_id": "products_product_id_submissions_submission_id_reports_get",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsCertificationReport,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/submissions/{submissionID}/reports',
+                'operation_id': 'products_product_id_submissions_submission_id_reports_get',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
-                    "client_request_id",
+                'all': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
+                    'client_request_id',
                 ],
-                "required": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
+                'required': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "submission_id": (str,),
-                    "authorization": (str,),
-                    "client_request_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "submission_id": "submissionID",
-                    "authorization": "Authorization",
-                    "client_request_id": "Client-Request-ID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "submission_id": "path",
-                    "authorization": "header",
-                    "client_request_id": "header",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'submission_id':
+                        (str,),
+                    'authorization':
+                        (str,),
+                    'client_request_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'submission_id': 'submissionID',
+                    'authorization': 'Authorization',
+                    'client_request_id': 'Client-Request-ID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'submission_id': 'path',
+                    'authorization': 'header',
+                    'client_request_id': 'header',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
         self.products_product_id_submissions_submission_id_validations_get_endpoint = _Endpoint(
             settings={
-                "response_type": (
-                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsValidationItem,
-                ),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/submissions/{submissionID}/validations",
-                "operation_id": "products_product_id_submissions_submission_id_validations_get",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsValidationItem,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/submissions/{submissionID}/validations',
+                'operation_id': 'products_product_id_submissions_submission_id_validations_get',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
-                    "client_request_id",
+                'all': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
+                    'client_request_id',
                 ],
-                "required": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
+                'required': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "submission_id": (str,),
-                    "authorization": (str,),
-                    "client_request_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "submission_id": "submissionID",
-                    "authorization": "Authorization",
-                    "client_request_id": "Client-Request-ID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "submission_id": "path",
-                    "authorization": "header",
-                    "client_request_id": "header",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'submission_id':
+                        (str,),
+                    'authorization':
+                        (str,),
+                    'client_request_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'submission_id': 'submissionID',
+                    'authorization': 'Authorization',
+                    'client_request_id': 'Client-Request-ID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'submission_id': 'path',
+                    'authorization': 'header',
+                    'client_request_id': 'header',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
         self.products_product_id_submissions_submission_id_workflowdetails_get_endpoint = _Endpoint(
             settings={
-                "response_type": (
-                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsWorkflowDetail,
-                ),
-                "auth": [],
-                "endpoint_path": "/products/{productID}/submissions/{submissionID}/workflowdetails",
-                "operation_id": "products_product_id_submissions_submission_id_workflowdetails_get",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsSubmissionsWorkflowDetail,),
+                'auth': [],
+                'endpoint_path': '/products/{productID}/submissions/{submissionID}/workflowdetails',
+                'operation_id': 'products_product_id_submissions_submission_id_workflowdetails_get',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
-                    "client_request_id",
+                'all': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
+                    'client_request_id',
                 ],
-                "required": [
-                    "product_id",
-                    "submission_id",
-                    "authorization",
+                'required': [
+                    'product_id',
+                    'submission_id',
+                    'authorization',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "product_id": (str,),
-                    "submission_id": (str,),
-                    "authorization": (str,),
-                    "client_request_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "product_id": "productID",
-                    "submission_id": "submissionID",
-                    "authorization": "Authorization",
-                    "client_request_id": "Client-Request-ID",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "product_id": "path",
-                    "submission_id": "path",
-                    "authorization": "header",
-                    "client_request_id": "header",
+                'openapi_types': {
+                    'product_id':
+                        (str,),
+                    'submission_id':
+                        (str,),
+                    'authorization':
+                        (str,),
+                    'client_request_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'product_id': 'productID',
+                    'submission_id': 'submissionID',
+                    'authorization': 'Authorization',
+                    'client_request_id': 'Client-Request-ID',
+                },
+                'location_map': {
+                    'product_id': 'path',
+                    'submission_id': 'path',
+                    'authorization': 'header',
+                    'client_request_id': 'header',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
+            api_client=api_client
         )
 
-    def products_product_id_submissions_get(self, product_id, authorization, **kwargs):
+    def products_product_id_submissions_get(
+        self,
+        product_id,
+        authorization,
+        **kwargs
+    ):
         """Returns a paged collection of Submissions  # noqa: E501
 
         Sample request:                    GET /products/{productID}/submissions                        =&gt; returns both Inprogress and Published Submissions for Retail                    GET /products/{productID}/submissions?state={state}                        =&gt; returns the Submission (either Inprogress or Published) of requested state for Retail                    GET /products/{productID}/submissions?sandboxID={sandboxID}                        =&gt; returns both Inprogress and Published Submissions for requested Sandbox                    GET /products/{productID}/submissions?sandboxID={sandboxID}&amp;state={state}                        =&gt; returns the Submission (either Inprogress or Published) of requested state for requested Sandbox                    GET /products/{productID}/submissions?flightID={flightID}                        =&gt; returns both Inprogress and Published Submissions for requested Flight                    GET /products/{productID}/submissions?flightID={flightID}&amp;state={state}                        =&gt; returns the Submission (either Inprogress or Published) of requested state for requested Flight  # noqa: E501
@@ -554,21 +638,43 @@ class SubmissionClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["authorization"] = authorization
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['authorization'] = \
+            authorization
         return self.products_product_id_submissions_get_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_submissions_post(self, product_id, authorization, **kwargs):
+    def products_product_id_submissions_post(
+        self,
+        product_id,
+        authorization,
+        **kwargs
+    ):
         """Creates a new Submission  # noqa: E501
 
         Sample request:                    POST /products/{productID}/submissions      {          // empty Json body      }          =&gt; create Inprogress Submission for Retail                    POST /products/{productID}/submissions      {          \"sandboxID\":\"{sandboxID}\"      }          =&gt; create Inprogress Submission for a Sandbox                    POST /products/{productID}/submissions      {          \"flightID\":\"{flightID}\"      }          =&gt; create Inprogress Submission for a Flight  # noqa: E501
@@ -621,21 +727,44 @@ class SubmissionClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["authorization"] = authorization
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['authorization'] = \
+            authorization
         return self.products_product_id_submissions_post_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_submissions_submission_id_delete(self, product_id, submission_id, authorization, **kwargs):
+    def products_product_id_submissions_submission_id_delete(
+        self,
+        product_id,
+        submission_id,
+        authorization,
+        **kwargs
+    ):
         """Deletes a Submission  # noqa: E501
 
         Sample request:                    DELETE /products/{productID}/submissions/{submissionID}  # noqa: E501
@@ -688,22 +817,46 @@ class SubmissionClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["submission_id"] = submission_id
-        kwargs["authorization"] = authorization
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['submission_id'] = \
+            submission_id
+        kwargs['authorization'] = \
+            authorization
         return self.products_product_id_submissions_submission_id_delete_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_submissions_submission_id_get(self, product_id, submission_id, authorization, **kwargs):
+    def products_product_id_submissions_submission_id_get(
+        self,
+        product_id,
+        submission_id,
+        authorization,
+        **kwargs
+    ):
         """Returns a Submission  # noqa: E501
 
         Sample request:                    GET /products/{productID}/submissions/{submissionID}  # noqa: E501
@@ -757,23 +910,45 @@ class SubmissionClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["submission_id"] = submission_id
-        kwargs["authorization"] = authorization
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['submission_id'] = \
+            submission_id
+        kwargs['authorization'] = \
+            authorization
         return self.products_product_id_submissions_submission_id_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_submissions_submission_id_promote_post(
-        self, product_id, submission_id, authorization, **kwargs
+        self,
+        product_id,
+        submission_id,
+        authorization,
+        **kwargs
     ):
         """Promote a Preview Submission to live  # noqa: E501
 
@@ -827,23 +1002,45 @@ class SubmissionClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["submission_id"] = submission_id
-        kwargs["authorization"] = authorization
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['submission_id'] = \
+            submission_id
+        kwargs['authorization'] = \
+            authorization
         return self.products_product_id_submissions_submission_id_promote_post_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_submissions_submission_id_reports_get(
-        self, product_id, submission_id, authorization, **kwargs
+        self,
+        product_id,
+        submission_id,
+        authorization,
+        **kwargs
     ):
         """Returns a collection of CertificationReport for a Submission  # noqa: E501
 
@@ -897,23 +1094,45 @@ class SubmissionClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["submission_id"] = submission_id
-        kwargs["authorization"] = authorization
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['submission_id'] = \
+            submission_id
+        kwargs['authorization'] = \
+            authorization
         return self.products_product_id_submissions_submission_id_reports_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_submissions_submission_id_validations_get(
-        self, product_id, submission_id, authorization, **kwargs
+        self,
+        product_id,
+        submission_id,
+        authorization,
+        **kwargs
     ):
         """Returns Validation for a Submission  # noqa: E501
 
@@ -967,23 +1186,45 @@ class SubmissionClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["submission_id"] = submission_id
-        kwargs["authorization"] = authorization
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['submission_id'] = \
+            submission_id
+        kwargs['authorization'] = \
+            authorization
         return self.products_product_id_submissions_submission_id_validations_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_submissions_submission_id_workflowdetails_get(
-        self, product_id, submission_id, authorization, **kwargs
+        self,
+        product_id,
+        submission_id,
+        authorization,
+        **kwargs
     ):
         """Returns workflow details for a Submission  # noqa: E501
 
@@ -1037,19 +1278,36 @@ class SubmissionClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs["async_req"] = kwargs.get("async_req", False)
-        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
-        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
-        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
-        kwargs["_content_type"] = kwargs.get("_content_type")
-        kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["_request_auths"] = kwargs.get("_request_auths")
-        kwargs["product_id"] = product_id
-        kwargs["submission_id"] = submission_id
-        kwargs["authorization"] = authorization
-        return self.products_product_id_submissions_submission_id_workflowdetails_get_endpoint.call_with_http_info(
-            **kwargs
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
         )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['product_id'] = \
+            product_id
+        kwargs['submission_id'] = \
+            submission_id
+        kwargs['authorization'] = \
+            authorization
+        return self.products_product_id_submissions_submission_id_workflowdetails_get_endpoint.call_with_http_info(**kwargs)
+

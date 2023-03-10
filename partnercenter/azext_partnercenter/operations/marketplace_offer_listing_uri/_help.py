@@ -8,16 +8,12 @@ from knack.help_files import helps
 
 
 def load_help():
-    helps[
-        "partnercenter marketplace offer listing uri"
-    ] = """
+    helps['partnercenter marketplace offer listing uri'] = """
         type: group
         short-summary: Manage a Marketplace Offer listing's URIs.
     """
 
-    helps[
-        "partnercenter marketplace offer listing uri add"
-    ] = """
+    helps['partnercenter marketplace offer listing uri add'] = """
         type: command
         short-summary: Add a URI for a marketplace offer listing
         examples:
@@ -27,9 +23,7 @@ def load_help():
                     --type PrivacyUri --subtype mySubType --display-text "My Privacy Policy"
     """
 
-    helps[
-        "partnercenter marketplace offer listing uri delete"
-    ] = """
+    helps['partnercenter marketplace offer listing uri delete'] = """
         type: command
         short-summary: Delete a URI for a marketplace offer listing
         examples:
@@ -38,9 +32,7 @@ def load_help():
                 az partnercenter marketplace offer listing uri delete --offer-id MyOfferId --uri https://myuri --type PrivacyUri
     """
 
-    helps[
-        "partnercenter marketplace offer listing uri list"
-    ] = """
+    helps['partnercenter marketplace offer listing uri list'] = """
         type: command
         short-summary: List the uri for a marketplace offer listing
         examples:

@@ -24,27 +24,18 @@ from ..model_utils import (  # noqa: F401
     file_type,
     none_type,
     validate_get_composed_info,
-    OpenApiModel,
+    OpenApiModel
 )
 from ..exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from ..model.microsoft_ingestion_api_models_common_type_value_pair import (
-        MicrosoftIngestionApiModelsCommonTypeValuePair,
-    )
-    from ..model.microsoft_ingestion_api_models_products_azure_product_all_of import (
-        MicrosoftIngestionApiModelsProductsAzureProductAllOf,
-    )
-    from ..model.microsoft_ingestion_api_models_products_base_product import (
-        MicrosoftIngestionApiModelsProductsBaseProduct,
-    )
-
-    globals()["MicrosoftIngestionApiModelsCommonTypeValuePair"] = MicrosoftIngestionApiModelsCommonTypeValuePair
-    globals()[
-        "MicrosoftIngestionApiModelsProductsAzureProductAllOf"
-    ] = MicrosoftIngestionApiModelsProductsAzureProductAllOf
-    globals()["MicrosoftIngestionApiModelsProductsBaseProduct"] = MicrosoftIngestionApiModelsProductsBaseProduct
+    from ..model.microsoft_ingestion_api_models_common_type_value_pair import MicrosoftIngestionApiModelsCommonTypeValuePair
+    from ..model.microsoft_ingestion_api_models_products_azure_product_all_of import MicrosoftIngestionApiModelsProductsAzureProductAllOf
+    from ..model.microsoft_ingestion_api_models_products_base_product import MicrosoftIngestionApiModelsProductsBaseProduct
+    globals()['MicrosoftIngestionApiModelsCommonTypeValuePair'] = MicrosoftIngestionApiModelsCommonTypeValuePair
+    globals()['MicrosoftIngestionApiModelsProductsAzureProductAllOf'] = MicrosoftIngestionApiModelsProductsAzureProductAllOf
+    globals()['MicrosoftIngestionApiModelsProductsBaseProduct'] = MicrosoftIngestionApiModelsProductsBaseProduct
 
 
 class MicrosoftIngestionApiModelsProductsAzureProduct(ModelComposed):
@@ -72,19 +63,20 @@ class MicrosoftIngestionApiModelsProductsAzureProduct(ModelComposed):
     """
 
     allowed_values = {
-        ("resource_type",): {
-            "AZUREAPPLICATION": "AzureApplication",
-            "AZUREDEVELOPERSERVICE": "AzureDeveloperService",
-            "AZURETHIRDPARTYVIRTUALMACHINE": "AzureThirdPartyVirtualMachine",
-            "AZURECONTAINER": "AzureContainer",
-            "AZUREVISUALSTUDIOEXTENSION": "AzureVisualStudioExtension",
-            "AZUREDYNAMICS365FORCUSTOMERENGAGEMENT": "AzureDynamics365ForCustomerEngagement",
-            "AZUREDYNAMICS365FOROPERATIONS": "AzureDynamics365ForOperations",
-            "AZUREDYNAMICS365BUSINESSCENTRAL": "AzureDynamics365BusinessCentral",
+        ('resource_type',): {
+            'AZUREAPPLICATION': "AzureApplication",
+            'AZUREDEVELOPERSERVICE': "AzureDeveloperService",
+            'AZURETHIRDPARTYVIRTUALMACHINE': "AzureThirdPartyVirtualMachine",
+            'AZURECONTAINER': "AzureContainer",
+            'AZUREVISUALSTUDIOEXTENSION': "AzureVisualStudioExtension",
+            'AZUREDYNAMICS365FORCUSTOMERENGAGEMENT': "AzureDynamics365ForCustomerEngagement",
+            'AZUREDYNAMICS365FOROPERATIONS': "AzureDynamics365ForOperations",
+            'AZUREDYNAMICS365BUSINESSCENTRAL': "AzureDynamics365BusinessCentral",
         },
     }
 
-    validations = {}
+    validations = {
+    }
 
     @cached_property
     def additional_properties_type():
@@ -93,17 +85,7 @@ class MicrosoftIngestionApiModelsProductsAzureProduct(ModelComposed):
         of type self, this must run after the class is loaded
         """
         lazy_import()
-        return (
-            bool,
-            date,
-            datetime,
-            dict,
-            float,
-            int,
-            list,
-            str,
-            none_type,
-        )  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -119,31 +101,30 @@ class MicrosoftIngestionApiModelsProductsAzureProduct(ModelComposed):
         """
         lazy_import()
         return {
-            "resource_type": (str,),  # noqa: E501
-            "id": (str,),  # noqa: E501
-            "name": (str,),  # noqa: E501
-            "external_ids": ([MicrosoftIngestionApiModelsCommonTypeValuePair],),  # noqa: E501
-            "is_modular_publishing": (
-                bool,
-                none_type,
-            ),  # noqa: E501
-            "offer_marketing_url_i_dentifier": (str,),  # noqa: E501
+            'resource_type': (str,),  # noqa: E501
+            'id': (str,),  # noqa: E501
+            'name': (str,),  # noqa: E501
+            'external_ids': ([MicrosoftIngestionApiModelsCommonTypeValuePair],),  # noqa: E501
+            'is_modular_publishing': (bool, none_type,),  # noqa: E501
+            'offer_marketing_url_i_dentifier': (str,),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
         return None
 
+
     attribute_map = {
-        "resource_type": "resourceType",  # noqa: E501
-        "id": "ID",  # noqa: E501
-        "name": "name",  # noqa: E501
-        "external_ids": "externalIds",  # noqa: E501
-        "is_modular_publishing": "isModularPublishing",  # noqa: E501
-        "offer_marketing_url_i_dentifier": "offerMarketingUrlIDentifier",  # noqa: E501
+        'resource_type': 'resourceType',  # noqa: E501
+        'id': 'ID',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'external_ids': 'externalIds',  # noqa: E501
+        'is_modular_publishing': 'isModularPublishing',  # noqa: E501
+        'offer_marketing_url_i_dentifier': 'offerMarketingUrlIDentifier',  # noqa: E501
     }
 
-    read_only_vars = {}
+    read_only_vars = {
+    }
 
     @classmethod
     @convert_js_args_to_python_args
@@ -189,21 +170,24 @@ class MicrosoftIngestionApiModelsProductsAzureProduct(ModelComposed):
             offer_marketing_url_i_dentifier (str): [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop("_check_type", True)
-        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
-        _path_to_item = kwargs.pop("_path_to_item", ())
-        _configuration = kwargs.pop("_configuration", None)
-        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
+        _check_type = kwargs.pop('_check_type', True)
+        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
+        _path_to_item = kwargs.pop('_path_to_item', ())
+        _configuration = kwargs.pop('_configuration', None)
+        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
 
         self = super(OpenApiModel, cls).__new__(cls)
 
         if args:
             for arg in args:
                 if isinstance(arg, dict):
-                    kwargs |= arg
+                    kwargs.update(arg)
                 else:
                     raise ApiTypeError(
-                        f"Invalid positional arguments={args} passed to {self.__class__.__name__}. Remove those invalid positional arguments.",
+                        "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                            args,
+                            self.__class__.__name__,
+                        ),
                         path_to_item=_path_to_item,
                         valid_classes=(self.__class__,),
                     )
@@ -216,44 +200,41 @@ class MicrosoftIngestionApiModelsProductsAzureProduct(ModelComposed):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         constant_args = {
-            "_check_type": _check_type,
-            "_path_to_item": _path_to_item,
-            "_spec_property_naming": _spec_property_naming,
-            "_configuration": _configuration,
-            "_visited_composed_classes": self._visited_composed_classes,
+            '_check_type': _check_type,
+            '_path_to_item': _path_to_item,
+            '_spec_property_naming': _spec_property_naming,
+            '_configuration': _configuration,
+            '_visited_composed_classes': self._visited_composed_classes,
         }
-        composed_info = validate_get_composed_info(constant_args, kwargs, self)
+        composed_info = validate_get_composed_info(
+            constant_args, kwargs, self)
         self._composed_instances = composed_info[0]
         self._var_name_to_model_instances = composed_info[1]
         self._additional_properties_model_instances = composed_info[2]
         discarded_args = composed_info[3]
 
         for var_name, var_value in kwargs.items():
-            if (
-                var_name in discarded_args
-                and self._configuration is not None
-                and self._configuration.discard_unknown_keys
-                and self._additional_properties_model_instances
-            ):
+            if var_name in discarded_args and \
+                        self._configuration is not None and \
+                        self._configuration.discard_unknown_keys and \
+                        self._additional_properties_model_instances:
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
 
         return self
 
-    required_properties = set(
-        [
-            "_data_store",
-            "_check_type",
-            "_spec_property_naming",
-            "_path_to_item",
-            "_configuration",
-            "_visited_composed_classes",
-            "_composed_instances",
-            "_var_name_to_model_instances",
-            "_additional_properties_model_instances",
-        ]
-    )
+    required_properties = set([
+        '_data_store',
+        '_check_type',
+        '_spec_property_naming',
+        '_path_to_item',
+        '_configuration',
+        '_visited_composed_classes',
+        '_composed_instances',
+        '_var_name_to_model_instances',
+        '_additional_properties_model_instances',
+    ])
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
@@ -298,19 +279,22 @@ class MicrosoftIngestionApiModelsProductsAzureProduct(ModelComposed):
             offer_marketing_url_i_dentifier (str): [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop("_check_type", True)
-        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
-        _path_to_item = kwargs.pop("_path_to_item", ())
-        _configuration = kwargs.pop("_configuration", None)
-        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
+        _check_type = kwargs.pop('_check_type', True)
+        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
+        _path_to_item = kwargs.pop('_path_to_item', ())
+        _configuration = kwargs.pop('_configuration', None)
+        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
 
         if args:
             for arg in args:
                 if isinstance(arg, dict):
-                    kwargs |= arg
+                    kwargs.update(arg)
                 else:
                     raise ApiTypeError(
-                        f"Invalid positional arguments={args} passed to {self.__class__.__name__}. Remove those invalid positional arguments.",
+                        "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                            args,
+                            self.__class__.__name__,
+                        ),
                         path_to_item=_path_to_item,
                         valid_classes=(self.__class__,),
                     )
@@ -323,33 +307,30 @@ class MicrosoftIngestionApiModelsProductsAzureProduct(ModelComposed):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         constant_args = {
-            "_check_type": _check_type,
-            "_path_to_item": _path_to_item,
-            "_spec_property_naming": _spec_property_naming,
-            "_configuration": _configuration,
-            "_visited_composed_classes": self._visited_composed_classes,
+            '_check_type': _check_type,
+            '_path_to_item': _path_to_item,
+            '_spec_property_naming': _spec_property_naming,
+            '_configuration': _configuration,
+            '_visited_composed_classes': self._visited_composed_classes,
         }
-        composed_info = validate_get_composed_info(constant_args, kwargs, self)
+        composed_info = validate_get_composed_info(
+            constant_args, kwargs, self)
         self._composed_instances = composed_info[0]
         self._var_name_to_model_instances = composed_info[1]
         self._additional_properties_model_instances = composed_info[2]
         discarded_args = composed_info[3]
 
         for var_name, var_value in kwargs.items():
-            if (
-                var_name in discarded_args
-                and self._configuration is not None
-                and self._configuration.discard_unknown_keys
-                and self._additional_properties_model_instances
-            ):
+            if var_name in discarded_args and \
+                        self._configuration is not None and \
+                        self._configuration.discard_unknown_keys and \
+                        self._additional_properties_model_instances:
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
             if var_name in self.read_only_vars:
-                raise ApiAttributeError(
-                    f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
-                    f"class with read only attributes."
-                )
+                raise ApiAttributeError(f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
+                                     f"class with read only attributes.")
 
     @cached_property
     def _composed_schemas():
@@ -362,10 +343,12 @@ class MicrosoftIngestionApiModelsProductsAzureProduct(ModelComposed):
         # loading
         lazy_import()
         return {
-            "anyOf": [],
-            "allOf": [
-                MicrosoftIngestionApiModelsProductsAzureProductAllOf,
-                MicrosoftIngestionApiModelsProductsBaseProduct,
-            ],
-            "oneOf": [],
+          'anyOf': [
+          ],
+          'allOf': [
+              MicrosoftIngestionApiModelsProductsAzureProductAllOf,
+              MicrosoftIngestionApiModelsProductsBaseProduct,
+          ],
+          'oneOf': [
+          ],
         }
