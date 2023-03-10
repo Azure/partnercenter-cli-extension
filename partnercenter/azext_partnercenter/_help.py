@@ -7,12 +7,16 @@
 from knack.help_files import helps
 
 
-helps['partnercenter'] = """
+helps[
+    "partnercenter"
+] = """
     type: group
     short-summary: Partner Center management
 """
 
-helps['partnercenter marketplace'] = """
+helps[
+    "partnercenter marketplace"
+] = """
     type: group
     short-summary: Commands to manage the Partner Center Marketplace.
 """

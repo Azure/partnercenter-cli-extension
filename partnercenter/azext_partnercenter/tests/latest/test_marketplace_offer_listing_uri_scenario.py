@@ -14,19 +14,29 @@ class PartnerCenterMarketplaceOfferListingUriScenarioTest(PartnerCenterScenarioT
 
     @MarketplaceOfferPreparer()
     def test_marketplace_offer_listing_uri(self):
-        self.cmd('partnercenter marketplace offer listing uri add --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri}',
-                 checks=[self.check('[0].type', '{uri_type}'),
-                         self.check('[0].subtype', '{uri_sub_type}'),
-                         self.check('[0].displayText', '{uri_display_text}'),
-                         self.check('[0].uri', '{uri}')])
+        self.cmd(
+            "partnercenter marketplace offer listing uri add --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri}",
+            checks=[
+                self.check("[0].type", "{uri_type}"),
+                self.check("[0].subtype", "{uri_sub_type}"),
+                self.check("[0].displayText", "{uri_display_text}"),
+                self.check("[0].uri", "{uri}"),
+            ],
+        )
 
-        self.cmd('partnercenter marketplace offer listing uri delete --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri} --yes')
-        self.cmd('az partnercenter marketplace offer listing show --offer-id {offer_id}', checks=[self.check('uris', [])])
+        self.cmd(
+            "partnercenter marketplace offer listing uri delete --offer-id {offer_id} --type {uri_type} --subtype {uri_sub_type} --display-text {uri_display_text} --uri {uri} --yes"
+        )
+        self.cmd(
+            "az partnercenter marketplace offer listing show --offer-id {offer_id}", checks=[self.check("uris", [])]
+        )
 
     def init_args(self):
-        self.kwargs.update({
-            'uri': 'https://testuri',
-            'uri_display_text': self.create_random_name('dt-', 10),
-            'uri_type': 'PrivacyUri',
-            'uri_sub_type': 'SubTypeUri'
-        })
+        self.kwargs.update(
+            {
+                "uri": "https://testuri",
+                "uri_display_text": self.create_random_name("dt-", 10),
+                "uri_type": "PrivacyUri",
+                "uri_sub_type": "SubTypeUri",
+            }
+        )

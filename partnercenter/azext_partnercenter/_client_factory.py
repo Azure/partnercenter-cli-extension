@@ -6,40 +6,41 @@
 
 def cf_offers(cli_ctx, *_):
     from azext_partnercenter.clients import OfferClient
-    client = OfferClient(cli_ctx, *_)
-    return client
+
+    return OfferClient(cli_ctx, *_)
 
 
 def cf_plans(cli_ctx, *_):
     from azext_partnercenter.clients import PlanClient
-    client = PlanClient(cli_ctx, *_)
-    return client
+
+    return PlanClient(cli_ctx, *_)
 
 
 def cf_plan_listing(cli_ctx, *_):
     from azext_partnercenter.clients import PlanListingClient
-    client = PlanListingClient(cli_ctx, *_)
-    return client
+
+    return PlanListingClient(cli_ctx, *_)
 
 
 def cf_offer_listing(cli_ctx, *_):
     from azext_partnercenter.clients import OfferListingClient
-    client = OfferListingClient(cli_ctx, *_)
-    return client
+
+    return OfferListingClient(cli_ctx, *_)
+
 
 def cf_offer_submission(cli_ctx, *_):
     from azext_partnercenter.clients import OfferSubmissionClient
-    client = OfferSubmissionClient(cli_ctx, *_)
-    return client
+
+    return OfferSubmissionClient(cli_ctx, *_)
 
 
 def cf_plan_technicalconfiguration(cli_ctx, *_):
     from azext_partnercenter.clients import PlanTechnicalConfigurationClient
-    client = PlanTechnicalConfigurationClient(cli_ctx, *_)
-    return client
+
+    return PlanTechnicalConfigurationClient(cli_ctx, *_)
 
 
 def cf_listing_media(cli_ctx, *_):
     from azext_partnercenter.clients import ListingMediaClient
-    client = ListingMediaClient(cli_ctx, *_)
-    return client
+
+    return ListingMediaClient(cli_ctx, *_)

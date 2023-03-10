@@ -19,9 +19,11 @@ from ..model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_cosell_cosell_listing import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsCosellCosellListing
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_cosell_cosell_listing import (
+    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsCosellCosellListing,
+)
 from ..model.microsoft_ingestion_api_models_cosell_cosell_listing import MicrosoftIngestionApiModelsCosellCosellListing
 
 
@@ -38,181 +40,146 @@ class CosellListingClient(object):
         self.api_client = api_client
         self.products_product_id_cosell_listing_get_by_instance_id_instance_i_dinstance_id_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsCosellCosellListing,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/cosellListing/getByInstanceID(instanceID={instanceID})',
-                'operation_id': 'products_product_id_cosell_listing_get_by_instance_id_instance_i_dinstance_id_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (
+                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsCosellCosellListing,
+                ),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/cosellListing/getByInstanceID(instanceID={instanceID})",
+                "operation_id": "products_product_id_cosell_listing_get_by_instance_id_instance_i_dinstance_id_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'instance_id',
+                "all": [
+                    "product_id",
+                    "instance_id",
                 ],
-                'required': [
-                    'product_id',
-                    'instance_id',
+                "required": [
+                    "product_id",
+                    "instance_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "instance_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "instance_id": "instanceID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'instance_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "instance_id": "path",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'instance_id': 'instanceID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'instance_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_cosell_listing_instance_id_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsCosellCosellListing,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/cosellListing/{instanceID}',
-                'operation_id': 'products_product_id_cosell_listing_instance_id_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsCosellCosellListing,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/cosellListing/{instanceID}",
+                "operation_id": "products_product_id_cosell_listing_instance_id_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'instance_id',
+                "all": [
+                    "product_id",
+                    "instance_id",
                 ],
-                'required': [
-                    'product_id',
-                    'instance_id',
+                "required": [
+                    "product_id",
+                    "instance_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "instance_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "instance_id": "instanceID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'instance_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "instance_id": "path",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'instance_id': 'instanceID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'instance_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_cosell_listing_instance_id_put_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsCosellCosellListing,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/cosellListing/{instanceID}',
-                'operation_id': 'products_product_id_cosell_listing_instance_id_put',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsCosellCosellListing,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/cosellListing/{instanceID}",
+                "operation_id": "products_product_id_cosell_listing_instance_id_put",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'instance_id',
-                    'microsoft_ingestion_api_models_cosell_cosell_listing',
+                "all": [
+                    "product_id",
+                    "instance_id",
+                    "microsoft_ingestion_api_models_cosell_cosell_listing",
                 ],
-                'required': [
-                    'product_id',
-                    'instance_id',
+                "required": [
+                    "product_id",
+                    "instance_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "instance_id": (str,),
+                    "microsoft_ingestion_api_models_cosell_cosell_listing": (
+                        MicrosoftIngestionApiModelsCosellCosellListing,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "instance_id": "instanceID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'instance_id':
-                        (str,),
-                    'microsoft_ingestion_api_models_cosell_cosell_listing':
-                        (MicrosoftIngestionApiModelsCosellCosellListing,),
+                "location_map": {
+                    "product_id": "path",
+                    "instance_id": "path",
+                    "microsoft_ingestion_api_models_cosell_cosell_listing": "body",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'instance_id': 'instanceID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'instance_id': 'path',
-                    'microsoft_ingestion_api_models_cosell_cosell_listing': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
+            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
+            api_client=api_client,
         )
 
     def products_product_id_cosell_listing_get_by_instance_id_instance_i_dinstance_id_get(
-        self,
-        product_id,
-        instance_id,
-        **kwargs
+        self, product_id, instance_id, **kwargs
     ):
         """Returns a paged collection of Listing resources  # noqa: E501
 
@@ -264,43 +231,23 @@ class CosellListingClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["instance_id"] = instance_id
+        return self.products_product_id_cosell_listing_get_by_instance_id_instance_i_dinstance_id_get_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['instance_id'] = \
-            instance_id
-        return self.products_product_id_cosell_listing_get_by_instance_id_instance_i_dinstance_id_get_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_cosell_listing_instance_id_get(
-        self,
-        product_id,
-        instance_id,
-        **kwargs
-    ):
+    def products_product_id_cosell_listing_instance_id_get(self, product_id, instance_id, **kwargs):
         """Returns CosellListing resource  # noqa: E501
 
         Returns CosellListing resource  # noqa: E501
@@ -351,43 +298,21 @@ class CosellListingClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['instance_id'] = \
-            instance_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["instance_id"] = instance_id
         return self.products_product_id_cosell_listing_instance_id_get_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_cosell_listing_instance_id_put(
-        self,
-        product_id,
-        instance_id,
-        **kwargs
-    ):
+    def products_product_id_cosell_listing_instance_id_put(self, product_id, instance_id, **kwargs):
         """Updates CosellListing resource  # noqa: E501
 
         Updates CosellListing resource  # noqa: E501
@@ -439,34 +364,16 @@ class CosellListingClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['instance_id'] = \
-            instance_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["instance_id"] = instance_id
         return self.products_product_id_cosell_listing_instance_id_put_endpoint.call_with_http_info(**kwargs)
-

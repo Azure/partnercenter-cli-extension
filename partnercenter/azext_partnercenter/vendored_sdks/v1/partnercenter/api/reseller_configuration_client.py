@@ -19,9 +19,11 @@ from ..model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from ..model.microsoft_ingestion_api_models_reseller_reseller_configuration import MicrosoftIngestionApiModelsResellerResellerConfiguration
+from ..model.microsoft_ingestion_api_models_reseller_reseller_configuration import (
+    MicrosoftIngestionApiModelsResellerResellerConfiguration,
+)
 
 
 class ResellerConfigurationClient(object):
@@ -37,114 +39,88 @@ class ResellerConfigurationClient(object):
         self.api_client = api_client
         self.products_product_id_reseller_configuration_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsResellerResellerConfiguration,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/resellerConfiguration',
-                'operation_id': 'products_product_id_reseller_configuration_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsResellerResellerConfiguration,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/resellerConfiguration",
+                "operation_id": "products_product_id_reseller_configuration_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
+                "all": [
+                    "product_id",
                 ],
-                'required': [
-                    'product_id',
+                "required": [
+                    "product_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_reseller_configuration_post_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsResellerResellerConfiguration,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/resellerConfiguration',
-                'operation_id': 'products_product_id_reseller_configuration_post',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsResellerResellerConfiguration,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/resellerConfiguration",
+                "operation_id": "products_product_id_reseller_configuration_post",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'microsoft_ingestion_api_models_reseller_reseller_configuration',
+                "all": [
+                    "product_id",
+                    "microsoft_ingestion_api_models_reseller_reseller_configuration",
                 ],
-                'required': [
-                    'product_id',
+                "required": [
+                    "product_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "microsoft_ingestion_api_models_reseller_reseller_configuration": (
+                        MicrosoftIngestionApiModelsResellerResellerConfiguration,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'microsoft_ingestion_api_models_reseller_reseller_configuration':
-                        (MicrosoftIngestionApiModelsResellerResellerConfiguration,),
+                "location_map": {
+                    "product_id": "path",
+                    "microsoft_ingestion_api_models_reseller_reseller_configuration": "body",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'microsoft_ingestion_api_models_reseller_reseller_configuration': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
+            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
+            api_client=api_client,
         )
 
-    def products_product_id_reseller_configuration_get(
-        self,
-        product_id,
-        **kwargs
-    ):
+    def products_product_id_reseller_configuration_get(self, product_id, **kwargs):
         """Returns ResellerConfiguration for a product  # noqa: E501
 
         Returns ResellerConfiguration for a product  # noqa: E501
@@ -194,40 +170,20 @@ class ResellerConfigurationClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
         return self.products_product_id_reseller_configuration_get_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_reseller_configuration_post(
-        self,
-        product_id,
-        **kwargs
-    ):
+    def products_product_id_reseller_configuration_post(self, product_id, **kwargs):
         """Creates a ResellerConfiguration  # noqa: E501
 
         Creates a ResellerConfiguration  # noqa: E501
@@ -278,32 +234,15 @@ class ResellerConfigurationClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
         return self.products_product_id_reseller_configuration_post_endpoint.call_with_http_info(**kwargs)
-

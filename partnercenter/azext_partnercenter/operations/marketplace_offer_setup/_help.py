@@ -8,12 +8,16 @@ from knack.help_files import helps
 
 
 def load_help():
-    helps['partnercenter marketplace offer setup'] = """
+    helps[
+        "partnercenter marketplace offer setup"
+    ] = """
         type: group
         short-summary: Manage a Marketplace Offer's setup.
     """
 
-    helps['partnercenter marketplace offer setup update'] = """
+    helps[
+        "partnercenter marketplace offer setup update"
+    ] = """
         type: command
         short-summary: Update a marketplace offer
         examples:
@@ -22,7 +26,9 @@ def load_help():
                 az partnercenter marketplace offer setup update --offer-id MyOfferId --sell-through-microsoft true
     """
 
-    helps['partnercenter marketplace offer setup show'] = """
+    helps[
+        "partnercenter marketplace offer setup show"
+    ] = """
         type: command
         short-summary: Show the offer setup
         examples:

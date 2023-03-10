@@ -8,12 +8,16 @@ from knack.help_files import helps
 
 
 def load_help():
-    helps['partnercenter marketplace offer package'] = """
+    helps[
+        "partnercenter marketplace offer package"
+    ] = """
         type: group
         short-summary: Manage the creation of offer packages, including CNAB bundles for AKS (Azure Container offerings that you sell through Microsoft).
     """
 
-    helps['partnercenter marketplace offer package verify'] = """
+    helps[
+        "partnercenter marketplace offer package verify"
+    ] = """
         type: command
         short-summary: Verifies the package contents for an offer prior to building it
         examples:
@@ -22,7 +26,9 @@ def load_help():
                 az partnercenter marketplace offer package verify --offer-id MyOfferId --manifest-file path/to/manifest.yaml
     """
 
-    helps['partnercenter marketplace offer package build'] = """
+    helps[
+        "partnercenter marketplace offer package build"
+    ] = """
         type: command
         short-summary: Builds the package for an offer, preparing it for upload or publishing to the offer's technical configuration
         examples:

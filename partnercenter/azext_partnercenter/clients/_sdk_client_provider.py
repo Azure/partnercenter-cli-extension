@@ -7,11 +7,19 @@
 # pylint: disable=(too-many-instance-attributes
 
 from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
-    BranchesClient, ListingClient, ProductClient, SubmissionClient, PackageClient, VariantClient, ListingImageClient)
+    BranchesClient,
+    ListingClient,
+    ProductClient,
+    SubmissionClient,
+    PackageClient,
+    VariantClient,
+    ListingImageClient,
+)
 
 
 class SdkClientProvider:
     """provider of sdk clients"""
+
     def __init__(self, api_client):
         self._api_client = api_client
         self._product_client = None

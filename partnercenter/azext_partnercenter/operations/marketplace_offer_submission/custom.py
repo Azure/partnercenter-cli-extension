@@ -5,6 +5,7 @@
 
 from azext_partnercenter.models import TargetType
 
+
 def get_submission(client, offer_id, submission_id):
     return client.get(offer_id, submission_id)
 

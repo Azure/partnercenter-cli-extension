@@ -19,10 +19,14 @@ from ..model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from ..model.microsoft_ingestion_api_models_availabilities_product_availability import MicrosoftIngestionApiModelsAvailabilitiesProductAvailability
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_availabilities_product_availability import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsAvailabilitiesProductAvailability
+from ..model.microsoft_ingestion_api_models_availabilities_product_availability import (
+    MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,
+)
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_availabilities_product_availability import (
+    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsAvailabilitiesProductAvailability,
+)
 
 
 class ProductAvailabilityClient(object):
@@ -38,341 +42,275 @@ class ProductAvailabilityClient(object):
         self.api_client = api_client
         self.products_product_id_product_availabilities_get_by_instance_id_instance_i_dinstance_id_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsAvailabilitiesProductAvailability,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/productAvailabilities/getByInstanceID(instanceID={instanceID})',
-                'operation_id': 'products_product_id_product_availabilities_get_by_instance_id_instance_i_dinstance_id_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (
+                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsAvailabilitiesProductAvailability,
+                ),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/productAvailabilities/getByInstanceID(instanceID={instanceID})",
+                "operation_id": "products_product_id_product_availabilities_get_by_instance_id_instance_i_dinstance_id_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'instance_id',
-                    'authorization',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "instance_id",
+                    "authorization",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'instance_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "instance_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "instance_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "instance_id": "instanceID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'instance_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "instance_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'instance_id': 'instanceID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'instance_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_productavailabilities_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsAvailabilitiesProductAvailability,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/productavailabilities',
-                'operation_id': 'products_product_id_productavailabilities_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (
+                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsAvailabilitiesProductAvailability,
+                ),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/productavailabilities",
+                "operation_id": "products_product_id_productavailabilities_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'authorization',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "authorization",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_productavailabilities_post_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/productavailabilities',
-                'operation_id': 'products_product_id_productavailabilities_post',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/productavailabilities",
+                "operation_id": "products_product_id_productavailabilities_post",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'authorization',
-                    'client_request_id',
-                    'microsoft_ingestion_api_models_availabilities_product_availability',
+                "all": [
+                    "product_id",
+                    "authorization",
+                    "client_request_id",
+                    "microsoft_ingestion_api_models_availabilities_product_availability",
                 ],
-                'required': [
-                    'product_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
+                    "microsoft_ingestion_api_models_availabilities_product_availability": (
+                        MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
-                    'microsoft_ingestion_api_models_availabilities_product_availability':
-                        (MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,),
+                "location_map": {
+                    "product_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
+                    "microsoft_ingestion_api_models_availabilities_product_availability": "body",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                    'microsoft_ingestion_api_models_availabilities_product_availability': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
+            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
+            api_client=api_client,
         )
         self.products_product_id_productavailabilities_product_availability_id_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/productavailabilities/{productAvailabilityID}',
-                'operation_id': 'products_product_id_productavailabilities_product_availability_id_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/productavailabilities/{productAvailabilityID}",
+                "operation_id": "products_product_id_productavailabilities_product_availability_id_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'product_availability_id',
-                    'authorization',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "product_availability_id",
+                    "authorization",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'product_availability_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "product_availability_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "product_availability_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "product_availability_id": "productAvailabilityID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'product_availability_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "product_availability_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'product_availability_id': 'productAvailabilityID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'product_availability_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_productavailabilities_product_availability_id_put_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/productavailabilities/{productAvailabilityID}',
-                'operation_id': 'products_product_id_productavailabilities_product_availability_id_put',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/productavailabilities/{productAvailabilityID}",
+                "operation_id": "products_product_id_productavailabilities_product_availability_id_put",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'product_availability_id',
-                    'authorization',
-                    'client_request_id',
-                    'microsoft_ingestion_api_models_availabilities_product_availability',
+                "all": [
+                    "product_id",
+                    "product_availability_id",
+                    "authorization",
+                    "client_request_id",
+                    "microsoft_ingestion_api_models_availabilities_product_availability",
                 ],
-                'required': [
-                    'product_id',
-                    'product_availability_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "product_availability_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "product_availability_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
+                    "microsoft_ingestion_api_models_availabilities_product_availability": (
+                        MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "product_availability_id": "productAvailabilityID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'product_availability_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
-                    'microsoft_ingestion_api_models_availabilities_product_availability':
-                        (MicrosoftIngestionApiModelsAvailabilitiesProductAvailability,),
+                "location_map": {
+                    "product_id": "path",
+                    "product_availability_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
+                    "microsoft_ingestion_api_models_availabilities_product_availability": "body",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'product_availability_id': 'productAvailabilityID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'product_availability_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                    'microsoft_ingestion_api_models_availabilities_product_availability': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
+            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
+            api_client=api_client,
         )
 
     def products_product_id_product_availabilities_get_by_instance_id_instance_i_dinstance_id_get(
-        self,
-        product_id,
-        instance_id,
-        authorization,
-        **kwargs
+        self, product_id, instance_id, authorization, **kwargs
     ):
         """Returns a paged collection of ProductAvailability resource for Product  # noqa: E501
 
@@ -426,45 +364,24 @@ class ProductAvailabilityClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["instance_id"] = instance_id
+        kwargs["authorization"] = authorization
+        return self.products_product_id_product_availabilities_get_by_instance_id_instance_i_dinstance_id_get_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['instance_id'] = \
-            instance_id
-        kwargs['authorization'] = \
-            authorization
-        return self.products_product_id_product_availabilities_get_by_instance_id_instance_i_dinstance_id_get_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_productavailabilities_get(
-        self,
-        product_id,
-        authorization,
-        **kwargs
-    ):
+    def products_product_id_productavailabilities_get(self, product_id, authorization, **kwargs):
         """Returns a paged collection of ProductAvailability resource for Product  # noqa: E501
 
         Sample request:                    GET /products/{productID}/productAvailabilities  # noqa: E501
@@ -516,43 +433,21 @@ class ProductAvailabilityClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_productavailabilities_get_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_productavailabilities_post(
-        self,
-        product_id,
-        authorization,
-        **kwargs
-    ):
+    def products_product_id_productavailabilities_post(self, product_id, authorization, **kwargs):
         """Create ProductAvailability resource for Product  # noqa: E501
 
         Sample request:                    POST /products/{productID}/productAvailabilities  # noqa: E501
@@ -605,43 +500,22 @@ class ProductAvailabilityClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_productavailabilities_post_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_productavailabilities_product_availability_id_get(
-        self,
-        product_id,
-        product_availability_id,
-        authorization,
-        **kwargs
+        self, product_id, product_availability_id, authorization, **kwargs
     ):
         """Returns ProductAvailability resource for Product  # noqa: E501
 
@@ -695,45 +569,25 @@ class ProductAvailabilityClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["product_availability_id"] = product_availability_id
+        kwargs["authorization"] = authorization
+        return self.products_product_id_productavailabilities_product_availability_id_get_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['product_availability_id'] = \
-            product_availability_id
-        kwargs['authorization'] = \
-            authorization
-        return self.products_product_id_productavailabilities_product_availability_id_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_productavailabilities_product_availability_id_put(
-        self,
-        product_id,
-        product_availability_id,
-        authorization,
-        **kwargs
+        self, product_id, product_availability_id, authorization, **kwargs
     ):
         """Update ProductAvailability resource for Product  # noqa: E501
 
@@ -788,36 +642,19 @@ class ProductAvailabilityClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["product_availability_id"] = product_availability_id
+        kwargs["authorization"] = authorization
+        return self.products_product_id_productavailabilities_product_availability_id_put_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['product_availability_id'] = \
-            product_availability_id
-        kwargs['authorization'] = \
-            authorization
-        return self.products_product_id_productavailabilities_product_availability_id_put_endpoint.call_with_http_info(**kwargs)
-

@@ -12,7 +12,10 @@ def get_listing(client, offer_id, plan_id):
     listing = client.get(offer_id, plan_id)
 
     if listing is None:
-        raise ResourceNotFoundError('Plan not found.', f'Please create a plan on offer [{offer_id}] with ID [{plan_id}] using the create command.')
+        raise ResourceNotFoundError(
+            "Plan not found.",
+            f"Please create a plan on offer [{offer_id}] with ID [{plan_id}] using the create command.",
+        )
     return listing
 
 

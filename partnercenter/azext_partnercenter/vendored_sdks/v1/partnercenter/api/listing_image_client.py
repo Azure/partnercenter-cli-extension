@@ -19,10 +19,14 @@ from ..model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_listings_listing_image import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsListingsListingImage
-from ..model.microsoft_ingestion_api_models_listings_listing_image import MicrosoftIngestionApiModelsListingsListingImage
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_listings_listing_image import (
+    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsListingsListingImage,
+)
+from ..model.microsoft_ingestion_api_models_listings_listing_image import (
+    MicrosoftIngestionApiModelsListingsListingImage,
+)
 
 
 class ListingImageClient(object):
@@ -38,382 +42,305 @@ class ListingImageClient(object):
         self.api_client = api_client
         self.products_product_id_listings_listing_id_images_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsListingsListingImage,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/listings/{listingID}/images',
-                'operation_id': 'products_product_id_listings_listing_id_images_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (
+                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsListingsListingImage,
+                ),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/listings/{listingID}/images",
+                "operation_id": "products_product_id_listings_listing_id_images_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'listing_id',
-                    'authorization',
-                    'expand',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "listing_id",
+                    "authorization",
+                    "expand",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'listing_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "listing_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "listing_id": (str,),
+                    "authorization": (str,),
+                    "expand": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "listing_id": "listingID",
+                    "authorization": "Authorization",
+                    "expand": "$expand",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'listing_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'expand':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "listing_id": "path",
+                    "authorization": "header",
+                    "expand": "query",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'listing_id': 'listingID',
-                    'authorization': 'Authorization',
-                    'expand': '$expand',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'listing_id': 'path',
-                    'authorization': 'header',
-                    'expand': 'query',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_listings_listing_id_images_image_id_delete_endpoint = _Endpoint(
             settings={
-                'response_type': (str,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/listings/{listingID}/images/{imageID}',
-                'operation_id': 'products_product_id_listings_listing_id_images_image_id_delete',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (str,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/listings/{listingID}/images/{imageID}",
+                "operation_id": "products_product_id_listings_listing_id_images_image_id_delete",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'listing_id',
-                    'image_id',
-                    'authorization',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "listing_id",
+                    "image_id",
+                    "authorization",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'listing_id',
-                    'image_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "listing_id",
+                    "image_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "listing_id": (str,),
+                    "image_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "listing_id": "listingID",
+                    "image_id": "imageID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'listing_id':
-                        (str,),
-                    'image_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "listing_id": "path",
+                    "image_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'listing_id': 'listingID',
-                    'image_id': 'imageID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'listing_id': 'path',
-                    'image_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_listings_listing_id_images_image_id_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsListingsListingImage,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/listings/{listingID}/images/{imageID}',
-                'operation_id': 'products_product_id_listings_listing_id_images_image_id_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsListingsListingImage,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/listings/{listingID}/images/{imageID}",
+                "operation_id": "products_product_id_listings_listing_id_images_image_id_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'listing_id',
-                    'image_id',
-                    'authorization',
-                    'expand',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "listing_id",
+                    "image_id",
+                    "authorization",
+                    "expand",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'listing_id',
-                    'image_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "listing_id",
+                    "image_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "listing_id": (str,),
+                    "image_id": (str,),
+                    "authorization": (str,),
+                    "expand": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "listing_id": "listingID",
+                    "image_id": "imageID",
+                    "authorization": "Authorization",
+                    "expand": "$expand",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'listing_id':
-                        (str,),
-                    'image_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'expand':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "listing_id": "path",
+                    "image_id": "path",
+                    "authorization": "header",
+                    "expand": "query",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'listing_id': 'listingID',
-                    'image_id': 'imageID',
-                    'authorization': 'Authorization',
-                    'expand': '$expand',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'listing_id': 'path',
-                    'image_id': 'path',
-                    'authorization': 'header',
-                    'expand': 'query',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_listings_listing_id_images_image_id_put_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsListingsListingImage,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/listings/{listingID}/images/{imageID}',
-                'operation_id': 'products_product_id_listings_listing_id_images_image_id_put',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsListingsListingImage,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/listings/{listingID}/images/{imageID}",
+                "operation_id": "products_product_id_listings_listing_id_images_image_id_put",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'listing_id',
-                    'image_id',
-                    'authorization',
-                    'client_request_id',
-                    'microsoft_ingestion_api_models_listings_listing_image',
+                "all": [
+                    "product_id",
+                    "listing_id",
+                    "image_id",
+                    "authorization",
+                    "client_request_id",
+                    "microsoft_ingestion_api_models_listings_listing_image",
                 ],
-                'required': [
-                    'product_id',
-                    'listing_id',
-                    'image_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "listing_id",
+                    "image_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "listing_id": (str,),
+                    "image_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
+                    "microsoft_ingestion_api_models_listings_listing_image": (
+                        MicrosoftIngestionApiModelsListingsListingImage,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "listing_id": "listingID",
+                    "image_id": "imageID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'listing_id':
-                        (str,),
-                    'image_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
-                    'microsoft_ingestion_api_models_listings_listing_image':
-                        (MicrosoftIngestionApiModelsListingsListingImage,),
+                "location_map": {
+                    "product_id": "path",
+                    "listing_id": "path",
+                    "image_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
+                    "microsoft_ingestion_api_models_listings_listing_image": "body",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'listing_id': 'listingID',
-                    'image_id': 'imageID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'listing_id': 'path',
-                    'image_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                    'microsoft_ingestion_api_models_listings_listing_image': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
+            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
+            api_client=api_client,
         )
         self.products_product_id_listings_listing_id_images_post_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsListingsListingImage,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/listings/{listingID}/images',
-                'operation_id': 'products_product_id_listings_listing_id_images_post',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsListingsListingImage,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/listings/{listingID}/images",
+                "operation_id": "products_product_id_listings_listing_id_images_post",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'listing_id',
-                    'authorization',
-                    'client_request_id',
-                    'microsoft_ingestion_api_models_listings_listing_image',
+                "all": [
+                    "product_id",
+                    "listing_id",
+                    "authorization",
+                    "client_request_id",
+                    "microsoft_ingestion_api_models_listings_listing_image",
                 ],
-                'required': [
-                    'product_id',
-                    'listing_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "listing_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "listing_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
+                    "microsoft_ingestion_api_models_listings_listing_image": (
+                        MicrosoftIngestionApiModelsListingsListingImage,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "listing_id": "listingID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'listing_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
-                    'microsoft_ingestion_api_models_listings_listing_image':
-                        (MicrosoftIngestionApiModelsListingsListingImage,),
+                "location_map": {
+                    "product_id": "path",
+                    "listing_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
+                    "microsoft_ingestion_api_models_listings_listing_image": "body",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'listing_id': 'listingID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'listing_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                    'microsoft_ingestion_api_models_listings_listing_image': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
+            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
+            api_client=api_client,
         )
 
-    def products_product_id_listings_listing_id_images_get(
-        self,
-        product_id,
-        listing_id,
-        authorization,
-        **kwargs
-    ):
+    def products_product_id_listings_listing_id_images_get(self, product_id, listing_id, authorization, **kwargs):
         """Returns a paged collection of ListingImage resources  # noqa: E501
 
         Sample request:                    GET /products/{productID}/listings/{listingID}/images                      returns all ListingImage resources for a given listing                      # noqa: E501
@@ -467,46 +394,23 @@ class ListingImageClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['listing_id'] = \
-            listing_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["listing_id"] = listing_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_listings_listing_id_images_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_listings_listing_id_images_image_id_delete(
-        self,
-        product_id,
-        listing_id,
-        image_id,
-        authorization,
-        **kwargs
+        self, product_id, listing_id, image_id, authorization, **kwargs
     ):
         """Deletes a ListingImage resource  # noqa: E501
 
@@ -561,48 +465,26 @@ class ListingImageClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["listing_id"] = listing_id
+        kwargs["image_id"] = image_id
+        kwargs["authorization"] = authorization
+        return self.products_product_id_listings_listing_id_images_image_id_delete_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['listing_id'] = \
-            listing_id
-        kwargs['image_id'] = \
-            image_id
-        kwargs['authorization'] = \
-            authorization
-        return self.products_product_id_listings_listing_id_images_image_id_delete_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_listings_listing_id_images_image_id_get(
-        self,
-        product_id,
-        listing_id,
-        image_id,
-        authorization,
-        **kwargs
+        self, product_id, listing_id, image_id, authorization, **kwargs
     ):
         """Returns a ListingImage resource  # noqa: E501
 
@@ -658,48 +540,24 @@ class ListingImageClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['listing_id'] = \
-            listing_id
-        kwargs['image_id'] = \
-            image_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["listing_id"] = listing_id
+        kwargs["image_id"] = image_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_listings_listing_id_images_image_id_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_listings_listing_id_images_image_id_put(
-        self,
-        product_id,
-        listing_id,
-        image_id,
-        authorization,
-        **kwargs
+        self, product_id, listing_id, image_id, authorization, **kwargs
     ):
         """Updates a ListingImage resource  # noqa: E501
 
@@ -755,48 +613,23 @@ class ListingImageClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['listing_id'] = \
-            listing_id
-        kwargs['image_id'] = \
-            image_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["listing_id"] = listing_id
+        kwargs["image_id"] = image_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_listings_listing_id_images_image_id_put_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_listings_listing_id_images_post(
-        self,
-        product_id,
-        listing_id,
-        authorization,
-        **kwargs
-    ):
+    def products_product_id_listings_listing_id_images_post(self, product_id, listing_id, authorization, **kwargs):
         """Creates a ListingImage resource  # noqa: E501
 
         Sample request:                    POST /products/{productID}/listings/{listingID}/images [Body ListingImage]  # noqa: E501
@@ -850,36 +683,17 @@ class ListingImageClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['listing_id'] = \
-            listing_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["listing_id"] = listing_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_listings_listing_id_images_post_endpoint.call_with_http_info(**kwargs)
-

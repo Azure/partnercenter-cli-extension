@@ -4,16 +4,15 @@
 # --------------------------------------------------------------------------------------------
 
 from azure.cli.core import AzCommandsLoader
+from azure.cli.core.commands import CliCommandType
 from azext_partnercenter._help import helps  # pylint: disable=unused-import
+from azext_partnercenter.operations import PartnerCenterSubGroupCommandsLoader
 
 
 class PartnerCenterCommandsLoader(AzCommandsLoader):
     def __init__(self, cli_ctx=None):
-        from azure.cli.core.commands import CliCommandType
-        custom_type = CliCommandType(operations_tmpl='azext_partnercenter#{}')
-        super().__init__(cli_ctx=cli_ctx, custom_command_type=custom_type)
+        super().__init__(cli_ctx=cli_ctx, custom_command_type=CliCommandType(operations_tmpl="azext_partnercenter#{}"))
 
-        from azext_partnercenter.operations import PartnerCenterSubGroupCommandsLoader
         self.subgroups_loader = PartnerCenterSubGroupCommandsLoader(self)
 
     def load_command_table(self, args):

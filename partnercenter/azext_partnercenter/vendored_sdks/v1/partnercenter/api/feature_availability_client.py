@@ -19,10 +19,14 @@ from ..model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from ..model.microsoft_ingestion_api_models_availabilities_feature_availability import MicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_availabilities_feature_availability import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability
+from ..model.microsoft_ingestion_api_models_availabilities_feature_availability import (
+    MicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability,
+)
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_availabilities_feature_availability import (
+    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability,
+)
 
 
 class FeatureAvailabilityClient(object):
@@ -38,230 +42,185 @@ class FeatureAvailabilityClient(object):
         self.api_client = api_client
         self.products_product_id_feature_availabilities_get_by_instance_id_instance_i_dinstance_id_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/featureAvailabilities/getByInstanceID(instanceID={instanceID})',
-                'operation_id': 'products_product_id_feature_availabilities_get_by_instance_id_instance_i_dinstance_id_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (
+                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability,
+                ),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/featureAvailabilities/getByInstanceID(instanceID={instanceID})",
+                "operation_id": "products_product_id_feature_availabilities_get_by_instance_id_instance_i_dinstance_id_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'instance_id',
-                    'authorization',
-                    'expand',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "instance_id",
+                    "authorization",
+                    "expand",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'instance_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "instance_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "instance_id": (str,),
+                    "authorization": (str,),
+                    "expand": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "instance_id": "instanceID",
+                    "authorization": "Authorization",
+                    "expand": "$expand",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'instance_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'expand':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "instance_id": "path",
+                    "authorization": "header",
+                    "expand": "query",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'instance_id': 'instanceID',
-                    'authorization': 'Authorization',
-                    'expand': '$expand',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'instance_id': 'path',
-                    'authorization': 'header',
-                    'expand': 'query',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_featureavailabilities_feature_availability_id_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/featureavailabilities/{featureAvailabilityID}',
-                'operation_id': 'products_product_id_featureavailabilities_feature_availability_id_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/featureavailabilities/{featureAvailabilityID}",
+                "operation_id": "products_product_id_featureavailabilities_feature_availability_id_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'feature_availability_id',
-                    'authorization',
-                    'expand',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "feature_availability_id",
+                    "authorization",
+                    "expand",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'feature_availability_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "feature_availability_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "feature_availability_id": (str,),
+                    "authorization": (str,),
+                    "expand": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "feature_availability_id": "featureAvailabilityID",
+                    "authorization": "Authorization",
+                    "expand": "$expand",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'feature_availability_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'expand':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "feature_availability_id": "path",
+                    "authorization": "header",
+                    "expand": "query",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'feature_availability_id': 'featureAvailabilityID',
-                    'authorization': 'Authorization',
-                    'expand': '$expand',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'feature_availability_id': 'path',
-                    'authorization': 'header',
-                    'expand': 'query',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_featureavailabilities_feature_availability_id_put_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/featureavailabilities/{featureAvailabilityID}',
-                'operation_id': 'products_product_id_featureavailabilities_feature_availability_id_put',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/featureavailabilities/{featureAvailabilityID}",
+                "operation_id": "products_product_id_featureavailabilities_feature_availability_id_put",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'feature_availability_id',
-                    'authorization',
-                    'expand',
-                    'client_request_id',
-                    'microsoft_ingestion_api_models_availabilities_feature_availability',
+                "all": [
+                    "product_id",
+                    "feature_availability_id",
+                    "authorization",
+                    "expand",
+                    "client_request_id",
+                    "microsoft_ingestion_api_models_availabilities_feature_availability",
                 ],
-                'required': [
-                    'product_id',
-                    'feature_availability_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "feature_availability_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "feature_availability_id": (str,),
+                    "authorization": (str,),
+                    "expand": (str,),
+                    "client_request_id": (str,),
+                    "microsoft_ingestion_api_models_availabilities_feature_availability": (
+                        MicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "feature_availability_id": "featureAvailabilityID",
+                    "authorization": "Authorization",
+                    "expand": "$expand",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'feature_availability_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'expand':
-                        (str,),
-                    'client_request_id':
-                        (str,),
-                    'microsoft_ingestion_api_models_availabilities_feature_availability':
-                        (MicrosoftIngestionApiModelsAvailabilitiesFeatureAvailability,),
+                "location_map": {
+                    "product_id": "path",
+                    "feature_availability_id": "path",
+                    "authorization": "header",
+                    "expand": "query",
+                    "client_request_id": "header",
+                    "microsoft_ingestion_api_models_availabilities_feature_availability": "body",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'feature_availability_id': 'featureAvailabilityID',
-                    'authorization': 'Authorization',
-                    'expand': '$expand',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'feature_availability_id': 'path',
-                    'authorization': 'header',
-                    'expand': 'query',
-                    'client_request_id': 'header',
-                    'microsoft_ingestion_api_models_availabilities_feature_availability': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
+            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
+            api_client=api_client,
         )
 
     def products_product_id_feature_availabilities_get_by_instance_id_instance_i_dinstance_id_get(
-        self,
-        product_id,
-        instance_id,
-        authorization,
-        **kwargs
+        self, product_id, instance_id, authorization, **kwargs
     ):
         """Returns a paged collection of feature availability resource  # noqa: E501
 
@@ -316,45 +275,25 @@ class FeatureAvailabilityClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["instance_id"] = instance_id
+        kwargs["authorization"] = authorization
+        return self.products_product_id_feature_availabilities_get_by_instance_id_instance_i_dinstance_id_get_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['instance_id'] = \
-            instance_id
-        kwargs['authorization'] = \
-            authorization
-        return self.products_product_id_feature_availabilities_get_by_instance_id_instance_i_dinstance_id_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_featureavailabilities_feature_availability_id_get(
-        self,
-        product_id,
-        feature_availability_id,
-        authorization,
-        **kwargs
+        self, product_id, feature_availability_id, authorization, **kwargs
     ):
         """Returns a feature availability.  # noqa: E501
 
@@ -409,45 +348,25 @@ class FeatureAvailabilityClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["feature_availability_id"] = feature_availability_id
+        kwargs["authorization"] = authorization
+        return self.products_product_id_featureavailabilities_feature_availability_id_get_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['feature_availability_id'] = \
-            feature_availability_id
-        kwargs['authorization'] = \
-            authorization
-        return self.products_product_id_featureavailabilities_feature_availability_id_get_endpoint.call_with_http_info(**kwargs)
 
     def products_product_id_featureavailabilities_feature_availability_id_put(
-        self,
-        product_id,
-        feature_availability_id,
-        authorization,
-        **kwargs
+        self, product_id, feature_availability_id, authorization, **kwargs
     ):
         """Update a feature availability resouce  # noqa: E501
 
@@ -503,36 +422,19 @@ class FeatureAvailabilityClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["feature_availability_id"] = feature_availability_id
+        kwargs["authorization"] = authorization
+        return self.products_product_id_featureavailabilities_feature_availability_id_put_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['feature_availability_id'] = \
-            feature_availability_id
-        kwargs['authorization'] = \
-            authorization
-        return self.products_product_id_featureavailabilities_feature_availability_id_put_endpoint.call_with_http_info(**kwargs)
-

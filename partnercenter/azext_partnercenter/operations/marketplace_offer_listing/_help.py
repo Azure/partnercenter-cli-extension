@@ -8,12 +8,16 @@ from knack.help_files import helps
 
 
 def load_help():
-    helps['partnercenter marketplace offer listing'] = """
+    helps[
+        "partnercenter marketplace offer listing"
+    ] = """
         type: group
         short-summary: Manage a Marketplace Offer's listing.
     """
 
-    helps['partnercenter marketplace offer listing show'] = """
+    helps[
+        "partnercenter marketplace offer listing show"
+    ] = """
         type: command
         short-summary: Get the listing of a marketplace offer
         examples:
@@ -22,7 +26,9 @@ def load_help():
                 az partnercenter marketplace offer listing show --offer-id MyOfferId
     """
 
-    helps['partnercenter marketplace offer listing update'] = """
+    helps[
+        "partnercenter marketplace offer listing update"
+    ] = """
         type: command
         short-summary: Update the listing of a marketplace offer
         examples:

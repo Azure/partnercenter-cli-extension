@@ -14,14 +14,14 @@ from .target_type import TargetType
 from .offer_submission import OfferSubmission
 
 __all__ = [
-    'Plan',
-    'Listing',
-    'PlanListing',
-    'Offer',
-    'OfferType',
-    'OfferSubmission',
-    'ListingContact',
-    'ListingUri',
-    'TargetType',
-    'Resource'
+    "Plan",
+    "Listing",
+    "PlanListing",
+    "Offer",
+    "OfferType",
+    "OfferSubmission",
+    "ListingContact",
+    "ListingUri",
+    "TargetType",
+    "Resource",
 ]

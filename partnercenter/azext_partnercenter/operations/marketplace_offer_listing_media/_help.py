@@ -8,12 +8,16 @@ from knack.help_files import helps
 
 
 def load_help():
-    helps['partnercenter marketplace offer listing media'] = """
+    helps[
+        "partnercenter marketplace offer listing media"
+    ] = """
         type: group
         short-summary: Manage a Marketplace Offer listing's media including images, videos, and thumbnails.
     """
 
-    helps['partnercenter marketplace offer listing media add'] = """
+    helps[
+        "partnercenter marketplace offer listing media add"
+    ] = """
         type: command
         short-summary: Add media for a marketplace offer listing
         examples:
@@ -22,7 +26,9 @@ def load_help():
                 az partnercenter marketplace offer listing media add --offer-id MyOfferId --type LargeLogo --file local/path/to/file
     """
 
-    helps['partnercenter marketplace offer listing media delete'] = """
+    helps[
+        "partnercenter marketplace offer listing media delete"
+    ] = """
         type: command
         short-summary: Delete media for a marketplace offer listing
         examples:
@@ -31,7 +37,9 @@ def load_help():
                 az partnercenter marketplace offer listing media delete --offer-id MyOfferId --type LargeLogo
     """
 
-    helps['partnercenter marketplace offer listing media list'] = """
+    helps[
+        "partnercenter marketplace offer listing media list"
+    ] = """
         type: command
         short-summary: List the media for a marketplace offer listing
         examples:

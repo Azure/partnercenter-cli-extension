@@ -19,9 +19,11 @@ from ..model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_branches_branch import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsBranchesBranch
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_branches_branch import (
+    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsBranchesBranch,
+)
 
 
 class BranchesClient(object):
@@ -37,78 +39,62 @@ class BranchesClient(object):
         self.api_client = api_client
         self.products_product_id_branches_get_by_module_modulemodule_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsBranchesBranch,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/branches/getByModule(module={module})',
-                'operation_id': 'products_product_id_branches_get_by_module_modulemodule_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (
+                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsBranchesBranch,
+                ),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/branches/getByModule(module={module})",
+                "operation_id": "products_product_id_branches_get_by_module_modulemodule_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'module',
-                    'authorization',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "module",
+                    "authorization",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'module',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "module",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "module": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "module": "module",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'module':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "module": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'module': 'module',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'module': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
 
-    def products_product_id_branches_get_by_module_modulemodule_get(
-        self,
-        product_id,
-        module,
-        authorization,
-        **kwargs
-    ):
+    def products_product_id_branches_get_by_module_modulemodule_get(self, product_id, module, authorization, **kwargs):
         """Returns a paged collection of Branch  # noqa: E501
 
         Sample request:                   GET /products/{productID}/branches/getByModule(module=Listing)                       =&gt; returns all branches of Listing module  # noqa: E501
@@ -161,36 +147,17 @@ class BranchesClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['module'] = \
-            module
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["module"] = module
+        kwargs["authorization"] = authorization
         return self.products_product_id_branches_get_by_module_modulemodule_get_endpoint.call_with_http_info(**kwargs)
-

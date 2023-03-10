@@ -19,10 +19,14 @@ from ..model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_packages_base_package import MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsPackagesBasePackage
-from ..model.microsoft_ingestion_api_models_packages_azure_package import MicrosoftIngestionApiModelsPackagesAzurePackage
+from ..model.microsoft_ingestion_api_models_common_paged_collection_microsoft_ingestion_api_models_packages_base_package import (
+    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsPackagesBasePackage,
+)
+from ..model.microsoft_ingestion_api_models_packages_azure_package import (
+    MicrosoftIngestionApiModelsPackagesAzurePackage,
+)
 
 
 class PackageClient(object):
@@ -38,341 +42,272 @@ class PackageClient(object):
         self.api_client = api_client
         self.products_product_id_packages_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsPackagesBasePackage,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/packages',
-                'operation_id': 'products_product_id_packages_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (
+                    MicrosoftIngestionApiModelsCommonPagedCollectionMicrosoftIngestionApiModelsPackagesBasePackage,
+                ),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/packages",
+                "operation_id": "products_product_id_packages_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'authorization',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "authorization",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_packages_package_id_delete_endpoint = _Endpoint(
             settings={
-                'response_type': (str,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/packages/{packageID}',
-                'operation_id': 'products_product_id_packages_package_id_delete',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (str,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/packages/{packageID}",
+                "operation_id": "products_product_id_packages_package_id_delete",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'package_id',
-                    'authorization',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "package_id",
+                    "authorization",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'package_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "package_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "package_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "package_id": "packageID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'package_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "package_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'package_id': 'packageID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'package_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_packages_package_id_get_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsPackagesAzurePackage,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/packages/{packageID}',
-                'operation_id': 'products_product_id_packages_package_id_get',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsPackagesAzurePackage,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/packages/{packageID}",
+                "operation_id": "products_product_id_packages_package_id_get",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'package_id',
-                    'authorization',
-                    'client_request_id',
+                "all": [
+                    "product_id",
+                    "package_id",
+                    "authorization",
+                    "client_request_id",
                 ],
-                'required': [
-                    'product_id',
-                    'package_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "package_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "package_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "package_id": "packageID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'package_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
+                "location_map": {
+                    "product_id": "path",
+                    "package_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'package_id': 'packageID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'package_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.products_product_id_packages_package_id_put_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsPackagesAzurePackage,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/packages/{packageID}',
-                'operation_id': 'products_product_id_packages_package_id_put',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsPackagesAzurePackage,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/packages/{packageID}",
+                "operation_id": "products_product_id_packages_package_id_put",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'package_id',
-                    'authorization',
-                    'client_request_id',
-                    'microsoft_ingestion_api_models_packages_azure_package',
+                "all": [
+                    "product_id",
+                    "package_id",
+                    "authorization",
+                    "client_request_id",
+                    "microsoft_ingestion_api_models_packages_azure_package",
                 ],
-                'required': [
-                    'product_id',
-                    'package_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "package_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "package_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
+                    "microsoft_ingestion_api_models_packages_azure_package": (
+                        MicrosoftIngestionApiModelsPackagesAzurePackage,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "package_id": "packageID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'package_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
-                    'microsoft_ingestion_api_models_packages_azure_package':
-                        (MicrosoftIngestionApiModelsPackagesAzurePackage,),
+                "location_map": {
+                    "product_id": "path",
+                    "package_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
+                    "microsoft_ingestion_api_models_packages_azure_package": "body",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'package_id': 'packageID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'package_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                    'microsoft_ingestion_api_models_packages_azure_package': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
+            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
+            api_client=api_client,
         )
         self.products_product_id_packages_post_endpoint = _Endpoint(
             settings={
-                'response_type': (MicrosoftIngestionApiModelsPackagesAzurePackage,),
-                'auth': [],
-                'endpoint_path': '/products/{productID}/packages',
-                'operation_id': 'products_product_id_packages_post',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (MicrosoftIngestionApiModelsPackagesAzurePackage,),
+                "auth": [],
+                "endpoint_path": "/products/{productID}/packages",
+                "operation_id": "products_product_id_packages_post",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'product_id',
-                    'authorization',
-                    'client_request_id',
-                    'microsoft_ingestion_api_models_packages_azure_package',
+                "all": [
+                    "product_id",
+                    "authorization",
+                    "client_request_id",
+                    "microsoft_ingestion_api_models_packages_azure_package",
                 ],
-                'required': [
-                    'product_id',
-                    'authorization',
+                "required": [
+                    "product_id",
+                    "authorization",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "product_id": (str,),
+                    "authorization": (str,),
+                    "client_request_id": (str,),
+                    "microsoft_ingestion_api_models_packages_azure_package": (
+                        MicrosoftIngestionApiModelsPackagesAzurePackage,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "product_id": "productID",
+                    "authorization": "Authorization",
+                    "client_request_id": "Client-Request-ID",
                 },
-                'openapi_types': {
-                    'product_id':
-                        (str,),
-                    'authorization':
-                        (str,),
-                    'client_request_id':
-                        (str,),
-                    'microsoft_ingestion_api_models_packages_azure_package':
-                        (MicrosoftIngestionApiModelsPackagesAzurePackage,),
+                "location_map": {
+                    "product_id": "path",
+                    "authorization": "header",
+                    "client_request_id": "header",
+                    "microsoft_ingestion_api_models_packages_azure_package": "body",
                 },
-                'attribute_map': {
-                    'product_id': 'productID',
-                    'authorization': 'Authorization',
-                    'client_request_id': 'Client-Request-ID',
-                },
-                'location_map': {
-                    'product_id': 'path',
-                    'authorization': 'header',
-                    'client_request_id': 'header',
-                    'microsoft_ingestion_api_models_packages_azure_package': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
+            headers_map={"accept": ["application/json"], "content_type": ["application/json"]},
+            api_client=api_client,
         )
 
-    def products_product_id_packages_get(
-        self,
-        product_id,
-        authorization,
-        **kwargs
-    ):
+    def products_product_id_packages_get(self, product_id, authorization, **kwargs):
         """Returns a set of package instances for the product.  # noqa: E501
 
         Returns a set of package instances for the product.  # noqa: E501
@@ -424,44 +359,21 @@ class PackageClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_packages_get_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_packages_package_id_delete(
-        self,
-        product_id,
-        package_id,
-        authorization,
-        **kwargs
-    ):
+    def products_product_id_packages_package_id_delete(self, product_id, package_id, authorization, **kwargs):
         """Delete the package.  # noqa: E501
 
         Delete the package.  # noqa: E501
@@ -514,46 +426,22 @@ class PackageClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['package_id'] = \
-            package_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["package_id"] = package_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_packages_package_id_delete_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_packages_package_id_get(
-        self,
-        product_id,
-        package_id,
-        authorization,
-        **kwargs
-    ):
+    def products_product_id_packages_package_id_get(self, product_id, package_id, authorization, **kwargs):
         """Returns a package instance for the product.  # noqa: E501
 
         Returns a package instance for the product.  # noqa: E501
@@ -606,46 +494,22 @@ class PackageClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['package_id'] = \
-            package_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["package_id"] = package_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_packages_package_id_get_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_packages_package_id_put(
-        self,
-        product_id,
-        package_id,
-        authorization,
-        **kwargs
-    ):
+    def products_product_id_packages_package_id_put(self, product_id, package_id, authorization, **kwargs):
         """Update the package.  # noqa: E501
 
         Update the package.  # noqa: E501
@@ -699,45 +563,22 @@ class PackageClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['package_id'] = \
-            package_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["package_id"] = package_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_packages_package_id_put_endpoint.call_with_http_info(**kwargs)
 
-    def products_product_id_packages_post(
-        self,
-        product_id,
-        authorization,
-        **kwargs
-    ):
+    def products_product_id_packages_post(self, product_id, authorization, **kwargs):
         """Create a package resource.  # noqa: E501
 
         Sample request:                    POST products/{productID}/packages      {          \"resourceType\": \"package\",          \"fileName\": \"sample.appx\"      }  # noqa: E501
@@ -790,34 +631,16 @@ class PackageClient(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['product_id'] = \
-            product_id
-        kwargs['authorization'] = \
-            authorization
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout")
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths")
+        kwargs["product_id"] = product_id
+        kwargs["authorization"] = authorization
         return self.products_product_id_packages_post_endpoint.call_with_http_info(**kwargs)
-
