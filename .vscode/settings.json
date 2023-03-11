@@ -1,5 +1,8 @@
 {
     "editor.detectIndentation": false,
+    "editor.formatOnPaste": true,
+    "files.trimTrailingWhitespace": true,
+    "files.autoSave": "onFocusChange",    
     "git.autofetch": true,
     "python.testing.pytestArgs": [
         "partnercenter/azext_partnercenter/tests"
