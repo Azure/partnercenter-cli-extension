@@ -1,6 +1,9 @@
 {
   "name": "Bicep Development Environment",
-  "dockerFile": "Dockerfile",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
   "customizations": {
     "vscode": {
       "extensions": [

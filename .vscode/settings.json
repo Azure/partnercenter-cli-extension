@@ -2,25 +2,23 @@
     "editor.detectIndentation": false,
     "editor.formatOnPaste": true,
     "files.trimTrailingWhitespace": true,
-    "files.autoSave": "onFocusChange",    
+    "files.autoSave": "onFocusChange",
     "git.autofetch": true,
+    "python.defaultInterpreterPath": "/home/vscode/env/bin/python",
     "python.testing.pytestArgs": [
         "partnercenter/azext_partnercenter/tests"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-    "python.defaultInterpreterPath": "/home/codespace/env/bin/python",
     "python.terminal.activateEnvInCurrentTerminal": true,
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.autoImportCompletions": true,
     "python.analysis.typeCheckingMode": "off",
     "pylint.args": [
-        "--rcfile",
-        ".pylintrc"
+        "--rcfile=.pylintrc"
     ],
     "pylint.importStrategy": "fromEnvironment",
     "flake8.args": [
         "--config=.flake8"
-    ],
-    "flake8.importStrategy": "fromEnvironment"
+    ]
 }
