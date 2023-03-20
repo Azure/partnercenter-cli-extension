@@ -17,3 +17,4 @@ def load_command_table(commands_loader, _):
 
     with commands_loader.command_group('partnercenter marketplace offer plan technical-configuration package', custom_command_type=custom_command_type, is_preview=True) as g:
         g.custom_command('add', 'add_technical_configuration_bundle', supports_no_wait=True, table_transformer=None)
+        g.custom_command('delete', 'delete_technicalconfiguration_package', supports_no_wait=True)

@@ -9,9 +9,8 @@
 from knack.util import CLIError
 from azext_partnercenter.clients import OfferClient, PlanClient
 from azext_partnercenter.clients._base_client import BaseClient
-from azext_partnercenter.vendored_sdks.production_ingestion.models import ContainerCnabPlanTechnicalConfigurationProperties
+from azext_partnercenter.vendored_sdks.production_ingestion.models import (ContainerCnabPlanTechnicalConfigurationProperties, CnabReference)
 from ._util import get_combined_paged_results
-
 
 class PlanTechnicalConfigurationClient(BaseClient):
     PACKAGE_MODULE = "Package"
@@ -42,7 +41,28 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
         return technical_configuration
 
+    def delete_cnab_reference(self, offer_external_id, plan_external_id, repository_name, tag):
+        technical_configuration = self.get(offer_external_id, plan_external_id)
+        cnab_reference_index = -1
+
+        for index, ref in enumerate(technical_configuration.cnab_references):
+            # match repo and tab name for now. if more is required, we can add them here
+            if ref['repositoryName'] == repository_name and ref['tag'] == tag:
+                cnab_reference_index = index
+                break
+        
+        if cnab_reference_index != -1:
+            del technical_configuration.cnab_references[cnab_reference_index]
+
+        result = self._update_technical_configuration_properties(offer_external_id, plan_external_id, technical_configuration)
+        return result
+
+
     def add_bundle(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
+        result = self._update_technical_configuration_properties(offer_external_id, plan_external_id, properties)
+        return result
+
+    def _update_technical_configuration_properties(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         variant_package_branch = self._get_variant_package_branch(offer_external_id, plan_external_id)
         offer_durable_id = variant_package_branch.product.id
         plan_durable_id = variant_package_branch.variant_id
