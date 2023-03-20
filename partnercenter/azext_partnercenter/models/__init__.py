@@ -12,11 +12,13 @@ from .listing_uri import ListingUri
 from .plan_listing import PlanListing
 from .target_type import TargetType
 from .offer_submission import OfferSubmission
+from .plan_technical_configuration_type import PlanTechnicalConfigurationType
 
 __all__ = [
     'Plan',
     'Listing',
     'PlanListing',
+    'PlanTechnicalConfigurationType',
     'Offer',
     'OfferType',
     'OfferSubmission',
