@@ -2,3 +2,4 @@ docker
 pyyaml
 requests
 pydantic
+wrapt
