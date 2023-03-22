@@ -20,7 +20,7 @@ class PlanClient(BaseClient):
     def create(self, offer_external_id, plan_external_id, name, subtype=None):
         resource_type = "AzureSkuVariant"
         offer = self._offer_client.get(offer_external_id)
-        product_id = offer._resource.durable_id
+        product_id = offer.resource.durable_id
 
         prod_var_req = ProductsProductIDVariantsGetRequest(resource_type=resource_type, friendly_name=name, external_id=plan_external_id)
         if subtype:
@@ -46,7 +46,7 @@ class PlanClient(BaseClient):
         if offer is None:
             return []
 
-        offer_durable_id = offer._resource.durable_id
+        offer_durable_id = offer.resource.durable_id
         variants = get_combined_paged_results(lambda: self._sdk.variant_client.products_product_id_variants_get(
             offer_durable_id,
             self._api_client.configuration.access_token))
@@ -74,7 +74,7 @@ class PlanClient(BaseClient):
     # TODO: remove get_listing
     def get_listing(self, offer_external_id, plan_external_id):
         offer = self._offer_client.get(offer_external_id)
-        offer_durable_id = offer._resource.durable_id
+        offer_durable_id = offer.resource.durable_id
         branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(offer_durable_id, 'Listing',
                                                                                                          self._get_access_token())
 
@@ -121,6 +121,6 @@ class PlanClient(BaseClient):
         if plan is None:
             return
 
-        offer_durable_id = offer._resource.durable_id
+        offer_durable_id = offer.resource.durable_id
         plan_resource_id = plan._resource.durable_id
         self._sdk.variant_client.products_product_id_variants_variant_id_delete(offer_durable_id, plan_resource_id, self._api_client.configuration.access_token, async_req=True)
