@@ -17,12 +17,14 @@ class PlanClient(BaseClient):
         super().__init__(cli_ctx, *_)
         self._offer_client = OfferClient(cli_ctx, *_)
 
-    def create(self, offer_external_id, plan_external_id, name):
+    def create(self, offer_external_id, plan_external_id, name, subtype=None):
         resource_type = "AzureSkuVariant"
         offer = self._offer_client.get(offer_external_id)
         product_id = offer._resource.durable_id
 
         prod_var_req = ProductsProductIDVariantsGetRequest(resource_type=resource_type, friendly_name=name, external_id=plan_external_id)
+        if subtype:
+            prod_var_req['SubType'] = subtype
         result = self._sdk.variant_client.products_product_id_variants_post(product_id=product_id,
                                                                             authorization=self._api_client.configuration.access_token,
                                                                             products_product_id_variants_get_request=prod_var_req)
@@ -32,7 +34,8 @@ class PlanClient(BaseClient):
             offer_id=offer_external_id,
             state=result.state,
             cloud_availabilities=result.cloud_availabilities,
-            resource=Resource(durable_id=result.id, type=result.resource_type)
+            resource=Resource(durable_id=result.id, type=result.resource_type),
+            subtype=subtype,
         )
 
     def get(self, offer_external_id, plan_external_id):
@@ -51,15 +54,16 @@ class PlanClient(BaseClient):
         items = []
 
         for variant in variants:
-            item = Plan(
-                id=variant['externalID'],
-                name=variant['friendlyName'],
-                offer_id=offer_external_id,
-                state=variant['state'],
-                cloud_availabilities=variant['cloudAvailabilities'],
-                resource=Resource(durable_id=variant['id'], type=variant['resourceType'])
-            )
-            items.append(item)
+            if "externalID" in variant:
+                item = Plan(
+                    id=variant['externalID'],
+                    name=variant['friendlyName'],
+                    offer_id=offer_external_id,
+                    state=variant['state'],
+                    cloud_availabilities=variant['cloudAvailabilities'],
+                    resource=Resource(durable_id=variant['id'], type=variant['resourceType'])
+                )
+                items.append(item)
 
         return items
 

@@ -38,6 +38,9 @@ def load_help():
         - name: Create a plan for an offer
           text: |-
                 az partnercenter marketplace offer plan create --id MyPlanId --name "My Plan Name" --offer-id MyOfferId
+        - name: Create a Managed Application plan in an Application offer
+          text: |-
+                az partnercenter marketplace offer plan create --id MyPlanId --name "My Plan Name" --offer-id MyOfferId --subtype managed-app
     """
 
     helps['partnercenter marketplace offer plan delete'] = """
