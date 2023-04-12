@@ -17,7 +17,7 @@ def delete_technicalconfiguration_package(client, offer_id, plan_id, repository_
     technical_configuration_type = _get_technical_configuration_type(
         repository_name=repository_name,
         tag=tag
-        )
+    )
 
     if technical_configuration_type is None:
         raise CLIError(f'This technical configuration type is currently not supported by the CLI. Please submit an issue to get support at {ISSUES_URL}.')
@@ -52,6 +52,7 @@ def add_technical_configuration_bundle(client, offer_id, plan_id, cluster_extens
     )
     result = client.add_bundle(offer_id, plan_id, properties)
     return result
+
 
 def _get_technical_configuration_type(repository_name=None, tag=None):
     if repository_name is not None and tag is not None:
