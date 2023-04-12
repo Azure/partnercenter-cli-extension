@@ -10,7 +10,7 @@ from azext_partnercenter.models.listing_image import ListingImage
 from azext_partnercenter.clients.offer_listing_client import OfferListingClient
 from azext_partnercenter.clients.offer_client import OfferClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
-    ProductClient, VariantClient, ListingImageClient)
+    ProductClient, VariantClient, ListingImageClient, ListingVideoClient)
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_image import (
     MicrosoftIngestionApiModelsListingsListingImage)
 
@@ -25,6 +25,27 @@ class ListingMediaClient:
         self._product_client = ProductClient(self._api_client)
         self._variant_client = VariantClient(self._api_client)
         self._listing_image_client = ListingImageClient(self._api_client)
+        self._listing_video_client = ListingVideoClient(self._api_client)
+
+    def get_listing_videos(self, offer_external_id):
+        offer = self._offer_client.get(offer_external_id)
+        if offer is None:
+            return None
+        offer_resource_id = offer.resource.durable_id
+
+        listing = self._offer_client.get_listing(offer_external_id)
+
+        if listing is None:
+            return None
+        listing_resource_id = listing._resource.durable_id
+
+        videos = self._listing_video_client.products_product_id_listings_listing_id_videos_get(
+            offer_resource_id, listing_resource_id,
+            self._get_authorication_token(),
+            expand="$expand=FileSasUri")
+
+        print(f'videos: {videos}')
+        return self._map_videos(videos)
 
     def get_listing_images(self, offer_external_id):
         offer = self._offer_client.get(offer_external_id)
@@ -112,6 +133,8 @@ class ListingMediaClient:
             id=image.id,
             odata_etag=image.odata_etag)
 
+
+
         result = self._listing_image_client.products_product_id_listings_listing_id_images_image_id_put(
             offer_resource_id,
             listing_resource_id,
@@ -145,11 +168,19 @@ class ListingMediaClient:
     def _get_file_name(self, file):
         return file
 
+    #todo : Create a ListingVideo class
+    def _map_videos(self, videos):
+        return None
+
     def _map_images(self, images):
         return list(map(self._map_image, images.value))
 
     def _map_image(self, image):
-        listing_image = ListingImage(fileName=image.file_name, type=image.type, fileSasUri=image.file_sas_uri, state=image.state,
+        sas_uri = ''
+        if hasattr(image, 'file_sas_uri'):
+            sas_uri = image.file_sas_uri
+
+        listing_image = ListingImage(fileName=image.file_name, type=image.type, fileSasUri=sas_uri, state=image.state,
                                      order=image.order, odata_etag=image.odata_etag, id=image.id)
 
         return listing_image

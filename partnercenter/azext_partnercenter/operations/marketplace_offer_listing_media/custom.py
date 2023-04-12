@@ -4,10 +4,15 @@
 # --------------------------------------------------------------------------------------------
 
 
-def list_media(client, offer_id):
+def list_media(client, offer_id, media_type="Images"):
     # TODO: implement beyond images
-    images = client.get_listing_images(offer_id)
-    return images
+    if media_type == "Images":
+        return client.get_listing_images(offer_id)
+
+    if media_type == "Video":
+        return "hogwash"
+
+    return ""
 
 
 def add_media(client, offer_id, file, media_type=None):
