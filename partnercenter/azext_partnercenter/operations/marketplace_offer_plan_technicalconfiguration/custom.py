@@ -8,8 +8,10 @@ from azext_partnercenter.vendored_sdks.production_ingestion.models import (Conta
 from azext_partnercenter import ISSUES_URL
 from azext_partnercenter.models import PlanTechnicalConfigurationType
 
+
 def get_technicalconfiguration(client, offer_id, plan_id, repository_name, tag):
     return client.get(offer_id, plan_id)
+
 
 def delete_technicalconfiguration_package(client, offer_id, plan_id, repository_name=None, tag=None):
     technical_configuration_type = _get_technical_configuration_type(
