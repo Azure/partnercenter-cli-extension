@@ -62,7 +62,7 @@ class OfferClient(BaseClient):
     def publish(self, offer_external_id, target):
         """Publishes all draft changes for the offer to the target environment"""
         offer = self.get(offer_external_id)
-        result = self._graph_api_client.publish_submission(target, offer._resource.durable_id)
+        result = self._graph_api_client.publish_submission(target, offer.resource.durable_id)
         return result
 
     def _map_product_to_offer(self, product):
@@ -75,7 +75,7 @@ class OfferClient(BaseClient):
 
     def get_setup(self, offer_external_id):
         offer = self.get(offer_external_id)
-        result = self._sdk.product_client.products_product_id_setup_get(offer._resource.durable_id, self._get_access_token())
+        result = self._sdk.product_client.products_product_id_setup_get(offer.resource.durable_id, self._get_access_token())
         return self._map_setup(offer_external_id, result)
 
     def update_setup(self, parameters: OfferSetup):
@@ -100,7 +100,7 @@ class OfferClient(BaseClient):
 
         # TODO: check for failure, esure update occurred before trying to fetch latest setup instance
         self._sdk.product_client.products_product_id_setup_post(
-            offer._resource.durable_id,
+            offer.resource.durable_id,
             self._get_access_token(),
             microsoft_ingestion_api_models_products_azure_product_setup=api_product_setup)
 
@@ -133,7 +133,7 @@ class OfferClient(BaseClient):
             return None
 
         branch_listings = get_combined_paged_results(lambda: self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
-            offer._resource.durable_id, "Listing", self._api_client.configuration.access_token))
+            offer.resource.durable_id, "Listing", self._api_client.configuration.access_token))
 
         # TODO: circle back on this as not sure what to do when multiple offer listings exist
         current_draft_module = next((b for b in branch_listings if not hasattr(b, 'variant_id')), None)
@@ -145,7 +145,7 @@ class OfferClient(BaseClient):
 
         listings = get_combined_paged_results(
             lambda: self._sdk.listing_client.products_product_id_listings_get_by_instance_id_instance_i_dinstance_id_get(
-                offer._resource.durable_id, instance_id, self._get_access_token()))
+                offer.resource.durable_id, instance_id, self._get_access_token()))
 
         # TODO: there should only be 1 active listing (that we can confirm as of now)
         if len(listings) == 0:

@@ -35,7 +35,13 @@ def load_help():
         type: command
         short-summary: Publish the submissions of a marketplace offer
         examples:
-        - name: Publish an offer's submissions
+        - name: Publish an offer's submissions to draft state
           text: |-
-                az partnercenter marketplace offer submission publish --offer-id MyOfferId  --submission-id 11521167929065
+                az partnercenter marketplace offer submission publish --offer-id MyOfferId  --submission-id 11521167929065 --target draft
+        - name: Publish an offer's submissions to preview state
+          text: |-
+                az partnercenter marketplace offer submission publish --offer-id MyOfferId  --submission-id 11521167929065 --target preview
+        - name: Publish an offer's submissions to live state
+          text: |-
+                az partnercenter marketplace offer submission publish --offer-id MyOfferId  --submission-id 11521167929065 --target live
     """

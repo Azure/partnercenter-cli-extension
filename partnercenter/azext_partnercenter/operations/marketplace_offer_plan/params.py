@@ -12,3 +12,4 @@ def load_arguments(commands_loader, _):
 
     with commands_loader.argument_context('partnercenter marketplace offer plan create') as c:
         c.argument('name', options_list=['--name', '-n'], help='The friendly name of the Plan.')
+        c.argument('subtype', options_list=['--subtype', '-s'], help='SubType of Azure Application plan. Allowed Values: solution-template, managed-application. Default: None.')
