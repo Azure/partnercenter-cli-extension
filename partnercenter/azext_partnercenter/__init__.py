@@ -25,3 +25,4 @@ class PartnerCenterCommandsLoader(AzCommandsLoader):
 
 
 COMMAND_LOADER_CLS = PartnerCenterCommandsLoader
+ISSUES_URL = "https://github.com/Azure/partnercenter-cli-extension/issues"

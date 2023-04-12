@@ -28,7 +28,7 @@ class OfferListingClient(BaseClient):
         product = self._offer_client.get(offer_external_id)
         if product is None:
             return None
-        product_id = product._resource.durable_id
+        product_id = product.resource.durable_id
         plan = self._plan_client.find_by_external_id(offer_external_id, plan_external_id)
         if plan is None:
             return None
@@ -65,7 +65,7 @@ class OfferListingClient(BaseClient):
         offer = self._offer_client.get(offer_external_id)
         if offer is None:
             return None
-        product_id = offer._resource.durable_id
+        product_id = offer.resource.durable_id
 
         listing = None
         if plan_external_id is None:
@@ -150,7 +150,7 @@ class OfferListingClient(BaseClient):
         product = self._offer_client.get(product_external_id)
         if product is None:
             return None
-        product_id = product._resource.durable_id
+        product_id = product.resource.durable_id
 
         listing = self._offer_client.get_listing(product_external_id)
         if listing is None:
@@ -187,7 +187,7 @@ class OfferListingClient(BaseClient):
 
     def _get_product_listing_branches(self, product_external_id):
         offer = self._offer_client.get(product_external_id)
-        product_id = offer._resource.durable_id
+        product_id = offer.resource.durable_id
 
         module = 'Listing'
         branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(

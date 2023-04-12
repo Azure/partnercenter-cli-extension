@@ -43,9 +43,9 @@ class PlanListingClient(BaseClient):
         updated_listing.description = parameters.description
 
         self._sdk.listing_client.products_product_id_listings_listing_id_put(
-            offer._resource.durable_id, updated_listing.id, self._get_access_token(),
+            offer.resource.durable_id, updated_listing.id, self._get_access_token(),
             microsoft_ingestion_api_models_listings_azure_listing=updated_listing)
-        
+
         return PlanListing(
             offer_id=offer_external_id,
             id=plan_external_id,
@@ -55,14 +55,14 @@ class PlanListingClient(BaseClient):
         )
 
     def _get_listing_instance(self, offer, plan_external_id):
-        offer_durable_id = offer._resource.durable_id
+        offer_durable_id = offer.resource.durable_id
 
         branches = get_combined_paged_results(lambda: self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
                                               offer_durable_id, "Listing", self._get_access_token()))
 
         plan = self._plan_client.get(offer.id, plan_external_id)
         branch_listing = next((b for b in branches if hasattr(b, 'variant_id') and b.variant_id == plan._resource.durable_id), None)
-        
+
         if branch_listing is None:
             return None
 
