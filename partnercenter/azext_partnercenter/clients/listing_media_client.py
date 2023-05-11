@@ -7,12 +7,15 @@
 # pylint: disable=protected-access
 # pylint: disable=no-self-use
 from azext_partnercenter.models.listing_image import ListingImage
+from azext_partnercenter.models.listing_video import ListingVideo
 from azext_partnercenter.clients.offer_listing_client import OfferListingClient
 from azext_partnercenter.clients.offer_client import OfferClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.apis import (
-    ProductClient, VariantClient, ListingImageClient)
+    ProductClient, VariantClient, ListingImageClient, ListingVideoClient)
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_image import (
     MicrosoftIngestionApiModelsListingsListingImage)
+from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_video import (
+    MicrosoftIngestionApiModelsListingsListingVideo)
 
 from ._client_factory import get_api_client
 
@@ -25,6 +28,26 @@ class ListingMediaClient:
         self._product_client = ProductClient(self._api_client)
         self._variant_client = VariantClient(self._api_client)
         self._listing_image_client = ListingImageClient(self._api_client)
+        self._listing_video_client = ListingVideoClient(self._api_client)
+
+    def get_listing_videos(self, offer_external_id):
+        offer = self._offer_client.get(offer_external_id)
+        if offer is None:
+            return None
+        offer_resource_id = offer.resource.durable_id
+
+        listing = self._offer_client.get_listing(offer_external_id)
+
+        if listing is None:
+            return None
+        listing_resource_id = listing._resource.durable_id
+
+        videos = self._listing_video_client.products_product_id_listings_listing_id_videos_get(
+            offer_resource_id, listing_resource_id,
+            self._get_authorication_token(),
+            expand="$expand=FileSasUri")
+
+        return self._map_videos(videos)
 
     def get_listing_images(self, offer_external_id):
         offer = self._offer_client.get(offer_external_id)
@@ -153,6 +176,16 @@ class ListingMediaClient:
                                      order=image.order, odata_etag=image.odata_etag, id=image.id)
 
         return listing_image
+
+    def _map_videos(self, videos):
+        return list(map(self._map_video, videos.value))
+
+    def _map_video(self, video):
+       # print("video: " + str(video))
+        listing_video = ListingVideo(type=video.resource_type, thumbnailFileName=video.thumbnail.file_name, thumbnailFileSasUri=video.thumbnail.file_sas_uri,
+                                     thumbnail_state=video.thumbnail.state, thumbnail_title=video.thumbnail.title, streamingUri=video.streaming_uri, odata_etag=video.odata_etag, id=video.id)
+
+        return listing_video
 
     def _get_authorication_token(self):
         return self._api_client.configuration.access_token
