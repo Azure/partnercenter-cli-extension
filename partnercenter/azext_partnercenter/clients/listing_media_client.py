@@ -149,7 +149,7 @@ class ListingMediaClient:
         return list(map(self._map_image, images.value))
 
     def _map_image(self, image):
-        listing_image = ListingImage(fileName=image.file_name, type=image.type, fileSasUri=image.file_sas_uri, state=image.state,
+        listing_image = ListingImage(fileName=image.file_name, type=image.type, fileSasUri=image.file_sas_uri if hasattr(image, 'file_sas_uri') else '', state=image.state,
                                      order=image.order, odata_etag=image.odata_etag, id=image.id)
 
         return listing_image
