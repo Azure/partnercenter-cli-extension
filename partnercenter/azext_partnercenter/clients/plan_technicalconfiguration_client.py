@@ -12,6 +12,7 @@ from azext_partnercenter.clients._base_client import BaseClient
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (ContainerCnabPlanTechnicalConfigurationProperties, CnabReference)
 from ._util import get_combined_paged_results
 
+
 class PlanTechnicalConfigurationClient(BaseClient):
     PACKAGE_MODULE = "Package"
 
@@ -50,13 +51,12 @@ class PlanTechnicalConfigurationClient(BaseClient):
             if ref['repositoryName'] == repository_name and ref['tag'] == tag:
                 cnab_reference_index = index
                 break
-        
+
         if cnab_reference_index != -1:
             del technical_configuration.cnab_references[cnab_reference_index]
 
         result = self._update_technical_configuration_properties(offer_external_id, plan_external_id, technical_configuration)
         return result
-
 
     def add_bundle(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         result = self._update_technical_configuration_properties(offer_external_id, plan_external_id, properties)

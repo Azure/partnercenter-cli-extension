@@ -10,6 +10,7 @@ from azext_partnercenter.models import OfferType
 from ._cnab_util import (bundle, verify)
 from azext_partnercenter import ISSUES_URL
 
+
 def build_package(client, offer_id, manifest_file=None):
     _execute_action_by_offer_type(client, offer_id, lambda: _build_cnab_bundle(manifest_file))
 
