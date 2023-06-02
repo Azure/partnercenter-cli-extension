@@ -9,3 +9,4 @@ def load_arguments(commands_loader, _):
         c.argument('offer_id', options_list=['--offer-id'], help='The Offer ID.')
         c.argument('media_type', options_list=['--type'], help='The media type.')
         c.argument('file', options_list=['--file'], help='The path to the media file.')
+        c.argument('streaming_uri', options_list=['--streaming-uri'], help='The streaming URI.')
