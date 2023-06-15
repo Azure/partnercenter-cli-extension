@@ -9,7 +9,7 @@
 from knack.util import CLIError
 from azext_partnercenter.clients import OfferClient, PlanClient
 from azext_partnercenter.clients._base_client import BaseClient
-from azext_partnercenter.vendored_sdks.production_ingestion.models import (ContainerCnabPlanTechnicalConfigurationProperties, CnabReference)
+from azext_partnercenter.vendored_sdks.production_ingestion.models import (ContainerCnabPlanTechnicalConfigurationProperties)
 from ._util import get_combined_paged_results
 
 

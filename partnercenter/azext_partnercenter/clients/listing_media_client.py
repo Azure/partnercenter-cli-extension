@@ -6,7 +6,7 @@
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
 # pylint: disable=no-self-use
-import resource
+
 from azext_partnercenter.models.listing_image import ListingImage
 from azext_partnercenter.models.listing_video import ListingVideo
 from azext_partnercenter.clients.offer_listing_client import OfferListingClient
@@ -19,7 +19,7 @@ from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestio
     MicrosoftIngestionApiModelsListingsListingVideo)
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_listings_listing_video_thumbnail import (
     MicrosoftIngestionApiModelsListingsListingVideoThumbnail)
-from partnercenter.azext_partnercenter.models import listing_video
+
 
 from ._client_factory import get_api_client
 
@@ -121,10 +121,10 @@ class ListingMediaClient:
 
         # offer_resource_id, listing_resource_id, streaming_uri, video_type, file_name, title
         title = file_name
-        listing_video = self._post_video(offer_resource_id, listing_resource_id, streaming_uri, file_name, title)
-        file_sas_uri = listing_video.thumbnail_file_sas_uri
+        posted_video = self._post_video(offer_resource_id, listing_resource_id, streaming_uri, file_name, title)
+        file_sas_uri = posted_video.thumbnail_file_sas_uri
         self._upload_media(file_path, file_sas_uri)
-        return self._put_video(offer_resource_id, listing_resource_id, listing_video)
+        return self._put_video(offer_resource_id, listing_resource_id, posted_video)
 
     def add_listing_image(self, offer_external_id, image_type, file_path):
         import ntpath
@@ -175,7 +175,6 @@ class ListingMediaClient:
     def _put_video(self, offer_resource_id, listing_resource_id, video: ListingVideo):
         state = "Uploaded"
         resource_type = "ListingVideo"
-        order = 0
 
         listing_video_thumbnail = MicrosoftIngestionApiModelsListingsListingVideoThumbnail(
             file_name=video.thumbnail_file_name,
@@ -184,7 +183,7 @@ class ListingMediaClient:
             file_sas_uri=video.thumbnail_file_sas_uri,
             odata_etag=video.odata_etag)
 
-        listing_video = MicrosoftIngestionApiModelsListingsListingVideo(
+        listed_video = MicrosoftIngestionApiModelsListingsListingVideo(
             id=video.id,
             resource_type=resource_type,
             streaming_uri=video.streaming_uri,
@@ -196,24 +195,22 @@ class ListingMediaClient:
             listing_resource_id,
             video.id,
             self._get_authorication_token(),
-            microsoft_ingestion_api_models_listings_listing_video=listing_video)
+            microsoft_ingestion_api_models_listings_listing_video=listed_video)
 
         return self._map_video(result)
 
     def _post_video(self, offer_resource_id, listing_resource_id, streaming_uri, file_name, title):
         state = "PendingUpload"
         resource_type = "ListingVideo"
-        #publisher_defined_sas_uri = "https://gamesingestion12.blob.core.windows.net/948cedf1-1b0b-4f5c-b217-c77d0a699f85/video.png?sv=2016-05-31&sr=c&si=948cedf1-1b0b-4f5c-b217-c77d0a699f852023-5-11-18-05-09&sig=5rKWaKkXmMZ4n%2F719JEnDp%2FeV7WYl0R6rr%2BXlscwQ1o%3D&se=2023-06-07T17%3A23%3A06Z&t=DCE"
 
         listing_video_thumbnail = MicrosoftIngestionApiModelsListingsListingVideoThumbnail(file_name=file_name, title=title, state=state)
-        listing_video = MicrosoftIngestionApiModelsListingsListingVideo(resource_type=resource_type, streaming_uri=streaming_uri, state=state, thumbnail=listing_video_thumbnail)
+        listed_video = MicrosoftIngestionApiModelsListingsListingVideo(resource_type=resource_type, streaming_uri=streaming_uri, state=state, thumbnail=listing_video_thumbnail)
         result = self._listing_video_client.products_product_id_listings_listing_id_videos_post(offer_resource_id,
                                                                                                 listing_resource_id,
                                                                                                 self._get_authorication_token(),
-                                                                                                microsoft_ingestion_api_models_listings_listing_video=listing_video)
+                                                                                                microsoft_ingestion_api_models_listings_listing_video=listed_video)
 
         return self._map_video(result)
-
 
     def _post_image(self, offer_resource_id, listing_resource_id, image_type, file_name):
         state = "PendingUpload"
@@ -252,10 +249,10 @@ class ListingMediaClient:
         return list(map(self._map_video, videos.value))
 
     def _map_video(self, video):
-        listing_video = ListingVideo(type=video.resource_type, thumbnailFileName=video.thumbnail.file_name, thumbnailFileSasUri=video.thumbnail.file_sas_uri,
-                                     thumbnailState=video.thumbnail.state, thumbnailTitle=video.thumbnail.title, streamingUri=video.streaming_uri, odata_etag=video.odata_etag, id=video.id)
+        listed_video = ListingVideo(type=video.resource_type, thumbnailFileName=video.thumbnail.file_name, thumbnailFileSasUri=video.thumbnail.file_sas_uri,
+                                    thumbnailState=video.thumbnail.state, thumbnailTitle=video.thumbnail.title, streamingUri=video.streaming_uri, odata_etag=video.odata_etag, id=video.id)
 
-        return listing_video
+        return listed_video
 
     def _get_authorication_token(self):
         return self._api_client.configuration.access_token

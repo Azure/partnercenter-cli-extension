@@ -6,6 +6,7 @@
 from msrest.serialization import Model
 
 
+# pylint: disable=too-many-instance-attributes
 class ListingVideo(Model):
     _attribute_map = {
         'type': {'key': 'type', 'type': 'str'},
