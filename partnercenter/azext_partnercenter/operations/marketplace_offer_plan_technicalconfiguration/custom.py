@@ -9,7 +9,7 @@ from azext_partnercenter import ISSUES_URL
 from azext_partnercenter.models import PlanTechnicalConfigurationType
 
 
-def get_technicalconfiguration(client, offer_id, plan_id, repository_name, tag):
+def get_technicalconfiguration(client, offer_id, plan_id):
     return client.get(offer_id, plan_id)
 
 
@@ -24,6 +24,8 @@ def delete_technicalconfiguration_package(client, offer_id, plan_id, repository_
 
     if technical_configuration_type == PlanTechnicalConfigurationType.ContainerCnab:
         return client.delete_cnab_reference(offer_id, plan_id, repository_name, tag)
+
+    return None
 
 
 def add_technical_configuration_bundle(client, offer_id, plan_id, cluster_extension_type=None, tenant_id=None,
