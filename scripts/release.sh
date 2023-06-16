@@ -52,10 +52,10 @@ function git_tag_version() {
     confirm_prompt "Proceed with Git tag?"
 
     echo "tagging: $version_tag"
-    # git tag -a $version_tag -m "$version_tag"
+    git tag -a $version_tag -m "$version_tag"
 
-    # echo "pushing tag: $version_tag"
-    # git push origin $version_tag
+    echo "pushing tag: $version_tag"
+    git push origin $version_tag
 }
 
 function release_extension() {
@@ -70,8 +70,14 @@ function release_extension() {
     gh release create $version_tag ./dist/$whl_file --generate-notes --draft --prerelease
 
     echo "updating Azure CLI index"
+
+    whl_file=partnercenter-$version_number-py3-none-any.whl
     whl_uri=https://github.com/Azure/partnercenter-cli-extension/releases/download/$version_tag/$whl_file
 
+    # updating the index MUST be done in a fork of https://github.com/Azure/azure-cli-extensions
+    # commit the index file update, push
+    # submit a PR against the origin from fork
+    # example PR: https://github.com/Azure/azure-cli-extensions/pull/6414
     azdev extension update-index $whl_uri
 }
 
