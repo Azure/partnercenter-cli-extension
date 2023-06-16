@@ -64,6 +64,7 @@ class MicrosoftIngestionApiModelsProductsBaseProduct(ModelComposed):
 
     allowed_values = {
         ('resource_type',): {
+            'SOFTWAREASASERVICE': "SoftwareAsAService",
             'APPLICATION': "Application",
             'AVATARITEM': "AvatarItem",
             'BUNDLE': "Bundle",

@@ -60,6 +60,7 @@ class MicrosoftIngestionApiModelsProductsBaseProductAllOf(ModelNormal):
 
     allowed_values = {
         ('resource_type',): {
+            'SOFTWAREASASERVICE': "SoftwareAsAService",
             'APPLICATION': "Application",
             'AVATARITEM': "AvatarItem",
             'BUNDLE': "Bundle",
