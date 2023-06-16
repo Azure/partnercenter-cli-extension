@@ -12,11 +12,12 @@ import docker
 import yaml
 from knack.util import CLIError
 
-DATA_DIR="/data"
+DATA_DIR = "/data"
+
 
 def verify(manifest_file):
     container = _get_container(manifest_file)
-    result = container.exec_run(f'cpa verify', workdir=DATA_DIR)
+    result = container.exec_run('cpa verify', workdir=DATA_DIR)
     return result
 
 
@@ -24,7 +25,7 @@ def bundle(manifest_file):
     container = _get_container(manifest_file)
     acr_name = _get_acr_name(manifest_file)
     result = container.exec_run('az acr login -n ' + acr_name)
-    result = container.exec_run(f'cpa buildbundle', workdir=DATA_DIR)
+    result = container.exec_run('cpa buildbundle', workdir=DATA_DIR)
     return result
 
 

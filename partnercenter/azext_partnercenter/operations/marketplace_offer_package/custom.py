@@ -12,7 +12,7 @@ from ._cnab_util import (bundle, verify)
 
 
 def build_package(client, offer_id, manifest_file=None):
-   return _execute_action_by_offer_type(client, offer_id, manifest_file, _build_cnab_bundle)
+    return _execute_action_by_offer_type(client, offer_id, manifest_file, _build_cnab_bundle)
 
 
 def verify_package(client, offer_id, manifest_file=None):
@@ -31,9 +31,9 @@ def _execute_action_by_offer_type(client, offer_id, manifest_file, action):
         # if the offer type is "AzureApplication" AND the offer is setup to sell through Microsoft, we can build a CNAB bundle for it
         if offer_setup.sell_through_microsoft:
             return action(manifest_file)
-        else:
-            raise InvalidArgumentValueError(f'{offer_id} offer is not setup to support a CNAB bundle. The offer type must be {OfferType.AZUREAPPLICATION} and setup to sell through Microsoft',
-                                            f'Update the offer\'s setup to sell through Microsoft.\n\n   az partercenter marketplace offer setup --offer-id {offer_id} --sell-through-microsoft')
+
+        raise InvalidArgumentValueError(f'{offer_id} offer is not setup to support a CNAB bundle. The offer type must be {OfferType.AZUREAPPLICATION} and setup to sell through Microsoft',
+                                        f'Update the offer\'s setup to sell through Microsoft.\n\n   az partercenter marketplace offer setup --offer-id {offer_id} --sell-through-microsoft')
 
     # if we got to this point, the offer type isn't supported
     raise CLIError(f'{offer_id} offer is a {offer_type} type which is currently not supported by the CLI. Please submit an issue to get support at {ISSUES_URL}.')
