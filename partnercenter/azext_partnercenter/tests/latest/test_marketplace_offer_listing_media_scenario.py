@@ -24,8 +24,6 @@ class PartnerCenterMarketplaceOfferListingMediaScenarioTest(PartnerCenterScenari
                  checks=[self.check('thumbnailState', '{thumbnail_state}'),
                          self.check('type', '{video_output_type}')])
 
-        self.cmd('partnercenter marketplace offer listing media delete --offer-id {offer_id} --type {video_media_type} --yes')
-
         result = self.cmd('partnercenter marketplace offer listing media list --offer-id {offer_id} --type {image_media_type}').get_output_in_json()
         self.assertEqual(len(result), 0)
 
