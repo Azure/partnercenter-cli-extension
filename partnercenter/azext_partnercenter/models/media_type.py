@@ -8,6 +8,6 @@ from azure.core import CaseInsensitiveEnumMeta
 class MediaType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """The media type"""
 
-    Image = "Image"
-    Video = "Video"
+    Image = "image"
+    Video = "video"
 
