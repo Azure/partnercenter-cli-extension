@@ -56,6 +56,7 @@ class MicrosoftIngestionApiModelsProductsAzureProductAllOf(ModelNormal):
 
     allowed_values = {
         ('resource_type',): {
+            'SOFTWAREASASERVICE': "SoftwareAsAService",
             'AZUREAPPLICATION': "AzureApplication",
             'AZUREDEVELOPERSERVICE': "AzureDeveloperService",
             'AZURETHIRDPARTYVIRTUALMACHINE': "AzureThirdPartyVirtualMachine",
