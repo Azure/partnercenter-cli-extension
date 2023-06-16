@@ -7,8 +7,8 @@
 from azure.cli.core.azclierror import (ResourceNotFoundError, InvalidArgumentValueError)
 from knack.cli import CLIError
 from azext_partnercenter.models import OfferType
-from ._cnab_util import (bundle, verify)
 from azext_partnercenter import ISSUES_URL
+from ._cnab_util import (bundle, verify)
 
 
 def build_package(client, offer_id, manifest_file=None):
