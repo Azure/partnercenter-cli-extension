@@ -6,7 +6,7 @@ from azext_partnercenter.models import MediaType
 
 
 def list_media(client, offer_id, media_type):
-    if media_type is MediaType.Video:
+    if media_type == MediaType.Video:
         return client.get_listing_videos(offer_id)
 
     return client.get_listing_images(offer_id)
