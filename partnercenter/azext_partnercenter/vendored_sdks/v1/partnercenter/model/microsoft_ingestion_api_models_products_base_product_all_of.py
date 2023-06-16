@@ -70,6 +70,7 @@ class MicrosoftIngestionApiModelsProductsBaseProductAllOf(ModelNormal):
             'MANAGEDCONSUMABLE': "ManagedConsumable",
             'SEASONPASS': "SeasonPass",
             'SUBSCRIPTION': "Subscription",
+            'SOFTWAREASASERVICE': "SoftwareAsAService",
             'AZUREAPPLICATION': "AzureApplication",
             'AZUREDEVELOPERSERVICE': "AzureDeveloperService",
             'AZURETHIRDPARTYVIRTUALMACHINE': "AzureThirdPartyVirtualMachine",

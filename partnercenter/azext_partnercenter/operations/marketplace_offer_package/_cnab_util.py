@@ -12,19 +12,20 @@ import docker
 import yaml
 from knack.util import CLIError
 
+DATA_DIR = "/data"
+
 
 def verify(manifest_file):
     container = _get_container(manifest_file)
-    result = container.exec_run('cpa verify --directory ./cpaMount')
-    vr = VerifyResult(result.output.decode("utf-8"))
-    return vr.to_list()
+    result = container.exec_run('cpa verify', workdir=DATA_DIR)
+    return result
 
 
 def bundle(manifest_file):
     container = _get_container(manifest_file)
     acr_name = _get_acr_name(manifest_file)
     result = container.exec_run('az acr login -n ' + acr_name)
-    result = container.exec_run('cpa buildbundle', workdir='/cpaMount')
+    result = container.exec_run('cpa buildbundle', workdir=DATA_DIR)
     return result
 
 
@@ -48,7 +49,10 @@ def _run_container(container_name, mount_path):
 
     img = 'mcr.microsoft.com/container-package-app:latest'
     cmd = 'sleep infinity'
-    volumes = ['/var/run/docker.sock:/var/run/docker.sock', f'{mount_path}:/cpaMount', f'{absolute_path}:/root/.azure']
+
+    print(mount_path)
+
+    volumes = ['/var/run/docker.sock:/var/run/docker.sock', f'{mount_path}:/data', f'{absolute_path}:/root/.azure']
     container = client.containers.run(img, cmd, detach=True, volumes=volumes, name=container_name)
     return container
 
