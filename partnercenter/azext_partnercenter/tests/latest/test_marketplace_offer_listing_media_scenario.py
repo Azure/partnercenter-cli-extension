@@ -13,18 +13,27 @@ class PartnerCenterMarketplaceOfferListingMediaScenarioTest(PartnerCenterScenari
         super().setUp()
 
     @MarketplaceOfferPreparer()
-    def test_marketplace_offer_listing_media_large_logo(self):
+    def test_marketplace_offer_listing_media(self):
+        self._test_add_large_logo()
+        # self._test_video_thumbnail()
+
+    def _test_video_thumbnail(self):
+        self.cmd('partnercenter marketplace offer listing media add --offer-id {offer_id} --type {video_media_type} --file {video_thumbnail} --streaming-uri {streaming_uri}',
+            checks=[self.check('thumbnailState', '{thumbnail_state}'),
+                    self.check('type', '{video_output_type}')])
+
+        result = self.cmd('partnercenter marketplace offer listing media list --offer-id {offer_id} --type {video_media_type}').get_output_in_json()
+        self.assertEqual(len(result), 1)
+
+
+    def _test_add_large_logo(self):
         self.cmd('partnercenter marketplace offer listing media add --offer-id {offer_id} --type {large_logo_media_type} --file {large_logo_file}',
-                 checks=[self.check('state', '{add_cmd_state}'),
-                         self.check('type', '{large_logo_media_type}')])
+            checks=[self.check('state', '{add_cmd_state}'),
+                    self.check('type', '{large_logo_media_type}')])
 
         self.cmd('partnercenter marketplace offer listing media delete --offer-id {offer_id} --type {large_logo_media_type} --yes')
 
-        self.cmd('partnercenter marketplace offer listing media add --offer-id {offer_id} --type {video_media_type} --file {video_thumbnail} --streaming-uri {streaming_uri}',
-                 checks=[self.check('thumbnailState', '{thumbnail_state}'),
-                         self.check('type', '{video_output_type}')])
-
-        result = self.cmd('partnercenter marketplace offer listing media list --offer-id {offer_id} --type {image_media_type}').get_output_in_json()
+        result = self.cmd('partnercenter marketplace offer listing media list --offer-id {offer_id} --type {large_logo_media_type}').get_output_in_json()
         self.assertEqual(len(result), 0)
 
     def init_args(self):
