@@ -1,23 +1,22 @@
-from azure.cli.testsdk import ScenarioTest
+from azext_partnercenter.tests.preparers import MarketplaceOfferPreparer
+from ..base import PartnerCenterScenarioTest
 
 
-class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
+class PartnerCenterMarketplaceApplicationScenarioTest(PartnerCenterScenarioTest):
+    @MarketplaceOfferPreparer(offer_type="AzureApplication")
     def test_solution_template_creation(self):
-        self._offer_create()
-
         self._offer_listing_show()
         self._offer_listing_update()
 
         self._offer_setup_show()
         self._offer_setup_update()
 
-        self._plan_create_st()
+        self._plan_create_solution_template()
         self._plan_listing_update()
 
-        self._offer_delete()
-
+    @MarketplaceOfferPreparer(offer_type="AzureApplication")
     def test_managed_app_creation(self):
-        self._offer_create()
+        self.init_args()
 
         self._offer_listing_show()
         self._offer_listing_update()
@@ -25,22 +24,13 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
         self._offer_setup_show()
         self._offer_setup_update()
 
-        self._plan_create_ma()
+        self._plan_create_managed_application()
         self._plan_listing_update()
 
-        self._offer_delete()
-
-    def setUp(self):
-        super().setUp()
-        self._initialize_variables()
-
-    def _initialize_variables(self):
-        self.offer_id = self.create_random_name("offertest-", 15)
+    def init_args(self):
         self.plan_id = self.create_random_name("plantest-", 15)
         self.kwargs.update(
             {
-                "offer_id": self.offer_id,
-                "offer_alias": f"{self.offer_id}-alias",
                 "summary": "A storage offer for Unreal Engine Game Developers",
                 "short_description": "Unreal Cloud DDC for Unreal Engine game development.",
                 "description": "Unreal Cloud DDC for Unreal Engine game development.",
@@ -49,12 +39,6 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
                 "plan_summary": "Unreal Cloud DDC for Unreal Engine game development.",
                 "plan_description": "Unreal Cloud DDC for Unreal Engine game development.",
             },
-        )
-
-    def _offer_create(self):
-        self.cmd(
-            "partnercenter marketplace offer create --id {offer_id} -a {offer_alias} --type AzureApplication",
-            checks=[self.check("id", "{offer_id}"), self.check("alias", "{offer_alias}")],
         )
 
     def _offer_listing_show(self):
@@ -78,18 +62,13 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
             "partnercenter marketplace offer setup update --offer-id {offer_id}"
         )
 
-    def _offer_delete(self):
-        self.cmd("partnercenter marketplace offer delete --id {offer_id} --yes")
-        list = self.cmd("partnercenter marketplace offer list --query '[?id==`{offer_id}`]'").get_output_in_json()
-        assert len(list) == 0
-
-    def _plan_create_st(self):
+    def _plan_create_solution_template(self):
         self.cmd(
             "partnercenter marketplace offer plan create --offer-id {offer_id} --plan-id {plan_id} --name '{plan_name}'",
             checks=[self.check("id", "{plan_id}"), self.check("name", "{plan_name}")],
         )
 
-    def _plan_create_ma(self):
+    def _plan_create_managed_application(self):
         self.cmd(
             "partnercenter marketplace offer plan create --offer-id {offer_id} --plan-id {plan_id} --name '{plan_name}' --subtype managed-application",
             checks=[self.check("id", "{plan_id}"), self.check("name", "{plan_name}")],
@@ -97,6 +76,6 @@ class PartnerCenterMarketplaceApplicationScenarioTest(ScenarioTest):
 
     def _plan_listing_update(self):
         self.cmd(
-            "partnercenter marketplace offer plan listing update --offer-id {offer_id} --plan-id {plan_id} --description '{plan_description}' --summary '{plan_summary}'",
-            checks=[self.check("id", "{plan_id}"), self.check("name", "{plan_name}")],
+            "partnercenter marketplace offer plan listing update --offer-id {offer_id} --plan-id {plan_id} --description \'{plan_description}\' --summary \'{plan_summary}\'",
+            checks=[self.check("id", "{plan_id}"), self.check("name", "{plan_name}")], delay=10
         )
