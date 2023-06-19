@@ -27,3 +27,8 @@ def load_help():
         type: command
         short-summary: Adds a package to the technical configuration of a plan
     """
+
+    helps['partnercenter marketplace offer plan technical-configuration package delete'] = """
+        type: command
+        short-summary: Deletes a package to the technical configuration of a plan
+    """

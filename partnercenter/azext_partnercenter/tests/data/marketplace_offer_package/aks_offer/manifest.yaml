@@ -13,9 +13,9 @@ restrictions:
 helmChart: "./azure-vote"
 clusterArmTemplate: "./mainTemplate.json"
 uiDefinition: "./createUIDefinition.json"
-registryServer: "youracr.azurecr.io"
+registryServer: "thfalgoupartner.azurecr.io"
 extensionRegistrationParameters:
   defaultScope: "cluster"
   namespace: "contoso"
   billingIdentifier: microsoft.marketplace.example.azure-vote
-  
+

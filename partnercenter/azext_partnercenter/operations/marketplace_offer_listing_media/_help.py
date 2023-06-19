@@ -37,5 +37,5 @@ def load_help():
         examples:
         - name: List the media for an offer's listing
           text: |-
-                az partnercenter marketplace offer listing media list --offer-id MyOfferId
+                az partnercenter marketplace offer listing media list --offer-id MyOfferId --type Image
     """

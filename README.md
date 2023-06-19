@@ -1,6 +1,6 @@
 # Partner Center Azure CLI Extension (Preview)
 
-The Partner Center CLI Extension adds Partner Center commands to the Azure CLI 2.0. 
+The Partner Center CLI Extension adds Partner Center commands to the Azure CLI 2.0.
 
 ## Quickstart
 
@@ -20,8 +20,8 @@ The extension is the officially listed Azure CLI extension for Partner Center.
 az extension add --name partnercenter
 ```
 
-> IMPORTANT: Due to being still preview, the latest version of the extension that's been published to the official Azure CLI extensions index may be different than 
-the latest version we've released. To add the latest, unpublished version that's been released: 
+> IMPORTANT: Due to being still preview, the latest version of the extension that's been published to the official Azure CLI extensions index may be different than
+the latest version we've released. To add the latest, unpublished version that's been released:
 
 1. Go to the [releases](https://github.com/Azure/partnercenter-cli-extension/releases)
 2. Choose the version you'd like to add to your Azure CLI instance
@@ -29,7 +29,7 @@ the latest version we've released. To add the latest, unpublished version that's
 4. Finally, install the extension using the wheel URL
 
 ```bash
-az extension add --source https://github.com/Azure/partnercenter-cli-extension/releases/download/v0.1.1-alpha/partnercenter-0.1.1-py3-none-any.whl
+az extension add --source https://github.com/Azure/partnercenter-cli-extension/releases/download/v0.2.2-alpha/partnercenter-0.2.2-py3-none-any.whl
 ```
 
 ## Usage
@@ -38,9 +38,9 @@ az extension add --source https://github.com/Azure/partnercenter-cli-extension/r
 $ az partnercenter [subgroup(s)] [command] {parameters}
 ```
 
-Adding the Extension, exposes the `marketplace` group. Within the marketplace group, here are some of the primary subgroups available: 
+Adding the Extension, exposes the `marketplace` group. Within the marketplace group, here are some of the primary subgroups available:
 
-- `offer` - includes subgroups `package`, `setup`, `listing`, `listing media`, `plan` 
+- `offer` - includes subgroups `package`, `setup`, `listing`, `listing media`, `plan`
 - `offer plan` - includes subgroups `technical-configuration`
 - `offer plan technical-configuration` - includes subgroup `package`
 
@@ -82,8 +82,8 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ## Trademarks
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
+trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
