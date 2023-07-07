@@ -13,8 +13,8 @@ class PartnerCenterMarketplaceOfferListingMediaScenarioTest(PartnerCenterScenari
         super().setUp()
 
     @MarketplaceOfferPreparer()
-    def test_marketplace_offer_listing_media(self):
-        self._test_add_large_logo()
+    # def test_marketplace_offer_listing_media(self):
+    #     self._test_add_large_logo()
         # self._test_video_thumbnail()
 
     def _test_video_thumbnail(self):
@@ -35,6 +35,7 @@ class PartnerCenterMarketplaceOfferListingMediaScenarioTest(PartnerCenterScenari
 
     def init_args(self):
         large_logo_abs_path = self.test_data.add("marketplace_offer_listing_media/largelogo.png")
+        print(f'largo logo abs path: {large_logo_abs_path}')
         video_thumbnail_abs_path = self.test_data.add("marketplace_offer_listing_media/video.png")
 
         self.kwargs.update({

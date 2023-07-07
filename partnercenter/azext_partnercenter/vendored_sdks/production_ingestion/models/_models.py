@@ -8,15 +8,19 @@
 # This is in until we can figure out how jsonschema can be used with autorest as well as autorest support for anyof unions, etc.
 
 from __future__ import annotations
+from ast import pattern
 from datetime import datetime
 from enum import Enum
 from typing import List, Optional, Union
-from pydantic import BaseModel, Extra, Field, constr
+from pydantic import ConfigDict, BaseModel, Field, RootModel
 
 
-class DurableId(BaseModel):
-    __root__: constr(regex=r'^[a-z](-?[a-z0-9]+)*/[a-z0-9-]+(\/?[a-z0-9-])*$') = Field(
-        ..., description='A durable-id to an existing resource.', title='DurableId'
+class DurableId(RootModel):
+    root: str = Field(
+        ...,
+        description='A durable-id to an existing resource.',
+        title='DurableId',
+        pattern=r'^[a-z](-?[a-z0-9]+)*/[a-z0-9-]+(/?[a-z0-9-])*$'
     )
 
 
@@ -42,82 +46,84 @@ class Code(Enum):
 
 
 class ExternalId(BaseModel):
-    external_id: constr(
-        regex=r'^[a-z0-9][a-z0-9-_]{2,49}$', min_length=3, max_length=50
-    ) = Field(
+    external_id: str = Field(
         ...,
         alias='externalId',
         description='ExternalId for product and plan references. Property reference must be named product or plan.',
+        pattern=r'^[a-z0-9][a-z0-9-_]{2,49}$',
+        min_length=3,
+        max_length=50,
     )
 
 
 class ResourceName(BaseModel):
-    resource_name: constr(
-        regex=r'^[a-zA-Z0-9-_]+$', min_length=1, max_length=50
-    ) = Field(
+    resource_name: str = Field(
         ...,
         alias='resourceName',
         description='Resource Name that can be referenced using this value by another resource.',
+        pattern=r'^[a-zA-Z0-9-_]+$',
+        min_length=1,
+        max_length=50,
     )
 
 
-class ResourceReference(BaseModel):
-    __root__: Union[DurableId, ExternalId, ResourceName] = Field(
+class ResourceReference(RootModel):
+    root: Union[DurableId, ExternalId, ResourceName] = Field(
         ..., title='ResourceReference'
     )
 
 
-class SchemaUri(BaseModel):
-    __root__: constr(
-        regex=r'^https://(schema\.mp\.microsoft\.com)|(product-ingestion\.azureedge\.net)/schema/[a-z][a-z0-9]+(?:-[a-z0-9]+)*/\d{4}(?:-\d\d){2}(?:-dev|-preview\d+)?$'
-    ) = Field(..., title='SchemaUri')
+class SchemaUri(RootModel):
+    root: str = Field(..., title='SchemaUri', pattern=r'^https://(schema\.mp\.microsoft\.com)|(product-ingestion\.azureedge\.net)/schema/[a-z][a-z0-9]+(?:-[a-z0-9]+)*/\d{4}(?:-\d\d){2}(?:-dev|-preview\d+)?$')
 
 
 class CnabReference(BaseModel):
-    class Config:
-        extra = Extra.forbid
+    model_config = ConfigDict(extra="forbid")
 
-    tenant_id: constr(
-        regex=r'^[({]?[a-fA-F0-9]{8}[-]?([a-fA-F0-9]{4}[-]?){3}[a-fA-F0-9]{12}[})]?$',
+    tenant_id: str = Field(
+        ...,
+        alias='tenantId',
+        pattern=r'^[({]?[a-fA-F0-9]{8}[-]?([a-fA-F0-9]{4}[-]?){3}[a-fA-F0-9]{12}[})]?$',
         min_length=1,
-        max_length=36,
-    ) = Field(..., alias='tenantId')
-    subscription_id: constr(
-        regex=r'^[({]?[a-fA-F0-9]{8}[-]?([a-fA-F0-9]{4}[-]?){3}[a-fA-F0-9]{12}[})]?$',
+        max_length=36)
+    subscription_id: str = Field(
+        ...,
+        alias='subscriptionId',
+        pattern=r'^[({]?[a-fA-F0-9]{8}[-]?([a-fA-F0-9]{4}[-]?){3}[a-fA-F0-9]{12}[})]?$',
         min_length=1,
-        max_length=36,
-    ) = Field(..., alias='subscriptionId')
-    resource_group_name: constr(min_length=1, max_length=100) = Field(
-        ..., alias='resourceGroupName'
+        max_length=36)
+    resource_group_name: str = Field(
+        ..., alias='resourceGroupName', min_length=1, max_length=100
     )
-    registry_name: constr(min_length=1, max_length=100) = Field(
-        ..., alias='registryName'
+    registry_name: str = Field(
+        ..., alias='registryName', min_length=1, max_length=100
     )
-    repository_name: constr(min_length=1, max_length=100) = Field(
-        ..., alias='repositoryName'
+    repository_name: str = Field(
+        ..., alias='repositoryName', min_length=1, max_length=100
     )
-    tag: constr(min_length=1)
-    digest: constr(
-        regex=r'^[a-z0-9]+([+._\-][a-z0-9]+)*:[a-zA-Z0-9=_\-]+$',
-        min_length=1,
-        max_length=100,
-    )
+    tag: str
+    digest: str
+    # tag: constr(min_length=1)
+    # digest: constr(
+    #     regex=r'^[a-z0-9]+([+._\-][a-z0-9]+)*:[a-zA-Z0-9=_\-]+$',
+    #     min_length=1,
+    #     max_length=100,
+    # )
 
 
 class ContainerCnabPlanTechnicalConfigurationProperties(BaseModel):
     payload_type: str = Field(..., alias='payloadType')
-    cluster_extension_type: constr(
-        regex=r'^[a-zA-Z\.-]{1,50}$', min_length=1, max_length=50
-    ) = Field(..., alias='clusterExtensionType')
+    cluster_extension_type: str = Field(..., alias='clusterExtensionType', pattern=r'^[a-zA-Z\.-]{1,50}$', min_length=1, max_length=50)
     cnab_references: List[CnabReference] = Field(..., alias='cnabReferences')
 
 
-class ImageTag(BaseModel):
-    __root__: constr(min_length=1, max_length=100)
+class ImageTag(RootModel):
+    root: str
+    # root: constr(min_length=1, max_length=100)
 
 
-class MaskedSecret(BaseModel):
-    __root__: str = Field(..., title='MaskedSecret')
+class MaskedSecret(RootModel):
+    root: str = Field(..., title='MaskedSecret')
 
 
 class ValidationInnerError(BaseModel):
@@ -128,24 +134,24 @@ class ValidationInnerError(BaseModel):
 
 
 class ImageRepositoryDetails(BaseModel):
-    class Config:
-        extra = Extra.forbid
+    model_config = ConfigDict(extra="forbid")
 
-    subscription_id: constr(
-        regex=r'^[({]?[a-fA-F0-9]{8}[-]?([a-fA-F0-9]{4}[-]?){3}[a-fA-F0-9]{12}[})]?$',
+    subscription_id: str = Field(
+        ...,
+        alias='subscriptionId',
+        pattern=r'^[({]?[a-fA-F0-9]{8}[-]?([a-fA-F0-9]{4}[-]?){3}[a-fA-F0-9]{12}[})]?$',
         min_length=1,
-        max_length=36,
-    ) = Field(..., alias='subscriptionId')
-    resource_group_name: constr(min_length=1, max_length=100) = Field(
-        ..., alias='resourceGroupName'
+        max_length=36)
+    resource_group_name: str = Field(
+        ..., alias='resourceGroupName', min_length=1, max_length=100
     )
-    registry_name: constr(min_length=1, max_length=100) = Field(
-        ..., alias='registryName'
+    registry_name: str = Field(
+        ..., alias='registryName', min_length=1, max_length=100
     )
-    user_name: constr(min_length=1, max_length=100) = Field(..., alias='userName')
-    password: Union[constr(min_length=1, max_length=100), MaskedSecret]
-    repository_name: Optional[constr(min_length=1, max_length=100)] = Field(
-        None, alias='repositoryName'
+    user_name: str = Field(..., alias='userName', min_length=1, max_length=100)
+    password: Union[str, MaskedSecret]
+    repository_name: Optional[str] = Field(
+        None, alias='repositoryName', min_length=1, max_length=100
     )
 
 
@@ -155,7 +161,7 @@ class ContainerImagePlanTechnicalConfigurationProperties(BaseModel):
         ..., alias='imageRepositoryDetails'
     )
     image_tags: List[ImageTag] = Field(
-        ..., alias='imageTags', max_items=16, min_items=1
+        ..., alias='imageTags', max_length=16, min_length=1
     )
 
 
@@ -165,11 +171,10 @@ class Validation(ValidationInnerError):
 
 
 class Resource(BaseModel):
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
-    resource_name: Optional[constr(min_length=1, max_length=50)] = Field(
-        None, alias='resourceName'
+    resource_name: Optional[str] = Field(
+        None, alias='resourceName', min_length=1, max_length=50
     )
     id: Optional[DurableId] = None
     validations: Optional[List[Validation]] = None
@@ -179,13 +184,12 @@ class ContainerPlanTechnicalConfiguration(Resource):
     product: ResourceReference
     plan: ResourceReference
 
-    
+
 class ConfigureResources(BaseModel):
-    class Config:
-        extra = Extra.forbid
+    model_config = ConfigDict(extra="forbid")
 
     _schema: Optional[SchemaUri] = Field(None, alias='$schema')
-    resources: List[Resource] = Field(..., min_items=1)
+    resources: List[Resource] = Field(..., min_length=1)
 
 
 class JobStatus(Enum):
@@ -200,10 +204,8 @@ class JobResult(Enum):
     failed = 'failed'
 
 
-class SchemaUri(BaseModel):
-    __root__: constr(
-        regex=r'^https://(schema\.mp\.microsoft\.com)|(product-ingestion\.azureedge\.net)/schema/[a-z][a-z0-9]+(?:-[a-z0-9]+)*/\d{4}(?:-\d\d){2}(?:-dev|-preview\d+)?$'
-    ) = Field(..., title='SchemaUri')
+class SchemaUri(RootModel):
+    root: str = Field(..., title='SchemaUri', pattern=r'^https://(schema\.mp\.microsoft\.com)|(product-ingestion\.azureedge\.net)/schema/[a-z][a-z0-9]+(?:-[a-z0-9]+)*/\d{4}(?:-\d\d){2}(?:-dev|-preview\d+)?$')
 
 
 class Code(Enum):
@@ -221,28 +223,33 @@ class Code(Enum):
 
 
 class ExternalId(BaseModel):
-    external_id: constr(
-        regex=r'^[a-z0-9][a-z0-9-_]{2,49}$', min_length=3, max_length=50
-    ) = Field(
+    external_id: str = Field(
         ...,
         alias='externalId',
         description='ExternalId for product and plan references. Property reference must be named product or plan.',
+        pattern=r'^[a-z0-9][a-z0-9-_]{2,49}$',
+        min_length=3,
+        max_length=50
     )
 
 
 class ResourceName(BaseModel):
-    resource_name: constr(
-        regex=r'^[a-zA-Z0-9-_]+$', min_length=1, max_length=50
-    ) = Field(
+    resource_name: str = Field(
         ...,
         alias='resourceName',
         description='Resource Name that can be referenced using this value by another resource.',
+        pattern=r'^[a-zA-Z0-9-_]+$',
+        min_length=1,
+        max_length=50
     )
 
 
-class DurableId(BaseModel):
-    __root__: constr(regex=r'^[a-z](-?[a-z0-9]+)*/[a-z0-9-]+(\/?[a-z0-9-])*$') = Field(
-        ..., description='A durable-id to an existing resource.', title='DurableId'
+class DurableId(RootModel):
+    root: str = Field(
+        ...,
+        description='A durable-id to an existing resource.',
+        title='DurableId',
+        pattern=r'^[a-z](-?[a-z0-9]+)*/[a-z0-9-]+(/?[a-z0-9-])*$'
     )
 
 
@@ -262,8 +269,8 @@ class ErrorCode(Enum):
     schema_validation_error = 'schemaValidationError'
 
 
-class ResourceReference(BaseModel):
-    __root__: Union[DurableId, ExternalId, ResourceName] = Field(
+class ResourceReference(RootModel):
+    root: Union[DurableId, ExternalId, ResourceName] = Field(
         ..., title='ResourceReference'
     )
 
@@ -283,8 +290,7 @@ class Error(BaseModel):
 
 
 class ConfigureResourcesStatus(BaseModel):
-    class Config:
-        extra = Extra.forbid
+    model_config = ConfigDict(extra="forbid")
 
     _schema: Optional[SchemaUri] = Field(None, alias='$schema')
     job_id: str = Field(..., alias='jobId')
@@ -326,22 +332,19 @@ class DeprecationScheduleReason(Enum):
 
 
 class AlternativeProduct(BaseModel):
-    class Config:
-        extra = Extra.forbid
+    model_config = ConfigDict(extra="forbid")
 
     product: ResourceReference
 
 
 class AlternativePlan(BaseModel):
-    class Config:
-        extra = Extra.forbid
+    model_config = ConfigDict(extra="forbid")
 
     plan: ResourceReference
 
 
 class DeprecationSchedule(BaseModel):
-    class Config:
-        extra = Extra.forbid
+    model_config = ConfigDict(extra="forbid")
 
     _schema: Optional[SchemaUri] = Field(None, alias='$schema')
     date: Optional[date] = None
