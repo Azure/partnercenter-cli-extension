@@ -13,7 +13,7 @@ jobs:
         run: |
           python -m venv env
           source env/bin/activate
-          pip install azdev==0.1.55
+          pip install azdev==0.1.48
 
           azdev setup -r .
           azdev extension repo add .
@@ -37,7 +37,7 @@ jobs:
       - run: |
           python -m venv env
           source env/bin/activate
-          pip install azdev==0.1.55
+          pip install azdev==0.1.48
           azdev setup -r .
           azdev extension repo add ../partnercenter-cli-extension/
           azdev extension add partnercenter
