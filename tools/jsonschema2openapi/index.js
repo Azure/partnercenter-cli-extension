@@ -28,7 +28,12 @@ async function downloadSchema(schema) {
 }
 
 async function convertSchema(jsonSchema) {
-    const convertedSchema = await convert(jsonSchema, { dereference: false });
+    const convertedSchema = await convert(jsonSchema, {
+        dereference: true,
+        dereferenceOptions: {
+            dereference: { circular: 'ignore' }
+        }
+    });
     return convertedSchema
 }
 
@@ -51,10 +56,10 @@ async function processSchemas() {
         let content = readFile('./.schemas/' + schema.name)
         //console.log(content)
         const json = JSON.parse(content)
-        const component = convertSchema(json)
+        const component = await convertSchema(json)
         const spec = {
             name: schema.name,
-            contents: JSON.stringify(component)
+            contents: JSON.stringify(component, null, 2)
         }
         writeFile(spec)
     }
