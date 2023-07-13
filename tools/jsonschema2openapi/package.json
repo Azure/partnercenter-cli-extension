@@ -1,0 +1,16 @@
+{
+  "name": "jsonschema2openapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "node --experimental-json-modules --no-warnings ./index.js"
+  },
+  "author": "kevinhillinger",
+  "license": "ISC",
+  "dependencies": {
+    "@openapi-contrib/json-schema-to-openapi-schema": "^2.2.5"
+  }
+}
