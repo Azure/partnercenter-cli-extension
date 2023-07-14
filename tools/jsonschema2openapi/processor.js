@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import SchemaInfo, { SchemaUrl } from './schemaInfo.js';
 import JSONPath from 'jsonpath'
+import createDefinitions from './definitions.js';
 
 function writeFile(specFile) {
     const filePath = path.resolve(specFile.path);
@@ -33,42 +34,68 @@ function toPascalCase(str) {
 
 /**
  * the objective is to consolidate all these types to a common "definitions.js"
- * This will replace the JSON Schema $ref values with a local reference to './definitions.json#/definitions/<Component>'
+ * This will replace the JSON Schema $ref values with a local reference
+ * so we can do the following in the file that defines the paths: './definitions.json#/definitions/<Component>'
  * @param {object} component
  */
-function replaceRefs(document) {
-    let updated = document;
-    JSONPath.apply(updated, '$..["$ref"]', (value) => {
+function replaceRefs(component) {
+    JSONPath.apply(component.document, '$..["$ref"]', (value) => {
         if (value.startsWith('http')) {
             const schemaUrl = new SchemaUrl(value);
-            const name = toPascalCase(schemaUrl.name()).replace(/-/g, '');
-            return `./definitions.json#/definitions/${name}`
+            return `#/definitions/${component.name}`
         }
+
+        if (value.indexOf('$defs') != -1) {
+            return value.replace('$defs', 'x-$defs');
+        }
+
         return value;
     });
-    return updated;
 }
 
 class JsonSchemaProcessOptions {
     outputPath = './out'
+    outputEachSchema = false;
 }
 
 class JsonSchemaProcessor {
     async convert(schemas, options) {
+        const components = [];
+
         console.log('  Converting to OpenAPI.')
         for (const schemaInfo of schemas) {
             console.log(`  - ${schemaInfo.name()}`);
 
             // converted Open API object
             const document = await convertSchema(schemaInfo.json);
-            const updated = replaceRefs(document);
 
-            const specFile = {
-                path: path.join(options.outputPath, schemaInfo.fileName()),
-                contents: JSON.stringify(updated, null, 2)
+            let component = {
+                name: toPascalCase(schemaInfo.name()).replace(/-/g, ''),
+                document: document
             };
-            writeFile(specFile);
+
+            replaceRefs(component);
+
+            if (options.outputEachSchema) {
+                const specFile = {
+                    path: path.join(options.outputPath, schemaInfo.fileName()),
+                    contents: JSON.stringify(component.document, null, 2)
+                };
+                writeFile(specFile);
+            }
+
+            components.push(component)
         }
+
+        console.log('  Writing definitions file.')
+        let definitions = createDefinitions(components);
+        const specFile = {
+            path: path.join(options.outputPath, 'definitions.json'),
+            contents: JSON.stringify(definitions, null, 2)
+        };
+        writeFile(specFile);
+
+        console.log("Done.")
     }
 
     /**
