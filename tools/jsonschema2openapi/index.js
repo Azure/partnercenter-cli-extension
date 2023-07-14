@@ -1,35 +1,23 @@
 
-import https from 'https'
+import SchemaInfo from './info.js';
 
 import path from 'path'
 import fs, { read } from 'fs'
 import data from './schemas.json' assert { type: 'json' };
 import convert from '@openapi-contrib/json-schema-to-openapi-schema';
 
-function ensureSchemasDir() {
-    const dirname = ".schemas"
-    if (fs.existsSync(dirname)) {
-        fs.rmSync(dirname, { force: true, recursive: true });
-    }
-    fs.mkdirSync(dirname);
-}
+const schemasDir = "./.schemas";
 
-async function downloadSchema(schema) {
-    let promise = new Promise((resolve, reject) => {
-        https.get(schema.url, res => {
-            res.on('end', () => {
-                setTimeout(() => {
-                    resolve();
-                }, 100);
-            }).pipe(fs.createWriteStream('./.schemas/' + schema.name), { end: true })
-        })
-    });
-    await promise;
+function ensureDir(dirPath) {
+    if (fs.existsSync(dirPath)) {
+        fs.rmSync(dirPath, { force: true, recursive: true });
+    }
+    fs.mkdirSync(dirPath);
 }
 
 async function convertSchema(jsonSchema) {
     const convertedSchema = await convert(jsonSchema, {
-        dereference: true,
+        dereference: false,
         dereferenceOptions: {
             dereference: { circular: 'ignore' }
         }
@@ -37,39 +25,38 @@ async function convertSchema(jsonSchema) {
     return convertedSchema
 }
 
-function readFile(file) {
-    const absolutePath = path.resolve(file);
-    const json = fs.readFileSync(absolutePath, { encoding: 'utf-8' });
-    return json
-}
 
-function writeFile(spec) {
-    const absolutePath = path.resolve("./out/" + spec.name);
-    fs.writeFileSync(absolutePath, spec.contents, { encoding: 'utf-8' });
+function writeFile(specFile) {
+    const absolutePath = path.resolve(specFile.path);
+    fs.writeFileSync(absolutePath, specFile.contents, { encoding: 'utf-8' });
 }
 
 async function processSchemas() {
-    for (const schema of data.schemas) {
-        console.log(`downloading ${schema.name}`)
-        await downloadSchema(schema)
+    ensureDir(schemasDir);
+    ensureDir('./out')
 
-        let content = readFile('./.schemas/' + schema.name)
-        //console.log(content)
-        const json = JSON.parse(content)
-        const component = await convertSchema(json)
-        const spec = {
-            name: schema.name,
+    const schemas = data.schemas.map(url => {
+        console.log(`creating info for: ${url}`)
+        return new SchemaInfo(url, schemasDir)
+    });
+
+    for (const schemaInfo of schemas) {
+        await schemaInfo.get()
+
+        console.log(` - converting ${schemaInfo.url.name()} to openapi component`)
+        const component = await convertSchema(schemaInfo.json)
+
+        const specFile = {
+            path: './out/' + schemaInfo.fileName(),
             contents: JSON.stringify(component, null, 2)
         }
-        writeFile(spec)
+        writeFile(specFile)
     }
 }
 
 
 async function main() {
-    console.log('main')
-
-    ensureSchemasDir()
+    console.log('Processing Schemas')
     await processSchemas()
 
 }
