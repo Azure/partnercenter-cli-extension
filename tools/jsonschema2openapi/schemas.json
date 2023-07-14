@@ -1,5 +1,5 @@
 {
-    "schemas": [
+    "urls": [
         "https://product-ingestion.azureedge.net/schema/resource/2022-03-01-preview2",
         "https://product-ingestion.azureedge.net/schema/resource-reference/2022-03-01-preview2",
         "https://product-ingestion.azureedge.net/schema/resource-lifecycle-state/2022-03-01-preview2",

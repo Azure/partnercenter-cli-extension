@@ -9,7 +9,7 @@ function readFile(file) {
     return json
 }
 
-class SchemaUrl {
+export class SchemaUrl {
     static baseUrl = "https://product-ingestion.azureedge.net/schema/"
     value;
     parts;
@@ -30,8 +30,12 @@ class SchemaUrl {
     version() {
         return this.parts[1]
     }
+
 }
 
+/**
+ * JSON Schema info acting as a descriptor to consume conversion
+ */
 class SchemaInfo {
     url;
     json;
@@ -43,15 +47,19 @@ class SchemaInfo {
     }
 
     fileName() {
-        return this.url.name() + "_" + this.url.version() + ".json"
+        return this.url.name() + "_" + this.url.version() + ".json";
     }
 
     filePath() {
-        return this.downloadPath + '/' + this.fileName()
+        return this.downloadPath + '/' + this.fileName();
+    }
+
+    name() {
+        return this.url.name();
     }
 
     async get() {
-        console.log(`downloading ${this.url.name()}`)
+        //console.log(`fetching ${this.url.name()}`)
 
         let promise = new Promise((resolve, reject) => {
             https.get(this.url.value, res => {
