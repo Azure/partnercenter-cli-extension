@@ -1,19 +1,14 @@
 {
-    "swagger": "2.0",
+    "openapi": "3.0.3",
     "info": {
         "version": "",
         "description": "A spec file containing all the definitions",
         "title": "Definitions file"
     },
-    "host": "graph.microsoft.com",
-    "schemes": [
-        "https"
-    ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
+    "servers": [
+        {
+            "url": "https://graph.microsoft.com/rp/product-ingestion"
+        }
     ],
     "security": [
         {
@@ -22,18 +17,30 @@
             ]
         }
     ],
-    "securityDefinitions": {
-        "azure_auth": {
-            "type": "oauth2",
-            "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
-            "flow": "implicit",
-            "description": "Azure Active Directory OAuth2 Flow.",
-            "scopes": {
-                "user_impersonation": "impersonate your user account"
+    "paths": {},
+    "components": {
+        "schemas": {},
+        "requestBodies": {
+            "JsonSchemaBody": {
+                "content": {
+                    "application/json":{
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "azure_auth": {
+                "description": "Azure Active Directory OAuth2 Flow.",
+                "type": "oauth2",
+                "flows": {
+                    "implicit": {
+                        "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+                        "scopes": {
+                            "user_impersonation": "impersonate your user account"
+                        }
+                    }
+                }
             }
         }
-    },
-    "paths": {},
-    "definitions": {},
-    "parameters": {}
+    }
 }
