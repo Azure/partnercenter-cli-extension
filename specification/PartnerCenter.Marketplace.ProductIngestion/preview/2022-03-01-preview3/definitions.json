@@ -1,0 +1,406 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "",
+    "description": "A spec file containing all the definitions",
+    "title": "Definitions file"
+  },
+  "servers": [
+    {
+      "url": "https://graph.microsoft.com/rp/product-ingestion"
+    }
+  ],
+  "security": [
+    {
+      "azure_auth": [
+        "user_impersonation"
+      ]
+    }
+  ],
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Resource": {
+        "type": "object",
+        "properties": {
+          "resourceName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "id": {
+            "$ref": "#/components/schemas/Resource"
+          },
+          "validations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            },
+            "x-readonly": true
+          }
+        },
+        "required": [
+          "$schema"
+        ],
+        "additionalProperties": true,
+        "x-$comment": "This schema is extended by a resource type schema. We allow additional properties to enable that"
+      },
+      "ResourceReference": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ResourceReference"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "externalId": {
+                "description": "ExternalId for product and plan references. Property reference must be named product or plan.",
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-_]{2,49}$",
+                "minLength": 3,
+                "maxLength": 50,
+                "x-$example": {
+                  "plan": {
+                    "externalId": "customerNamedPlan123"
+                  }
+                }
+              }
+            },
+            "required": [
+              "externalId"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "resourceName": {
+                "description": "Resource Name that can be referenced using this value by another resource.",
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9-_]+$",
+                "minLength": 1,
+                "maxLength": 50,
+                "x-$example": {
+                  "plan": {
+                    "resourceName": "resourcePlan1"
+                  }
+                }
+              }
+            },
+            "required": [
+              "resourceName"
+            ]
+          }
+        ]
+      },
+      "ResourceLifecycleState": {
+        "type": "string",
+        "enum": [
+          "notAvailable",
+          "neverUsed",
+          "test",
+          "preview",
+          "generallyAvailable",
+          "deprecated",
+          "decommissioned",
+          "deleted"
+        ],
+        "x-$comment": "deleted only if in draft and never published. Deprecated replaces StopSold"
+      },
+      "DeprecationSchedule": {
+        "description": "Defines a <what> schedule for a deprecated resource",
+        "type": "object",
+        "properties": {
+          "$schema": {
+            "$ref": "#/components/schemas/DeprecationSchedule"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true
+          },
+          "dateOffset": {
+            "type": "string",
+            "format": "duration"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "criticalSecurityIssue",
+              "endOfSupport",
+              "other"
+            ]
+          },
+          "alternative": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "product": {
+                    "$ref": "#/components/schemas/DeprecationSchedule"
+                  }
+                },
+                "required": [
+                  "product"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "plan": {
+                    "$ref": "#/components/schemas/DeprecationSchedule"
+                  }
+                },
+                "required": [
+                  "plan"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "Validation": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Validation"
+          },
+          {
+            "properties": {
+              "$schema": {
+                "$ref": "#/components/schemas/Validation"
+              },
+              "level": {
+                "type": "string",
+                "enum": [
+                  "informational",
+                  "warning"
+                ]
+              }
+            },
+            "required": [
+              "level"
+            ]
+          }
+        ]
+      },
+      "SchemaUri": {
+        "title": "Product Ingestion schema uri",
+        "type": "string",
+        "pattern": "^https://(schema(-int)?\\.mp\\.microsoft\\.com)|(product-ingestion(-int)?\\.azureedge\\.net)/schema/[a-z][a-z0-9]+(?:-[a-z0-9]+)*/\\d{4}(?:-\\d\\d){2}(?:-dev|-preview\\d+)?$"
+      },
+      "InnerError": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "$ref": "#/components/schemas/InnerError"
+          },
+          "code": {
+            "type": "string",
+            "readOnly": true,
+            "enum": [
+              "businessValidationError",
+              "collectionLimitExceeded",
+              "invalidId",
+              "invalidEntityStatus",
+              "invalidRequest",
+              "invalidResource",
+              "invalidState",
+              "notDeployed",
+              "notSupported",
+              "operationCanceled",
+              "productLocked",
+              "resourceNotFound",
+              "schemaValidationError"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InnerError"
+            }
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "identity": {
+        "type": "object",
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 50,
+            "pattern": "^[a-z0-9][a-z0-9-_]{2,49}$"
+          }
+        },
+        "required": [
+          "externalId"
+        ]
+      },
+      "xbox360Identity": {
+        "type": "object",
+        "properties": {
+          "legacyXboxProductId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "legacyXboxProductType": {
+            "type": "string",
+            "enum": [
+              "addonExtension",
+              "arcade",
+              "avatar",
+              "x360Disc",
+              "gameAddon",
+              "gamerTile",
+              "gameTrailer",
+              "gameVideo",
+              "theme",
+              "x360GameConsumable",
+              "xbo"
+            ]
+          },
+          "storeId": {
+            "type": "string",
+            "readOnly": true
+          },
+          "xboxTitleId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]{0,19}$"
+          }
+        },
+        "required": [
+          "legacyXboxProductId",
+          "legacyXboxProductType",
+          "storeId",
+          "xboxTitleId"
+        ]
+      },
+      "Product": {
+        "title": "Microsoft Product Ingestion product schema",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Product"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "productGroup": {
+                "$ref": "#/components/schemas/Product"
+              },
+              "identity": {
+                "$ref": "#/components/schemas/identity"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "azureApplication",
+                  "azureContainer",
+                  "azureVirtualMachine",
+                  "consultingService",
+                  "containerApp",
+                  "coreVirtualMachine",
+                  "cosellOnly",
+                  "dynamics365BusinessCentral",
+                  "dynamics365ForCustomerEngagement",
+                  "dynamics365ForOperations",
+                  "iotEdgeModule",
+                  "managedService",
+                  "powerBiApp",
+                  "powerBiVisual",
+                  "softwareAsAService",
+                  "xbox360NonBackcompat"
+                ]
+              },
+              "alias": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "lifecycleState": {
+                "$ref": "#/components/schemas/Product",
+                "default": "generallyAvailable",
+                "enum": [
+                  "generallyAvailable",
+                  "deprecated",
+                  "deleted"
+                ]
+              },
+              "deprecationSchedule": {
+                "$ref": "#/components/schemas/Product"
+              }
+            },
+            "required": [
+              "identity",
+              "type",
+              "alias"
+            ],
+            "oneOf": [
+              {
+                "allOf": [
+                  {
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "xbox360NonBackcompat"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "identity": {
+                        "$ref": "#/components/schemas/xbox360Identity"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  {
+                    "not": {
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "xbox360NonBackcompat"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "requestBodies": {
+      "JsonSchemaBody": {
+        "content": {
+          "application/json": {}
+        }
+      }
+    },
+    "securitySchemes": {
+      "azure_auth": {
+        "description": "Azure Active Directory OAuth2 Flow.",
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+            "scopes": {
+              "user_impersonation": "impersonate your user account"
+            }
+          }
+        }
+      }
+    }
+  }
+}

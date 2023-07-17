@@ -1,0 +1,58 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "version": "",
+        "description": "A spec file containing all the definitions",
+        "title": "Definitions file"
+    },
+    "servers": [
+        {
+            "url": "https://graph.microsoft.com/rp/product-ingestion"
+        }
+    ],
+    "security": [
+        {
+            "azure_auth": [
+                "user_impersonation"
+            ]
+        }
+    ],
+    "paths": {
+        "/resource-tree/product/{durableId}":{
+            "get":{
+                "operationId": "GetProduct",
+                "tags": [
+                    "Offer"
+                ],
+                "parameters": [
+                    {
+                        "name": "durableId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "./definitions.json#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        }
+    }
+}
