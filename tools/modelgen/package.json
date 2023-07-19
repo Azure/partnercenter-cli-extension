@@ -1,0 +1,16 @@
+{
+  "name": "partnercenter-product-ingestion-sdk",
+  "version": "1.0.0",
+  "description": "Parnter Center ingestion client sdk",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "setup": "pip install -r requirements.txt",
+    "generate": "node --experimental-json-modules --no-warnings ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openapi-contrib/json-schema-to-openapi-schema": "^2.2.4"
+  }
+}
