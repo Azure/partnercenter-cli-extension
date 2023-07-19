@@ -19,7 +19,7 @@ async function processSchemas() {
 
 
     const schemas = await loader.load(data.urls);
-    await processor.process(schemas);
+    await processor.process(schemas, { outputEachSchema: false, outputPath: './out' });
 }
 
 

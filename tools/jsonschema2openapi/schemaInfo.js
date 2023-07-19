@@ -9,6 +9,11 @@ function readFile(file) {
     return json
 }
 
+function toPascalCase(str) {
+    return str.replace(/(\w)(\w*)/g, function (g0, g1, g2) { return g1.toUpperCase() + g2.toLowerCase(); });
+}
+
+
 export class SchemaUrl {
     static baseUrl = "https://product-ingestion.azureedge.net/schema/"
     value;
@@ -56,6 +61,10 @@ class SchemaInfo {
 
     name() {
         return this.url.name();
+    }
+
+    componentName() {
+        return toPascalCase(this.name()).replace(/-/g, '');
     }
 
     async get() {

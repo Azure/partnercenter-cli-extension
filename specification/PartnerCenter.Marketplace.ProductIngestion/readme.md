@@ -37,8 +37,8 @@ For other options on installation see [Installing AutoRest](https://aka.ms/autor
 These are the global settings for the Marketplace.
 
 ``` yaml
-openapi-type: arm
-tag: v1-2022-10-27
+title: ProductIngestionClient
+tag: package-preview-2022-03-01
 ```
 
 ### Tag: 2020-09-10
@@ -58,22 +58,13 @@ input-file:
   - PartnerCenter.Marketplace.ProductIngestion/stable/2022-10-27/productingestion.json
 ```
 
-### Tag: package-preview-2021-09
+### Tag: package-preview-2022-03-01
 
-These settings apply only when `--tag=package-preview-2021-09` is specified on the command line.
+These settings apply only when `--tag=package-preview-2022-03-01` is specified on the command line.
 
-``` yaml $(tag) == 'package-preview-2021-09'
+``` yaml $(tag) == 'package-preview-2022-03-01'
 input-file:
-  - PartnerCenter.Marketplace.Ingestion/preview/2021-09-01-preview/productingestion.json
-```
-
-### Tag: package-2020-05-12-preview
-
-These settings apply only when `--tag=package-2020-05-12-preview` is specified on the command line.
-
-``` yaml $(tag) == 'package-2020-05-12-preview'
-input-file:
-  - PartnerCenter.Marketplace.Ingestion/preview/2020-05-12-preview/productingestion.json
+  - preview/2022-03-01-preview3/product.json
 ```
 
 ---

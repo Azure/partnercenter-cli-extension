@@ -1,7 +1,7 @@
 import convert from '@openapi-contrib/json-schema-to-openapi-schema';
 import fs from 'fs'
 import path from 'path'
-import SchemaInfo, { SchemaUrl } from './schemaInfo.js';
+import SchemaInfo from './schemaInfo.js';
 import JSONPath from 'jsonpath'
 import createDefinitions from './definitions.js';
 
@@ -28,10 +28,6 @@ async function convertSchema(schema) {
     return convertedSchema
 }
 
-function toPascalCase(str) {
-    return str.replace(/(\w)(\w*)/g, function (g0, g1, g2) { return g1.toUpperCase() + g2.toLowerCase(); });
-}
-
 /**
  * the objective is to consolidate all these types to a common "definitions.js"
  * This will replace the JSON Schema $ref values with a local reference
@@ -43,7 +39,8 @@ function replaceRefs(component) {
     JSONPath.apply(component.document, '$..["$ref"]', (value) => {
         // replace HTTP reference to a JSON Schema with the local reference of the openapi component
         if (value.startsWith('http')) {
-            return `#/components/schemas/${component.name}`
+            const componentName = new SchemaInfo(value).componentName();
+            return `#/components/schemas/${componentName}`
         }
 
         // replace what was a $def local json schema reference with
@@ -83,7 +80,7 @@ class JsonSchemaProcessor {
             const document = await convertSchema(schemaInfo.json);
 
             let component = {
-                name: toPascalCase(schemaInfo.name()).replace(/-/g, ''),
+                name: schemaInfo.componentName(),
                 document: document
             };
 

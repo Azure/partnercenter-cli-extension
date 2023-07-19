@@ -29,12 +29,12 @@
             "maxLength": 50
           },
           "id": {
-            "$ref": "#/components/schemas/Resource"
+            "$ref": "#/components/schemas/DurableId"
           },
           "validations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Resource"
+              "$ref": "#/components/schemas/Validation"
             },
             "x-readonly": true
           }
@@ -48,7 +48,7 @@
       "ResourceReference": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/ResourceReference"
+            "$ref": "#/components/schemas/DurableId"
           },
           {
             "type": "object",
@@ -111,7 +111,7 @@
         "type": "object",
         "properties": {
           "$schema": {
-            "$ref": "#/components/schemas/DeprecationSchedule"
+            "$ref": "#/components/schemas/SchemaUri"
           },
           "date": {
             "type": "string",
@@ -136,7 +136,7 @@
                 "type": "object",
                 "properties": {
                   "product": {
-                    "$ref": "#/components/schemas/DeprecationSchedule"
+                    "$ref": "#/components/schemas/ResourceReference"
                   }
                 },
                 "required": [
@@ -148,7 +148,7 @@
                 "type": "object",
                 "properties": {
                   "plan": {
-                    "$ref": "#/components/schemas/DeprecationSchedule"
+                    "$ref": "#/components/schemas/ResourceReference"
                   }
                 },
                 "required": [
@@ -164,12 +164,12 @@
       "Validation": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Validation"
+            "$ref": "#/components/schemas/InnerError"
           },
           {
             "properties": {
               "$schema": {
-                "$ref": "#/components/schemas/Validation"
+                "$ref": "#/components/schemas/SchemaUri"
               },
               "level": {
                 "type": "string",
@@ -194,7 +194,7 @@
         "type": "object",
         "properties": {
           "resourceId": {
-            "$ref": "#/components/schemas/InnerError"
+            "$ref": "#/components/schemas/ResourceReference"
           },
           "code": {
             "type": "string",
@@ -286,13 +286,13 @@
         "title": "Microsoft Product Ingestion product schema",
         "allOf": [
           {
-            "$ref": "#/components/schemas/Product"
+            "$ref": "#/components/schemas/Resource"
           },
           {
             "type": "object",
             "properties": {
               "productGroup": {
-                "$ref": "#/components/schemas/Product"
+                "$ref": "#/components/schemas/ResourceReference"
               },
               "identity": {
                 "$ref": "#/components/schemas/identity"
@@ -323,7 +323,7 @@
                 "maxLength": 120
               },
               "lifecycleState": {
-                "$ref": "#/components/schemas/Product",
+                "$ref": "#/components/schemas/ResourceLifecycleState",
                 "default": "generallyAvailable",
                 "enum": [
                   "generallyAvailable",
@@ -332,7 +332,7 @@
                 ]
               },
               "deprecationSchedule": {
-                "$ref": "#/components/schemas/Product"
+                "$ref": "#/components/schemas/DeprecationSchedule"
               }
             },
             "required": [

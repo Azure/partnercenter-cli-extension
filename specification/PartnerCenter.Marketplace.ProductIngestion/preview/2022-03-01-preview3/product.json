@@ -3,7 +3,7 @@
     "info": {
         "version": "",
         "description": "A spec file containing all the definitions",
-        "title": "Definitions file"
+        "title": "Product Ingestion Client"
     },
     "servers": [
         {
