@@ -20,6 +20,11 @@
   "paths": {},
   "components": {
     "schemas": {
+      "DurableId": {
+        "description": "A durable-id to an existing resource.",
+        "type": "string",
+        "pattern": "^[a-z](-?[a-z0-9]+)*/[a-z0-9-]+(\\/?[a-z0-9-])*$"
+      },
       "Resource": {
         "type": "object",
         "properties": {
