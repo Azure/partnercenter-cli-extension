@@ -64,7 +64,7 @@ These settings apply only when `--tag=package-preview-2022-03-01` is specified o
 
 ``` yaml $(tag) == 'package-preview-2022-03-01'
 input-file:
-  - preview/2022-03-01-preview3/product.json
+  - preview/2022-03-01-preview/product.json
 ```
 
 ---
