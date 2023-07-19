@@ -1,34 +1,48 @@
 
 import SchemaInfo from '../schemaInfo.js';
 import JSONPath from 'jsonpath'
+import productTypeEnum from './productTypeEnum.js';
 
 
-
-function toPascalCase(str) {
-    return str.replace(/(\w)(\w*)/g, function (g0, g1, g2) { return g1.toUpperCase() + g2.toLowerCase(); });
-}
+const REFERENCE_SUFFIX = "Reference";
 
 function filterObjects(item) {
     return item["type"] && item["type"] === "object"
 }
+
 /**
- * the objective is to consolidate all these types to a common "definitions.js"
- * This will replace the JSON Schema $ref values with a local reference
- * so we can do the following in the file that defines the paths: './definitions.json#/components/schemas/<Component>'
+ * This will add the "title" attribute to all the types that are "type": "object"
+ * this is so that the title value can be picked up and the model generator will then
+ * use this value to generate class or enum values
+
  * @param {object} component
  */
 function addTitles(component) {
-    // process references INSIDE $ref
+    JSONPath.apply(component.document, '$..title', (value) => {
+        return component.name;
+    });
+
     JSONPath.apply(component.document, '$..oneOf', (oneOf) => {
         oneOf.filter(filterObjects).forEach(item => {
-            console.log(item);
 
             if (item["required"]) {
-                item["title"] = toPascalCase(item["required"][0]);
+                let title = item["required"][0];
+                title = title.charAt(0).toUpperCase() + title.slice(1);
+
+                const refs = JSONPath.query(item, '$..["$ref"]');
+                if (refs.length > 0) {
+                    const ref = refs[0];
+                    if (ref.indexOf(REFERENCE_SUFFIX) != -1) {
+                        title += REFERENCE_SUFFIX;
+                    }
+                }
+                item["title"] = title;
             }
         })
         return oneOf;
     });
+
+    productTypeEnum(component);
 }
 
 

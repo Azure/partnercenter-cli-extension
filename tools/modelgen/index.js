@@ -16,6 +16,7 @@ async function generate() {
         "--input", '../jsonschema2openapi/out/definitions.json',
         "--output", path.join('./out', "models.py"),
         "--snake-case-field",
+        "--reuse-model",
         "--disable-appending-item-suffix",
         "--use-title-as-name",
         "--use-field-description",

@@ -5,6 +5,7 @@ import SchemaInfo from './schemaInfo.js';
 import replaceRefs from './transforms/replaceRefs.js';
 import createDefinitions from './definitions.js';
 import addTitles from './transforms/addTitles.js';
+import removeUnsupportedFormats from './transforms/removeUnsupportedFormats.js';
 
 function writeFile(specFile) {
     const filePath = path.resolve(specFile.path);
@@ -98,7 +99,7 @@ class JsonSchemaProcessor {
 }
 
 const processor = new JsonSchemaProcessor(
-    [replaceRefs, addTitles]
+    [replaceRefs, addTitles, removeUnsupportedFormats]
 );
 
 export default processor
