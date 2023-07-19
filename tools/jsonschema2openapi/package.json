@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@openapi-contrib/json-schema-to-openapi-schema": "^2.2.5",
-    "jsonpath": "^1.1.1"
+    "jsonpath": "^1.1.1",
+    "yargs": "^17.7.2"
   }
 }

@@ -63,6 +63,7 @@ input-file:
 These settings apply only when `--tag=package-preview-2022-03-01` is specified on the command line.
 
 ``` yaml $(tag) == 'package-preview-2022-03-01'
+output-folder: $(python-sdks-folder)/product_ingestion/2022-03-01-preview
 input-file:
   - preview/2022-03-01-preview/product.json
 ```

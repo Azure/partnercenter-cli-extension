@@ -14,5 +14,4 @@ clear-output-folder: true
 
 ``` yaml $(python)
 no-namespace-folders: true
-output-folder: $(python-sdks-folder)/product_ingestion
 ```
