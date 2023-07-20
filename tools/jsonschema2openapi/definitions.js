@@ -1,6 +1,7 @@
 
 import path from 'path'
 import fs from 'fs'
+import {OpenApiPath} from './openapipath.js';
 
 function readFile(file) {
     const absolutePath = path.resolve(file);
@@ -27,13 +28,30 @@ const moveDefsToCommponentsSchemas = function(spec, component) {
 const createDefinitions = function (components) {
     const json = readFile(definitionsTemplatePath);
     let spec = JSON.parse(json);
+    let paths = [];
 
     for (const component of components) {
+        const path = getPathForComponent(component);
+        // todo: add function to determine if component should be included in path
+        if (path) {
+            console.log('Found the Product');
+            paths.push(path);
+            spec.paths = paths;
+        }
         moveDefsToCommponentsSchemas(spec, component)
         spec.components.schemas[component.name] = component.document;
     }
 
     return spec;
+}
+
+const getPathForComponent = function (component) {
+    if (component.name === "Product") {
+        console.log('Found the Product');
+        const productPath = new OpenApiPath("./definitions.json#/components/schemas/DurableId", "./definitions.json#/components/schemas/Product");
+        return productPath;
+    }
+    return null;
 }
 
 export default createDefinitions;

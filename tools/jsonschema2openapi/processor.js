@@ -76,6 +76,7 @@ class JsonSchemaProcessor {
         }
 
         console.log('  Writing definitions file.')
+        console.log(`The components are: ${JSON.stringify(components)}`)
         let definitions = createDefinitions(components);
         const specFile = {
             path: path.join(options.outputPath, 'definitions.json'),
