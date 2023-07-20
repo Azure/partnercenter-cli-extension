@@ -1,8 +1,8 @@
 export class OpenApiPath {
-  constructor(durableIdRef, schemaRef) {
-    this.path = "/resource-tree/product/{durableId}";
+  constructor(durableIdRef, schemaRef, componentName) {
+    this.path = `/resource-tree/${componentName.toLowerCase()}/{durableId}`;
     this.get = {
-      operationId: "GetProduct",
+      operationId: `Get${componentName}`,
       tags: ["Offer"],
       parameters: [
         {

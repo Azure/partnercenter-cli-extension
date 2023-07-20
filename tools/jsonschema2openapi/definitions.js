@@ -48,7 +48,7 @@ const createDefinitions = function (components) {
 const getPathForComponent = function (component) {
     if (component.name === "Product") {
         console.log('Found the Product');
-        const productPath = new OpenApiPath("./definitions.json#/components/schemas/DurableId", "./definitions.json#/components/schemas/Product");
+        const productPath = new OpenApiPath("./definitions.json#/components/schemas/DurableId", `./definitions.json#/components/schemas/${component.name}`, component.name);
         return productPath;
     }
     return null;
