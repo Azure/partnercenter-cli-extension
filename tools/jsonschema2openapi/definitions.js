@@ -28,15 +28,13 @@ const moveDefsToCommponentsSchemas = function(spec, component) {
 const createDefinitions = function (components) {
     const json = readFile(definitionsTemplatePath);
     let spec = JSON.parse(json);
-    let paths = [];
 
     for (const component of components) {
         const path = getPathForComponent(component);
         // todo: add function to determine if component should be included in path
         if (path) {
             console.log('Found the Product');
-            paths.push(path);
-            spec.paths = paths;
+            spec.paths = path;
         }
         moveDefsToCommponentsSchemas(spec, component)
         spec.components.schemas[component.name] = component.document;
