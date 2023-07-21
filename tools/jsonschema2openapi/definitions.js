@@ -16,10 +16,9 @@ const moveDefsToCommponentsSchemas = function(spec, component) {
     if (component.document["x-$defs"]) {
         const xdefsKeys = Object.keys(component.document["x-$defs"])
         xdefsKeys.forEach(key => {
-            if (spec.components.schemas[key]) { //if already exists, we have a conflict
-                throw new Error("$def already exists in schemas " + key);
+            if (!spec.components.schemas[key]) { //if already exists, we have a conflict
+                spec.components.schemas[key] = component.document["x-$defs"][key]
             }
-            spec.components.schemas[key] = component.document["x-$defs"][key]
         });
         delete component.document["x-$defs"];
     }

@@ -15,7 +15,7 @@ function toPascalCase(str) {
 
 
 export class SchemaUrl {
-    static baseUrl = "https://product-ingestion.azureedge.net/schema/"
+    static baseUrls = ["https://product-ingestion.azureedge.net/schema/", "https://schema.mp.microsoft.com/schema/"];
     value;
     parts;
 
@@ -25,7 +25,8 @@ export class SchemaUrl {
     }
 
     getParts(url) {
-        return url.replace(SchemaUrl.baseUrl, "").split("/")
+        let parts = url.replace(SchemaUrl.baseUrls[0], "").replace(SchemaUrl.baseUrls[1], "");
+        return parts.split("/")
     }
 
     name() {
@@ -63,13 +64,20 @@ class SchemaInfo {
         return this.url.name();
     }
 
+    version() {
+        return this.url.version();
+    }
+
     componentName() {
         return toPascalCase(this.name()).replace(/-/g, '');
     }
 
     async get() {
         //console.log(`fetching ${this.url.name()}`)
-
+        const exists = fs.existsSync(this.filePath());
+        if (exists) {
+            return;
+        }
         let promise = new Promise((resolve, reject) => {
             https.get(this.url.value, res => {
                 res.on('end', () => {
