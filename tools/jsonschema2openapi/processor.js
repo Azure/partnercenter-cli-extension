@@ -59,7 +59,8 @@ class JsonSchemaProcessor {
             // inline construction of openapi component type { name, document }
             let component = {
                 name: schemaInfo.componentName(),
-                document: document
+                document: document,
+                info: schemaInfo
             };
 
             this.transforms.forEach(transform => transform(component));
@@ -76,7 +77,7 @@ class JsonSchemaProcessor {
         }
 
         console.log('  Writing definitions file.')
-        console.log(`The components are: ${JSON.stringify(components)}`)
+        //console.log(`The components are: ${JSON.stringify(components)}`)
         let definitions = createDefinitions(components);
         const specFile = {
             path: path.join(options.outputPath, 'definitions.json'),
