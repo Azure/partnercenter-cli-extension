@@ -2,7 +2,6 @@
 import path from 'path'
 import fs from 'fs'
 import {OpenApiPath} from './openapipath.js';
-import { convertToSwagger2 } from './openapi3toswagger2.js';
 
 function readFile(file) {
     const absolutePath = path.resolve(file);
@@ -41,9 +40,10 @@ const createDefinitions = async function (components) {
     }
 
     // convert the openapi 3 now to swagger 2.0 to support autorest
-    const swaggerSpec = await convertToSwagger2(spec);
+    // const swaggerSpec = await convertToSwagger2(spec);
 
-    return swaggerSpec;
+    // return swaggerSpec;
+    return spec;
 }
 
 const getPathForComponent = function (component) {
