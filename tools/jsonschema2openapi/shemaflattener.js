@@ -1,5 +1,6 @@
 class ShemaFlattener {
   removeAnyOfOneOf(schema) {
+    console.log(`Removing AnyOf and OneOf from schema: ${JSON.stringify(schema)}`);
     this.visit(schema);
   }
 
@@ -47,6 +48,7 @@ class ShemaFlattener {
   }
 
   removeAnyOf(node) {
+    console.log(`Removing AnyOf from node: ${JSON.stringify(node)}`);
     if (!Array.isArray(node.anyOf)) {
       return;
     }
@@ -62,6 +64,7 @@ class ShemaFlattener {
     }
 
     delete node.anyOf;
+    console.log(`Assigning properties: ${JSON.stringify(properties)}`);
     Object.assign(node, properties);
   }
 }

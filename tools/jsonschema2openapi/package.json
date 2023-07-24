@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "node --experimental-json-modules --no-warnings ./index.js"
+    "generate": "node --experimental-json-modules --no-warnings ./index.js",
+    "flatten": "node --experimental-json-modules --no-warnings ./testopenapiflattener.js"
   },
   "author": "kevinhillinger",
   "license": "ISC",
