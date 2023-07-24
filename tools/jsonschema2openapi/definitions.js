@@ -24,7 +24,7 @@ const moveDefsToCommponentsSchemas = function(spec, component) {
     }
 }
 
-const createDefinitions = function (components) {
+const createDefinitions = async function (components) {
     const json = readFile(definitionsTemplatePath);
     let spec = JSON.parse(json);
 
@@ -39,6 +39,10 @@ const createDefinitions = function (components) {
         spec.components.schemas[component.name] = component.document;
     }
 
+    // convert the openapi 3 now to swagger 2.0 to support autorest
+    // const swaggerSpec = await convertToSwagger2(spec);
+
+    // return swaggerSpec;
     return spec;
 }
 
