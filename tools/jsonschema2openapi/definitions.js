@@ -32,7 +32,7 @@ const createDefinitions = async function (components) {
         const path = getPathForComponent(component);
         // todo: add function to determine if component should be included in path
         if (path) {
-            console.log('Found the Product');
+            console.log(`  - Adding paths for ${component.name}`);
             spec.paths = path;
         }
         moveDefsToCommponentsSchemas(spec, component)
@@ -48,7 +48,6 @@ const createDefinitions = async function (components) {
 
 const getPathForComponent = function (component) {
     if (component.name === "Product") {
-        console.log('Found the Product');
         const productPath = new OpenApiPath("./definitions.json#/components/schemas/DurableId", `./definitions.json#/components/schemas/${component.name}`, component.name);
         return productPath;
     }

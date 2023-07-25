@@ -45,7 +45,7 @@ class ShemaFlattener {
 
     delete node.oneOf;
     Object.assign(node, properties);
-  }
+      shemaflattener  }
 
   removeAnyOf(node) {
     console.log(`Removing AnyOf from node: ${JSON.stringify(node)}`);
