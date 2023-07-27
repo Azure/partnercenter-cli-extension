@@ -15,8 +15,9 @@ const moveDefsToCommponentsSchemas = function(spec, component) {
     //next we now need to move all remaining x-$defs into the component schemas and remove the key
     if (component.document["x-$defs"]) {
         const xdefsKeys = Object.keys(component.document["x-$defs"])
+
         xdefsKeys.forEach(key => {
-            if (!spec.components.schemas[key]) { //if already exists, we have a conflict
+            if (!spec.components.schemas[key]) { //if already exists, we have already have the component registered.
                 spec.components.schemas[key] = component.document["x-$defs"][key]
             }
         });

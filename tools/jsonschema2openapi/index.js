@@ -38,8 +38,9 @@ async function processSchemas(options) {
 async function main(args) {
     console.log('Processing Schemas')
 
+    const outputEachSchema = args["output-each-schema"];
     let options = {
-        outputEachSchema: false,
+        outputEachSchema: outputEachSchema,
         outputPath: outDir
     };
 

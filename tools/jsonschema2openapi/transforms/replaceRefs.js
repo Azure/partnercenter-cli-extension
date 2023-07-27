@@ -30,7 +30,7 @@ function replaceRefs(component) {
         //clean up x-$defs which is a conversion of references to the JSON Schemas
         //remove the HTTP json schema objects here since they will get referenced
         //locally
-        const orphanedExternalKeys = Object.keys(component.document["x-$defs"]).filter(k => k.startsWith("http"));
+        const orphanedExternalKeys = Object.keys(component.document["x-$defs"]).filter(k => k.startsWith("https://"));
         orphanedExternalKeys.forEach(key => {
             delete component.document["x-$defs"][key];
         });
