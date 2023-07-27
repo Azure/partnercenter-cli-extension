@@ -9,6 +9,10 @@ function readFile(file) {
     return json
 }
 
+function readJson(filePath) {
+    return JSON.parse(readFile(filePath));
+}
+
 function toPascalCase(str) {
     return str.replace(/(\w)(\w*)/g, function (g0, g1, g2) { return g1.toUpperCase() + g2.toLowerCase(); });
 }
@@ -73,17 +77,19 @@ class SchemaInfo {
     }
 
     async get() {
-        //console.log(`fetching ${this.url.name()}`)
-        const exists = fs.existsSync(this.filePath());
-        if (exists) {
-            return;
-        }
         let promise = new Promise((resolve, reject) => {
+            const exists = fs.existsSync(this.filePath());
+            if (exists) {
+                setTimeout(() => {
+                    resolve(readJson(this.filePath()));
+                }, 10);
+                return;
+            }
+
             https.get(this.url.value, res => {
                 res.on('end', () => {
                     setTimeout(() => {
-                        const fileContents = readFile(this.filePath())
-                        resolve(JSON.parse(fileContents));
+                        resolve(readJson(this.filePath()));
                     }, 100);
                 }).pipe(fs.createWriteStream(this.filePath()), { end: true })
             })

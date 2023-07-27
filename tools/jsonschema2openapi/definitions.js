@@ -24,17 +24,21 @@ const moveDefsToCommponentsSchemas = function(spec, component) {
     }
 }
 
+const addPaths = function(component) {
+    const path = getPathForComponent(component);
+    // todo: add function to determine if component should be included in path
+    if (path) {
+        console.log(`  - Adding paths for ${component.name}`);
+        spec.paths = path;
+    }
+}
+
 const createDefinitions = async function (components) {
     const json = readFile(definitionsTemplatePath);
     let spec = JSON.parse(json);
 
     for (const component of components) {
-        const path = getPathForComponent(component);
-        // todo: add function to determine if component should be included in path
-        if (path) {
-            console.log(`  - Adding paths for ${component.name}`);
-            spec.paths = path;
-        }
+        //addPaths(component);
         moveDefsToCommponentsSchemas(spec, component)
         spec.components.schemas[component.name] = component.document;
     }

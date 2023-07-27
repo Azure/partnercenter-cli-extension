@@ -8,16 +8,23 @@ import { hideBin } from 'yargs/helpers';
 const schemasDir = "./.schemas";
 const outDir = "./out";
 
-function ensureDir(dirPath) {
-    if (fs.existsSync(dirPath)) {
-        fs.rmSync(dirPath, { force: true, recursive: true });
+function ensureDir(dirPath, options) {
+    if (options.clean) {
+        if (fs.existsSync(dirPath)) {
+            fs.rmSync(dirPath, { force: true, recursive: true });
+        }
+        fs.mkdirSync(dirPath);
+        return;
     }
-    fs.mkdirSync(dirPath);
+
+    if (!fs.existsSync(dirPath)) {
+        fs.mkdirSync(dirPath);
+    }
 }
 
 async function processSchemas(options) {
-    ensureDir(schemasDir);
-    ensureDir(outDir)
+    ensureDir(schemasDir, { clean: false });
+    ensureDir(outDir, { clean: true })
 
 
     const schemas = await loader.load(data.urls);
