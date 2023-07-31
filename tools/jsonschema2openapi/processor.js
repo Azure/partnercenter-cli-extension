@@ -32,7 +32,8 @@ async function convertSchema(schema) {
 
 class JsonSchemaProcessOptions {
     outputPath = './out'
-    outputEachSchema = false;
+    outputEachSchema;
+    verbose;
 }
 
 class JsonSchemaProcessor {
@@ -51,6 +52,7 @@ class JsonSchemaProcessor {
 
         console.log('  Converting to OpenAPI.')
         for (const schemaInfo of schemas) {
+
             console.log(`  - ${schemaInfo.name()}`);
 
             // converted Open API object
@@ -63,7 +65,7 @@ class JsonSchemaProcessor {
                 info: schemaInfo
             };
 
-            this.transforms.forEach(transform => transform(component));
+            this.transforms.forEach(async transform => await transform(component));
 
             if (options.outputEachSchema) {
                 const specFile = {
@@ -94,8 +96,8 @@ class JsonSchemaProcessor {
      * @param {Array<SchemaInfo>} schemas
      * @param {JsonSchemaProcessOptions} options
      */
-    async process(schemas, options = new JsonSchemaProcessOptions()) {
-        console.log('Processing JSON schemas.')
+    async process(schemas, options) {
+        console.log('Processing JSON schemas. ' + JSON.stringify(options))
         await this.convert(schemas, options)
     }
 }

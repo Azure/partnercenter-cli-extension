@@ -20,7 +20,14 @@
         "https://schema.mp.microsoft.com/schema/property/2022-03-01-preview5",
         "https://product-ingestion.azureedge.net/schema/product/2022-03-01-preview3",
         "https://product-ingestion.azureedge.net/schema/plan/2022-03-01-preview2",
+
         "https://schema.mp.microsoft.com/schema/private-offer/2022-07-01",
+        "https://schema.mp.microsoft.com/schema/private-offer-customer/2022-07-01",
+        "https://schema.mp.microsoft.com/schema/private-offer-csp/2022-07-01",
+        "https://schema.mp.microsoft.com/schema/private-offer-promotion-reference/2022-07-01",
+        "https://schema.mp.microsoft.com/schema/private-offer-beneficiary/2022-07-01",
+        "https://schema.mp.microsoft.com/schema/private-offer-pricing/2022-07-01",
+        "https://schema.mp.microsoft.com/schema/private-offer-acceptance-link/2022-07-01",
 
         "https://schema.mp.microsoft.com/schema/listing/2022-03-01-preview5",
         "https://schema.mp.microsoft.com/schema/listing-asset/2022-03-01-preview5",
@@ -32,10 +39,13 @@
 
         "https://product-ingestion.azureedge.net/schema/price-and-availability-offer/2022-03-01-preview3",
         "https://product-ingestion.azureedge.net/schema/price-and-availability-audiences/2022-03-01-preview3",
+        "https://product-ingestion.azureedge.net/schema/price-and-availability-audience/2022-03-01-preview3",
         "https://schema.mp.microsoft.com/schema/price-and-availability-plan/2022-03-01-preview4",
+
         "https://product-ingestion.azureedge.net/schema/price-and-availability-software-reservation/2022-03-01-preview2",
         "https://product-ingestion.azureedge.net/schema/price-and-availability-trial/2022-03-01-preview3",
         "https://schema.mp.microsoft.com/schema/price-and-availability-price/2022-03-01-preview4",
+
         "https://product-ingestion.azureedge.net/schema/price-and-availability-market/2022-03-01-preview2",
         "https://product-ingestion.azureedge.net/schema/price-and-availability-core-price/2022-03-01-preview2",
         "https://product-ingestion.azureedge.net/schema/price-and-availability-system-meter-price/2022-03-01-preview2",
@@ -47,12 +57,20 @@
         "https://product-ingestion.azureedge.net/schema/azure-test-drive-technical-configuration/2022-03-01-preview3",
 
         "https://product-ingestion.azureedge.net/schema/software-as-a-service-technical-configuration/2022-03-01-preview3",
-        "https://product-ingestion.azureedge.net/schema/virtual-machine-plan-technical-configuration/2022-03-01-preview3",
 
+        "https://product-ingestion.azureedge.net/schema/virtual-machine-plan-technical-configuration/2022-03-01-preview3",
+        "https://product-ingestion.azureedge.net/schema/virtual-machine-os-disk/2022-03-01-preview2",
 
         "https://product-ingestion.azureedge.net/schema/virtual-machine-test-drive-technical-configuration/2022-03-01-preview2",
         "https://product-ingestion.azureedge.net/schema/container-cnab-plan-technical-configuration-properties/2022-03-01-preview3",
         "https://product-ingestion.azureedge.net/schema/container-image-plan-technical-configuration-properties/2022-03-01-preview3",
+        "https://product-ingestion.azureedge.net/schema/virtual-machine-data-disk/2022-03-01-preview2",
+
+        "https://product-ingestion.azureedge.net/schema/arm-test-drive-technical-configuration-properties/2022-03-01-preview3",
+        "https://product-ingestion.azureedge.net/schema/d365-business-central-test-drive-technical-configuration-properties/2022-03-01-preview3",
+        "https://product-ingestion.azureedge.net/schema/d365-dataverse-test-drive-technical-configuration-properties/2022-03-01-preview3",
+        "https://product-ingestion.azureedge.net/schema/d365-operations-apps-test-drive-technical-configuration-properties/2022-03-01-preview3",
+        "https://product-ingestion.azureedge.net/schema/logic-app-test-drive-technical-configuration-properties/2022-03-01-preview3",
 
         "https://product-ingestion.azureedge.net/schema/microsoft365-integration/2022-03-01-preview2"
 

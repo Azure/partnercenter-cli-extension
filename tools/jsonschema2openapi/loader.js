@@ -3,6 +3,7 @@ import SchemaInfo from "./schemaInfo.js";
 
 class JsonSchemaLoadOptions {
     outputPath = './.schemas';
+    verbose = false;
 }
 
 class JsonSchemaLoader {
@@ -15,8 +16,10 @@ class JsonSchemaLoader {
         console.log('Loading schemas from urls.')
 
         const schemas = schemaUrls.map(url => {
-            console.log(`  - ${url}`)
-            return new SchemaInfo(url, options.outputPath)
+            if (options.verbose) {
+                console.log(`  - ${url}`)
+            }
+            return new SchemaInfo(url, options.schemasPath)
         });
 
         for (const schemaInfo of schemas) {

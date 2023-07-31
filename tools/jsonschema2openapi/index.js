@@ -27,8 +27,15 @@ async function processSchemas(options) {
     ensureDir(outDir, { clean: true })
 
 
-    const schemas = await loader.load(data.urls);
+    const schemas = await loader.load(data.urls, options);
     await processor.process(schemas, options);
+}
+
+function getBool(args, key) {
+    if (args.hasOwnProperty(key)) {
+        return args[key];
+    }
+    return false;
 }
 
 /**
@@ -36,11 +43,16 @@ async function processSchemas(options) {
  * @param {Arguments} args
  */
 async function main(args) {
-    console.log('Processing Schemas')
+    console.log("args: " +  JSON.stringify(args));
+    console.log('Processing Schemas');
 
-    const outputEachSchema = args["output-each-schema"];
+    const verbose = getBool(args, "verbose");
+    const outputEachSchema = getBool(args, "output-each-schema");
+
     let options = {
+        verbose: verbose,
         outputEachSchema: outputEachSchema,
+        schemasPath: schemasDir,
         outputPath: outDir
     };
 
