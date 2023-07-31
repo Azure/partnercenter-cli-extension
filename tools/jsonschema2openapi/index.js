@@ -33,7 +33,7 @@ async function processSchemas(options) {
 
 function getBool(args, key) {
     if (args.hasOwnProperty(key)) {
-        return args[key];
+        return args[key] === 'true';
     }
     return false;
 }

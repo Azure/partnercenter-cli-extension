@@ -32,8 +32,8 @@ async function convertSchema(schema) {
 
 class JsonSchemaProcessOptions {
     outputPath = './out'
-    outputEachSchema;
-    verbose;
+    outputEachSchema = false;
+    verbose = false;
 }
 
 class JsonSchemaProcessor {
@@ -50,7 +50,8 @@ class JsonSchemaProcessor {
     async convert(schemas, options) {
         const components = [];
 
-        console.log('  Converting to OpenAPI.')
+        console.log('  Converting to OpenAPI. ' + JSON.stringify(options));
+
         for (const schemaInfo of schemas) {
 
             console.log(`  - ${schemaInfo.name()}`);
