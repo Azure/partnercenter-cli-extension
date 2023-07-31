@@ -59,12 +59,14 @@
         "https://product-ingestion.azureedge.net/schema/software-as-a-service-technical-configuration/2022-03-01-preview3",
 
         "https://product-ingestion.azureedge.net/schema/virtual-machine-plan-technical-configuration/2022-03-01-preview3",
+        "https://product-ingestion.azureedge.net/schema/virtual-machine-operating-system/2022-03-01-preview3",
         "https://product-ingestion.azureedge.net/schema/virtual-machine-os-disk/2022-03-01-preview2",
+        "https://product-ingestion.azureedge.net/schema/virtual-machine-data-disk/2022-03-01-preview2",
+        "https://product-ingestion.azureedge.net/schema/virtual-machine-open-port/2022-03-01-preview2",
 
         "https://product-ingestion.azureedge.net/schema/virtual-machine-test-drive-technical-configuration/2022-03-01-preview2",
         "https://product-ingestion.azureedge.net/schema/container-cnab-plan-technical-configuration-properties/2022-03-01-preview3",
         "https://product-ingestion.azureedge.net/schema/container-image-plan-technical-configuration-properties/2022-03-01-preview3",
-        "https://product-ingestion.azureedge.net/schema/virtual-machine-data-disk/2022-03-01-preview2",
 
         "https://product-ingestion.azureedge.net/schema/arm-test-drive-technical-configuration-properties/2022-03-01-preview3",
         "https://product-ingestion.azureedge.net/schema/d365-business-central-test-drive-technical-configuration-properties/2022-03-01-preview3",
