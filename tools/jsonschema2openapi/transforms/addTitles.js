@@ -18,7 +18,7 @@ function filterObjects(item) {
  * @param {object} component
  */
 function addTitles(component) {
-    JSONPath.apply(component.document, '$..title', (value) => {
+    JSONPath.apply(component.document, '$.title', (value) => {
         return component.name;
     });
 

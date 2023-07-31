@@ -9,7 +9,7 @@ function readFile(file) {
     return json
 }
 
-const definitionsTemplatePath = "./templates/definitions.json"
+const definitionsTemplatePath = "./templates/definitions-openapi-3.1.json"
 
 const moveDefsToCommponentsSchemas = function(spec, component) {
     //next we now need to move all remaining x-$defs into the component schemas and remove the key

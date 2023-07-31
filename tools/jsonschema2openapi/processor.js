@@ -6,6 +6,7 @@ import replaceRefs from './transforms/replaceRefs.js';
 import createDefinitions from './definitions.js';
 import addTitles from './transforms/addTitles.js';
 import removeUnsupportedFormats from './transforms/removeUnsupportedFormats.js';
+import moveRequiredForVirtualMachineOperatingSystem from './transforms/moveRequiredForVirtualMachineOperatingSystem.js';
 
 function writeFile(specFile) {
     const filePath = path.resolve(specFile.path);
@@ -104,7 +105,7 @@ class JsonSchemaProcessor {
 }
 
 const processor = new JsonSchemaProcessor(
-    [replaceRefs, addTitles, removeUnsupportedFormats]
+    [replaceRefs, addTitles, removeUnsupportedFormats, moveRequiredForVirtualMachineOperatingSystem]
 );
 
 export default processor
