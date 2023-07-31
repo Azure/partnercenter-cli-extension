@@ -15,11 +15,13 @@ async function generate() {
     let options = [
         "--input", '../jsonschema2openapi/out/definitions.json',
         "--output", path.join('./out', "models.py"),
+        "--output-model-type", "pydantic_v2.BaseModel",
         "--snake-case-field",
         "--reuse-model",
         "--disable-appending-item-suffix",
         "--use-title-as-name",
         "--use-field-description",
+        "--enum-field-as-literal", "all",
         "--use-schema-description",
         "--use-standard-collections",
         "--allow-population-by-field-name",
