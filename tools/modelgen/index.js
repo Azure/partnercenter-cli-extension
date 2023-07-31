@@ -3,6 +3,9 @@ import path from 'path';
 import { spawn } from "child_process";
 
 
+//  documenation for options:
+//  https://github.com/koxudaxi/datamodel-code-generator
+
 async function generate() {
     if (fs.existsSync('out')) {
         fs.rmSync('out', { force: true, recursive: true });
