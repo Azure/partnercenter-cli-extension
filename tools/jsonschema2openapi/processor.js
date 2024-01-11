@@ -51,7 +51,7 @@ class JsonSchemaProcessor {
     async convert(schemas, options) {
         const components = [];
 
-        console.log('  Converting to OpenAPI. ' + JSON.stringify(options));
+        console.log('  Converting to OpenAPI. ');
 
         for (const schemaInfo of schemas) {
 
