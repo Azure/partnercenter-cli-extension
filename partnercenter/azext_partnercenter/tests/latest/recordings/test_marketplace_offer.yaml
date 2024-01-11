@@ -16,18 +16,24 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products
   response:
     body:
-      string: '{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"b3cdff6f-0aca-42ae-a30d-9c727b14a971"}'
+      string: '{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"dadc562f-7e73-47d5-8c67-bdd1b148c99c"}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:37:58 GMT
+      - Thu, 11 Jan 2024 19:07:35 GMT
       location:
-      - https://api.partner.microsoft.com/v1.0/ingestion/products/b3cdff6f-0aca-42ae-a30d-9c727b14a971
+      - https://api.partner.microsoft.com/v1.0/ingestion/products/dadc562f-7e73-47d5-8c67-bdd1b148c99c
       request-id:
-      - 5bed6e59-5bad-4b25-b714-df731dcec2da
+      - 582f8d78-3157-49c8-be3e-6927b0c62424
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
+      x-azure-ref:
+      - 0dTygZQAAAABDPT06agqeQZ+g388mKR0jTU5aMjIxMDYwNjEyMDExADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 201
       message: Created
@@ -44,16 +50,22 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27offertest-000001%27%29
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"b3cdff6f-0aca-42ae-a30d-9c727b14a971"}]}'
+      string: '{"value":[{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"dadc562f-7e73-47d5-8c67-bdd1b148c99c"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:37:58 GMT
+      - Thu, 11 Jan 2024 19:07:36 GMT
       request-id:
-      - dfbd6504-8a76-4ae6-a5de-ec8da779dfc9
+      - adfdd9bf-bde2-4513-84fc-c9f0a4ed809d
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
+      x-azure-ref:
+      - 0eDygZQAAAAAAXFCThdI0RqKx+9UbckycTU5aMjIxMDYwNjEyMDMzADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
@@ -70,71 +82,22 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFCOUNENjczMzkwXCIsXCJtYXhcIjpcIjA1QzFDOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"thfalgou-offer-4-alias","externalIDs":[{"type":"AzureOfferId","value":"thfalgou-offer-4-id"}],"isModularPublishing":true,"id":"e0a9a297-5571-4f93-86fa-6744ca1d6afe"},{"resourceType":"AzureContainer","name":"thfalgou-offer-5-alias","externalIDs":[{"type":"AzureOfferId","value":"thfalgou-offer-5-id"}],"isModularPublishing":true,"id":"7faeda15-160d-4337-a30d-9e3989ca5007"},{"resourceType":"AzureContainer","name":"Minecraft
-        as a Service (free)","externalIDs":[{"type":"AzureOfferId","value":"minecraft-as-a-service-free"}],"isModularPublishing":true,"id":"ba79e6dc-dae0-4ecb-93c4-2699d69c3d47"},{"resourceType":"AzureThirdPartyVirtualMachine","name":"vmoffer1","externalIDs":[{"type":"AzureOfferId","value":"vmoffer1"}],"isModularPublishing":true,"id":"5fdde8e0-f566-4a4a-a3d9-ef548ab5b236"},{"resourceType":"AzureContainer","name":"kehilli
-        test offer 2","externalIDs":[{"type":"AzureOfferId","value":"kehillitestoffer2"}],"isModularPublishing":true,"id":"8f73c2c4-75a7-4749-b213-166df0c47112"},{"resourceType":"AzureApplication","name":"azureappoffer1","externalIDs":[{"type":"AzureOfferId","value":"azureappoffer1"}],"isModularPublishing":true,"id":"837bd4d9-33a9-43db-9384-efc576912efb"},{"resourceType":"AzureApplication","name":"offertest-gdisb-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-gdisb"}],"isModularPublishing":true,"id":"874e71da-78d2-453b-8ad1-5540319f512e"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFEOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"modm","externalIDs":[{"type":"AzureOfferId","value":"modm"}],"isModularPublishing":true,"id":"5f6e7a0c-0e30-418f-a107-39891409a3fb"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:38:00 GMT
+      - Thu, 11 Jan 2024 19:07:37 GMT
       request-id:
-      - 885f746b-24eb-4926-a1ac-071d8e9c1f06
+      - d48546f7-9609-4222-8edd-fe6f21387c6f
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFCOUNENjczMzkwXCIsXCJtYXhcIjpcIjA1QzFDOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
-  response:
-    body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFDOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"oabobjaccli","externalIDs":[{"type":"AzureOfferId","value":"obobjaccli"}],"isModularPublishing":true,"id":"292bd6c7-98f8-4da3-b1f2-a3c3aaeb66dd"},{"resourceType":"AzureApplication","name":"offertest-7bxn5-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-7bxn5"}],"isModularPublishing":true,"id":"219bdb15-1125-4a60-b93b-7c5e950f48b1"},{"resourceType":"AzureContainer","name":"clitestyz4ynrzhp4iphvznt
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestyz4ynrzhp4iphvznt"}],"isModularPublishing":true,"id":"51180b73-3029-4949-bc10-7d191b9ae936"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Sun, 18 Jun 2023 22:38:00 GMT
-      request-id:
-      - 29f7d019-e84d-49ee-b7c0-eb7f4644b03c
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFDOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
-  response:
-    body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFEOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacissue62","externalIDs":[{"type":"AzureOfferId","value":"bobjacissue62"}],"isModularPublishing":true,"id":"34c414b6-8d55-4458-a60b-d57aae0ea9a9"},{"resourceType":"AzureContainer","name":"oanmcdl2a3","externalIDs":[{"type":"AzureOfferId","value":"ozqscacapb"}],"isModularPublishing":true,"id":"280bd8f2-6d3f-4093-b9e3-af9e2af21425"},{"resourceType":"AzureContainer","name":"test-offergfcn3-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offergfcn3"}],"isModularPublishing":true,"id":"97d805bb-1205-4e98-b6b8-6c72d8685af1"},{"resourceType":"AzureApplication","name":"offertest-sxjzv-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-sxjzv"}],"isModularPublishing":true,"id":"7418a8b5-22c3-4b4d-a0d0-16f38c0b1577"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Sun, 18 Jun 2023 22:38:01 GMT
-      request-id:
-      - 09c4feb2-a005-4cfd-9a70-1af6fe459c63
-      transfer-encoding:
-      - chunked
+      x-azure-ref:
+      - 0eTygZQAAAACXFlhLffFJTJPbMuLc5MkhTU5aMjIxMDYwNjEyMDMzADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
@@ -151,17 +114,22 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFEOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"thfalgout-offer-1","externalIDs":[{"type":"AzureOfferId","value":"thfalgou-offer-1"}],"isModularPublishing":true,"id":"817e530b-a712-4393-86e2-4e9aa03a8234"},{"resourceType":"AzureApplication","name":"bobjacpostman","externalIDs":[{"type":"AzureOfferId","value":"bobjacpostmanoffer"}],"isModularPublishing":true,"id":"19160d75-384d-4fed-bf71-6dee82cb4cae"},{"resourceType":"AzureContainer","name":"oabaabw6jq","externalIDs":[{"type":"AzureOfferId","value":"ojdwfkhaof"}],"isModularPublishing":true,"id":"3c80bc9d-51cb-4871-9744-ab1299c5b252"},{"resourceType":"AzureContainer","name":"kehilli-aks-offer","externalIDs":[{"type":"AzureOfferId","value":"kehilli-aks-offer"}],"isModularPublishing":true,"id":"471bfa20-60a7-42d4-a4c9-a5e299a58f83"},{"resourceType":"AzureContainer","name":"clitestsj6gbptmowoapev6p
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestsj6gbptmowoapev6p"}],"isModularPublishing":true,"id":"725d0fcd-ad57-42cc-b438-274dfc053a74"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFERkZGRkZGRkY0XCIsXCJtYXhcIjpcIjA1QzFFMzk5Q0Q2NzJDXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"dadc562f-7e73-47d5-8c67-bdd1b148c99c"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:38:01 GMT
+      - Thu, 11 Jan 2024 19:07:37 GMT
       request-id:
-      - f7d82a1f-d7b5-435a-8db9-e174fb2535ba
+      - 9c6a9127-b964-44fc-9df1-f827030f2357
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
+      x-azure-ref:
+      - 0eTygZQAAAAAH5pAYsM/tQpn1DiU/u7RNTU5aMjIxMDYwNjEyMDMzADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
@@ -175,78 +143,25 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFERkZGRkZGRkY0XCIsXCJtYXhcIjpcIjA1QzFFMzk5Q0Q2NzJDXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenarioofferalias","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenarioofferid"}],"isModularPublishing":true,"id":"498cd389-ed84-4b59-99b0-d3d5cf0fb1fb"},{"resourceType":"AzureContainer","name":"dgtestcontainer","externalIDs":[{"type":"AzureOfferId","value":"dgtestcontainer"}],"isModularPublishing":true,"id":"11fedafd-18a3-4d5c-bde3-b92c8ebd9362"},{"resourceType":"AzureContainer","name":"Container
-        Workshop","externalIDs":[{"type":"AzureOfferId","value":"cwdgtest"}],"isModularPublishing":true,"id":"6e1fbc9b-3644-4217-ac46-31a1d1772a0e"},{"resourceType":"SoftwareAsAService","name":"saas-offer-01","externalIDs":[{"type":"AzureOfferId","value":"saas-offer-01"}],"isModularPublishing":true,"id":"65611832-3908-4d8b-bf06-b3a1d8c141c0"},{"resourceType":"AzureApplication","name":"offertest-4r72v-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-4r72v"}],"isModularPublishing":true,"id":"da9dd3e9-1fbd-45c6-b820-7567fb7c689e"},{"resourceType":"AzureApplication","name":"offertest-ymzph-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-ymzph"}],"isModularPublishing":true,"id":"972f2673-e445-475e-a078-194ca6b69dd8"},{"resourceType":"AzureContainer","name":"clitestbauphydqjuqe2f2vg
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestbauphydqjuqe2f2vg"}],"isModularPublishing":true,"id":"6a7b644a-5c67-4f06-a479-073bd67974f0"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"modm-96","externalIDs":[{"type":"AzureOfferId","value":"modm-96"}],"isModularPublishing":true,"id":"891bb189-5099-46ad-937c-9436c5de67f7"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:38:02 GMT
+      - Thu, 11 Jan 2024 19:07:37 GMT
       request-id:
-      - c073ed15-9742-4b51-b003-753a609f737b
+      - b141f8c2-2e98-4eac-ab19-04714ece0361
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
-  response:
-    body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFNzMzOTlDRDVFXCIsXCJtYXhcIjpcIjA1QzFFOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenario","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenario"}],"isModularPublishing":true,"id":"4de943e8-a5ee-4291-8bf1-5d6f7efda678"},{"resourceType":"AzureContainer","name":"oa76sblmqh","externalIDs":[{"type":"AzureOfferId","value":"olhldim3ae"}],"isModularPublishing":true,"id":"0f183625-5c00-4719-b4cc-2462370cfb9c"},{"resourceType":"AzureContainer","name":"jenny6","externalIDs":[{"type":"AzureOfferId","value":"jenny6"}],"isModularPublishing":true,"id":"817e13cf-e274-4066-872c-608679054112"},{"resourceType":"AzureContainer","name":"Container
-        Workshop - dgtest","externalIDs":[{"type":"AzureOfferId","value":"dgtest-cw"}],"isModularPublishing":true,"id":"081c39ba-831a-4de4-90a4-697fe521dd93"},{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"b3cdff6f-0aca-42ae-a30d-9c727b14a971"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Sun, 18 Jun 2023 22:38:02 GMT
-      request-id:
-      - 69683d9a-fb86-4505-b8a0-c7665f7ad06e
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFNzMzOTlDRDVFXCIsXCJtYXhcIjpcIjA1QzFFOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
-  response:
-    body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"Minecraft
-        as a Service (paid)","externalIDs":[{"type":"AzureOfferId","value":"minecraft-paid"}],"isModularPublishing":true,"id":"30753d75-094f-4976-9d73-3963ff1fac9f"},{"resourceType":"AzureContainer","name":"harkcli","externalIDs":[{"type":"AzureOfferId","value":"harkcli"}],"isModularPublishing":true,"id":"770b2a1a-7e6c-4241-acba-7dd2e4022982"},{"resourceType":"AzureContainer","name":"kehilli
-        test offer 3","externalIDs":[{"type":"AzureOfferId","value":"kehillitestoffer3"}],"isModularPublishing":true,"id":"bb757710-2229-4e86-bb57-cbcff57ecfdf"},{"resourceType":"AzureContainer","name":"Container
-        Workshop Mar 27","externalIDs":[{"type":"AzureOfferId","value":"dgtest-cw0327"}],"isModularPublishing":true,"id":"3abe1913-741f-4316-b144-f720b2782f18"},{"resourceType":"AzureApplication","name":"offertest-dnc53-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-dnc53"}],"isModularPublishing":true,"id":"50422360-2280-4550-b042-cb19aff57c4b"},{"resourceType":"AzureThirdPartyVirtualMachine","name":"clitestun4qyarcxjl7yey3e
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestun4qyarcxjl7yey3e"}],"isModularPublishing":true,"id":"ed1a3f75-a3a7-4ce1-b98e-c3533e865edf"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Sun, 18 Jun 2023 22:38:03 GMT
-      request-id:
-      - eae5758c-17c3-47df-a120-7e7b800d61ba
-      transfer-encoding:
-      - chunked
+      x-azure-ref:
+      - 0ejygZQAAAAAoDqfDhbM+QJydEAJuSct6TU5aMjIxMDYwNjEyMDMzADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
@@ -263,43 +178,22 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFRDY3MzM5OUMyXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacportal1","externalIDs":[{"type":"AzureOfferId","value":"bobjacportal1"}],"isModularPublishing":true,"id":"2dc56d05-8272-426c-bbfb-c5bf6c754fe0"},{"resourceType":"AzureContainer","name":"ashwin","externalIDs":[{"type":"AzureOfferId","value":"ashwin"}],"isModularPublishing":true,"id":"e3d9cc0f-e319-4d1b-9d1e-010b8296593b"},{"resourceType":"AzureContainer","name":"test-offerkbdqt-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offerkbdqt"}],"isModularPublishing":true,"id":"81491096-fa9a-429f-ae44-94683ddc9cc2"},{"resourceType":"AzureContainer","name":"test-offer-6mqn-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offer-6mqn"}],"isModularPublishing":true,"id":"d02da7f6-a0ad-4266-9c56-937fa21539de"},{"resourceType":"AzureContainer","name":"clitestkof46wyl47ghg3hvy
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestkof46wyl47ghg3hvy"}],"isModularPublishing":true,"id":"8a5d8492-2576-48b1-af97-e0ae9fda6c11"}]}'
+      string: '{"value":[]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:38:03 GMT
+      - Thu, 11 Jan 2024 19:07:38 GMT
       request-id:
-      - d4886088-170d-48db-842c-d3832b1656e6
+      - abc81791-df34-48dd-8edb-50f731e8c5f2
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFRDY3MzM5OUMyXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"kgates-offer-1","externalIDs":[{"type":"AzureOfferId","value":"kgates-offer-1"}],"isModularPublishing":true,"id":"3a0270ee-f1d3-40d0-a6f5-b4c5ae998813"},{"resourceType":"AzureContainer","name":"hark5","externalIDs":[{"type":"AzureOfferId","value":"hark5"}],"isModularPublishing":true,"id":"d714a246-2586-4573-ae00-9b361c1a8a7c"},{"resourceType":"AzureContainer","name":"bobjacissue63","externalIDs":[{"type":"AzureOfferId","value":"bobjacissue63"}],"isModularPublishing":true,"id":"ccffa5f3-3cc1-4dc2-b694-94f3d674bdbf"},{"resourceType":"AzureContainer","name":"oaum262tfr","externalIDs":[{"type":"AzureOfferId","value":"ogpei3onjr"}],"isModularPublishing":true,"id":"b9abebfc-b26d-42ad-85b7-c91c73a07d81"},{"resourceType":"AzureContainer","name":"test-offerufmsq-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offerufmsq"}],"isModularPublishing":true,"id":"f3949d5b-7372-449d-8e9d-ff8c79cf5d3e"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Sun, 18 Jun 2023 22:38:03 GMT
-      request-id:
-      - c5f88091-d77f-4f6f-a94d-fb2a15080402
-      transfer-encoding:
-      - chunked
+      x-azure-ref:
+      - 0ejygZQAAAAATz7thPzcyRpodXGFUsyPKTU5aMjIxMDYwNjEyMDMzADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
@@ -316,16 +210,22 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27offertest-000001%27%29
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"b3cdff6f-0aca-42ae-a30d-9c727b14a971"}]}'
+      string: '{"value":[{"resourceType":"AzureContainer","name":"offertest-000001-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-000001"}],"isModularPublishing":true,"id":"dadc562f-7e73-47d5-8c67-bdd1b148c99c"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:38:05 GMT
+      - Thu, 11 Jan 2024 19:07:38 GMT
       request-id:
-      - 5c6527b3-0f5f-494c-865c-1a5c33d15f7f
+      - 2f901645-10dc-4fa5-85ff-86ceee2f5665
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
+      x-azure-ref:
+      - 0ezygZQAAAADQM6et6YVSQI0+4gyMSbPUTU5aMjIxMDYwNjExMDI1ADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
@@ -339,7 +239,7 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: DELETE
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b3cdff6f-0aca-42ae-a30d-9c727b14a971
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/dadc562f-7e73-47d5-8c67-bdd1b148c99c
   response:
     body:
       string: ''
@@ -347,9 +247,15 @@ interactions:
       content-length:
       - '0'
       date:
-      - Sun, 18 Jun 2023 22:38:06 GMT
+      - Thu, 11 Jan 2024 19:07:40 GMT
       request-id:
-      - f1263d3f-d1fb-4ecf-bbb3-dc1f4f3e243e
+      - 5a4c003c-5454-40fa-8a0e-b35d43b6aa7b
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      x-azure-ref:
+      - 0ezygZQAAAAD1RItvzp+wQ596K63bVo7gTU5aMjIxMDYwNjExMDI1ADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 204
       message: No Content
@@ -366,71 +272,22 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFCOUNENjczMzkwXCIsXCJtYXhcIjpcIjA1QzFDOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"thfalgou-offer-4-alias","externalIDs":[{"type":"AzureOfferId","value":"thfalgou-offer-4-id"}],"isModularPublishing":true,"id":"e0a9a297-5571-4f93-86fa-6744ca1d6afe"},{"resourceType":"AzureContainer","name":"thfalgou-offer-5-alias","externalIDs":[{"type":"AzureOfferId","value":"thfalgou-offer-5-id"}],"isModularPublishing":true,"id":"7faeda15-160d-4337-a30d-9e3989ca5007"},{"resourceType":"AzureContainer","name":"Minecraft
-        as a Service (free)","externalIDs":[{"type":"AzureOfferId","value":"minecraft-as-a-service-free"}],"isModularPublishing":true,"id":"ba79e6dc-dae0-4ecb-93c4-2699d69c3d47"},{"resourceType":"AzureThirdPartyVirtualMachine","name":"vmoffer1","externalIDs":[{"type":"AzureOfferId","value":"vmoffer1"}],"isModularPublishing":true,"id":"5fdde8e0-f566-4a4a-a3d9-ef548ab5b236"},{"resourceType":"AzureContainer","name":"kehilli
-        test offer 2","externalIDs":[{"type":"AzureOfferId","value":"kehillitestoffer2"}],"isModularPublishing":true,"id":"8f73c2c4-75a7-4749-b213-166df0c47112"},{"resourceType":"AzureApplication","name":"azureappoffer1","externalIDs":[{"type":"AzureOfferId","value":"azureappoffer1"}],"isModularPublishing":true,"id":"837bd4d9-33a9-43db-9384-efc576912efb"},{"resourceType":"AzureApplication","name":"offertest-gdisb-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-gdisb"}],"isModularPublishing":true,"id":"874e71da-78d2-453b-8ad1-5540319f512e"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFEOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"modm","externalIDs":[{"type":"AzureOfferId","value":"modm"}],"isModularPublishing":true,"id":"5f6e7a0c-0e30-418f-a107-39891409a3fb"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:38:07 GMT
+      - Thu, 11 Jan 2024 19:07:41 GMT
       request-id:
-      - d564854e-5b6a-4316-8e26-d731779249ca
+      - fa395984-6203-4bb0-b1ee-9a550c0a0c9a
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFCOUNENjczMzkwXCIsXCJtYXhcIjpcIjA1QzFDOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
-  response:
-    body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFDOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"oabobjaccli","externalIDs":[{"type":"AzureOfferId","value":"obobjaccli"}],"isModularPublishing":true,"id":"292bd6c7-98f8-4da3-b1f2-a3c3aaeb66dd"},{"resourceType":"AzureApplication","name":"offertest-7bxn5-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-7bxn5"}],"isModularPublishing":true,"id":"219bdb15-1125-4a60-b93b-7c5e950f48b1"},{"resourceType":"AzureContainer","name":"clitestyz4ynrzhp4iphvznt
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestyz4ynrzhp4iphvznt"}],"isModularPublishing":true,"id":"51180b73-3029-4949-bc10-7d191b9ae936"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Sun, 18 Jun 2023 22:38:07 GMT
-      request-id:
-      - 8c2c5ffc-e5a7-4710-b1c3-63cb12bf86e6
-      transfer-encoding:
-      - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFDOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
-  response:
-    body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFEOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacissue62","externalIDs":[{"type":"AzureOfferId","value":"bobjacissue62"}],"isModularPublishing":true,"id":"34c414b6-8d55-4458-a60b-d57aae0ea9a9"},{"resourceType":"AzureContainer","name":"oanmcdl2a3","externalIDs":[{"type":"AzureOfferId","value":"ozqscacapb"}],"isModularPublishing":true,"id":"280bd8f2-6d3f-4093-b9e3-af9e2af21425"},{"resourceType":"AzureContainer","name":"test-offergfcn3-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offergfcn3"}],"isModularPublishing":true,"id":"97d805bb-1205-4e98-b6b8-6c72d8685af1"},{"resourceType":"AzureApplication","name":"offertest-sxjzv-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-sxjzv"}],"isModularPublishing":true,"id":"7418a8b5-22c3-4b4d-a0d0-16f38c0b1577"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Sun, 18 Jun 2023 22:38:08 GMT
-      request-id:
-      - abfd1d06-b43c-4612-9f49-47709f27fac4
-      transfer-encoding:
-      - chunked
+      x-azure-ref:
+      - 0fTygZQAAAACP28uVrqgGTY1sDG8CvW4RTU5aMjIxMDYwNjEzMDIzADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
@@ -447,44 +304,23 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIjA1QzFEOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"thfalgout-offer-1","externalIDs":[{"type":"AzureOfferId","value":"thfalgou-offer-1"}],"isModularPublishing":true,"id":"817e530b-a712-4393-86e2-4e9aa03a8234"},{"resourceType":"AzureApplication","name":"bobjacpostman","externalIDs":[{"type":"AzureOfferId","value":"bobjacpostmanoffer"}],"isModularPublishing":true,"id":"19160d75-384d-4fed-bf71-6dee82cb4cae"},{"resourceType":"AzureContainer","name":"oabaabw6jq","externalIDs":[{"type":"AzureOfferId","value":"ojdwfkhaof"}],"isModularPublishing":true,"id":"3c80bc9d-51cb-4871-9744-ab1299c5b252"},{"resourceType":"AzureContainer","name":"kehilli-aks-offer","externalIDs":[{"type":"AzureOfferId","value":"kehilli-aks-offer"}],"isModularPublishing":true,"id":"471bfa20-60a7-42d4-a4c9-a5e299a58f83"},{"resourceType":"AzureContainer","name":"clitestsj6gbptmowoapev6p
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestsj6gbptmowoapev6p"}],"isModularPublishing":true,"id":"725d0fcd-ad57-42cc-b438-274dfc053a74"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"clitestggu37rgpati2ialq7
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestggu37rgpati2ialq7"}],"isModularPublishing":true,"id":"f6d927a0-0f1c-4908-ad0b-02b8b1b6ad53"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:38:08 GMT
+      - Thu, 11 Jan 2024 19:07:41 GMT
       request-id:
-      - 2581b23e-e83e-488c-a8e1-13a9e5c7a194
+      - ef95d175-4319-44e2-a647-cb62edcc8170
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFEOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
-  response:
-    body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenarioofferalias","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenarioofferid"}],"isModularPublishing":true,"id":"498cd389-ed84-4b59-99b0-d3d5cf0fb1fb"},{"resourceType":"AzureContainer","name":"dgtestcontainer","externalIDs":[{"type":"AzureOfferId","value":"dgtestcontainer"}],"isModularPublishing":true,"id":"11fedafd-18a3-4d5c-bde3-b92c8ebd9362"},{"resourceType":"AzureContainer","name":"Container
-        Workshop","externalIDs":[{"type":"AzureOfferId","value":"cwdgtest"}],"isModularPublishing":true,"id":"6e1fbc9b-3644-4217-ac46-31a1d1772a0e"},{"resourceType":"SoftwareAsAService","name":"saas-offer-01","externalIDs":[{"type":"AzureOfferId","value":"saas-offer-01"}],"isModularPublishing":true,"id":"65611832-3908-4d8b-bf06-b3a1d8c141c0"},{"resourceType":"AzureApplication","name":"offertest-4r72v-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-4r72v"}],"isModularPublishing":true,"id":"da9dd3e9-1fbd-45c6-b820-7567fb7c689e"},{"resourceType":"AzureApplication","name":"offertest-ymzph-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-ymzph"}],"isModularPublishing":true,"id":"972f2673-e445-475e-a078-194ca6b69dd8"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Sun, 18 Jun 2023 22:38:09 GMT
-      request-id:
-      - 684d38a6-d0ff-4e88-b6b0-bc7937276352
-      transfer-encoding:
-      - chunked
+      x-azure-ref:
+      - 0fjygZQAAAADk1E2oVsdwSpIRoUDb8JfZTU5aMjIxMDYwNjEzMDIzADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
@@ -501,47 +337,23 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFMzk5Q0Q2NzJDXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFNzMzOTlDRDVFXCIsXCJtYXhcIjpcIjA1QzFFOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacscenario","externalIDs":[{"type":"AzureOfferId","value":"bobjacscenario"}],"isModularPublishing":true,"id":"4de943e8-a5ee-4291-8bf1-5d6f7efda678"},{"resourceType":"AzureContainer","name":"oa76sblmqh","externalIDs":[{"type":"AzureOfferId","value":"olhldim3ae"}],"isModularPublishing":true,"id":"0f183625-5c00-4719-b4cc-2462370cfb9c"},{"resourceType":"AzureContainer","name":"jenny6","externalIDs":[{"type":"AzureOfferId","value":"jenny6"}],"isModularPublishing":true,"id":"817e13cf-e274-4066-872c-608679054112"},{"resourceType":"AzureContainer","name":"Container
-        Workshop - dgtest","externalIDs":[{"type":"AzureOfferId","value":"dgtest-cw"}],"isModularPublishing":true,"id":"081c39ba-831a-4de4-90a4-697fe521dd93"}]}'
+      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"modm-96","externalIDs":[{"type":"AzureOfferId","value":"modm-96"}],"isModularPublishing":true,"id":"891bb189-5099-46ad-937c-9436c5de67f7"},{"resourceType":"AzureContainer","name":"clitestvxnhb6mdqdmv2vako
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestvxnhb6mdqdmv2vako"}],"isModularPublishing":true,"id":"22ae2c4f-a3c1-4f40-9641-66d0499dc88c"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:38:09 GMT
+      - Thu, 11 Jan 2024 19:07:42 GMT
       request-id:
-      - afaadbb5-4a3f-4e0a-90b9-d1da8d08f78d
+      - 68709bd0-4584-454f-a1c8-59ee3dad5b60
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFNzMzOTlDRDVFXCIsXCJtYXhcIjpcIjA1QzFFOUNENjczMzkwXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
-  response:
-    body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"Minecraft
-        as a Service (paid)","externalIDs":[{"type":"AzureOfferId","value":"minecraft-paid"}],"isModularPublishing":true,"id":"30753d75-094f-4976-9d73-3963ff1fac9f"},{"resourceType":"AzureContainer","name":"harkcli","externalIDs":[{"type":"AzureOfferId","value":"harkcli"}],"isModularPublishing":true,"id":"770b2a1a-7e6c-4241-acba-7dd2e4022982"},{"resourceType":"AzureContainer","name":"kehilli
-        test offer 3","externalIDs":[{"type":"AzureOfferId","value":"kehillitestoffer3"}],"isModularPublishing":true,"id":"bb757710-2229-4e86-bb57-cbcff57ecfdf"},{"resourceType":"AzureContainer","name":"Container
-        Workshop Mar 27","externalIDs":[{"type":"AzureOfferId","value":"dgtest-cw0327"}],"isModularPublishing":true,"id":"3abe1913-741f-4316-b144-f720b2782f18"},{"resourceType":"AzureApplication","name":"offertest-dnc53-alias","externalIDs":[{"type":"AzureOfferId","value":"offertest-dnc53"}],"isModularPublishing":true,"id":"50422360-2280-4550-b042-cb19aff57c4b"},{"resourceType":"AzureThirdPartyVirtualMachine","name":"clitestun4qyarcxjl7yey3e
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestun4qyarcxjl7yey3e"}],"isModularPublishing":true,"id":"ed1a3f75-a3a7-4ce1-b98e-c3533e865edf"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Sun, 18 Jun 2023 22:38:10 GMT
-      request-id:
-      - c11dd6c2-bc0d-4a9e-b1c7-2ddb542adc7e
-      transfer-encoding:
-      - chunked
+      x-azure-ref:
+      - 0fjygZQAAAADE44te1kbzTJXeOX+/WOW6TU5aMjIxMDYwNjEzMDIzADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
@@ -558,43 +370,22 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFOUNENjczMzkwXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
   response:
     body:
-      string: '{"nextLink":"v1.0/ingestion/products?$skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFRDY3MzM5OUMyXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9","value":[{"resourceType":"AzureContainer","name":"bobjacportal1","externalIDs":[{"type":"AzureOfferId","value":"bobjacportal1"}],"isModularPublishing":true,"id":"2dc56d05-8272-426c-bbfb-c5bf6c754fe0"},{"resourceType":"AzureContainer","name":"ashwin","externalIDs":[{"type":"AzureOfferId","value":"ashwin"}],"isModularPublishing":true,"id":"e3d9cc0f-e319-4d1b-9d1e-010b8296593b"},{"resourceType":"AzureContainer","name":"test-offerkbdqt-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offerkbdqt"}],"isModularPublishing":true,"id":"81491096-fa9a-429f-ae44-94683ddc9cc2"},{"resourceType":"AzureContainer","name":"test-offer-6mqn-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offer-6mqn"}],"isModularPublishing":true,"id":"d02da7f6-a0ad-4266-9c56-937fa21539de"},{"resourceType":"AzureContainer","name":"clitestkof46wyl47ghg3hvy
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitestkof46wyl47ghg3hvy"}],"isModularPublishing":true,"id":"8a5d8492-2576-48b1-af97-e0ae9fda6c11"}]}'
+      string: '{"value":[]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sun, 18 Jun 2023 22:38:10 GMT
+      - Thu, 11 Jan 2024 19:07:42 GMT
       request-id:
-      - ffdcfa85-be38-4dc2-aa26-06da68dc7072
+      - 42c664c1-fb5d-40c0-882a-ac2e1605646f
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24skipToken=eyJMYXN0SWQiOiJbe1widG9rZW5cIjpudWxsLFwicmFuZ2VcIjp7XCJtaW5cIjpcIjA1QzFFRDY3MzM5OUMyXCIsXCJtYXhcIjpcIkZGXCJ9fV0iLCJTb3VyY2UiOiJEb2NEQiJ9
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureContainer","name":"kgates-offer-1","externalIDs":[{"type":"AzureOfferId","value":"kgates-offer-1"}],"isModularPublishing":true,"id":"3a0270ee-f1d3-40d0-a6f5-b4c5ae998813"},{"resourceType":"AzureContainer","name":"hark5","externalIDs":[{"type":"AzureOfferId","value":"hark5"}],"isModularPublishing":true,"id":"d714a246-2586-4573-ae00-9b361c1a8a7c"},{"resourceType":"AzureContainer","name":"bobjacissue63","externalIDs":[{"type":"AzureOfferId","value":"bobjacissue63"}],"isModularPublishing":true,"id":"ccffa5f3-3cc1-4dc2-b694-94f3d674bdbf"},{"resourceType":"AzureContainer","name":"oaum262tfr","externalIDs":[{"type":"AzureOfferId","value":"ogpei3onjr"}],"isModularPublishing":true,"id":"b9abebfc-b26d-42ad-85b7-c91c73a07d81"},{"resourceType":"AzureContainer","name":"test-offerufmsq-alias","externalIDs":[{"type":"AzureOfferId","value":"test-offerufmsq"}],"isModularPublishing":true,"id":"f3949d5b-7372-449d-8e9d-ff8c79cf5d3e"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Sun, 18 Jun 2023 22:38:12 GMT
-      request-id:
-      - 5f88a80e-acb0-4255-871d-faa2a1c4e15a
-      transfer-encoding:
-      - chunked
+      x-azure-ref:
+      - 0fjygZQAAAAAL3AItXz3DQISjTplIdtk5TU5aMjIxMDYwNjEzMDIzADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      x-cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
