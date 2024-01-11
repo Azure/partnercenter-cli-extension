@@ -13,8 +13,9 @@ class PartnerCenterMarketplaceOfferListingMediaScenarioTest(PartnerCenterScenari
         super().setUp()
 
     @MarketplaceOfferPreparer()
-    # def test_marketplace_offer_listing_media(self):
-    #     self._test_add_large_logo()
+    def test_marketplace_offer_listing_media(self):
+        pass
+        # self._test_add_large_logo()
         # self._test_video_thumbnail()
 
     def _test_video_thumbnail(self):

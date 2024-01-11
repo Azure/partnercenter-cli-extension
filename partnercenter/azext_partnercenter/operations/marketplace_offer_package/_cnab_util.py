@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 # pylint: disable=raise-missing-from
-# pylint: disable=no-self-use
 
 import os
 import os.path

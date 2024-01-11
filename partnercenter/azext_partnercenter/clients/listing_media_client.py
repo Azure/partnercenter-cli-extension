@@ -5,7 +5,6 @@
 
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
-# pylint: disable=no-self-use
 
 from azext_partnercenter.models.listing_image import ListingImage
 from azext_partnercenter.models.listing_video import ListingVideo

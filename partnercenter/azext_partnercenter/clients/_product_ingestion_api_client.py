@@ -5,8 +5,8 @@
 
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
-# pylint: disable=no-self-use
 # pylint: disable=too-few-public-methods
+
 from time import time
 import requests
 from pydantic import Extra
@@ -97,9 +97,9 @@ class ProductIngestionApiClient:
             product=product_id.root,
             plan=plan_id.root
         )
-        configuration.__setattr__('payloadType', 'cnab')
-        configuration.__setattr__('clusterExtensionType', properties.cluster_extension_type)
-        configuration.__setattr__('cnabReferences', properties.cnab_references)
+        setattr(configuration, 'payloadType', 'cnab')
+        setattr(configuration, 'clusterExtensionType', properties.cluster_extension_type)
+        setattr(configuration, 'cnabReferences', properties.cnab_references)
 
         resource = configuration.dict(by_alias=True)
         resource['$schema'] = 'https://product-ingestion.azureedge.net/schema/container-plan-technical-configuration/2022-03-01-preview3'
