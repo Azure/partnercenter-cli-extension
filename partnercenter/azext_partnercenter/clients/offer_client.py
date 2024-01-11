@@ -4,7 +4,6 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
-# pylint: disable=no-self-use
 
 from azext_partnercenter.models.offer_setup import OfferSetup
 from azext_partnercenter.models import (ListingContact, ListingUri, Offer, Listing, Resource)
@@ -109,7 +108,7 @@ class OfferClient(BaseClient):
 
     def _map_setup(self, offer_external_id, api_setup: MicrosoftIngestionApiModelsProductsAzureProductSetup) -> OfferSetup:
         reseller = (next((x for x in api_setup.channel_states if x['type'] == "Reseller"), None))['value'] == 'Enabled'
-        sell_through_microsoft = (api_setup.selling_option == 'ListAndSell')
+        sell_through_microsoft = api_setup.selling_option == 'ListAndSell'
 
         offer_setup = OfferSetup(
             id=offer_external_id,

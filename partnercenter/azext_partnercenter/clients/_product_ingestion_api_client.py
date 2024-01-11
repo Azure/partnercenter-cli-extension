@@ -5,8 +5,8 @@
 
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
-# pylint: disable=no-self-use
 # pylint: disable=too-few-public-methods
+
 from time import time
 import requests
 from pydantic import Extra
@@ -88,18 +88,18 @@ class ProductIngestionApiClient:
                                                                  properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         """Updates the technical configuration for a 'list and sell' offer, which uses a CNAB bundle"""
 
-        durable_id = DurableId(__root__=f'container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}')
-        product_id = DurableId(__root__="product/" + offer_durable_id)
-        plan_id = DurableId(__root__=f"plan/{offer_durable_id}/{plan_durable_id}")
+        durable_id = DurableId(root=f'container-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}')
+        product_id = DurableId(root="product/" + offer_durable_id)
+        plan_id = DurableId(root=f"plan/{offer_durable_id}/{plan_durable_id}")
 
         configuration = ContainerPlanTechnicalConfiguration(
-            id=durable_id.__root__,
-            product=product_id.__root__,
-            plan=plan_id.__root__
+            id=durable_id.root,
+            product=product_id.root,
+            plan=plan_id.root
         )
-        configuration.__setattr__('payloadType', 'cnab')
-        configuration.__setattr__('clusterExtensionType', properties.cluster_extension_type)
-        configuration.__setattr__('cnabReferences', properties.cnab_references)
+        setattr(configuration, 'payloadType', 'cnab')
+        setattr(configuration, 'clusterExtensionType', properties.cluster_extension_type)
+        setattr(configuration, 'cnabReferences', properties.cnab_references)
 
         resource = configuration.dict(by_alias=True)
         resource['$schema'] = 'https://product-ingestion.azureedge.net/schema/container-plan-technical-configuration/2022-03-01-preview3'
@@ -132,13 +132,13 @@ class ProductIngestionApiClient:
 
     def publish_submission(self, target, offer_durable_id, submission_id=None):
         """Publishes a product, either all its draft changes or a specific submission using the submission_id"""
-        product_id = DurableId(__root__="product/" + offer_durable_id)
-        durable_id = DurableId(__root__=f"submission/{offer_durable_id}/{submission_id}") if submission_id is not None else None
+        product_id = DurableId(root="product/" + offer_durable_id)
+        durable_id = DurableId(root=f"submission/{offer_durable_id}/{submission_id}") if submission_id is not None else None
 
         resource = {
             '$schema': 'https://product-ingestion.azureedge.net/schema/submission/2022-03-01-preview2',
-            'id': (None if durable_id is None else durable_id.__root__),
-            'product': product_id.__root__,
+            'id': (None if durable_id is None else durable_id.root),
+            'product': product_id.root,
             'target': {'targetType': target}
         }
 

@@ -4,7 +4,6 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
-# pylint: disable=no-self-use
 
 from azext_partnercenter.models import ListingContact, Listing, ListingUri, Resource
 from azext_partnercenter.vendored_sdks.v1.partnercenter.models import (

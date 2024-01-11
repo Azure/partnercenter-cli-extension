@@ -33,7 +33,7 @@ class OfferSubmissionClient(BaseClient):
     @staticmethod
     def _map_submission(s: Submission) -> OfferSubmission:
         return OfferSubmission(
-            id=s.id.__root__.split('/')[-1],
+            id=s.id.root.split('/')[-1],
             lifecycle_state=s.lifecycle_state,
             target=s.target.target_type,
             status=s.status,

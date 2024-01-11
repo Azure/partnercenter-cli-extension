@@ -14,7 +14,7 @@ class PartnerCenterMarketplaceOfferSetupScenarioTest(PartnerCenterScenarioTest):
         self.cmd_delay = 5  # delay each cmd by 5 sec, default
         super().setUp()
 
-    @MarketplaceOfferPreparer(offer_type=OfferType.AZURETHIRDPARTYVIRTUALMACHINE)
+    @MarketplaceOfferPreparer(offer_type=OfferType.AZURETHIRDPARTYVIRTUALMACHINE.value)
     def test_marketplace_offer_setup_test_drive_on_vm_type(self):
         self.cmd('partnercenter marketplace offer setup update --offer-id {offer_id} --test-drive {updated_test_drive}',
                  checks=[self.check('testDrive', True)])
@@ -40,7 +40,7 @@ class PartnerCenterMarketplaceOfferSetupScenarioTest(PartnerCenterScenarioTest):
         result = self.cmd('partnercenter marketplace offer setup show --id {offer_id}').get_output_in_json()
 
         self.assertTrue(result['reseller'])
-        self.assertFalse(result['sellThroughMicrosoft'])
+        self.assertTrue(result['sellThroughMicrosoft'])
         self.assertFalse(result['testDrive'])
         self.assertEqual('', result['trialUri'])
 

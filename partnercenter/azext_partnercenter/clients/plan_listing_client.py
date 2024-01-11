@@ -61,6 +61,9 @@ class PlanListingClient(BaseClient):
                                               offer_durable_id, "Listing", self._get_access_token()))
 
         plan = self._plan_client.get(offer.id, plan_external_id)
+        if plan is None:
+            return None
+
         branch_listing = next((b for b in branches if hasattr(b, 'variant_id') and b.variant_id == plan._resource.durable_id), None)
 
         if branch_listing is None:
