@@ -166,7 +166,7 @@ class ContainerImagePlanTechnicalConfigurationProperties(BaseModel):
 
 
 class Validation(ValidationInnerError):
-    _schema: Optional[SchemaUri] = Field(None, alias='$schema')
+    schema_uri: Optional[SchemaUri] = Field(None, alias='$schema')
     level: Level
 
 
@@ -188,7 +188,7 @@ class ContainerPlanTechnicalConfiguration(Resource):
 class ConfigureResources(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    _schema: Optional[SchemaUri] = Field(None, alias='$schema')
+    schema_uri: Optional[SchemaUri] = Field(None, alias='$schema')
     resources: List[Resource] = Field(..., min_length=1)
 
 
@@ -292,7 +292,7 @@ class Error(BaseModel):
 class ConfigureResourcesStatus(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    _schema: Optional[SchemaUri] = Field(None, alias='$schema')
+    schema_uri: Optional[SchemaUri] = Field(None, alias='$schema')
     job_id: str = Field(..., alias='jobId')
     job_status: JobStatus = Field(..., alias='jobStatus')
     job_result: JobResult = Field(..., alias='jobResult')
@@ -346,7 +346,7 @@ class AlternativePlan(BaseModel):
 class DeprecationSchedule(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    _schema: Optional[SchemaUri] = Field(None, alias='$schema')
+    schema_uri: Optional[SchemaUri] = Field(None, alias='$schema')
     date: Optional[date] = None
     date_offset: Optional[str] = Field(None, alias='dateOffset')
     reason: Optional[DeprecationScheduleReason] = None
@@ -358,7 +358,7 @@ class ResourceTarget(BaseModel):
 
 
 class Submission(Resource):
-    _schema: Optional[SchemaUri] = Field(None, alias='$schema')
+    schema_uri: Optional[SchemaUri] = Field(None, alias='$schema')
     product: ResourceReference
     target: ResourceTarget
     status: Optional[JobStatus] = None
