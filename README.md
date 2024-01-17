@@ -1,3 +1,6 @@
+[![CI](https://github.com/Azure/partnercenter-cli-extension/actions/workflows/python.yml/badge.svg)](https://github.com/Azure/partnercenter-cli-extension/actions/workflows/python.yml)
+
+
 # Partner Center Azure CLI Extension (Preview)
 
 The Partner Center CLI Extension adds Partner Center commands to the Azure CLI 2.0.
