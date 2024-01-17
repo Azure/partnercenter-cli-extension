@@ -14,25 +14,24 @@ jobs:
     name: Check style and lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout source
+        uses: actions/checkout@v2
       - name: azdev setup
         run: |
           python -m venv env
           source env/bin/activate
 
-          pip install -r requirements.txt
+          pip install -r ./requirements.txt
           pip install azdev
 
-          azdev setup -r .
+          azdev setup -r ./ -e partnercenter
           azdev extension repo add .
           azdev extension add partnercenter
       - name: azdev style
         run: |
-          source env/bin/activate
           azdev style partnercenter
       - name: azdev linter
         run: |
-          source env/bin/activate
           azdev linter partnercenter
 
   run-tests:
@@ -53,13 +52,12 @@ jobs:
           python -m venv env
           source env/bin/activate
 
-          pip install -r requirements.txt
+          pip install -r ./requirements.txt
           pip install azdev
 
-          azdev setup -r .
-          azdev extension repo add ../partnercenter-cli-extension/
+          azdev setup -r ./ -e partnercenter
+          azdev extension repo add .
           azdev extension add partnercenter
       - name: azdev test
         run: |
-          source env/bin/activate
           azdev test partnercenter --series
