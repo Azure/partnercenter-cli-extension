@@ -15,22 +15,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v2
-      - name: azdev setup
-        run: |
-          python -m venv env
-          source env/bin/activate
+        uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup Azure CLI Dev
+        run: |
           pip install -r ./requirements.txt
           pip install azdev
 
           azdev setup -r ./ -e partnercenter
           azdev extension repo add .
           azdev extension add partnercenter
-      - name: azdev style
+      - name: Check style
         run: |
           azdev style partnercenter
-      - name: azdev linter
+      - name: Check linter
         run: |
           azdev linter partnercenter
 
@@ -39,7 +41,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
       - name: Azure Login
         uses: azure/login@v1
@@ -47,17 +54,14 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      - name: azdev setup
+      - name: Setup Azure CLI Dev
         run: |
-          python -m venv env
-          source env/bin/activate
-
           pip install -r ./requirements.txt
           pip install azdev
 
           azdev setup -r ./ -e partnercenter
           azdev extension repo add .
           azdev extension add partnercenter
-      - name: azdev test
+      - name: Execute tests
         run: |
           azdev test partnercenter --series
