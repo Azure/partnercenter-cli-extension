@@ -1,11 +1,17 @@
 name: Python CI
+
+permissions:
+  id-token: write
+  contents: read
+
 on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  azdev-linter:
+  check-style-and-lint:
+    name: Check style and lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -13,7 +19,9 @@ jobs:
         run: |
           python -m venv env
           source env/bin/activate
-          pip install azdev==0.1.48
+
+          pip install -r requirements.txt
+          pip install azdev
 
           azdev setup -r .
           azdev extension repo add .
@@ -27,17 +35,27 @@ jobs:
           source env/bin/activate
           azdev linter partnercenter
 
-  azdev-test:
+  run-tests:
+    name: Run Tests
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - uses: actions/checkout@v2
-      - uses: azure/login@v1
+
+      - name: Azure Login
+        uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - run: |
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: azdev setup
+        run: |
           python -m venv env
           source env/bin/activate
-          pip install azdev==0.1.48
+
+          pip install -r requirements.txt
+          pip install azdev
+
           azdev setup -r .
           azdev extension repo add ../partnercenter-cli-extension/
           azdev extension add partnercenter
