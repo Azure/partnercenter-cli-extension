@@ -8,6 +8,9 @@ from azure.cli.core.commands import CliCommandType
 from azext_partnercenter._client_factory import cf_offers
 
 
+# TODO: use https://github.com/Azure/azure-cli/blob/75b08317b30620e9d11e688bcf9bce630a48804c/src/azure-cli/azure/cli/command_modules/appservice/commands.py#L126C33-L126C42
+# as a reference for adding exception handling and validation
+
 def load_command_table(commands_loader, _):
     custom_command_type = CliCommandType(operations_tmpl='azext_partnercenter.operations.marketplace_offer_package.custom#{}', client_factory=cf_offers)
 

@@ -17,22 +17,24 @@ from .target_type import TargetType
 from .offer_submission import OfferSubmission
 from .plan_technical_configuration_type import PlanTechnicalConfigurationType
 from .media_type import MediaType
+from .offer_package_type import AzureApplicationPackageType
 
 __all__ = [
-    'Plan',
-    'Listing',
-    'PlanListing',
-    'PlanTechnicalConfigurationType',
-    'MediaType',
-    'Offer',
-    'OfferType',
-    'OfferSetup',
-    'OfferSubmission',
-    'ListingVideo',
-    'ListingContact',
-    'ListingImage',
-    'ListingUri',
-    'Listing',
-    'TargetType',
-    'Resource'
+    "AzureApplicationPackageType",
+    "Plan",
+    "Listing",
+    "PlanListing",
+    "PlanTechnicalConfigurationType",
+    "MediaType",
+    "Offer",
+    "OfferType",
+    "OfferSetup",
+    "OfferSubmission",
+    "ListingVideo",
+    "ListingContact",
+    "ListingImage",
+    "ListingUri",
+    "Listing",
+    "TargetType",
+    "Resource",
 ]

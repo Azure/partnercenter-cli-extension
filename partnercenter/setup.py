@@ -37,7 +37,13 @@ CLASSIFIERS = [
 ]
 
 # TODO: Add any additional SDK dependencies here
-DEPENDENCIES = ["docker", "azure-storage-blob", "requests", "pydantic ~= 2.5.3"]
+DEPENDENCIES = [
+    "docker",
+    "azure-storage-blob",
+    "requests",
+    "pydantic ~= 2.5.3",
+    "commercial-marketplace-offer-deploy @ https://github.com/microsoft/commercial-marketplace-offer-deploy/releases/download/v2.0.0/commercial_marketplace_offer_deploy-2.0.0-py3-none-any.whl#sha256=2a57dbdc6e59eccd9c2c4421c8385060004030b4cc48dd95d69dcb050df85149",
+]
 
 with open("README.rst", "r", encoding="utf-8") as f:
     README = f.read()
