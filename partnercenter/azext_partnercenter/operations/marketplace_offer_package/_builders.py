@@ -84,7 +84,8 @@ def _create_package_builder(cmd, package_type, **kwargs):
             src_dir=src_dir,
             out_dir=out_dir,
         )
-    elif package_type == AzureApplicationPackageType.Direct:
+
+    if package_type == AzureApplicationPackageType.Direct:
         return DirectAzureAppPackageBuilder(template_file=kwargs["template_file"])
 
     raise ValueError(f"Package type {package_type} is not supported by the CLI.")
