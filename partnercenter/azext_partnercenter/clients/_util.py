@@ -15,6 +15,12 @@ class Expando:
     def __init__(self, dict_instance) -> None:
         self.__dict__.update(dict_instance)
 
+def upload_media(upload_file_path, file_sas_uri):
+    from azure.storage.blob import BlobClient
+    blob_client = BlobClient.from_blob_url(file_sas_uri)
+    with open(upload_file_path, 'rb') as data:
+        result = blob_client.upload_blob(data)
+        return result
 
 def object_to_dict(item):
     if isinstance(item, dict) or item is None:

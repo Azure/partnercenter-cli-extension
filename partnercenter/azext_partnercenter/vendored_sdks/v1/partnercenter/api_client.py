@@ -208,6 +208,8 @@ class ApiClient(object):
 
         return_data = response_data
 
+
+
         if not _preload_content:
             return (return_data)
             return return_data
@@ -222,6 +224,8 @@ class ApiClient(object):
                     if match:
                         encoding = match.group(1)
                 response_data.data = response_data.data.decode(encoding)
+                print('response_data - ' + response_data.data)
+                print(response_type)
 
             return_data = self.deserialize(
                 response_data,

@@ -6,11 +6,15 @@
 # pylint: disable=protected-access
 # pylint: disable=no-else-return
 
+import os
+from xml.dom.expatbuilder import FILTER_ACCEPT
 from knack.util import CLIError
 from azext_partnercenter.clients import OfferClient, PlanClient
 from azext_partnercenter.clients._base_client import BaseClient
+from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_packages_azure_package import (
+    MicrosoftIngestionApiModelsPackagesAzurePackage)
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (ContainerCnabPlanTechnicalConfigurationProperties)
-from ._util import get_combined_paged_results
+from ._util import get_combined_paged_results, upload_media
 
 
 class PlanTechnicalConfigurationClient(BaseClient):
@@ -36,10 +40,16 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
         if variant_package_branch.product.resource_type == 'AzureContainer':
             technical_configuration = self._graph_api_client.get_container_plan_technical_configuration(offer_durable_id, plan_durable_id, sell_through_microsoft)
+        elif variant_package_branch.product.resource_type == 'AzureApplication':
+            print('you are a failure')
+            technical_configuration= self._get_azure_application_plan_technical_configuration(offer_durable_id, plan_durable_id)
+            print('technical_configuration: ')
+            print(technical_configuration)
         else:
             technical_configuration = self._get_plan_technical_configuration(variant_package_branch.product.id, variant_package_branch.variant_id)
             technical_configuration['planId'] = plan_external_id
 
+        print("about to return technical_configuration")
         return technical_configuration
 
     def delete_cnab_reference(self, offer_external_id, plan_external_id, repository_name, tag):
@@ -61,6 +71,38 @@ class PlanTechnicalConfigurationClient(BaseClient):
     def add_bundle(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         result = self._update_technical_configuration_properties(offer_external_id, plan_external_id, properties)
         return result
+
+    def add_managed_app_bundle(self, offer_external_id, plan_external_id, package_path):
+        variant_package_branch = self._get_variant_package_branch(offer_external_id, plan_external_id)
+        offer_durable_id = variant_package_branch.product.id
+        plan_durable_id = variant_package_branch.variant_id
+        file_name = os.path.basename(package_path)
+        print(f"file_name is {file_name}")
+
+        input_package = MicrosoftIngestionApiModelsPackagesAzurePackage(
+            resource_type='AzureApplicationPackage',
+            file_name=file_name
+        )
+
+        output_package = self._sdk.package_client.products_product_id_packages_post(
+            offer_durable_id,
+            self._get_access_token(),
+            microsoft_ingestion_api_models_packages_azure_package=input_package)
+        print(f"package post result is {output_package}")
+
+        upload_result = upload_media(package_path, output_package.file_sas_uri)
+        print(f"The upload_result is {upload_result}")
+
+        output_package.state = "Uploaded"
+
+        updated_package = self._sdk.package_client.products_product_id_packages_package_id_put(
+            offer_durable_id,
+            output_package.id,
+            self._get_access_token(),
+            microsoft_ingestion_api_models_packages_azure_package=output_package
+        )
+        print(f"The modified package is {updated_package}")
+        return updated_package
 
     def _update_technical_configuration_properties(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         variant_package_branch = self._get_variant_package_branch(offer_external_id, plan_external_id)
@@ -117,9 +159,21 @@ class PlanTechnicalConfigurationClient(BaseClient):
                     return v
         return None
 
+    def _get_azure_application_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
+        technical_configuration = {}
+        print(f"inside _get_azure_application_plan_technical_configuration with a {offer_durable_id} and {plan_durable_id}")
+        product_id = '246aed98-915f-4706-b0e8-6d8f2a9a8fdc'
+        package_configuration_id = 'dffef988-51de-43fd-af92-a2388252eb4d'
+        package_configuration = self._sdk.package_configuration_client.products_product_id_packageconfigurations_package_configuration_id_get(product_id, package_configuration_id, self._get_access_token())
+        print('package_configuration : ')
+        print(package_configuration)
+        return package_configuration
+
+
     def _get_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
         """Since we don't know what type of technical plan this will be for now unless we map the types to the schema, this gets any technical configuration type"""
 
+        print('offer_durable_id:' + offer_durable_id)
         resources = self._get_resource_tree(offer_durable_id)
         technical_configuration = None
 
@@ -134,5 +188,11 @@ class PlanTechnicalConfigurationClient(BaseClient):
         return technical_configuration
 
     def _get_resource_tree(self, offer_durable_id):
+        import json
         response = self._graph_api_client.get_resource_tree(offer_durable_id)
+
+        # show the json
+        formatted_json = json.dumps(response, indent=4)
+        print(formatted_json)
+
         return response['resources']

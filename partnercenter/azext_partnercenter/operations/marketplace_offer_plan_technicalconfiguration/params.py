@@ -19,6 +19,7 @@ def load_arguments(commands_loader, _):
         c.argument('repository_name', arg_group='CNAB Resource', options_list=['--repository'], help='The name of the image repository in the Azure Container Registry.')
         c.argument('tag', arg_group='CNAB Resource', options_list=['--tag'], help='The name of the image repository.')
         c.argument('digest', arg_group='CNAB Resource', options_list=['--digest'], help='The digest of the bundle with a format of sha256:<hashcode>')
+        c.argument('package_path', options_list=['--package-path'], help='The full path to the package zip file')
 
     with commands_loader.argument_context('partnercenter marketplace offer plan technical-configuration package delete') as c:
         c.argument('repository_name', arg_group='CNAB Resource', options_list=['--repository'], help='The name of the image repository in the Azure Container Registry.')
