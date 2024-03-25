@@ -6,13 +6,23 @@
 # pylint: disable=protected-access
 # pylint: disable=no-else-return
 
+from curses import can_change_color
 import os
 from xml.dom.expatbuilder import FILTER_ACCEPT
+from azext_partnercenter.models import package_authorization
 from knack.util import CLIError
 from azext_partnercenter.clients import OfferClient, PlanClient
 from azext_partnercenter.clients._base_client import BaseClient
+from azext_partnercenter.models.package_configuration import PackageConfiguration
+from azext_partnercenter.models.package_authorization import PackageAuthorization
+from azext_partnercenter.models.package_reference import PackageReference
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_packages_azure_package import (
     MicrosoftIngestionApiModelsPackagesAzurePackage)
+from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_packages_azure_managed_application_package_configuration import (
+        MicrosoftIngestionApiModelsPackagesAzureManagedApplicationPackageConfiguration)
+from azext_partnercenter.vendored_sdks.v1.partnercenter.model.products_product_id_packageconfigurations_package_configuration_id_get200_response import (
+    ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
+)
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (ContainerCnabPlanTechnicalConfigurationProperties)
 from ._util import get_combined_paged_results, upload_media
 
@@ -72,9 +82,12 @@ class PlanTechnicalConfigurationClient(BaseClient):
         result = self._update_technical_configuration_properties(offer_external_id, plan_external_id, properties)
         return result
 
-    def add_managed_app_bundle(self, offer_external_id, plan_external_id, package_path):
+    def add_managed_app_bundle(self, offer_external_id, plan_external_id, package_path, public_azure_tenant_id, public_azure_authorization_principal, public_azure_authorization_role):
         variant_package_branch = self._get_variant_package_branch(offer_external_id, plan_external_id)
+        print(f"variant_package_branch is {variant_package_branch}")
         offer_durable_id = variant_package_branch.product.id
+        current_draft_instance_id = variant_package_branch.current_draft_instance_id
+        print(f"current_draft_instance_id is {current_draft_instance_id}")
         plan_durable_id = variant_package_branch.variant_id
         file_name = os.path.basename(package_path)
         print(f"file_name is {file_name}")
@@ -102,7 +115,117 @@ class PlanTechnicalConfigurationClient(BaseClient):
             microsoft_ingestion_api_models_packages_azure_package=output_package
         )
         print(f"The modified package is {updated_package}")
-        return updated_package
+        package_id = updated_package.id
+
+        # wait for the package to be processed
+
+
+        # get package configuration by draft instance id
+        package_configuration = self._sdk.package_configuration_client.products_product_id_package_configurations_get_by_instance_id_instance_i_dinstance_id_get(
+            offer_durable_id,
+            current_draft_instance_id,
+            self._get_access_token()
+        )
+        print(f"package_configuration is {package_configuration}")
+
+        package_config_data = package_configuration['value'][0]
+
+        # Create a dictionary with the relevant data
+        package_config_dict = {
+            'resource_type': package_config_data['resourceType'],
+            'id': package_config_data['id'],
+            'odata_etag': package_config_data['@odata.etag'],
+            'allow_jit_access': package_config_data['allowJitAccess'],
+            'can_enable_customer_actions': True,
+            'allowed_customer_actions': [
+                "Microsoft.Resources/*"
+            ],
+            'azure_government_authorizations': package_config_data['azureGovernmentAuthorizations'],
+            'package_references': [
+                {
+                    "type": "AzureApplicationPackage",
+                    "value": package_id
+                }
+            ],
+            'publisher_management_mode': package_config_data['publisherManagementMode'],
+            'customer_access_enable_state': package_config_data['customerAccessEnableState'],
+            'DeploymentMode': 'Incremental',
+            'public_azure_tenant_id': public_azure_tenant_id,
+            'version': "1.0.0",
+            'public_azure_authorizations': [
+                {
+                    "principalID": public_azure_authorization_principal,
+                    "roleDefinitionID": public_azure_authorization_role
+                }
+            ]
+        }
+
+        # Now you can use package_config_dict with the ** operator
+        updated_package_config = ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response(**package_config_dict)
+
+
+        #updated_package_config['DeploymentMode'] = 'Incremental'
+        #updated_package_config['public_azure_tenant_id'] = public_azure_tenant_id
+        #updated_package_config['version'] = "1.0.0"
+        # updated_package_config['public_azure_authorizations'] = [
+        #     {
+        #         "principalID": public_azure_authorization_principal,
+        #         "roleDefinitionID": public_azure_authorization_role
+        #     }
+        # ]
+
+        print(f"updated_package_config is {updated_package_config}")
+
+        package_config = package_configuration['value'][0]
+        print(f"package_config pre update is {package_config}")
+        package_configuration_id = package_config['id']
+        print(f"package_configuration_id is {package_configuration_id}")
+
+        package_config_update = self._sdk.package_configuration_client.products_product_id_packageconfigurations_package_configuration_id_put(
+            offer_durable_id,
+            package_configuration_id,
+            self._get_access_token(),
+            products_product_id_packageconfigurations_package_configuration_id_get200_response=updated_package_config
+        )
+
+        print(f"package_config_update is {package_config_update}")
+        mapped_config = self._map_package_configuration(package_config_update)
+        return mapped_config
+
+    def _map_package_configuration(self, pkg_config):
+        package_references = list(map(self._map_package_reference, pkg_config.package_references))
+        print(f"pulled package_references - {package_references}")
+        public_azure_authorizations = list(map(self._map_package_authorization, pkg_config.public_azure_authorizations))
+        print(f"pulled public_azure_authorizations - {public_azure_authorizations}")
+        azure_government_authorizations = list(map(self._map_package_authorization, pkg_config.azure_government_authorizations))
+        print(f"pulled azure_government_authorizations - {azure_government_authorizations}")
+        allowed_customer_actions = pkg_config.allowed_customer_actions
+        print(f"pulled allowed_customer_actions - {allowed_customer_actions}")
+        mapped_package_configuration = PackageConfiguration(
+            id=pkg_config.id,
+            allowed_customer_actions=allowed_customer_actions,
+            azure_government_authorizations=azure_government_authorizations,
+            can_enable_customer_actions=pkg_config.can_enable_customer_actions,
+            customerAccessEnableState=pkg_config.customerAccessEnableState,
+            deploymentMode=pkg_config.deploymentMode,
+            odata_etag=pkg_config.odata_etag,
+            package_references=package_references,
+            public_azure_authorizations=public_azure_authorizations,
+            public_azure_tenant_id=pkg_config.public_azure_tenant_id,
+            publisherManagementMode=pkg_config.publisherManagementMode,
+            resource_type=pkg_config.resource_type,
+            version=pkg_config.version,
+            _resource=None)
+        print(f"mapped_package_configuration - {mapped_package_configuration}")
+        return mapped_package_configuration
+
+    def _map_package_reference(self, package_ref):
+        package_reference = PackageReference(type=package_ref.type, value=package_ref.value)
+        return package_reference
+
+    def _map_package_authorization(self, pkg_auth):
+        package_authorization = PackageAuthorization(principal_id=pkg_auth.principal_id, role_definition_id=pkg_auth.role_definition_id)
+        return package_authorization
 
     def _update_technical_configuration_properties(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         variant_package_branch = self._get_variant_package_branch(offer_external_id, plan_external_id)
