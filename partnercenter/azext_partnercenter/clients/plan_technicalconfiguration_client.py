@@ -51,15 +51,11 @@ class PlanTechnicalConfigurationClient(BaseClient):
         if variant_package_branch.product.resource_type == 'AzureContainer':
             technical_configuration = self._graph_api_client.get_container_plan_technical_configuration(offer_durable_id, plan_durable_id, sell_through_microsoft)
         elif variant_package_branch.product.resource_type == 'AzureApplication':
-            print('you are a failure')
-            technical_configuration= self._get_azure_application_plan_technical_configuration(offer_durable_id, plan_durable_id)
-            print('technical_configuration: ')
-            print(technical_configuration)
+            technical_configuration = self._get_azure_application_plan_technical_configuration(offer_durable_id, plan_durable_id, variant_package_branch.current_draft_instance_id)
         else:
             technical_configuration = self._get_plan_technical_configuration(variant_package_branch.product.id, variant_package_branch.variant_id)
             technical_configuration['planId'] = plan_external_id
 
-        print("about to return technical_configuration")
         return technical_configuration
 
     def delete_cnab_reference(self, offer_external_id, plan_external_id, repository_name, tag):
@@ -84,13 +80,11 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
     def add_managed_app_bundle(self, offer_external_id, plan_external_id, package_path, public_azure_tenant_id, public_azure_authorization_principal, public_azure_authorization_role):
         variant_package_branch = self._get_variant_package_branch(offer_external_id, plan_external_id)
-        print(f"variant_package_branch is {variant_package_branch}")
         offer_durable_id = variant_package_branch.product.id
         current_draft_instance_id = variant_package_branch.current_draft_instance_id
-        print(f"current_draft_instance_id is {current_draft_instance_id}")
-        plan_durable_id = variant_package_branch.variant_id
+
+        # plan_durable_id = variant_package_branch.variant_id
         file_name = os.path.basename(package_path)
-        print(f"file_name is {file_name}")
 
         input_package = MicrosoftIngestionApiModelsPackagesAzurePackage(
             resource_type='AzureApplicationPackage',
@@ -162,19 +156,6 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
         # Now you can use package_config_dict with the ** operator
         updated_package_config = ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response(**package_config_dict)
-
-
-        #updated_package_config['DeploymentMode'] = 'Incremental'
-        #updated_package_config['public_azure_tenant_id'] = public_azure_tenant_id
-        #updated_package_config['version'] = "1.0.0"
-        # updated_package_config['public_azure_authorizations'] = [
-        #     {
-        #         "principalID": public_azure_authorization_principal,
-        #         "roleDefinitionID": public_azure_authorization_role
-        #     }
-        # ]
-
-        print(f"updated_package_config is {updated_package_config}")
 
         package_config = package_configuration['value'][0]
         print(f"package_config pre update is {package_config}")
@@ -282,11 +263,17 @@ class PlanTechnicalConfigurationClient(BaseClient):
                     return v
         return None
 
-    def _get_azure_application_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
-        technical_configuration = {}
-        print(f"inside _get_azure_application_plan_technical_configuration with a {offer_durable_id} and {plan_durable_id}")
-        product_id = '246aed98-915f-4706-b0e8-6d8f2a9a8fdc'
-        package_configuration_id = 'dffef988-51de-43fd-af92-a2388252eb4d'
+    def _get_azure_application_plan_technical_configuration(self, offer_durable_id, plan_durable_id, package_configuration_id):
+
+
+        # technical_configuration = self.get()
+        print(f"inside _get_azure_application_plan_technical_configuration with a {offer_durable_id}, {plan_durable_id}, and {package_configuration_id}")
+        #product_id = '246aed98-915f-4706-b0e8-6d8f2a9a8fdc'
+        product_id = offer_durable_id
+       # package_configuration_id = 'dffef988-51de-43fd-af92-a2388252eb4d'
+
+        # need to the get the package_configuration_id
+
         package_configuration = self._sdk.package_configuration_client.products_product_id_packageconfigurations_package_configuration_id_get(product_id, package_configuration_id, self._get_access_token())
         print('package_configuration : ')
         print(package_configuration)
