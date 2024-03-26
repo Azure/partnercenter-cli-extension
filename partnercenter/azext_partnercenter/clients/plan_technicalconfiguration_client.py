@@ -95,10 +95,10 @@ class PlanTechnicalConfigurationClient(BaseClient):
             offer_durable_id,
             self._get_access_token(),
             microsoft_ingestion_api_models_packages_azure_package=input_package)
-        print(f"package post result is {output_package}")
 
         upload_result = upload_media(package_path, output_package.file_sas_uri)
-        print(f"The upload_result is {upload_result}")
+        if upload_result is None:
+            raise CLIError(f'There was an error uploading "{package_path}"')
 
         output_package.state = "Uploaded"
 
@@ -112,7 +112,6 @@ class PlanTechnicalConfigurationClient(BaseClient):
         package_id = updated_package.id
 
         # wait for the package to be processed
-
 
         # get package configuration by draft instance id
         package_configuration = self._sdk.package_configuration_client.products_product_id_package_configurations_get_by_instance_id_instance_i_dinstance_id_get(
@@ -154,13 +153,9 @@ class PlanTechnicalConfigurationClient(BaseClient):
             ]
         }
 
-        # Now you can use package_config_dict with the ** operator
         updated_package_config = ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response(**package_config_dict)
-
         package_config = package_configuration['value'][0]
-        print(f"package_config pre update is {package_config}")
         package_configuration_id = package_config['id']
-        print(f"package_configuration_id is {package_configuration_id}")
 
         package_config_update = self._sdk.package_configuration_client.products_product_id_packageconfigurations_package_configuration_id_put(
             offer_durable_id,
@@ -169,19 +164,15 @@ class PlanTechnicalConfigurationClient(BaseClient):
             products_product_id_packageconfigurations_package_configuration_id_get200_response=updated_package_config
         )
 
-        print(f"package_config_update is {package_config_update}")
         mapped_config = self._map_package_configuration(package_config_update)
         return mapped_config
 
     def _map_package_configuration(self, pkg_config):
         package_references = list(map(self._map_package_reference, pkg_config.package_references))
-        print(f"pulled package_references - {package_references}")
         public_azure_authorizations = list(map(self._map_package_authorization, pkg_config.public_azure_authorizations))
-        print(f"pulled public_azure_authorizations - {public_azure_authorizations}")
         azure_government_authorizations = list(map(self._map_package_authorization, pkg_config.azure_government_authorizations))
-        print(f"pulled azure_government_authorizations - {azure_government_authorizations}")
         allowed_customer_actions = pkg_config.allowed_customer_actions
-        print(f"pulled allowed_customer_actions - {allowed_customer_actions}")
+
         mapped_package_configuration = PackageConfiguration(
             id=pkg_config.id,
             allowed_customer_actions=allowed_customer_actions,
@@ -197,7 +188,7 @@ class PlanTechnicalConfigurationClient(BaseClient):
             resource_type=pkg_config.resource_type,
             version=pkg_config.version,
             _resource=None)
-        print(f"mapped_package_configuration - {mapped_package_configuration}")
+
         return mapped_package_configuration
 
     def _map_package_reference(self, package_ref):
@@ -264,26 +255,17 @@ class PlanTechnicalConfigurationClient(BaseClient):
         return None
 
     def _get_azure_application_plan_technical_configuration(self, offer_durable_id, plan_durable_id, package_configuration_id):
+        package_configuration = self._sdk.package_configuration_client.products_product_id_packageconfigurations_package_configuration_id_get(
+            offer_durable_id,
+            package_configuration_id,
+            self._get_access_token())
 
-
-        # technical_configuration = self.get()
-        print(f"inside _get_azure_application_plan_technical_configuration with a {offer_durable_id}, {plan_durable_id}, and {package_configuration_id}")
-        #product_id = '246aed98-915f-4706-b0e8-6d8f2a9a8fdc'
-        product_id = offer_durable_id
-       # package_configuration_id = 'dffef988-51de-43fd-af92-a2388252eb4d'
-
-        # need to the get the package_configuration_id
-
-        package_configuration = self._sdk.package_configuration_client.products_product_id_packageconfigurations_package_configuration_id_get(product_id, package_configuration_id, self._get_access_token())
-        print('package_configuration : ')
-        print(package_configuration)
         return package_configuration
 
 
     def _get_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
         """Since we don't know what type of technical plan this will be for now unless we map the types to the schema, this gets any technical configuration type"""
 
-        print('offer_durable_id:' + offer_durable_id)
         resources = self._get_resource_tree(offer_durable_id)
         technical_configuration = None
 
