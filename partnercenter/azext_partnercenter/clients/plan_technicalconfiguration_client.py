@@ -108,7 +108,7 @@ class PlanTechnicalConfigurationClient(BaseClient):
             self._get_access_token(),
             microsoft_ingestion_api_models_packages_azure_package=output_package
         )
-        print(f"The modified package is {updated_package}")
+
         package_id = updated_package.id
 
         # wait for the package to be processed
@@ -119,7 +119,6 @@ class PlanTechnicalConfigurationClient(BaseClient):
             current_draft_instance_id,
             self._get_access_token()
         )
-        print(f"package_configuration is {package_configuration}")
 
         package_config_data = package_configuration['value'][0]
 

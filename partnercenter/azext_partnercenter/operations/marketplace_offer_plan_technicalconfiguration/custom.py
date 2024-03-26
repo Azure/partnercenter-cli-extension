@@ -34,8 +34,6 @@ def add_technical_configuration_bundle(client, offer_id, plan_id, cluster_extens
                                        repository_name=None, tag=None, digest=None, package_path=None, public_azure_tenant_id=None, public_azure_authorization_principal=None, public_azure_authorization_role=None):
 
     technical_configuration_bundle = client.get(offer_id, plan_id)
-    print(f"technical_configuration_bundle is : {technical_configuration_bundle}")
-
     if hasattr(technical_configuration_bundle, 'cluster_extension_type'):
         if technical_configuration_bundle.cluster_extension_type != cluster_extension_type:
             raise CLIError("The cluster extension type of the technical configuration bundle does not match the one provided.")
@@ -66,7 +64,6 @@ def add_technical_configuration_bundle(client, offer_id, plan_id, cluster_extens
             }
         else:
             result = client.add_managed_app_bundle(offer_id, plan_id, package_path, public_azure_tenant_id, public_azure_authorization_principal, public_azure_authorization_role)
-            print(f"result is {result}")
             return result
 
 def _has_existing_package(technical_configuration):
