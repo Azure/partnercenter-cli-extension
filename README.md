@@ -67,7 +67,7 @@ Commands:
     show
 ```
 
-- You can view the various commands and its usage here - [docs.microsoft.com - Azure CLI Extension for Partner Center Reference](https://learn.microsoft.com/en-us/cli/azure/service-page/partner%20center%20(azure%20marketplace)?view=azure-cli-latest)
+- You can view the various commands and its usage here - [docs.microsoft.com - Azure CLI Extension for Partner Center Reference](https://learn.microsoft.com/en-us/cli/azure/partnercenter?view=azure-cli-latest)
 
 ## Contributing
 
