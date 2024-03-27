@@ -6,7 +6,7 @@
 from msrest.serialization import Model
 
 
-class PackageConfiguration(Model):
+class PackageConfiguration(Model):  # pylint: disable=too-many-instance-attributes
     _attribute_map = {
         'id': {'key': 'id', 'type': 'str'},
         'allowed_customer_actions': {'key': 'allowedCustomerActions', 'type': '[str]'},

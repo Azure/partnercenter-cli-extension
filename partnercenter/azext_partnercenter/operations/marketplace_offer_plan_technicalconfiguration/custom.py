@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
-from curses import has_key
 from knack.cli import CLIError
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (ContainerCnabPlanTechnicalConfigurationProperties, CnabReference)
 from azext_partnercenter import ISSUES_URL
@@ -57,17 +56,19 @@ def add_technical_configuration_bundle(client, offer_id, plan_id, cluster_extens
         )
         result = client.add_bundle(offer_id, plan_id, properties)
         return result
-    else:
-        if _has_existing_package(technical_configuration_bundle):
-            return {
-                'Message': "package_references exists and has a length greater than zero"
-            }
-        else:
-            result = client.add_managed_app_bundle(offer_id, plan_id, package_path, public_azure_tenant_id, public_azure_authorization_principal, public_azure_authorization_role)
-            return result
+
+    if _has_existing_package(technical_configuration_bundle):
+        return {
+            'Message': "package_references exists and has a length greater than zero"
+        }
+
+    result = client.add_managed_app_bundle(offer_id, plan_id, package_path, public_azure_tenant_id, public_azure_authorization_principal, public_azure_authorization_role)
+    return result
+
 
 def _has_existing_package(technical_configuration):
     return technical_configuration.get('package_references') and len(technical_configuration['package_references']) > 0
+
 
 def _get_technical_configuration_type(repository_name=None, tag=None):
     if repository_name is not None and tag is not None:

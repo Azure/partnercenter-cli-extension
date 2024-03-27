@@ -6,10 +6,7 @@
 # pylint: disable=protected-access
 # pylint: disable=no-else-return
 
-from curses import can_change_color
 import os
-from xml.dom.expatbuilder import FILTER_ACCEPT
-from azext_partnercenter.models import package_authorization
 from knack.util import CLIError
 from azext_partnercenter.clients import OfferClient, PlanClient
 from azext_partnercenter.clients._base_client import BaseClient
@@ -18,8 +15,6 @@ from azext_partnercenter.models.package_authorization import PackageAuthorizatio
 from azext_partnercenter.models.package_reference import PackageReference
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_packages_azure_package import (
     MicrosoftIngestionApiModelsPackagesAzurePackage)
-from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_packages_azure_managed_application_package_configuration import (
-        MicrosoftIngestionApiModelsPackagesAzureManagedApplicationPackageConfiguration)
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.products_product_id_packageconfigurations_package_configuration_id_get200_response import (
     ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
 )
@@ -51,7 +46,7 @@ class PlanTechnicalConfigurationClient(BaseClient):
         if variant_package_branch.product.resource_type == 'AzureContainer':
             technical_configuration = self._graph_api_client.get_container_plan_technical_configuration(offer_durable_id, plan_durable_id, sell_through_microsoft)
         elif variant_package_branch.product.resource_type == 'AzureApplication':
-            technical_configuration = self._get_azure_application_plan_technical_configuration(offer_durable_id, plan_durable_id, variant_package_branch.current_draft_instance_id)
+            technical_configuration = self._get_azure_application_plan_technical_configuration(offer_durable_id, variant_package_branch.current_draft_instance_id)
         else:
             technical_configuration = self._get_plan_technical_configuration(variant_package_branch.product.id, variant_package_branch.variant_id)
             technical_configuration['planId'] = plan_external_id
@@ -83,7 +78,6 @@ class PlanTechnicalConfigurationClient(BaseClient):
         offer_durable_id = variant_package_branch.product.id
         current_draft_instance_id = variant_package_branch.current_draft_instance_id
 
-        # plan_durable_id = variant_package_branch.variant_id
         file_name = os.path.basename(package_path)
 
         input_package = MicrosoftIngestionApiModelsPackagesAzurePackage(
@@ -191,12 +185,10 @@ class PlanTechnicalConfigurationClient(BaseClient):
         return mapped_package_configuration
 
     def _map_package_reference(self, package_ref):
-        package_reference = PackageReference(type=package_ref.type, value=package_ref.value)
-        return package_reference
+        return PackageReference(type=package_ref.type, value=package_ref.value)
 
     def _map_package_authorization(self, pkg_auth):
-        package_authorization = PackageAuthorization(principal_id=pkg_auth.principal_id, role_definition_id=pkg_auth.role_definition_id)
-        return package_authorization
+        return PackageAuthorization(principal_id=pkg_auth.principal_id, role_definition_id=pkg_auth.role_definition_id)
 
     def _update_technical_configuration_properties(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         variant_package_branch = self._get_variant_package_branch(offer_external_id, plan_external_id)
@@ -253,14 +245,13 @@ class PlanTechnicalConfigurationClient(BaseClient):
                     return v
         return None
 
-    def _get_azure_application_plan_technical_configuration(self, offer_durable_id, plan_durable_id, package_configuration_id):
+    def _get_azure_application_plan_technical_configuration(self, offer_durable_id, package_configuration_id):
         package_configuration = self._sdk.package_configuration_client.products_product_id_packageconfigurations_package_configuration_id_get(
             offer_durable_id,
             package_configuration_id,
             self._get_access_token())
 
         return package_configuration
-
 
     def _get_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
         """Since we don't know what type of technical plan this will be for now unless we map the types to the schema, this gets any technical configuration type"""
