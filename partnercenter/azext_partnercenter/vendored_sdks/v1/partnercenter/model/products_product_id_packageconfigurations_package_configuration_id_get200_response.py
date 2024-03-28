@@ -86,7 +86,7 @@ class ProductsProductIDPackageconfigurationsPackageConfigurationIDGet200Response
 
     allowed_values = {
         ('resource_type',): {
-            'AZURERESOURCEMANAGERTESTDRIVEPACKAGECONFIGURATION': "AzureResourceManagerTestDrivePackageConfiguration",
+            'AZURERESOURCEMANAGERTESTDRIVEPACKAGECONFIGURATION': "AzureManagedApplicationPackageConfiguration",
         },
         ('package_type',): {
             'ADDON': "AddOn",
