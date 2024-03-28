@@ -26,3 +26,4 @@ exclude =
     doc
     build_scripts
 	*/grammar/
+    partnercenter/azext_partnercenter/vendored_sdks
