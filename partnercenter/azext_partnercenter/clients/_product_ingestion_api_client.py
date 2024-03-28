@@ -208,12 +208,13 @@ class ProductIngestionApiClient:
         url = f'{self.configuration._base_path}/{path}'
         params = self.__merge_params(params, {'$version': self.configuration.get_version(operation_id)})
 
+        timeout = 10  # timeout in 10 seconds
         response = None
 
         if 'get' in operation_id:
-            response = requests.get(url, params, headers=self.__get_request_headers())
+            response = requests.get(url, params, headers=self.__get_request_headers(), timeout=timeout)
         if 'post' in operation_id:
-            response = requests.post(url, json=data, params=params, headers=self.__get_request_headers())
+            response = requests.post(url, json=data, params=params, headers=self.__get_request_headers(), timeout=timeout)
 
         return response
 
