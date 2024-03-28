@@ -1,0 +1,3 @@
+[style]
+based_on_style = pep8
+exclude = partnercenter/azext_partnercenter/vendored_sdks
