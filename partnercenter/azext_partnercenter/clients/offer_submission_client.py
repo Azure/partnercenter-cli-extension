@@ -63,6 +63,21 @@ class OfferSubmissionClient(BaseClient):
             raise Exception("Offer draft instance id has not been found")
         return offer_draft_instance_id
 
+    def _get_variant_resources(self, offer_external_id):
+        variant_ids = []
+        variant_resources = []
+        variants = self._sdk._variant_client.products_product_id_variants_get(offer_external_id)
+        for v in variants.value:
+            if (v.get("subType") == "managed-application"):
+                variant_ids.append(v.get(id));
+        for i in variant_ids:
+            current_resources = []
+            for module in ["Availability", "Listing", "Package"]:
+                current_draft_instance = self._get_offer_draft_instance(i, module)
+                current_resources.append({"type": module, "value": current_draft_instance.current_draft_instance_id})
+            variant_resources.append({"variantID": i, "resources": current_resources})
+        return variant_resources
+
 
     def publish(self, offer_external_id, submission_id, target):
         offer = self._offer_client.get(offer_external_id)
@@ -90,8 +105,8 @@ class OfferSubmissionClient(BaseClient):
                         "value": "preview"
                     }
                 ],
-                "resources": resources
-                ,
+                "resources": resources,
+                "variantResources": self._get_variant_resources,
                 "publishOption": {
                     "releaseTimeInUtc": datetime.datetime.utcnow().isoformat(),
                     "isManualPublish": True,
