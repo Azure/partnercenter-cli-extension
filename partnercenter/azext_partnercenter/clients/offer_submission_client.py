@@ -59,14 +59,18 @@ class OfferSubmissionClient(BaseClient):
         if offer.type == "AzureContainer":
             result = self._graph_api_client.publish_submission(target, offer.resource.durable_id, submission_id)
         if offer.type == "AzureApplication":
-            modules = ["Availability", "Listing", "Package", "Property"]
+            modules = ["Availability", "Listing", "Package", "Property", "ResellerConfiguration"]
             resources = []
+            variant_resources = [] # need to add the variant resources
             for m in modules:
                 current_draft_instance = self._get_offer_draft_instance(offer_external_id, m)
                 print(f"Current draft instance is {current_draft_instance}")
                 if current_draft_instance is not None:
                     resources.append({"type": m, "value": current_draft_instance.current_draft_instance_id})
                     print(f"Resources are {resources}")
+            # manually add ResellerConfiguration Resource by calling the https://api.partner.microsoft.com/v1.0/ingestion/products/{{productId}}/branches/getByModule(module=ResellerConfiguration) api
+            # will need to call the api without using the generated v1 sdk python code
+            # need to use a raw client because ResellerConfiguration is not included in the openapi spec
             offer_submission_dict = {
                 "resourceType": "SubmissionCreationRequest",
                 "targets": [
