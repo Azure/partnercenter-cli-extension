@@ -30,6 +30,7 @@ def cf_offer_listing(cli_ctx, *_):
 
 def cf_offer_submission(cli_ctx, *_):
     from azext_partnercenter.clients import OfferSubmissionClient
+    print(f"Inside cf_offer_submission with a value of {cli_ctx}")
     client = OfferSubmissionClient(cli_ctx, *_)
     return client
 

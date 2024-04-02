@@ -69,7 +69,7 @@ class MicrosoftIngestionApiModelsSubmissionsSubmission(ModelNormal):
             'SUBMISSION': "Submission",
         },
         ('state',): {
-            'INPROGRESS': "Inprogress",
+            'INPROGRESS': "InProgress",
             'PUBLISHED': "Published",
         },
         ('substate',): {

@@ -19,10 +19,11 @@ from ._sdk_client_provider import BranchesClient
 
 class OfferSubmissionClient(BaseClient):
     def __init__(self, cli_ctx, *_):
+        print(f"Inside OfferSubmissionClient with a value of {cli_ctx}")
         super().__init__(cli_ctx, *_)
         self._offer_client = OfferClient(cli_ctx, *_)
-        self._submission_client = SubmissionClient(cli_ctx, *_)
-        self._branch_client = BranchesClient(cli_ctx, *_)
+        # self._submission_client = SubmissionClient(cli_ctx, *_)
+        # self._branch_client = BranchesClient(cli_ctx, *_)
 
     def get(self, offer_external_id, submission_id):
         offer = self._offer_client.get(offer_external_id)
@@ -35,27 +36,37 @@ class OfferSubmissionClient(BaseClient):
         return list(map(self._map_submission, result))
 
     def _get_offer_draft_instance(self, offer_external_id, module):
-        product = self._offer_client._get_sdk_product_by_external_offer_id(offer_external_id)
-        branches = self._branch_client.products_product_id_branches_get_by_module_modulemodule_get(
-            product.id, module, self._get_access_token()
+        print(f"Getting offer draft instance for {offer_external_id} and module {module}")
+        # product = self._offer_client._get_sdk_product_by_external_offer_id(offer_external_id)
+        product = self._offer_client.get(offer_external_id)
+        print(f"Product is {product}")
+        branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
+            product.resource.durable_id, module, self._get_access_token()
         )
+        print(f"Branches are {branches}")
         if len(branches.value) == 0:
             return None
         variant_package_branch = next((b for b in branches.value if not hasattr(b, 'variant_id')), None)
+        print(f"Variant package branch is {variant_package_branch}")
         return variant_package_branch
 
 
     def publish(self, offer_external_id, submission_id, target):
         offer = self._offer_client.get(offer_external_id)
-        if offer.resourceType == "AzureContainer":
+        resource = offer.resource
+        print(f"Resource is {resource}")
+        print(f"Offer is {offer}")
+        if offer.type == "AzureContainer":
             result = self._graph_api_client.publish_submission(target, offer.resource.durable_id, submission_id)
-        if offer.resourceType == "AzureApplication":
+        if offer.type == "AzureApplication":
             modules = ["Availability", "Listing", "Package", "Property"]
             resources = []
             for m in modules:
-                current_draft_instance = self._get_offer_draft_instance(offer.resource.durable_id, m)
+                current_draft_instance = self._get_offer_draft_instance(offer_external_id, m)
+                print(f"Current draft instance is {current_draft_instance}")
                 if current_draft_instance is not None:
-                    resources.append({"type": m, "values": current_draft_instance.currentDraftInstanceId})
+                    resources.append({"type": m, "value": current_draft_instance.current_draft_instance_id})
+                    print(f"Resources are {resources}")
             offer_submission_dict = {
                 "resourceType": "SubmissionCreationRequest",
                 "targets": [
@@ -67,7 +78,7 @@ class OfferSubmissionClient(BaseClient):
                 "resources": resources
                 ,
                 "publishOption": {
-                    "releaseTimeInUtc": datetime.utcnow().isoformat(),
+                    "releaseTimeInUtc": datetime.datetime.utcnow().isoformat(),
                     "isManualPublish": True,
                     "isAutoPromote": False,
                     "certificationNotes": "Submission automatically generated"
@@ -75,11 +86,12 @@ class OfferSubmissionClient(BaseClient):
                 "extendedProperties": []
             }
             offer_creation_request = MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest(**offer_submission_dict)
-            print(offer_creation_request)
-            result = self._submission_client.products_product_id_submissions_post(offer.resource.durable_id,
-            self._get_access_token(),
-            offer_creation_request
+            print(f"offer_creation_request is {offer_creation_request}")
+            result = self._sdk.submission_client.products_product_id_submissions_post(offer.resource.durable_id,
+                self._get_access_token(),
+                microsoft_ingestion_api_models_submissions_submission_creation_request=offer_creation_request
             )
+            print(f"Result is {result}")
         return result
 
 
@@ -104,6 +116,7 @@ class OfferSubmissionClient(BaseClient):
 
     @staticmethod
     def _map_submission(s: MicrosoftIngestionApiModelsSubmissionsSubmission) -> OfferSubmission:
+        print(f"Mapping submission {s}")
         return OfferSubmission(
             id=s.id.root.split('/')[-1],
             # lifecycle_state=s.substate,
