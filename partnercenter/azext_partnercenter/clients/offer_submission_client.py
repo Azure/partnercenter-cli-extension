@@ -5,6 +5,7 @@
 # pylint: disable=line-too-long
 
 import datetime
+import requests
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_submissions_submission import (
     MicrosoftIngestionApiModelsSubmissionsSubmission
 )
@@ -13,17 +14,12 @@ from azext_partnercenter.clients import OfferClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_submissions_submission_creation_request import (
     MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest)
 from ._base_client import BaseClient
-from ._sdk_client_provider import SubmissionClient
-from ._sdk_client_provider import BranchesClient
-
 
 class OfferSubmissionClient(BaseClient):
     def __init__(self, cli_ctx, *_):
         print(f"Inside OfferSubmissionClient with a value of {cli_ctx}")
         super().__init__(cli_ctx, *_)
         self._offer_client = OfferClient(cli_ctx, *_)
-        # self._submission_client = SubmissionClient(cli_ctx, *_)
-        # self._branch_client = BranchesClient(cli_ctx, *_)
 
     def get(self, offer_external_id, submission_id):
         offer = self._offer_client.get(offer_external_id)
@@ -37,7 +33,6 @@ class OfferSubmissionClient(BaseClient):
 
     def _get_offer_draft_instance(self, offer_external_id, module):
         print(f"Getting offer draft instance for {offer_external_id} and module {module}")
-        # product = self._offer_client._get_sdk_product_by_external_offer_id(offer_external_id)
         product = self._offer_client.get(offer_external_id)
         print(f"Product is {product}")
         branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
@@ -49,6 +44,24 @@ class OfferSubmissionClient(BaseClient):
         variant_package_branch = next((b for b in branches.value if not hasattr(b, 'variant_id')), None)
         print(f"Variant package branch is {variant_package_branch}")
         return variant_package_branch
+
+    def _get_reseller_configuration(self, offer_external_id):
+        url = f"https://api.partner.microsoft.com/v1.0/ingestion/products/{offer_external_id}/branches/getByModule(module=ResellerConfiguration)"
+        header = {
+                "Content-Type": "application/json",
+                "Authorization": self._get_access_token()
+            },
+        response = requests.get(url, headers=header)
+        if response.status_code != 200:
+            raise Exception("Failed to get offer branches")
+        branches = response.json()["value"]
+        for branch in branches:
+            if branch.get("variantID") is None:
+                offer_draft_instance_id = branch["currentDraftInstanceID"]
+                break
+        if not offer_draft_instance_id:
+            raise Exception("Offer draft instance id has not been found")
+        return offer_draft_instance_id
 
 
     def publish(self, offer_external_id, submission_id, target):
@@ -66,7 +79,8 @@ class OfferSubmissionClient(BaseClient):
                 print(f"Current draft instance is {current_draft_instance}")
                 if current_draft_instance is not None:
                     resources.append({"type": m, "value": current_draft_instance.current_draft_instance_id})
-                    print(f"Resources are {resources}")
+            resources.append({"type": "ResellerConfiguration", "value": self._get_reseller_configuration(offer_external_id)})
+            print(f"Resources are {resources}")
             offer_submission_dict = {
                 "resourceType": "SubmissionCreationRequest",
                 "targets": [
