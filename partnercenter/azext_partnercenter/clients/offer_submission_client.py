@@ -25,7 +25,6 @@ from ._base_client import BaseClient
 
 class OfferSubmissionClient(BaseClient):
     def __init__(self, cli_ctx, *_):
-        print(f"Inside OfferSubmissionClient with a value of {cli_ctx}")
         super().__init__(cli_ctx, *_)
         self._offer_client = OfferClient(cli_ctx, *_)
 
@@ -40,23 +39,19 @@ class OfferSubmissionClient(BaseClient):
         return list(map(self._map_submission, result))
 
     def _get_offer_draft_instance(self, offer_durable_id, module):
-        #print(f"Getting offer draft instance for {offer_external_id} and module {module}")
-       # product = self._offer_client.get(offer_external_id)
-       # print(f"Product is {product}")
         branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
             offer_durable_id, module, self._get_access_token()
         )
-        print(f"Branches are {branches}")
+
         if len(branches.value) == 0:
             return None
+
         variant_package_branch = next((b for b in branches.value if not hasattr(b, 'variant_id')), None)
-        print(f"Variant package branch is {variant_package_branch}")
         return variant_package_branch
 
 
 
     def _get_reseller_configuration(self, offer_external_id):
-        print(f"Inside get reseller configuration for {offer_external_id}")
         url = f"https://api.partner.microsoft.com/v1.0/ingestion/products/{offer_external_id}/branches/getByModule(module=ResellerConfiguration)"
         bearer_token = f"Bearer {self._get_access_token()}"
         headers = {
@@ -64,48 +59,37 @@ class OfferSubmissionClient(BaseClient):
             "Authorization": bearer_token
         }
         response = requests.get(url, headers=headers)
-        print(f"Response is {response}")
 
         if response.status_code != 200:
             raise Exception(f"Failed to get offer branches for {offer_external_id}, status code: {response.status_code}")
 
         reseller_configuration = response.json().get("value")
-        print(f"Reseller configuration resources are {reseller_configuration}")
 
         if not reseller_configuration:
             return None
 
         reseller_configuration_obj = reseller_configuration[0]
-        print(f"Reseller configuration object is {reseller_configuration_obj}")
-
         current_draft_instance_id = reseller_configuration_obj.get("currentDraftInstanceID")
-        print(f"Current draft instance id inside _get_reseller_configuration is {current_draft_instance_id}")
         return current_draft_instance_id
 
 
     def _get_variant_resources(self, offer_external_id):
-        print(f"Getting variant resources for {offer_external_id}")
         variant_ids = []
         variant_resources = []
         variants = self._sdk._variant_client.products_product_id_variants_get(offer_external_id)
-        print(f"Variants are {variants}")
         for v in variants.value:
-            print(f"Variant is {v}")
             if (v.get("subType") == "managed-application"):
                 variant_ids.append(v.get(id));
         for i in variant_ids:
-            print(f"variant - {i}")
             current_resources = []
             for module in ["Availability", "Listing", "Package"]:
                 current_draft_instance = self._get_offer_draft_instance(i, module)
                 current_resources.append({"type": module, "value": current_draft_instance.current_draft_instance_id})
             variant_resources.append({"variantID": i, "resources": current_resources})
-            print(f"Variant resources are {variant_resources}")
         return variant_resources
 
 
     def _map_application_submission(self, submission):
-        print(f"Mapping application submission {submission}")
         return ApplicationSubmission(
             id=submission.id if hasattr(submission, 'id') else None,
             resource_type=submission.resource_type if hasattr(submission, 'resource_type') else None,
@@ -124,7 +108,6 @@ class OfferSubmissionClient(BaseClient):
         )
 
     def _map_submission_publish_option(self, publish_option):
-        print(f"Mapping submission publish option {publish_option}")
         return SubmissionPublishOption(
             release_time_in_utc=publish_option.release_time_in_utc if hasattr(publish_option, 'release_time_in_utc') else None,
             is_manual_publish=publish_option.is_manual_publish if hasattr(publish_option, 'is_manual_publish') else False,
@@ -133,7 +116,6 @@ class OfferSubmissionClient(BaseClient):
         )
 
     def _map_pending_update_info(self, pending_update_info):
-        print(f"Mapping pending update info {pending_update_info}")
         return PendingUpdateInfo(
             update_type=pending_update_info.update_type if hasattr(pending_update_info, 'update_type') else None,
             status=pending_update_info.status if hasattr(pending_update_info, 'status') else None,
@@ -141,18 +123,13 @@ class OfferSubmissionClient(BaseClient):
             failure_reason=pending_update_info.failure_reason if hasattr(pending_update_info, 'failure_reason') else None)
 
     def _map_list_to_type_value(self, list):
-        print(f"Mapping list to type value {list}")
         return [TypeValue(type=type_value.type, value=type_value.value) for type_value in list]
 
     def _map_list_to_variant_resources(self, list):
-        print(f"Mapping list to variant resources {list}")
         return [SubmissionVariantResource(variant_id=variant_resource.variant_id, resources=self._map_list_to_type_value(variant_resource.resources)) for variant_resource in list]
 
     def publish(self, offer_external_id, submission_id, target):
         offer = self._offer_client.get(offer_external_id)
-        resource = offer.resource
-        print(f"Resource is {resource}")
-        print(f"Offer is {offer}")
 
         if offer.type == "AzureContainer":
             result = self._graph_api_client.publish_submission(target, offer.resource.durable_id, submission_id)
@@ -164,18 +141,11 @@ class OfferSubmissionClient(BaseClient):
             managed_application_variants = []
 
             variants = self._sdk.variant_client.products_product_id_variants_get(offer.resource.durable_id, self._get_access_token())
-            print(f"Variants are {variants}")
             for v in variants.value:
-                print(f"Variant v is {v}")
                 if v["resourceType"] == "AzureSkuVariant":
-                    print(f"resource type is AzureSkuVariant")
                     if 'subType' in v:
-                        print(f"v has subType")
                         if v.get("subType") == "managed-application":
-                            print(f"subType is managed-application")
                             managed_application_variants.append(v.get("id"))
-
-            print(f"Managed application variants are {managed_application_variants}")
 
             variant_resources_dict = {}
             modules = ["Availability", "Listing", "Package", "Property"]
@@ -199,7 +169,6 @@ class OfferSubmissionClient(BaseClient):
             reseller_instance_id = self._get_reseller_configuration(offer.resource.durable_id)
             resources.append({"type": "ResellerConfiguration", "value": reseller_instance_id})
 
-            print(f"Resources are {resources}")
             offer_submission_dict = {
                 "resourceType": "SubmissionCreationRequest",
                 "targets": [
@@ -221,15 +190,12 @@ class OfferSubmissionClient(BaseClient):
 
             offer_creation_request = MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest(**offer_submission_dict)
 
-            print(f"offer_creation_request is {offer_creation_request}")
             result = self._sdk.submission_client.products_product_id_submissions_post(offer.resource.durable_id,
                 self._get_access_token(),
                 microsoft_ingestion_api_models_submissions_submission_creation_request=offer_creation_request
             )
-            print(f"Result is {result}")
             return self._map_application_submission(result)
 
-        print(f"returning empty result")
         return result
 
 
