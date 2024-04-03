@@ -13,6 +13,9 @@ from azext_partnercenter.models import OfferSubmission
 from azext_partnercenter.clients import OfferClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_submissions_submission_creation_request import (
     MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest)
+from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_submissions_variant_resource import (
+    MicrosoftIngestionApiModelsSubmissionsVariantResource
+)
 from ._base_client import BaseClient
 
 class OfferSubmissionClient(BaseClient):
@@ -31,12 +34,12 @@ class OfferSubmissionClient(BaseClient):
         result = self._submission_client.products_product_id_submissions_get(offer.resource.durable_id, self._get_access_token())
         return list(map(self._map_submission, result))
 
-    def _get_offer_draft_instance(self, offer_external_id, module):
-        print(f"Getting offer draft instance for {offer_external_id} and module {module}")
-        product = self._offer_client.get(offer_external_id)
-        print(f"Product is {product}")
+    def _get_offer_draft_instance(self, offer_durable_id, module):
+        #print(f"Getting offer draft instance for {offer_external_id} and module {module}")
+       # product = self._offer_client.get(offer_external_id)
+       # print(f"Product is {product}")
         branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
-            product.resource.durable_id, module, self._get_access_token()
+            offer_durable_id, module, self._get_access_token()
         )
         print(f"Branches are {branches}")
         if len(branches.value) == 0:
@@ -45,37 +48,54 @@ class OfferSubmissionClient(BaseClient):
         print(f"Variant package branch is {variant_package_branch}")
         return variant_package_branch
 
+
+
     def _get_reseller_configuration(self, offer_external_id):
+        print(f"Inside get reseller configuration for {offer_external_id}")
         url = f"https://api.partner.microsoft.com/v1.0/ingestion/products/{offer_external_id}/branches/getByModule(module=ResellerConfiguration)"
-        header = {
-                "Content-Type": "application/json",
-                "Authorization": self._get_access_token()
-            },
-        response = requests.get(url, headers=header)
+        bearer_token = f"Bearer {self._get_access_token()}"
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": bearer_token
+        }
+        response = requests.get(url, headers=headers)
+        print(f"Response is {response}")
+
         if response.status_code != 200:
-            raise Exception("Failed to get offer branches")
-        branches = response.json()["value"]
-        for branch in branches:
-            if branch.get("variantID") is None:
-                offer_draft_instance_id = branch["currentDraftInstanceID"]
-                break
-        if not offer_draft_instance_id:
-            raise Exception("Offer draft instance id has not been found")
-        return offer_draft_instance_id
+            raise Exception(f"Failed to get offer branches for {offer_external_id}, status code: {response.status_code}")
+
+        reseller_configuration = response.json().get("value")
+        print(f"Reseller configuration resources are {reseller_configuration}")
+
+        if not reseller_configuration:
+            return None
+
+        reseller_configuration_obj = reseller_configuration[0]
+        print(f"Reseller configuration object is {reseller_configuration_obj}")
+
+        current_draft_instance_id = reseller_configuration_obj.get("currentDraftInstanceID")
+        print(f"Current draft instance id inside _get_reseller_configuration is {current_draft_instance_id}")
+        return current_draft_instance_id
+
 
     def _get_variant_resources(self, offer_external_id):
+        print(f"Getting variant resources for {offer_external_id}")
         variant_ids = []
         variant_resources = []
         variants = self._sdk._variant_client.products_product_id_variants_get(offer_external_id)
+        print(f"Variants are {variants}")
         for v in variants.value:
+            print(f"Variant is {v}")
             if (v.get("subType") == "managed-application"):
                 variant_ids.append(v.get(id));
         for i in variant_ids:
+            print(f"variant - {i}")
             current_resources = []
             for module in ["Availability", "Listing", "Package"]:
                 current_draft_instance = self._get_offer_draft_instance(i, module)
                 current_resources.append({"type": module, "value": current_draft_instance.current_draft_instance_id})
             variant_resources.append({"variantID": i, "resources": current_resources})
+            print(f"Variant resources are {variant_resources}")
         return variant_resources
 
 
@@ -84,18 +104,51 @@ class OfferSubmissionClient(BaseClient):
         resource = offer.resource
         print(f"Resource is {resource}")
         print(f"Offer is {offer}")
+
         if offer.type == "AzureContainer":
             result = self._graph_api_client.publish_submission(target, offer.resource.durable_id, submission_id)
+
         if offer.type == "AzureApplication":
-            modules = ["Availability", "Listing", "Package", "Property", "ResellerConfiguration"]
             resources = []
-            variant_resources = [] # need to add the variant resources
+            variant_resources = []
+            managed_application_variants = []
+
+            variants = self._sdk.variant_client.products_product_id_variants_get(offer.resource.durable_id, self._get_access_token())
+            print(f"Variants are {variants}")
+            for v in variants.value:
+                print(f"Variant v is {v}")
+                if v["resourceType"] == "AzureSkuVariant":
+                    print(f"resource type is AzureSkuVariant")
+                    if 'subType' in v:
+                        print(f"v has subType")
+                        if v.get("subType") == "managed-application":
+                            print(f"subType is managed-application")
+                            managed_application_variants.append(v.get("id"))
+
+            print(f"Managed application variants are {managed_application_variants}")
+
+            variant_resources_dict = {}
+            modules = ["Availability", "Listing", "Package", "Property"]
             for m in modules:
-                current_draft_instance = self._get_offer_draft_instance(offer_external_id, m)
-                print(f"Current draft instance is {current_draft_instance}")
-                if current_draft_instance is not None:
-                    resources.append({"type": m, "value": current_draft_instance.current_draft_instance_id})
-            resources.append({"type": "ResellerConfiguration", "value": self._get_reseller_configuration(offer_external_id)})
+                branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
+                    offer.resource.durable_id, m, self._get_access_token()
+                )
+
+                for b in branches.value:
+                    if not hasattr(b, 'variant_id'):
+                        resources.append({"type": m, "value": b.current_draft_instance_id})
+                    else:
+                        variant_id = getattr(b, 'variant_id')
+                        if variant_id in managed_application_variants:
+                            if variant_id not in variant_resources_dict:
+                                variant_resources_dict[variant_id] = []
+                            variant_resources_dict[variant_id].append({"type": m, "value": b.current_draft_instance_id})
+
+            variant_resources_list = [{"variantID": variant_id, "resources": resources} for variant_id, resources in variant_resources_dict.items()]
+
+            reseller_instance_id = self._get_reseller_configuration(offer.resource.durable_id)
+            resources.append({"type": "ResellerConfiguration", "value": reseller_instance_id})
+
             print(f"Resources are {resources}")
             offer_submission_dict = {
                 "resourceType": "SubmissionCreationRequest",
@@ -106,7 +159,7 @@ class OfferSubmissionClient(BaseClient):
                     }
                 ],
                 "resources": resources,
-                "variantResources": self._get_variant_resources,
+                "variantResources": variant_resources_list,
                 "publishOption": {
                     "releaseTimeInUtc": datetime.datetime.utcnow().isoformat(),
                     "isManualPublish": True,
@@ -115,7 +168,9 @@ class OfferSubmissionClient(BaseClient):
                 },
                 "extendedProperties": []
             }
+
             offer_creation_request = MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest(**offer_submission_dict)
+
             print(f"offer_creation_request is {offer_creation_request}")
             result = self._sdk.submission_client.products_product_id_submissions_post(offer.resource.durable_id,
                 self._get_access_token(),
