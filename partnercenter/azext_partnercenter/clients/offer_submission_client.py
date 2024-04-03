@@ -5,11 +5,16 @@
 # pylint: disable=line-too-long
 
 import datetime
+from azext_partnercenter.models.pending_update_info import PendingUpdateInfo
 import requests
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_submissions_submission import (
     MicrosoftIngestionApiModelsSubmissionsSubmission
 )
-from azext_partnercenter.models import OfferSubmission
+from azext_partnercenter.models.offer_submission import OfferSubmission
+from azext_partnercenter.models.application_submission import ApplicationSubmission
+from azext_partnercenter.models.type_value import TypeValue
+from azext_partnercenter.models.submission_variant_resource import SubmissionVariantResource
+from azext_partnercenter.models.submission_publish_option import SubmissionPublishOption
 from azext_partnercenter.clients import OfferClient
 from azext_partnercenter.vendored_sdks.v1.partnercenter.model.microsoft_ingestion_api_models_submissions_submission_creation_request import (
     MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest)
@@ -99,6 +104,50 @@ class OfferSubmissionClient(BaseClient):
         return variant_resources
 
 
+    def _map_application_submission(self, submission):
+        print(f"Mapping application submission {submission}")
+        return ApplicationSubmission(
+            id=submission.id if hasattr(submission, 'id') else None,
+            resource_type=submission.resource_type if hasattr(submission, 'resource_type') else None,
+            state=submission.state if hasattr(submission, 'state') else None,
+            substate=submission.substate if hasattr(submission, 'substate') else None,
+            targets=submission.targets if hasattr(submission, 'targets') else [],
+            resources=self._map_list_to_type_value(submission.resources) if hasattr(submission, 'resources') else [],
+            variant_resources=self._map_list_to_variant_resources(submission.variant_resources) if hasattr(submission, 'variant_resources') else [],
+            publish_option=self._map_submission_publish_option(submission.publish_option) if hasattr(submission, 'publish_option') else None,
+            published_time_in_utc=submission.published_time_in_utc.isoformat() if hasattr(submission, 'published_time_in_utc') else None,
+            pending_update_info=self._map_pending_update_info(submission.pending_update_info) if hasattr(submission, 'pending_update_info') else None,
+            extended_properties=self._map_list_to_type_value(submission.extended_properties) if hasattr(submission, 'extended_properties') else [],
+            release_number=submission.release_number if hasattr(submission, 'release_number') else 0,
+            friendly_name=submission.friendly_name if hasattr(submission, 'friendly_name') else None,
+            are_resources_ready=submission.are_resources_ready if hasattr(submission, 'are_resources_ready') else False
+        )
+
+    def _map_submission_publish_option(self, publish_option):
+        print(f"Mapping submission publish option {publish_option}")
+        return SubmissionPublishOption(
+            release_time_in_utc=publish_option.release_time_in_utc if hasattr(publish_option, 'release_time_in_utc') else None,
+            is_manual_publish=publish_option.is_manual_publish if hasattr(publish_option, 'is_manual_publish') else False,
+            is_auto_promote=publish_option.is_auto_promote if hasattr(publish_option, 'is_auto_promote') else False,
+            certification_notes=publish_option.certification_notes if hasattr(publish_option, 'certification_notes') else None
+        )
+
+    def _map_pending_update_info(self, pending_update_info):
+        print(f"Mapping pending update info {pending_update_info}")
+        return PendingUpdateInfo(
+            update_type=pending_update_info.update_type if hasattr(pending_update_info, 'update_type') else None,
+            status=pending_update_info.status if hasattr(pending_update_info, 'status') else None,
+            href=pending_update_info.href if hasattr(pending_update_info, 'href') else None,
+            failure_reason=pending_update_info.failure_reason if hasattr(pending_update_info, 'failure_reason') else None)
+
+    def _map_list_to_type_value(self, list):
+        print(f"Mapping list to type value {list}")
+        return [TypeValue(type=type_value.type, value=type_value.value) for type_value in list]
+
+    def _map_list_to_variant_resources(self, list):
+        print(f"Mapping list to variant resources {list}")
+        return [SubmissionVariantResource(variant_id=variant_resource.variant_id, resources=self._map_list_to_type_value(variant_resource.resources)) for variant_resource in list]
+
     def publish(self, offer_external_id, submission_id, target):
         offer = self._offer_client.get(offer_external_id)
         resource = offer.resource
@@ -107,6 +156,7 @@ class OfferSubmissionClient(BaseClient):
 
         if offer.type == "AzureContainer":
             result = self._graph_api_client.publish_submission(target, offer.resource.durable_id, submission_id)
+            return result
 
         if offer.type == "AzureApplication":
             resources = []
@@ -177,6 +227,9 @@ class OfferSubmissionClient(BaseClient):
                 microsoft_ingestion_api_models_submissions_submission_creation_request=offer_creation_request
             )
             print(f"Result is {result}")
+            return self._map_application_submission(result)
+
+        print(f"returning empty result")
         return result
 
 
