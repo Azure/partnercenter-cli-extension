@@ -3,6 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+# pylint: disable=too-many-instance-attributes
+# flake8: noqa: R0902
+
 from msrest.serialization import Model
 
 
