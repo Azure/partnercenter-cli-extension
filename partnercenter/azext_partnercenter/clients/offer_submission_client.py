@@ -48,6 +48,8 @@ class OfferSubmissionClient(BaseClient):
         return variant_package_branch
 
     def _get_reseller_configuration(self, offer_external_id):
+        # currently using a raw http client for ResellerConfiguration because the SDK does not support it
+        # it is not listed as an avaialbile module in the openapi spec but the REST API does support it
         url = f"https://api.partner.microsoft.com/v1.0/ingestion/products/{offer_external_id}/branches/getByModule(module=ResellerConfiguration)"
         bearer_token = f"Bearer {self._get_access_token()}"
         headers = {
