@@ -6,6 +6,7 @@
 
 import datetime
 import requests
+from knack.cli import CLIError
 from azext_partnercenter.models.pending_update_info import PendingUpdateInfo
 from azext_partnercenter.models.offer_submission import OfferSubmission
 from azext_partnercenter.models.application_submission import ApplicationSubmission
@@ -150,7 +151,7 @@ class OfferSubmissionClient(BaseClient):
             )
             return self._map_application_submission(result)
 
-        return None
+        raise CLIError("Only AzureContainer and AzureApplication offers are supported for publishing")
 
     def _get_offer_submission_dictionary(self, resources, variant_resources_list):
         offer_submission_dict = {
