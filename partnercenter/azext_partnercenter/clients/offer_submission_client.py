@@ -137,15 +137,12 @@ class OfferSubmissionClient(BaseClient):
 
         if offer.type == "AzureApplication":
             resources = []
-            variant_resources = []
-            managed_application_variants = []
 
             variants = self._sdk.variant_client.products_product_id_variants_get(offer.resource.durable_id, self._get_access_token())
-            for v in variants.value:
-                if v["resourceType"] == "AzureSkuVariant":
-                    if 'subType' in v:
-                        if v.get("subType") == "managed-application":
-                            managed_application_variants.append(v.get("id"))
+            managed_application_variants = {
+                v.get("id") for v in variants.value if v.get("resourceType") == "AzureSkuVariant" and v.get("subType") in ("managed-application", "solution-template")
+            }
+            print(f"Managed application variants: {managed_application_variants}")
 
             variant_resources_dict = {}
             modules = ["Availability", "Listing", "Package", "Property"]
@@ -155,14 +152,14 @@ class OfferSubmissionClient(BaseClient):
                 )
 
                 for b in branches.value:
+                    resource = {"type": m, "value": b.current_draft_instance_id}
                     if not hasattr(b, 'variant_id'):
-                        resources.append({"type": m, "value": b.current_draft_instance_id})
+                        resources.append(resource)
                     else:
                         variant_id = getattr(b, 'variant_id')
                         if variant_id in managed_application_variants:
-                            if variant_id not in variant_resources_dict:
-                                variant_resources_dict[variant_id] = []
-                            variant_resources_dict[variant_id].append({"type": m, "value": b.current_draft_instance_id})
+                            variant_resources_dict.setdefault(variant_id, []).append(resource)
+
 
             variant_resources_list = [{"variantID": variant_id, "resources": resources} for variant_id, resources in variant_resources_dict.items()]
 
