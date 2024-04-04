@@ -29,13 +29,30 @@ class OfferSubmissionClient(BaseClient):
 
     def get(self, offer_external_id, submission_id):
         offer = self._offer_client.get(offer_external_id)
-        result = self._sdk.submission_client.products_product_id_submissions_submission_id_get(offer.resource.durable_id, submission_id, self._get_access_token())
-        return result
+
+        if offer.type == "AzureContainer":
+            result = self._graph_api_client.get_submission(submission_id, offer.resource.durable_id)
+            return self._map_submission(result)
+
+        if offer.type == "AzureApplication":
+            result = self._sdk.submission_client.products_product_id_submissions_submission_id_get(offer.resource.durable_id, submission_id, self._get_access_token())
+            return self._map_application_submission(result)
+
+        raise CLIError("Only AzureContainer and AzureApplication offers are supported for submission commands")
 
     def list(self, offer_external_id):
         offer = self._offer_client.get(offer_external_id)
-        result = self._sdk.submission_client.products_product_id_submissions_get(offer.resource.durable_id, self._get_access_token())
-        return list(map(self._map_submission, result))
+
+        if offer.type == "AzureContainer":
+            result = self._graph_api_client.get_submissions(offer.resource.durable_id)
+            return list(map(self._map_submission, result))
+
+        if offer.type == "AzureApplication":
+            result = self._sdk.submission_client.products_product_id_submissions_get(offer.resource.durable_id, self._get_access_token())
+            print(f"Result: {result}")
+            return list(map(self._map_application_submission, result.value))
+
+        raise CLIError("Only AzureContainer and AzureApplication offers are supported for submission commands")
 
     def _get_offer_draft_instance(self, offer_durable_id, module):
         branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
