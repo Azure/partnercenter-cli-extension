@@ -125,6 +125,10 @@ class OfferSubmissionClient(BaseClient):
     def _map_list_to_type_value(self, list):
         return [TypeValue(type=type_value.type, value=type_value.value) for type_value in list]
 
+    def _get_managed_application_variants(self, durable_id):
+        variants = self._sdk.variant_client.products_product_id_variants_get(durable_id, self._get_access_token())
+        return {v.get("id") for v in variants.value if v.get("resourceType") == "AzureSkuVariant" and v.get("subType") in ("managed-application", "solution-template")}
+
     def _map_list_to_variant_resources(self, list):
         return [SubmissionVariantResource(variant_id=variant_resource.variant_id, resources=self._map_list_to_type_value(variant_resource.resources)) for variant_resource in list]
 
@@ -132,41 +136,28 @@ class OfferSubmissionClient(BaseClient):
         offer = self._offer_client.get(offer_external_id)
 
         if offer.type == "AzureContainer":
-            result = self._graph_api_client.publish_submission(target, offer.resource.durable_id, submission_id)
-            return result
+            return self._graph_api_client.publish_submission(target, offer.resource.durable_id, submission_id)
 
         if offer.type == "AzureApplication":
-            resources = []
-
-            variants = self._sdk.variant_client.products_product_id_variants_get(offer.resource.durable_id, self._get_access_token())
-            managed_application_variants = {
-                v.get("id") for v in variants.value if v.get("resourceType") == "AzureSkuVariant" and v.get("subType") in ("managed-application", "solution-template")
-            }
-            print(f"Managed application variants: {managed_application_variants}")
-
-            variant_resources_dict = {}
-            modules = ["Availability", "Listing", "Package", "Property"]
-            for m in modules:
-                branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
-                    offer.resource.durable_id, m, self._get_access_token()
-                )
-
-                for b in branches.value:
-                    resource = {"type": m, "value": b.current_draft_instance_id}
-                    if not hasattr(b, 'variant_id'):
-                        resources.append(resource)
-                    else:
-                        variant_id = getattr(b, 'variant_id')
-                        if variant_id in managed_application_variants:
-                            variant_resources_dict.setdefault(variant_id, []).append(resource)
-
-
-            variant_resources_list = [{"variantID": variant_id, "resources": resources} for variant_id, resources in variant_resources_dict.items()]
+            managed_application_variants = self._get_managed_application_variants(offer.resource.durable_id)
+            resources, variant_resources_list = self._get_resources_and_variant_resources(offer.resource.durable_id, managed_application_variants)
 
             reseller_instance_id = self._get_reseller_configuration(offer.resource.durable_id)
             resources.append({"type": "ResellerConfiguration", "value": reseller_instance_id})
 
-            offer_submission_dict = {
+            offer_submission_dict = self._get_offer_submission_dictionary(resources, variant_resources_list)
+
+            offer_creation_request = MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest(**offer_submission_dict)
+            result = self._sdk.submission_client.products_product_id_submissions_post(offer.resource.durable_id,
+                self._get_access_token(),
+                microsoft_ingestion_api_models_submissions_submission_creation_request=offer_creation_request
+            )
+            return self._map_application_submission(result)
+
+        return None
+
+    def _get_offer_submission_dictionary(self, resources, variant_resources_list):
+        offer_submission_dict = {
                 "resourceType": "SubmissionCreationRequest",
                 "targets": [
                     {
@@ -183,17 +174,31 @@ class OfferSubmissionClient(BaseClient):
                     "certificationNotes": "Submission automatically generated"
                 },
                 "extendedProperties": []
-            }
+        }
+        return offer_submission_dict
 
-            offer_creation_request = MicrosoftIngestionApiModelsSubmissionsSubmissionCreationRequest(**offer_submission_dict)
+    def _get_resources_and_variant_resources(self, durable_id, managed_application_variants):
+        resources = []
+        variant_resources_dict = {}
 
-            result = self._sdk.submission_client.products_product_id_submissions_post(offer.resource.durable_id,
-                self._get_access_token(),
-                microsoft_ingestion_api_models_submissions_submission_creation_request=offer_creation_request
+        modules = ["Availability", "Listing", "Package", "Property"]
+        for m in modules:
+            branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
+                durable_id, m, self._get_access_token()
             )
-            return self._map_application_submission(result)
 
-        return result
+            for b in branches.value:
+                resource = {"type": m, "value": b.current_draft_instance_id}
+                if not hasattr(b, 'variant_id'):
+                    resources.append(resource)
+                else:
+                    variant_id = getattr(b, 'variant_id')
+                    if variant_id in managed_application_variants:
+                        variant_resources_dict.setdefault(variant_id, []).append(resource)
+
+
+        variant_resources_list = [{"variantID": variant_id, "resources": resources} for variant_id, resources in variant_resources_dict.items()]
+        return resources, variant_resources_list
 
 
 #TODO: understand attribute mapping
