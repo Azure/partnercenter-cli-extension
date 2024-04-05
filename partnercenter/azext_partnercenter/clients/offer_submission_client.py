@@ -73,7 +73,7 @@ class OfferSubmissionClient(BaseClient):
             "Content-Type": "application/json",
             "Authorization": bearer_token
         }
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=60)
 
         if response.status_code != 200:
             raise Exception(f"Failed to get offer branches for {offer_external_id}, status code: {response.status_code}")
@@ -86,21 +86,6 @@ class OfferSubmissionClient(BaseClient):
         reseller_configuration_obj = reseller_configuration[0]
         current_draft_instance_id = reseller_configuration_obj.get("currentDraftInstanceID")
         return current_draft_instance_id
-
-    def _get_variant_resources(self, offer_external_id):
-        variant_ids = []
-        variant_resources = []
-        variants = self._sdk.variant_client.products_product_id_variants_get(offer_external_id, self._get_access_token())
-        for v in variants.value:
-            if v.get("subType") == "managed-application":
-                variant_ids.append(v.get(id))
-        for i in variant_ids:
-            current_resources = []
-            for module in ["Availability", "Listing", "Package"]:
-                current_draft_instance = self._get_offer_draft_instance(i, module)
-                current_resources.append({"type": module, "value": current_draft_instance.current_draft_instance_id})
-            variant_resources.append({"variantID": i, "resources": current_resources})
-        return variant_resources
 
     def _map_application_submission(self, submission):
         return ApplicationSubmission(
