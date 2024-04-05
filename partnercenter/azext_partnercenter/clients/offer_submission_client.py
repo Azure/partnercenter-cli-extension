@@ -76,7 +76,7 @@ class OfferSubmissionClient(BaseClient):
         response = requests.get(url, headers=headers, timeout=60)
 
         if response.status_code != 200:
-            raise Exception(f"Failed to get offer branches for {offer_external_id}, status code: {response.status_code}")
+            raise CLIError(f"Failed to get offer branches for {offer_external_id}, status code: {response.status_code}")
 
         reseller_configuration = response.json().get("value")
 
