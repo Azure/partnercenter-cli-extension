@@ -13,4 +13,5 @@ def list_submission(client, offer_id):
 
 
 def publish_submission(client, offer_id, submission_id, target):
-    return client.publish(offer_id, submission_id, target)
+    result = client.publish(offer_id, submission_id, target)
+    return result
