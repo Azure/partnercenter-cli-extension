@@ -49,7 +49,6 @@ class OfferSubmissionClient(BaseClient):
 
         if offer.type == "AzureApplication":
             result = self._sdk.submission_client.products_product_id_submissions_get(offer.resource.durable_id, self._get_access_token())
-            print(f"Result: {result}")
             return list(map(self._map_application_submission, result.value))
 
         raise CLIError("Only AzureContainer and AzureApplication offers are supported for submission commands")
