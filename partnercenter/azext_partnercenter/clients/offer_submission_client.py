@@ -133,14 +133,14 @@ class OfferSubmissionClient(BaseClient):
     def delete(self, offer_external_id, submission_id):
         offer = self._offer_client.get(offer_external_id)
 
-        if offer.type == "AzureContainer":
-            return self._graph_api_client.delete_submission(submission_id, offer.resource.durable_id)
+        # if offer.type == "AzureContainer":
+        #     return self._graph_api_client.delete_submission(submission_id, offer.resource.durable_id)
         if offer.type == "AzureApplication":
             delete_result = self._sdk.submission_client.products_product_id_submissions_submission_id_delete(offer.resource.durable_id, submission_id, self._get_access_token())
             print(f"Delete result: {delete_result}")
             return delete_result
 
-        raise CLIError("Only AzureContainer and AzureApplication offers are supported for submission commands")
+        raise CLIError("Only AzureApplication offers are supported for submission delete commands")
 
     def publish(self, offer_external_id, submission_id, target):
         offer = self._offer_client.get(offer_external_id)

@@ -7,11 +7,14 @@
 def get_submission(client, offer_id, submission_id):
     return client.get(offer_id, submission_id)
 
+
 def list_submission(client, offer_id):
     return client.list(offer_id)
 
+
 def delete_submission(client, offer_id, submission_id):
     return client.delete(offer_id, submission_id)
+
 
 def publish_submission(client, offer_id, submission_id, target):
     result = client.publish(offer_id, submission_id, target)
