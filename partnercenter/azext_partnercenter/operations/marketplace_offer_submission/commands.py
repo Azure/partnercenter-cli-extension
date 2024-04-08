@@ -16,3 +16,4 @@ def load_command_table(commands_loader, _):
         g.custom_show_command('show', 'get_submission', table_transformer=None)
         g.custom_command('list', 'list_submission', table_transformer=None)
         g.custom_command('publish', 'publish_submission')
+        # g.custom_command('delete', 'delete_submission', confirmation=True, supports_no_wait=True, table_transformer=None)

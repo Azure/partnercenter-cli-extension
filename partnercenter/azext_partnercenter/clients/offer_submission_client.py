@@ -130,6 +130,18 @@ class OfferSubmissionClient(BaseClient):
     def _map_list_to_variant_resources(self, variant_resource_list):
         return [SubmissionVariantResource(variant_id=variant_resource.variant_id, resources=self._map_list_to_type_value(variant_resource.resources)) for variant_resource in variant_resource_list]
 
+    def delete(self, offer_external_id, submission_id):
+        offer = self._offer_client.get(offer_external_id)
+
+        # if offer.type == "AzureContainer":
+        #     return self._graph_api_client.delete_submission(submission_id, offer.resource.durable_id)
+        if offer.type == "AzureApplication":
+            delete_result = self._sdk.submission_client.products_product_id_submissions_submission_id_delete(offer.resource.durable_id, submission_id, self._get_access_token())
+            print(f"Delete result: {delete_result}")
+            return delete_result
+
+        raise CLIError("Only AzureApplication offers are supported for submission delete commands")
+
     def publish(self, offer_external_id, submission_id, target):
         offer = self._offer_client.get(offer_external_id)
 
@@ -196,23 +208,6 @@ class OfferSubmissionClient(BaseClient):
 
         variant_resources_list = [{"variantID": variant_id, "resources": resources} for variant_id, resources in variant_resources_dict.items()]
         return resources, variant_resources_list
-
-# TODO: understand attribute mapping
-# v1 has
-    # 'resource_type': (str,),  # noqa: E501
-    # 'state': (str,),  # noqa: E501
-    # 'substate': (str,),  # noqa: E501
-    # 'targets': ([MicrosoftIngestionApiModelsCommonTypeValuePair],),  # noqa: E501
-    # 'resources': ([MicrosoftIngestionApiModelsCommonTypeValuePair],),  # noqa: E501
-    # 'variant_resources': ([MicrosoftIngestionApiModelsSubmissionsVariantResource],),  # noqa: E501
-    # 'publish_option': (MicrosoftIngestionApiModelsSubmissionsPublishOption,),  # noqa: E501
-    # 'published_time_in_utc': (datetime,),  # noqa: E501
-    # 'pending_update_info': (MicrosoftIngestionApiModelsSubmissionsPendingUpdateInfo,),  # noqa: E501
-    # 'extended_properties': ([MicrosoftIngestionApiModelsCommonTypeValuePair],),  # noqa: E501
-    # 'release_number': (int,),  # noqa: E501
-    # 'friendly_name': (str,),  # noqa: E501
-    # 'are_resources_ready': (bool,),  # noqa: E501
-    # 'id': (str,),  # noqa: E501
 
     @staticmethod
     def _map_submission(s: MicrosoftIngestionApiModelsSubmissionsSubmission) -> OfferSubmission:
