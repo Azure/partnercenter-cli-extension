@@ -9,7 +9,6 @@
 
 from time import time
 import requests
-from pydantic import Extra
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     Submission,
     ContainerPlanTechnicalConfiguration,
@@ -70,7 +69,7 @@ class ProductIngestionApiClient:
         response = self.__call_api(operation_id, 'configure', data=data)
         response.raise_for_status()
 
-        ConfigureResourcesStatus.Config.extra = Extra.allow
+        ConfigureResourcesStatus.model_config = {'extra': 'allow'}
         status = ConfigureResourcesStatus.parse_obj(response.json())
 
         if status.job_status != JobStatus.completed:

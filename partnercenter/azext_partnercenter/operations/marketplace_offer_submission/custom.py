@@ -4,6 +4,9 @@
 # --------------------------------------------------------------------------------------------
 
 
+from azext_partnercenter.models.target_type import TargetType
+
+
 def get_submission(client, offer_id, submission_id):
     return client.get(offer_id, submission_id)
 
@@ -16,6 +19,6 @@ def delete_submission(client, offer_id, submission_id):
     return client.delete(offer_id, submission_id)
 
 
-def publish_submission(client, offer_id, submission_id, target):
+def publish_submission(client, offer_id, submission_id=None, target=TargetType.Draft):
     result = client.publish(offer_id, submission_id, target)
     return result

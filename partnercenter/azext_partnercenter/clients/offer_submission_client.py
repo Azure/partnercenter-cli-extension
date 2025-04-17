@@ -31,7 +31,7 @@ class OfferSubmissionClient(BaseClient):
         offer = self._offer_client.get(offer_external_id)
 
         if offer.type == "AzureContainer":
-            result = self._graph_api_client.get_submission(submission_id, offer.resource.durable_id)
+            result = self._graph_api_client.get_submission(offer.resource.durable_id, submission_id)
             return self._map_submission(result)
 
         if offer.type == "AzureApplication":
@@ -211,12 +211,12 @@ class OfferSubmissionClient(BaseClient):
 
     @staticmethod
     def _map_submission(s: MicrosoftIngestionApiModelsSubmissionsSubmission) -> OfferSubmission:
-        print(f"Mapping submission {s}")
         return OfferSubmission(
             id=s.id.root.split('/')[-1],
-            # lifecycle_state=s.substate,
-            # target=s.target.target_type,
-            # status=s.state,
-            # result=s.result,
+            offer_id=s.product.root.root.split('/')[-1],
+            lifecycle_state=s.lifecycle_state,
+            target=s.target.target_type,
+            status=s.status,
+            result=s.result,
             created=s.created
         )
