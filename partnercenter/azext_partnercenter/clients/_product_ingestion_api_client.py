@@ -17,7 +17,7 @@ from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     ConfigureResourcesStatus,
     JobStatus,
     DurableId)
-from setup import VERSION
+from azext_partnercenter.version import VERSION
 
 
 class ProductIngestionApiClientConfiguration:
