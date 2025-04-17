@@ -16,16 +16,28 @@ DATA_DIR = "/data"
 
 def verify(manifest_file):
     container = _get_container(manifest_file)
-    result = container.exec_run('cpa verify', workdir=DATA_DIR)
+
+    if container.status != 'running':
+        container.start()
+
+    result = container.exec_run('cpa verify', workdir=DATA_DIR, stream=True)
+    for output in result.output:
+        print(output.decode("utf-8"), end='')
+
     container.stop()
-    return result
 
 
 def bundle(manifest_file):
     container = _get_container(manifest_file)
+
+    if container.status != 'running':
+        container.start()
+
     acr_name = _get_acr_name(manifest_file)
-    result = container.exec_run('az acr login -n ' + acr_name)
-    result = container.exec_run('cpa buildbundle', workdir=DATA_DIR)
+    container.exec_run('az acr login -n ' + acr_name)
+    result = container.exec_run('cpa buildbundle', workdir=DATA_DIR, stream=True)
+    for output in result.output:
+        print(output.decode("utf-8"), end='')
 
     container.stop()
     return result
@@ -40,7 +52,7 @@ def _get_container(manifest_file):
         mount_path = _get_mount_path(manifest_file)
         container = _run_container(container_name, mount_path)
     except:
-        raise CLIError('There was an unknow error when trying to find the cpacontainer')
+        raise CLIError('There was an unknown error when trying to find the cpacontainer')
     return container
 
 
@@ -59,6 +71,7 @@ def _run_container(container_name, mount_path):
         client.images.pull(img)
 
     volumes = ['/var/run/docker.sock:/var/run/docker.sock', f'{mount_path}:/data', f'{absolute_path}:/root/.azure']
+
     container = client.containers.run(img, cmd, detach=True, volumes=volumes, name=container_name)
     return container
 

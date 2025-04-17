@@ -66,12 +66,8 @@ def _build_container_package_by_offer_type(client, offer_id, manifest_file, acti
 
 
 def _verify_cnab_bundle(manifest_file):
-    result = verify(manifest_file)
-    print(result.output.decode("utf-8"))
-    return result
+    verify(manifest_file)
 
 
 def _build_cnab_bundle(manifest_file):
-    result = bundle(manifest_file)
-    print(result.output.decode("utf-8"))
-    return result
+    bundle(manifest_file)

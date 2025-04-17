@@ -171,7 +171,7 @@ class OfferClient(BaseClient):
         """Package Internal helper method to get the SDK product object by Offer ID"""
         filter_expr = self._get_sdk_odata_filter_expression_by_external_offer_id(offer_external_id)
         products = self._sdk.product_client.products_get(self._get_access_token(), filter=filter_expr)
-        # print(f"products is {products}")
+
         if products is None or len(products.value) == 0:
             return None
 
