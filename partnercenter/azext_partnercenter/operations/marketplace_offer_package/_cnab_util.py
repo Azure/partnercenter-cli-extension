@@ -51,6 +51,10 @@ def _run_container(container_name, mount_path):
 
     print(mount_path)
 
+    if client.images.list(name=img) == []:
+        print(f"Image {img} not found. Pulling the image...")
+        client.images.pull(img)
+
     volumes = ['/var/run/docker.sock:/var/run/docker.sock', f'{mount_path}:/data', f'{absolute_path}:/root/.azure']
     container = client.containers.run(img, cmd, detach=True, volumes=volumes, name=container_name)
     return container
