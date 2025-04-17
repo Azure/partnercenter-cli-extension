@@ -19,6 +19,6 @@ def delete_submission(client, offer_id, submission_id):
     return client.delete(offer_id, submission_id)
 
 
-def publish_submission(client, offer_id, submission_id=None, target=TargetType.Draft):
+def publish_submission(client, offer_id, submission_id=None, target=TargetType.Draft.value):
     result = client.publish(offer_id, submission_id, target)
     return result
