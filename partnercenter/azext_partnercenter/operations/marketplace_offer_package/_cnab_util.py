@@ -17,6 +17,7 @@ DATA_DIR = "/data"
 def verify(manifest_file):
     container = _get_container(manifest_file)
     result = container.exec_run('cpa verify', workdir=DATA_DIR)
+    container.stop()
     return result
 
 
@@ -25,6 +26,8 @@ def bundle(manifest_file):
     acr_name = _get_acr_name(manifest_file)
     result = container.exec_run('az acr login -n ' + acr_name)
     result = container.exec_run('cpa buildbundle', workdir=DATA_DIR)
+
+    container.stop()
     return result
 
 
