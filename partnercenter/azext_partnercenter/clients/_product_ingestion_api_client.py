@@ -17,6 +17,7 @@ from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     ConfigureResourcesStatus,
     JobStatus,
     DurableId)
+from setup import VERSION
 
 
 class ProductIngestionApiClientConfiguration:
@@ -47,7 +48,9 @@ class ProductIngestionApiClient:
     """The Product Ingestion API client"""
     def __init__(self, access_token=None):
         self.configuration = ProductIngestionApiClientConfiguration(access_token=access_token)
-        self._default_headers = {'Accept': 'application/json'}
+
+        # User-Agent header value is used by marketplace eng to identify the client making the request
+        self._default_headers = {'Accept': 'application/json', 'User-Agent': f"AzureCLI-PCExt/{VERSION}"}
 
     def configure_resources(self, *resources):
         """Configures one or more resources
