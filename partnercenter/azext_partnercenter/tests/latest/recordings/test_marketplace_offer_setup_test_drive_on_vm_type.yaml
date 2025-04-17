@@ -13,20 +13,20 @@ interactions:
   response:
     body:
       string: '{"value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"clitest000001
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"3d153867-3c20-40b6-9ef2-0b3feac74a49"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"bcfe0fa0-6664-4614-980d-0f2155fcc9ba"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 11 Jan 2024 19:21:21 GMT
+      - Thu, 17 Apr 2025 20:42:09 GMT
       request-id:
-      - 11d81a0e-d3c5-46d0-99fc-22d4a8a59312
+      - d7b738c6-d637-4ba8-969c-ad8ad3024a7f
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0sT+gZQAAAAA55zutNjQxQq8U+LMO5pTrTU5aMjIxMDYwNjEzMDQ3ADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      - 20250417T204210Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000z0dv
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -46,20 +46,20 @@ interactions:
   response:
     body:
       string: '{"value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"clitest000001
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"3d153867-3c20-40b6-9ef2-0b3feac74a49"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"bcfe0fa0-6664-4614-980d-0f2155fcc9ba"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 11 Jan 2024 19:21:21 GMT
+      - Thu, 17 Apr 2025 20:42:11 GMT
       request-id:
-      - 3eaf737b-8908-4f17-b441-c7ffdd8b506a
+      - edb63744-ccfb-476f-b48d-f5aadee7b682
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0sj+gZQAAAABq+JTETf6CT46qHMgWV4LlTU5aMjIxMDYwNjEyMDM1ADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      - 20250417T204210Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000z0ms
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -75,7 +75,7 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/3d153867-3c20-40b6-9ef2-0b3feac74a49/setup
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/bcfe0fa0-6664-4614-980d-0f2155fcc9ba/setup
   response:
     body:
       string: '{"resourceType":"AzureProductSetup","sellingOption":"ListAndSell","trialUri":"","enableTestDrive":false,"channelStates":[{"type":"Reseller","value":"Disabled"}]}'
@@ -83,15 +83,15 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 11 Jan 2024 19:21:22 GMT
+      - Thu, 17 Apr 2025 20:42:11 GMT
       request-id:
-      - aeefc106-d0fa-47a3-a70a-b2d86b214b08
+      - add34b2a-1b14-4119-ab59-8749c31294e9
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0sj+gZQAAAACr21uqe5onSoEIQPyt78nJTU5aMjIxMDYwNjEyMDM1ADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      - 20250417T204211Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000z0tg
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -111,20 +111,20 @@ interactions:
   response:
     body:
       string: '{"value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"clitest000001
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"3d153867-3c20-40b6-9ef2-0b3feac74a49"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"bcfe0fa0-6664-4614-980d-0f2155fcc9ba"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 11 Jan 2024 19:21:22 GMT
+      - Thu, 17 Apr 2025 20:42:11 GMT
       request-id:
-      - 11ab3fb3-64c5-4892-9f72-dac78c4ed840
+      - d1c982cd-365f-4d3e-91b3-a3c50540e565
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0sz+gZQAAAADQmRuz87T7Q5xQ03uHPmmKTU5aMjIxMDYwNjEyMDM1ADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      - 20250417T204211Z-16b6fd4df7628jlzhC1BL1p2qn000000064000000000h898
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -144,91 +144,28 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/v1/python
     method: POST
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/3d153867-3c20-40b6-9ef2-0b3feac74a49/setup
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/bcfe0fa0-6664-4614-980d-0f2155fcc9ba/setup
   response:
     body:
-      string: '{"resourceType":"AzureProductSetup","sellingOption":"ListAndSell","trialUri":"","enableTestDrive":true,"testDriveType":"AzureResourceManager","channelStates":[{"type":"Reseller","value":"Disabled"}]}'
+      string: '"ICH50400 - Unable to complete request. {\"faultCode\":50400,\"reasonPhrase\":\"Request
+        validation failed.\",\"correlationId\":\"a68d7afe-2907-4a48-8c1f-41cef9b4298b\",\"operationId\":\"7b0ab43db880de59fe70ee7ae93a95f9\",\"data\":{\"FeatureName\":[\"The
+        field FeatureName is invalid.\"]}}"'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 11 Jan 2024 19:21:25 GMT
+      - Thu, 17 Apr 2025 20:42:12 GMT
       request-id:
-      - de8288c9-fe52-4a8b-b5bc-7a0a4e49621c
+      - 4e9d698a-0637-4882-943f-1303759d4105
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0sz+gZQAAAABr1g1cpH4dRbGpMmloipzLTU5aMjIxMDYwNjExMDIzADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
+      - 20250417T204211Z-16b6fd4df7628jlzhC1BL1p2qn000000064000000000h8cb
       x-cache:
       - CONFIG_NOCACHE
     status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000001%27%29
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureThirdPartyVirtualMachine","name":"clitest000001
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000001"}],"isModularPublishing":true,"id":"3d153867-3c20-40b6-9ef2-0b3feac74a49"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Thu, 11 Jan 2024 19:21:25 GMT
-      request-id:
-      - 8e70e677-40dd-4c71-adb0-c06c1d6d3dd7
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains
-      transfer-encoding:
-      - chunked
-      x-azure-ref:
-      - 0tT+gZQAAAACJNN+g1/GNQo5iWpjJftLyTU5aMjIxMDYwNjEyMDM1ADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
-      x-cache:
-      - CONFIG_NOCACHE
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/3d153867-3c20-40b6-9ef2-0b3feac74a49/setup
-  response:
-    body:
-      string: '{"resourceType":"AzureProductSetup","sellingOption":"ListAndSell","trialUri":"","enableTestDrive":true,"testDriveType":"AzureResourceManager","channelStates":[{"type":"Reseller","value":"Disabled"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Thu, 11 Jan 2024 19:21:25 GMT
-      request-id:
-      - ca6ca94e-a667-4846-8dfc-31527def6de6
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains
-      transfer-encoding:
-      - chunked
-      x-azure-ref:
-      - 0tj+gZQAAAABBujz2MXxwQom9oStQbdk0TU5aMjIxMDYwNjEyMDM1ADIyMTBkMjhhLTUzYmItNDExNi1hOGM1LWU4ZjhiNDUxYmM4Yw==
-      x-cache:
-      - CONFIG_NOCACHE
-    status:
-      code: 200
-      message: OK
+      code: 400
+      message: Bad Request
 version: 1
