@@ -59,7 +59,7 @@ class ProductIngestionApiClient:
         operation_id = 'post-configure'
         configure_resources = ConfigureResources(resources=resources)
         data = configure_resources.dict(by_alias=True, exclude_unset=True)
-        data['$schema'] = 'https://product-ingestion.azureedge.net/schema/configure/2022-03-01-preview2'
+        data['$schema'] = 'https://schema.mp.microsoft.com/schema/configure/2022-03-01-preview2'
 
         for resource in data['resources']:
             if 'resourceName' in resource.keys():
@@ -102,7 +102,7 @@ class ProductIngestionApiClient:
         setattr(configuration, 'cnabReferences', properties.cnab_references)
 
         resource = configuration.dict(by_alias=True)
-        resource['$schema'] = 'https://product-ingestion.azureedge.net/schema/container-plan-technical-configuration/2022-03-01-preview3'
+        resource['$schema'] = 'https://schema.mp.microsoft.com/schema/container-plan-technical-configuration/2022-03-01-preview3'
 
         del resource['resourceName']
         del resource['validations']
@@ -136,7 +136,7 @@ class ProductIngestionApiClient:
         durable_id = DurableId(root=f"submission/{offer_durable_id}/{submission_id}") if submission_id is not None else None
 
         resource = {
-            '$schema': 'https://product-ingestion.azureedge.net/schema/submission/2022-03-01-preview2',
+            '$schema': 'https://schema.mp.microsoft.com/schema/submission/2022-03-01-preview2',
             'id': (None if durable_id is None else durable_id.root),
             'product': product_id.root,
             'target': {'targetType': target}
