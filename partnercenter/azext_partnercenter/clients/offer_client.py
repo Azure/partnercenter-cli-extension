@@ -75,6 +75,7 @@ class OfferClient(BaseClient):
     def get_setup(self, offer_external_id):
         offer = self.get(offer_external_id)
         result = self._sdk.product_client.products_product_id_setup_get(offer.resource.durable_id, self._get_access_token())
+        print(result)
         return self._map_setup(offer_external_id, result)
 
     def update_setup(self, parameters: OfferSetup):

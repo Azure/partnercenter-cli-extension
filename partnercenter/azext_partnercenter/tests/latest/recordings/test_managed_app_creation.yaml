@@ -7,26 +7,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:26 GMT
+      - Fri, 18 Apr 2025 13:24:01 GMT
       request-id:
-      - 14b5b85d-a00a-40eb-8e36-e837bd53bb48
+      - bf7d7e6f-0818-4e43-809a-61c46457f776
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204126Z-16b6fd4df7628jlzhC1BL1p2qn000000064000000000gxrc
+      - 20250418T132401Z-16b6fd4df76j9l2phC1BL1b85g0000000aeg00000000xx9d
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -40,25 +40,25 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/branches/getByModule(module=Listing)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/branches/getByModule(module=Listing)
   response:
     body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"24344580-9343-1d04-c33f-eb413d3850f3"}]}'
+      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"c4fe3410-be12-c406-e5b2-18608b383508"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:26 GMT
+      - Fri, 18 Apr 2025 13:24:01 GMT
       request-id:
-      - b4f6dc7b-bc39-4f08-bcab-358789d946da
+      - 2bb296a0-9392-43e5-a1a6-15b634be280f
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204126Z-16b6fd4df7628jlzhC1BL1p2qn000000064000000000gxvn
+      - 20250418T132402Z-16b6fd4df76qtdgbhC1BL1s0100000000be000000000s2px
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -72,26 +72,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/listings/getByInstanceID(instanceID=24344580-9343-1d04-c33f-eb413d3850f3)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/listings/getByInstanceID(instanceID=c4fe3410-be12-c406-e5b2-18608b383508)
   response:
     body:
       string: '{"value":[{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"clitest000002
-        Alias","keywords":[],"@odata.etag":"\"b0023937-0000-0800-0000-680167720000\"","id":"c6592fb9-3d10-1de1-f12d-bc0c9223cbe1"}]}'
+        Alias","keywords":[],"@odata.etag":"\"0e0514d7-0000-0800-0000-6802526e0000\"","id":"eb8ad1f6-b685-b7b6-f6aa-83fb0d8451f8"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:26 GMT
+      - Fri, 18 Apr 2025 13:24:01 GMT
       request-id:
-      - cb9aca75-0998-492e-8e62-3c4266f81f46
+      - d47e188b-4f32-4633-bd2e-1531efce5a3d
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204127Z-16b6fd4df7628jlzhC1BL1p2qn000000064000000000gxxh
+      - 20250418T132402Z-16b6fd4df76qtdgbhC1BL1s0100000000be000000000s2rn
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -105,26 +105,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:26 GMT
+      - Fri, 18 Apr 2025 13:24:03 GMT
       request-id:
-      - 08e30b53-afdd-4ebc-9768-9509d4a9b273
+      - 3edcd3c6-1ce5-4355-9442-46bbe55ae289
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204127Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000yqdz
+      - 20250418T132403Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010egm
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -138,25 +138,25 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/branches/getByModule(module=Listing)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/branches/getByModule(module=Listing)
   response:
     body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"24344580-9343-1d04-c33f-eb413d3850f3"}]}'
+      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"c4fe3410-be12-c406-e5b2-18608b383508"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:28 GMT
+      - Fri, 18 Apr 2025 13:24:03 GMT
       request-id:
-      - 44130dbf-9c66-4e1e-ac7d-436ea19cf2cf
+      - d4ca0c84-6d44-4670-aaf2-57a4d0d2cf3d
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204128Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000yqhz
+      - 20250418T132403Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010eqn
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -170,26 +170,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/listings/getByInstanceID(instanceID=24344580-9343-1d04-c33f-eb413d3850f3)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/listings/getByInstanceID(instanceID=c4fe3410-be12-c406-e5b2-18608b383508)
   response:
     body:
       string: '{"value":[{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"clitest000002
-        Alias","keywords":[],"@odata.etag":"\"b0023937-0000-0800-0000-680167720000\"","id":"c6592fb9-3d10-1de1-f12d-bc0c9223cbe1"}]}'
+        Alias","keywords":[],"@odata.etag":"\"0e0514d7-0000-0800-0000-6802526e0000\"","id":"eb8ad1f6-b685-b7b6-f6aa-83fb0d8451f8"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:28 GMT
+      - Fri, 18 Apr 2025 13:24:03 GMT
       request-id:
-      - e4d2fa7f-3162-4845-83b2-a557d689c44d
+      - ab704a9e-4a38-4b73-aad1-a1b7a2f6fd04
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204128Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000yqmx
+      - 20250418T132404Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010esw
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -203,26 +203,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:29 GMT
+      - Fri, 18 Apr 2025 13:24:04 GMT
       request-id:
-      - 89bc1552-2f8e-4f6f-8a1d-3fc9b08ead33
+      - 9d15b867-457f-4b0a-80be-a682fee0c110
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204128Z-16b6fd4df7628jlzhC1BL1p2qn000000064000000000gy7p
+      - 20250418T132404Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010ewk
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -236,26 +236,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:29 GMT
+      - Fri, 18 Apr 2025 13:24:04 GMT
       request-id:
-      - 999eb31f-b6e7-48c0-87bc-7bda42156aaa
+      - 359f7520-e18b-4988-b651-4e624f4b29a1
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204129Z-16b6fd4df7628jlzhC1BL1p2qn000000064000000000gya3
+      - 20250418T132404Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010f0s
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -269,25 +269,25 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/branches/getByModule(module=Listing)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/branches/getByModule(module=Listing)
   response:
     body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"24344580-9343-1d04-c33f-eb413d3850f3"}]}'
+      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"c4fe3410-be12-c406-e5b2-18608b383508"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:29 GMT
+      - Fri, 18 Apr 2025 13:24:04 GMT
       request-id:
-      - 0fdfef13-a5b9-4961-b579-923082071f45
+      - e20fc61e-5515-4895-bc99-c12efe89c403
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204129Z-16b6fd4df7628jlzhC1BL1p2qn000000064000000000gyck
+      - 20250418T132405Z-16b6fd4df76g488nhC1BL1pewn000000099g00000000xv5r
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -301,26 +301,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/listings/getByInstanceID(instanceID=24344580-9343-1d04-c33f-eb413d3850f3)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/listings/getByInstanceID(instanceID=c4fe3410-be12-c406-e5b2-18608b383508)
   response:
     body:
       string: '{"value":[{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"clitest000002
-        Alias","keywords":[],"@odata.etag":"\"b0023937-0000-0800-0000-680167720000\"","id":"c6592fb9-3d10-1de1-f12d-bc0c9223cbe1"}]}'
+        Alias","keywords":[],"@odata.etag":"\"0e0514d7-0000-0800-0000-6802526e0000\"","id":"eb8ad1f6-b685-b7b6-f6aa-83fb0d8451f8"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:30 GMT
+      - Fri, 18 Apr 2025 13:24:04 GMT
       request-id:
-      - fd7eb230-d79f-4d82-a7d2-0cd48fb0379a
+      - 0bb28267-1f20-412a-a36a-e03b74e46a4e
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204129Z-16b6fd4df7628jlzhC1BL1p2qn000000064000000000gyea
+      - 20250418T132405Z-16b6fd4df76g488nhC1BL1pewn000000099g00000000xv78
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -330,7 +330,7 @@ interactions:
     body: '{"resourceType": "AzureListing", "description": "Unreal Cloud DDC for Unreal
       Engine game development.", "title": "clitest000002 Alias", "summary": "A storage
       offer for Unreal Engine Game Developers", "shortDescription": "Unreal Cloud
-      DDC for Unreal Engine game development.", "@odata.etag": "\"b0023937-0000-0800-0000-680167720000\"",
+      DDC for Unreal Engine game development.", "@odata.etag": "\"0e0514d7-0000-0800-0000-6802526e0000\"",
       "listingUris": [], "listingContacts": []}'
     headers:
       Accept:
@@ -340,30 +340,30 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: PUT
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/listings/c6592fb9-3d10-1de1-f12d-bc0c9223cbe1
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/listings/eb8ad1f6-b685-b7b6-f6aa-83fb0d8451f8
   response:
     body:
       string: '{"resourceType":"AzureListing","summary":"A storage offer for Unreal
         Engine Game Developers","listingUris":[],"listingContacts":[],"languageCode":"en-us","title":"clitest000002
         Alias","description":"Unreal Cloud DDC for Unreal Engine game development.","shortDescription":"Unreal
-        Cloud DDC for Unreal Engine game development.","@odata.etag":"\"b0028639-0000-0800-0000-6801677a0000\"","id":"c6592fb9-3d10-1de1-f12d-bc0c9223cbe1"}'
+        Cloud DDC for Unreal Engine game development.","@odata.etag":"\"0e0550d9-0000-0800-0000-680252760000\"","id":"eb8ad1f6-b685-b7b6-f6aa-83fb0d8451f8"}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:31 GMT
+      - Fri, 18 Apr 2025 13:24:06 GMT
       etag:
-      - '"b0028639-0000-0800-0000-6801677a0000"'
+      - '"0e0550d9-0000-0800-0000-680252760000"'
       request-id:
-      - bf5a0c7e-c4ee-4655-839d-75c548630122
+      - 6ca40281-722a-409a-b7b2-5045f8f69523
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204130Z-15bd8fcd597rmrvshC1BL1buas00000008w0000000007869
+      - 20250418T132405Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010f8d
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -377,26 +377,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:31 GMT
+      - Fri, 18 Apr 2025 13:24:06 GMT
       request-id:
-      - 160405bb-d00e-4c60-a91a-5aeae8bb5d26
+      - 84835a7b-e84c-418b-bfa3-8748abccbb3f
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204131Z-15bd8fcd597rmrvshC1BL1buas00000008w00000000078dw
+      - 20250418T132406Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005qwk
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -410,9 +410,9 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/setup
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/setup
   response:
     body:
       string: '{"resourceType":"AzureProductSetup","sellingOption":"ListAndSell","trialUri":"","enableTestDrive":false,"channelStates":[{"type":"Reseller","value":"Disabled"}]}'
@@ -420,15 +420,15 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:32 GMT
+      - Fri, 18 Apr 2025 13:24:07 GMT
       request-id:
-      - 430db381-51a9-4e64-bdcd-94ad92d53360
+      - 3147c468-39b7-4793-b96f-0096b4ba7bf9
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204132Z-16b6fd4df769vj5vhC1BL1e1rw000000091g00000000wfy7
+      - 20250418T132407Z-16b6fd4df76qtdgbhC1BL1s0100000000be000000000s3sa
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -442,26 +442,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:32 GMT
+      - Fri, 18 Apr 2025 13:24:07 GMT
       request-id:
-      - 8ee4e142-8605-41ac-89a4-6f795d205e1c
+      - 7c459d78-50cb-4919-9b5b-a013ebfaa51d
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204132Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000yrg2
+      - 20250418T132407Z-16b6fd4df76g488nhC1BL1pewn000000099g00000000xvsm
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -475,26 +475,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:33 GMT
+      - Fri, 18 Apr 2025 13:24:08 GMT
       request-id:
-      - 43254eca-9882-42fc-b8e0-3f6ef8b1b249
+      - aeb40513-0215-49d5-84ba-2fc9bac84c75
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204133Z-15bd8fcd597rmrvshC1BL1buas00000008w00000000078u2
+      - 20250418T132408Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005r77
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -508,9 +508,9 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/setup
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/setup
   response:
     body:
       string: '{"resourceType":"AzureProductSetup","sellingOption":"ListAndSell","trialUri":"","enableTestDrive":false,"channelStates":[{"type":"Reseller","value":"Disabled"}]}'
@@ -518,15 +518,15 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:33 GMT
+      - Fri, 18 Apr 2025 13:24:08 GMT
       request-id:
-      - b9145b83-959f-419d-9a22-a5f9f8c1fce3
+      - 61dcf056-b770-4579-85bd-b969d42485ff
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204133Z-15bd8fcd597rmrvshC1BL1buas00000008w00000000078x4
+      - 20250418T132408Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005r9z
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -540,26 +540,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:33 GMT
+      - Fri, 18 Apr 2025 13:24:08 GMT
       request-id:
-      - 702f6089-dcf5-4fcd-8e09-4b561cd11497
+      - 8e6e166f-be93-4f8a-b8d0-5a3cd1ed07b5
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204134Z-15bd8fcd597rmrvshC1BL1buas00000008w00000000078zy
+      - 20250418T132408Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010g3v
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -577,9 +577,9 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: POST
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/setup
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/setup
   response:
     body:
       string: '{"resourceType":"AzureProductSetup","sellingOption":"ListAndSell","trialUri":"","enableTestDrive":false,"channelStates":[{"type":"Reseller","value":"Disabled"}]}'
@@ -587,15 +587,15 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:34 GMT
+      - Fri, 18 Apr 2025 13:24:09 GMT
       request-id:
-      - f25296cc-648a-4ab5-8805-51848a178c22
+      - 95fe7e41-cf8a-4c91-bb6e-5057e7d6ed5d
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204134Z-15bd8fcd597rmrvshC1BL1buas00000008w000000000791c
+      - 20250418T132409Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010g69
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -609,26 +609,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:34 GMT
+      - Fri, 18 Apr 2025 13:24:09 GMT
       request-id:
-      - 4cdffcbb-f909-4beb-a968-49a29c4b1817
+      - d830e3a7-1911-4550-a2c9-5788a2b288a9
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204135Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000ys21
+      - 20250418T132410Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010ghh
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -642,9 +642,9 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/setup
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/setup
   response:
     body:
       string: '{"resourceType":"AzureProductSetup","sellingOption":"ListAndSell","trialUri":"","enableTestDrive":false,"channelStates":[{"type":"Reseller","value":"Disabled"}]}'
@@ -652,15 +652,15 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:35 GMT
+      - Fri, 18 Apr 2025 13:24:09 GMT
       request-id:
-      - a0917841-fb85-4136-8735-eaf8f0e58295
+      - 163dcca2-5649-46a8-8247-f74dd3c3816e
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204135Z-15bd8fcd597rmrvshC1BL1buas00000008w00000000079d4
+      - 20250418T132410Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010gmx
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -674,26 +674,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:35 GMT
+      - Fri, 18 Apr 2025 13:24:10 GMT
       request-id:
-      - ead040e7-b10c-4b66-83bb-c190ea24f570
+      - 856f896a-5823-47b9-a602-640781eb9ddd
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204136Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000ys6d
+      - 20250418T132410Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005rvh
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -710,29 +710,29 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: POST
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/variants
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/variants
   response:
     body:
-      string: '{"resourceType":"AzureSkuVariant","state":"Active","friendlyName":"plantest-000003name","conversionPaths":"*","externalID":"plantest-000003","certificationsAzureGovernment":[],"cloudAvailabilities":["public-azure"],"subType":"managed-application","extendedProperties":[],"@odata.etag":"\"4c003528-0000-0800-0000-680167810000\"","id":"89b122dd-5166-4904-983d-bdfcb453cafe"}'
+      string: '{"resourceType":"AzureSkuVariant","state":"Active","friendlyName":"plantest-000003name","conversionPaths":"*","externalID":"plantest-000003","certificationsAzureGovernment":[],"cloudAvailabilities":["public-azure"],"subType":"managed-application","extendedProperties":[],"@odata.etag":"\"520084fa-0000-0800-0000-6802527c0000\"","id":"7d80215d-2baa-41c3-acce-a7fef8420102"}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:36 GMT
+      - Fri, 18 Apr 2025 13:24:12 GMT
       etag:
-      - '"4c003528-0000-0800-0000-680167810000"'
+      - '"520084fa-0000-0800-0000-6802527c0000"'
       location:
-      - https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/variants/89b122dd-5166-4904-983d-bdfcb453cafe
+      - https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/variants/7d80215d-2baa-41c3-acce-a7fef8420102
       request-id:
-      - 699b5d31-45de-43dd-8ecf-351d21731202
+      - dc098703-c2b2-4f2e-9b3d-9489f1d822c3
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204136Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000ysa7
+      - 20250418T132411Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005ryy
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -746,26 +746,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:47 GMT
+      - Fri, 18 Apr 2025 13:24:22 GMT
       request-id:
-      - 76ec2ac7-3a40-41fb-9c0d-bcec9ecb0478
+      - c0f43ed1-cc60-4bc9-a9a1-dc87e5ab3bd3
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204147Z-16b6fd4df769vj5vhC1BL1e1rw000000091g00000000wm3e
+      - 20250418T132422Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010m8z
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -779,25 +779,25 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/branches/getByModule(module=Listing)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/branches/getByModule(module=Listing)
   response:
     body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"24344580-9343-1d04-c33f-eb413d3850f3"},{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"f0f21494-8080-ee88-20b3-edf06a20f150","variantID":"89b122dd-5166-4904-983d-bdfcb453cafe"}]}'
+      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"c4fe3410-be12-c406-e5b2-18608b383508"},{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"4f27c6b8-02b6-5169-25fa-d5a0736ea4bc","variantID":"7d80215d-2baa-41c3-acce-a7fef8420102"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:47 GMT
+      - Fri, 18 Apr 2025 13:24:23 GMT
       request-id:
-      - dfcacea1-8054-40ed-a5f0-ccb84b8b8bb9
+      - 0f191847-bf21-4b78-bc05-4dc68ac383c0
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204148Z-16b6fd4df769vj5vhC1BL1e1rw000000091g00000000wm61
+      - 20250418T132423Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005uvs
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -811,123 +811,26 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Thu, 17 Apr 2025 20:41:48 GMT
-      request-id:
-      - cec19c30-3a77-4e6b-b57b-b0f92ad29b9f
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains
-      transfer-encoding:
-      - chunked
-      x-azure-ref:
-      - 20250417T204148Z-16b6fd4df769vj5vhC1BL1e1rw000000091g00000000wm90
-      x-cache:
-      - CONFIG_NOCACHE
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/variants
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureSkuVariant","state":"Active","friendlyName":"plantest-000003name","conversionPaths":"*","externalID":"plantest-000003","certificationsAzureGovernment":[],"cloudAvailabilities":["public-azure"],"subType":"managed-application","extendedProperties":[],"@odata.etag":"\"4c003528-0000-0800-0000-680167810000\"","id":"89b122dd-5166-4904-983d-bdfcb453cafe"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Thu, 17 Apr 2025 20:41:48 GMT
-      request-id:
-      - 8a5cd17d-5ab9-45aa-85da-b5e9d8b7654b
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains
-      transfer-encoding:
-      - chunked
-      x-azure-ref:
-      - 20250417T204149Z-16b6fd4df769vj5vhC1BL1e1rw000000091g00000000wmch
-      x-cache:
-      - CONFIG_NOCACHE
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
-    method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/listings/getByInstanceID(instanceID=f0f21494-8080-ee88-20b3-edf06a20f150)
-  response:
-    body:
-      string: '{"value":[{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"plantest-000003name","keywords":[],"@odata.etag":"\"b0028a3b-0000-0800-0000-680167830000\"","id":"0a8e055d-ee00-ba15-0c88-4d82bf83ed83"}]}'
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      date:
-      - Thu, 17 Apr 2025 20:41:48 GMT
-      request-id:
-      - 8447d7f4-eb34-402d-a9d3-76c1324dfbfb
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains
-      transfer-encoding:
-      - chunked
-      x-azure-ref:
-      - 20250417T204149Z-15bd8fcd597rmrvshC1BL1buas00000008w0000000007c7d
-      x-cache:
-      - CONFIG_NOCACHE
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      If-Match:
-      - '*'
-      User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:49 GMT
+      - Fri, 18 Apr 2025 13:24:23 GMT
       request-id:
-      - 151fd688-9da6-4992-bf83-4f98e56ac692
+      - 14e6396b-eafc-4c18-a0a8-07068419cfd8
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204149Z-16b6fd4df769vj5vhC1BL1e1rw000000091g00000000wmhz
+      - 20250418T132423Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005uxe
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -941,25 +844,25 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/branches/getByModule(module=Listing)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/variants
   response:
     body:
-      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"24344580-9343-1d04-c33f-eb413d3850f3"},{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"f0f21494-8080-ee88-20b3-edf06a20f150","variantID":"89b122dd-5166-4904-983d-bdfcb453cafe"}]}'
+      string: '{"value":[{"resourceType":"AzureSkuVariant","state":"Active","friendlyName":"plantest-000003name","conversionPaths":"*","externalID":"plantest-000003","certificationsAzureGovernment":[],"cloudAvailabilities":["public-azure"],"subType":"managed-application","extendedProperties":[],"@odata.etag":"\"520084fa-0000-0800-0000-6802527c0000\"","id":"7d80215d-2baa-41c3-acce-a7fef8420102"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:49 GMT
+      - Fri, 18 Apr 2025 13:24:23 GMT
       request-id:
-      - e98742f2-d55a-40d4-9c09-9600d141170f
+      - e0cb8278-eef5-4a74-86df-7ab75d8cad11
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204150Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000yva2
+      - 20250418T132424Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005v1m
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -973,26 +876,58 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/listings/getByInstanceID(instanceID=4f27c6b8-02b6-5169-25fa-d5a0736ea4bc)
+  response:
+    body:
+      string: '{"value":[{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"plantest-000003name","keywords":[],"@odata.etag":"\"0e054bdc-0000-0800-0000-6802527e0000\"","id":"657ebaf8-7653-6d51-3032-ca9a647415f4"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Apr 2025 13:24:24 GMT
+      request-id:
+      - ef48db43-7db4-4fec-8ea6-82365233fff8
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-azure-ref:
+      - 20250418T132424Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005v3z
+      x-cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - AzureCLI-PCExt/0.2.6
     method: GET
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
       string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
-        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"01f9531d-d9b9-4801-a375-2d336ed2d944"}]}'
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:49 GMT
+      - Fri, 18 Apr 2025 13:24:24 GMT
       request-id:
-      - 0bec859f-bb32-4665-82f0-c9a4d2d502b8
+      - 2e9e18cb-6f33-4d84-859c-595728a05b2a
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204150Z-15bd8fcd597r4kpchC1BL1qqd400000009c000000000yvd7
+      - 20250418T132424Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005v5y
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -1006,25 +941,25 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/variants
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/branches/getByModule(module=Listing)
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureSkuVariant","state":"Active","friendlyName":"plantest-000003name","conversionPaths":"*","externalID":"plantest-000003","certificationsAzureGovernment":[],"cloudAvailabilities":["public-azure"],"subType":"managed-application","extendedProperties":[],"@odata.etag":"\"4c003528-0000-0800-0000-680167810000\"","id":"89b122dd-5166-4904-983d-bdfcb453cafe"}]}'
+      string: '{"value":[{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"c4fe3410-be12-c406-e5b2-18608b383508"},{"resourceType":"Branch","friendlyName":"Main","type":"Main","module":"Listing","currentDraftInstanceID":"4f27c6b8-02b6-5169-25fa-d5a0736ea4bc","variantID":"7d80215d-2baa-41c3-acce-a7fef8420102"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:50 GMT
+      - Fri, 18 Apr 2025 13:24:25 GMT
       request-id:
-      - abfd9762-a202-4efc-a943-a8a1228260c1
+      - a17d6cb0-73f9-485b-8342-ca0ce1befc46
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204151Z-15bd8fcd597h767rhC1BL1nbgw00000001ag00000000sd4y
+      - 20250418T132425Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010mu6
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -1038,25 +973,90 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: GET
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/listings/getByInstanceID(instanceID=f0f21494-8080-ee88-20b3-edf06a20f150)
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products?%24filter=externalIDs%2FAny%28i%3Ai%2Ftype+eq+%27AzureOfferId%27+and+i%2Fvalue+eq+%27clitest000002%27%29
   response:
     body:
-      string: '{"value":[{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"plantest-000003name","keywords":[],"@odata.etag":"\"b0028a3b-0000-0800-0000-680167830000\"","id":"0a8e055d-ee00-ba15-0c88-4d82bf83ed83"}]}'
+      string: '{"value":[{"resourceType":"AzureApplication","name":"clitest000002
+        Alias","externalIDs":[{"type":"AzureOfferId","value":"clitest000002"}],"isModularPublishing":true,"id":"b7d7cceb-d833-4b6f-9939-57552d1a71a6"}]}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:51 GMT
+      - Fri, 18 Apr 2025 13:24:25 GMT
       request-id:
-      - dd179470-4610-4174-89e9-ddfb072b0852
+      - 6fa93597-be6b-4eca-a282-837cd4d62f4d
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204151Z-16b6fd4df769vj5vhC1BL1e1rw000000091g00000000wmvw
+      - 20250418T132425Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005vbx
+      x-cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - AzureCLI-PCExt/0.2.6
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/variants
+  response:
+    body:
+      string: '{"value":[{"resourceType":"AzureSkuVariant","state":"Active","friendlyName":"plantest-000003name","conversionPaths":"*","externalID":"plantest-000003","certificationsAzureGovernment":[],"cloudAvailabilities":["public-azure"],"subType":"managed-application","extendedProperties":[],"@odata.etag":"\"520084fa-0000-0800-0000-6802527c0000\"","id":"7d80215d-2baa-41c3-acce-a7fef8420102"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Apr 2025 13:24:25 GMT
+      request-id:
+      - b2ba3136-d75c-4ad0-8c47-dd1bdc427eb5
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-azure-ref:
+      - 20250418T132425Z-15bd8fcd597khbdlhC1BL1cm6s0000000bk0000000005vev
+      x-cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      If-Match:
+      - '*'
+      User-Agent:
+      - AzureCLI-PCExt/0.2.6
+    method: GET
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/listings/getByInstanceID(instanceID=4f27c6b8-02b6-5169-25fa-d5a0736ea4bc)
+  response:
+    body:
+      string: '{"value":[{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"plantest-000003name","keywords":[],"@odata.etag":"\"0e054bdc-0000-0800-0000-6802527e0000\"","id":"657ebaf8-7653-6d51-3032-ca9a647415f4"}]}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Fri, 18 Apr 2025 13:24:26 GMT
+      request-id:
+      - ee5f58d0-250b-4c80-9822-3aa00ba783d1
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-azure-ref:
+      - 20250418T132426Z-16b6fd4df7628jlzhC1BL1p2qn0000000840000000010n2d
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -1065,8 +1065,8 @@ interactions:
 - request:
     body: '{"resourceType": "AzureListing", "listingUris": [], "listingContacts":
       [], "gettingStartedInstructions": "", "languageCode": "en-us", "title": "plantest-000003name",
-      "keywords": [], "@odata.etag": "\"b0028a3b-0000-0800-0000-680167830000\"", "ID":
-      "0a8e055d-ee00-ba15-0c88-4d82bf83ed83", "shortDescription": "Unreal Cloud DDC
+      "keywords": [], "@odata.etag": "\"0e054bdc-0000-0800-0000-6802527e0000\"", "ID":
+      "657ebaf8-7653-6d51-3032-ca9a647415f4", "shortDescription": "Unreal Cloud DDC
       for Unreal Engine game development.", "description": "Unreal Cloud DDC for Unreal
       Engine game development."}'
     headers:
@@ -1077,29 +1077,29 @@ interactions:
       If-Match:
       - '*'
       User-Agent:
-      - OpenAPI-Generator/v1/python
+      - AzureCLI-PCExt/0.2.6
     method: PUT
-    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/01f9531d-d9b9-4801-a375-2d336ed2d944/listings/0a8e055d-ee00-ba15-0c88-4d82bf83ed83
+    uri: https://api.partner.microsoft.com/v1.0/ingestion/products/b7d7cceb-d833-4b6f-9939-57552d1a71a6/listings/657ebaf8-7653-6d51-3032-ca9a647415f4
   response:
     body:
       string: '{"resourceType":"AzureListing","listingUris":[],"listingContacts":[],"gettingStartedInstructions":"","languageCode":"en-us","title":"plantest-000003name","description":"Unreal
         Cloud DDC for Unreal Engine game development.","shortDescription":"Unreal
-        Cloud DDC for Unreal Engine game development.","keywords":[],"@odata.etag":"\"b0021c3e-0000-0800-0000-6801678f0000\"","id":"0a8e055d-ee00-ba15-0c88-4d82bf83ed83"}'
+        Cloud DDC for Unreal Engine game development.","keywords":[],"@odata.etag":"\"0e05e2df-0000-0800-0000-6802528a0000\"","id":"657ebaf8-7653-6d51-3032-ca9a647415f4"}'
     headers:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Thu, 17 Apr 2025 20:41:52 GMT
+      - Fri, 18 Apr 2025 13:24:26 GMT
       etag:
-      - '"b0021c3e-0000-0800-0000-6801678f0000"'
+      - '"0e05e2df-0000-0800-0000-6802528a0000"'
       request-id:
-      - 7b8472fd-3fab-424f-be01-61ee34a1b11c
+      - c08996c4-fe6b-40ce-84f6-f5881b40ab85
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 20250417T204151Z-16b6fd4df769vj5vhC1BL1e1rw000000091g00000000wmz5
+      - 20250418T132426Z-16b6fd4df76g488nhC1BL1pewn000000099g00000000y1em
       x-cache:
       - CONFIG_NOCACHE
     status:

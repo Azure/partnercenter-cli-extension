@@ -23,7 +23,6 @@ def _load_operations_help():
         'marketplace_offer_plan',
         'marketplace_offer_plan_listing',
         'marketplace_offer_plan_technicalconfiguration',
-        'marketplace_offer_setup',
         'marketplace_offer_submission'
     ]
     for module_name in operations_modules:

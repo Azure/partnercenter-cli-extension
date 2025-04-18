@@ -8,8 +8,8 @@
 # pylint: disable=too-few-public-methods
 
 from time import time
-from azext_partnercenter._headers import USER_AGENT_HEADER
 import requests
+from azext_partnercenter._headers import USER_AGENT_HEADER
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     Submission,
     ContainerPlanTechnicalConfiguration,
@@ -18,7 +18,6 @@ from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     ConfigureResourcesStatus,
     JobStatus,
     DurableId)
-from azext_partnercenter.version import VERSION
 
 
 class ProductIngestionApiClientConfiguration:
