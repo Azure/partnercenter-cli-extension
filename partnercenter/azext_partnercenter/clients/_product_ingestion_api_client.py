@@ -8,6 +8,7 @@
 # pylint: disable=too-few-public-methods
 
 from time import time
+from azext_partnercenter._headers import USER_AGENT_HEADER
 import requests
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     Submission,
@@ -50,7 +51,7 @@ class ProductIngestionApiClient:
         self.configuration = ProductIngestionApiClientConfiguration(access_token=access_token)
 
         # User-Agent header value is used by marketplace eng to identify the client making the request
-        self._default_headers = {'Accept': 'application/json', 'User-Agent': f"AzureCLI-PCExt/{VERSION}"}
+        self._default_headers = {'Accept': 'application/json', **USER_AGENT_HEADER}
 
     def configure_resources(self, *resources):
         """Configures one or more resources

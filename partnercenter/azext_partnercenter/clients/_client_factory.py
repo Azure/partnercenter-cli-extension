@@ -5,6 +5,11 @@
 
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
+
+
+from azext_partnercenter._headers import add_user_agent_header
+
+
 def get_api_client(cli_ctx, *_):
     """Gets an instance of an sdk client"""
     # subscription_id = cli_ctx.data['subscription_id']
@@ -22,6 +27,7 @@ def get_api_client(cli_ctx, *_):
     # set authorixation header to the raw token credentials fetched
     api_client.set_default_header("Authorization", creds[0] + " " + creds[1])
     api_client.set_default_header("If-Match", "*")
+    add_user_agent_header(api_client.set_default_header)
 
     return api_client
 
@@ -41,5 +47,6 @@ def get_api_client_for_graph(cli_ctx, *_):
     # set authorixation header to the raw token credentials fetched
     api_client.set_default_header("Authorization", creds[0] + " " + creds[1])
     api_client.set_default_header("If-Match", "*")
+    add_user_agent_header(api_client.set_default_header)
 
     return api_client
