@@ -9,7 +9,7 @@
 
 from time import time
 import requests
-from pydantic import Extra
+from azext_partnercenter._headers import USER_AGENT_HEADER
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     Submission,
     ContainerPlanTechnicalConfiguration,
@@ -48,7 +48,9 @@ class ProductIngestionApiClient:
     """The Product Ingestion API client"""
     def __init__(self, access_token=None):
         self.configuration = ProductIngestionApiClientConfiguration(access_token=access_token)
-        self._default_headers = {'Accept': 'application/json'}
+
+        # User-Agent header value is used by marketplace eng to identify the client making the request
+        self._default_headers = {'Accept': 'application/json', **USER_AGENT_HEADER}
 
     def configure_resources(self, *resources):
         """Configures one or more resources
@@ -59,7 +61,7 @@ class ProductIngestionApiClient:
         operation_id = 'post-configure'
         configure_resources = ConfigureResources(resources=resources)
         data = configure_resources.dict(by_alias=True, exclude_unset=True)
-        data['$schema'] = 'https://product-ingestion.azureedge.net/schema/configure/2022-03-01-preview2'
+        data['$schema'] = 'https://schema.mp.microsoft.com/schema/configure/2022-03-01-preview2'
 
         for resource in data['resources']:
             if 'resourceName' in resource.keys():
@@ -70,7 +72,7 @@ class ProductIngestionApiClient:
         response = self.__call_api(operation_id, 'configure', data=data)
         response.raise_for_status()
 
-        ConfigureResourcesStatus.Config.extra = Extra.allow
+        ConfigureResourcesStatus.model_config = {'extra': 'allow'}
         status = ConfigureResourcesStatus.parse_obj(response.json())
 
         if status.job_status != JobStatus.completed:
@@ -102,7 +104,7 @@ class ProductIngestionApiClient:
         setattr(configuration, 'cnabReferences', properties.cnab_references)
 
         resource = configuration.dict(by_alias=True)
-        resource['$schema'] = 'https://product-ingestion.azureedge.net/schema/container-plan-technical-configuration/2022-03-01-preview3'
+        resource['$schema'] = 'https://schema.mp.microsoft.com/schema/container-plan-technical-configuration/2022-03-01-preview3'
 
         del resource['resourceName']
         del resource['validations']
@@ -136,7 +138,7 @@ class ProductIngestionApiClient:
         durable_id = DurableId(root=f"submission/{offer_durable_id}/{submission_id}") if submission_id is not None else None
 
         resource = {
-            '$schema': 'https://product-ingestion.azureedge.net/schema/submission/2022-03-01-preview2',
+            '$schema': 'https://schema.mp.microsoft.com/schema/submission/2022-03-01-preview2',
             'id': (None if durable_id is None else durable_id.root),
             'product': product_id.root,
             'target': {'targetType': target}

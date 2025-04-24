@@ -31,14 +31,14 @@ class OfferSubmissionClient(BaseClient):
         offer = self._offer_client.get(offer_external_id)
 
         if offer.type == "AzureContainer":
-            result = self._graph_api_client.get_submission(submission_id, offer.resource.durable_id)
+            result = self._graph_api_client.get_submission(offer.resource.durable_id, submission_id)
             return self._map_submission(result)
 
         if offer.type == "AzureApplication":
             result = self._sdk.submission_client.products_product_id_submissions_submission_id_get(offer.resource.durable_id, submission_id, self._get_access_token())
             return self._map_application_submission(result)
 
-        raise CLIError("Only AzureContainer and AzureApplication offers are supported for submission commands")
+        raise CLIError("Only AzureContainer and AzureApplication offers are supported for submission commands at this time")
 
     def list(self, offer_external_id):
         offer = self._offer_client.get(offer_external_id)
@@ -51,7 +51,7 @@ class OfferSubmissionClient(BaseClient):
             result = self._sdk.submission_client.products_product_id_submissions_get(offer.resource.durable_id, self._get_access_token())
             return list(map(self._map_application_submission, result.value))
 
-        raise CLIError("Only AzureContainer and AzureApplication offers are supported for submission commands")
+        raise CLIError("Only AzureContainer and AzureApplication offers are supported for submission commands at this time")
 
     def _get_offer_draft_instance(self, offer_durable_id, module):
         branches = self._sdk.branches_client.products_product_id_branches_get_by_module_modulemodule_get(
@@ -211,12 +211,12 @@ class OfferSubmissionClient(BaseClient):
 
     @staticmethod
     def _map_submission(s: MicrosoftIngestionApiModelsSubmissionsSubmission) -> OfferSubmission:
-        print(f"Mapping submission {s}")
         return OfferSubmission(
             id=s.id.root.split('/')[-1],
-            # lifecycle_state=s.substate,
-            # target=s.target.target_type,
-            # status=s.state,
-            # result=s.result,
-            created=s.published_time_in_utc
+            offer_id=s.product.root.root.split('/')[-1],
+            lifecycle_state=s.lifecycle_state,
+            target=s.target.target_type,
+            status=s.status,
+            result=s.result,
+            created=s.created
         )

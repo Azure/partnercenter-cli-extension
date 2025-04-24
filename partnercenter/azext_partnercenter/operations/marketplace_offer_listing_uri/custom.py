@@ -4,6 +4,7 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=too-many-locals
 # pylint: disable=line-too-long
+# pylint: disable=too-many-positional-arguments
 
 from knack.util import CLIError
 from azext_partnercenter.models.listing_uri import ListingUri

@@ -18,7 +18,7 @@ def load_arguments(commands_loader, _):
         c.argument('registry_name', arg_group='CNAB Resource', options_list=['--registry'], help='The name of the Azure Container Registry.')
         c.argument('repository_name', arg_group='CNAB Resource', options_list=['--repository'], help='The name of the image repository in the Azure Container Registry.')
         c.argument('tag', arg_group='CNAB Resource', options_list=['--tag'], help='The name of the image repository.')
-        c.argument('digest', arg_group='CNAB Resource', options_list=['--digest'], help='The digest of the bundle with a format of sha256:<hashcode>')
+        c.argument('digest', arg_group='CNAB Resource', options_list=['--digest'], help='The digest of the bundle with a format of sha256:hashcode')
         c.argument('package_path', options_list=['--package-path'], help='The full path to the package zip file')
         c.argument('public_azure_tenant_id', options_list=['--azure-tenant-id'], help='The public Azure Tenant ID of the account that will managed the package')
         c.argument('public_azure_authorization_principal', options_list=['--azure-auth-principal'], help='The principal that will managed the package when deployed to public Azure')

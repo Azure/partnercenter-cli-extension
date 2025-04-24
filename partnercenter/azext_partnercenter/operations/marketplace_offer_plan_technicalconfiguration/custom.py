@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
+# pylint: disable=too-many-positional-arguments
+
 from knack.cli import CLIError
 from azext_partnercenter.vendored_sdks.production_ingestion.models import (ContainerCnabPlanTechnicalConfigurationProperties, CnabReference)
 from azext_partnercenter import ISSUES_URL

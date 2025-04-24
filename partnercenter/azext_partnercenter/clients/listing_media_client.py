@@ -5,6 +5,7 @@
 
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
+# pylint: disable=too-many-positional-arguments
 
 from azext_partnercenter.models.listing_image import ListingImage
 from azext_partnercenter.models.listing_video import ListingVideo
