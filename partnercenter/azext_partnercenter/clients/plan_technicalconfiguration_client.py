@@ -5,6 +5,7 @@
 # pylint: disable=line-too-long
 # pylint: disable=protected-access
 # pylint: disable=no-else-return
+# pylint: disable=too-many-positional-arguments
 
 import os
 from knack.util import CLIError

@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 # pylint: disable=line-too-long
+# pylint: disable=too-many-positional-arguments
 
 from azure.cli.core.azclierror import ResourceNotFoundError, InvalidArgumentValueError
 from knack.cli import CLIError
