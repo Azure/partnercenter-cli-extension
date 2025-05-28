@@ -48,6 +48,8 @@ class PlanTechnicalConfigurationClient(BaseClient):
             technical_configuration = self._graph_api_client.get_container_plan_technical_configuration(offer_durable_id, plan_durable_id, sell_through_microsoft)
         elif variant_package_branch.product.resource_type == 'AzureApplication':
             technical_configuration = self._get_azure_application_plan_technical_configuration(offer_durable_id, variant_package_branch.current_draft_instance_id)
+        elif variant_package_branch.product.resource_type == 'AzureThirdPartyVirtualMachine':
+            technical_configuration = self._graph_api_client.get_third_party_virtual_machine_plan_technical_configuration(offer_durable_id, plan_durable_id)
         else:
             technical_configuration = self._get_plan_technical_configuration(variant_package_branch.product.id, variant_package_branch.variant_id)
             technical_configuration['planId'] = plan_external_id
@@ -190,6 +192,20 @@ class PlanTechnicalConfigurationClient(BaseClient):
 
     def _map_package_authorization(self, pkg_auth):
         return PackageAuthorization(principal_id=pkg_auth.principal_id, role_definition_id=pkg_auth.role_definition_id)
+
+    def update_virtual_machine_technical_configuration(self, offer_id, plan_id, vmconfig):
+        status = self._graph_api_client.update_virtual_machine_plan_technical_configuration(offer_id, plan_id, vmconfig)
+
+        if len(status.errors) > 0:
+            return {
+                'errors': status.errors,
+                'result': status.job_result
+            }
+        else:
+            return {
+                'message': status.job_status.value,
+                'result': status.job_result
+            }
 
     def _update_technical_configuration_properties(self, offer_external_id, plan_external_id, properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
         variant_package_branch = self._get_variant_package_branch(offer_external_id, plan_external_id)

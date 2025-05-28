@@ -18,6 +18,11 @@ def load_help():
         short-summary: Manage packages for a plan's technical configuration.
     """
 
+    helps['partnercenter marketplace offer plan technical-configuration vmimageversion'] = """
+        type: group
+        short-summary: Manage virtual machine image versions for a plan's technical configuration.
+    """
+
     helps['partnercenter marketplace offer plan technical-configuration show'] = """
         type: command
         short-summary: Show a plan's technical configuration
@@ -31,4 +36,14 @@ def load_help():
     helps['partnercenter marketplace offer plan technical-configuration package delete'] = """
         type: command
         short-summary: Deletes a package to the technical configuration of a plan
+    """
+
+    helps['partnercenter marketplace offer plan technical-configuration vm-image-version add'] = """
+        type: command
+        short-summary: Adds image version to image version to list in technical configuration
+    """
+
+    helps['partnercenter marketplace offer plan technical-configuration vm-image-version delete'] = """
+        type: command
+        short-summary: Deletes image version from a plans technical configuration
     """

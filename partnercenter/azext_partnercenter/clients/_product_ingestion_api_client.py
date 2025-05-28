@@ -17,7 +17,9 @@ from azext_partnercenter.vendored_sdks.production_ingestion.models import (
     ConfigureResources,
     ConfigureResourcesStatus,
     JobStatus,
-    DurableId)
+    DurableId,
+    VirtualMachinePlanTechnicalConfiguration,
+)
 
 
 class ProductIngestionApiClientConfiguration:
@@ -37,6 +39,7 @@ class ProductIngestionApiClientConfiguration:
             'get-container-plan-technical-configuration': '2022-03-01-preview3',
             'post-configure': '2022-03-01-preview2',
             'get-configure-status': '2022-03-01-preview2',
+            'get-virtual-machine-plan-technical-configuration': '2022-03-01-preview6',
             'get-submission': '2022-03-01-preview2'
         }
 
@@ -85,6 +88,13 @@ class ProductIngestionApiClient:
 
         # otherwise the status of the job is completed, so return it
         return status
+
+    def update_virtual_machine_plan_technical_configuration(self, offer_id, plan_id, resource=VirtualMachinePlanTechnicalConfiguration | None):
+        """ Update the technical configuration for a virtual machines vmProperties"""
+
+        configuration = resource.dict(by_alias=True)
+        return self.configure_resources(configuration)
+
 
     def update_container_plan_technical_configuration_for_bundle(self, offer_durable_id, plan_durable_id,
                                                                  properties=ContainerCnabPlanTechnicalConfigurationProperties | None):
@@ -166,6 +176,18 @@ class ProductIngestionApiClient:
 
         configuration = self._parse_technical_configuration_response(response, sell_through_microsoft)
         return configuration
+
+    def get_third_party_virtual_machine_plan_technical_configuration(self, offer_durable_id, plan_durable_id):
+        """ Gets the response from the Graph endpoint for the virtual machine technical configuration
+
+        :return: instance of VritualMachinePlanTechnicalConfiguration [azext_partnercenter.vendored_sdks.production_ingestion.models.virtual_machine_plan_technical_configuration]
+        """
+        operation_id = 'get-virtual-machine-plan-technical-configuration'
+        path = f'virtual-machine-plan-technical-configuration/{offer_durable_id}/{plan_durable_id}'
+
+        response = self.__call_api(operation_id, path)
+
+        return VirtualMachinePlanTechnicalConfiguration.parse_obj(response.json())
 
     def get_resource_tree(self, offer_durable_id):
         """Returns the raw response as a dictionary"""

@@ -184,6 +184,13 @@ class ContainerPlanTechnicalConfiguration(Resource):
     product: ResourceReference
     plan: ResourceReference
 
+class VirtualMachinePlanTechnicalConfiguration(Resource):
+    product: str
+    plan: ResourceReference
+    operating_system: dict = Field(..., alias='operatingSystem')
+    skus: List[dict] = Field(..., alias="skus")
+    vm_image_versions: List[dict] = Field(..., alias="vmImageVersions")
+    vm_properties: dict = Field(..., alias="vmProperties")
 
 class ConfigureResources(BaseModel):
     model_config = ConfigDict(extra="forbid")
