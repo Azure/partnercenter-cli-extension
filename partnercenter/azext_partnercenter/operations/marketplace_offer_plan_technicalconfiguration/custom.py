@@ -10,6 +10,7 @@ from azext_partnercenter.vendored_sdks.production_ingestion.models import (Conta
 from azext_partnercenter import ISSUES_URL
 from azext_partnercenter.models import PlanTechnicalConfigurationType
 
+import json
 
 def get_technicalconfiguration(client, offer_id, plan_id):
     return client.get(offer_id, plan_id)
@@ -67,6 +68,24 @@ def add_technical_configuration_bundle(client, offer_id, plan_id, cluster_extens
     result = client.add_managed_app_bundle(offer_id, plan_id, package_path, public_azure_tenant_id, public_azure_authorization_principal, public_azure_authorization_role)
     return result
 
+def add_technical_configuration_vm_image_version(client, offer_id, plan_id, vm_image_version_json_file):
+    new_vm_image_version = None
+    with open(vm_image_version_json_file) as json_file:
+        new_vm_image_version = json.load(json_file)
+
+    technical_configuration = client.get(offer_id, plan_id)
+    technical_configuration.vm_image_versions = technical_configuration.vm_image_versions + new_vm_image_version
+
+    return  client.update_virtual_machine_technical_configuration(offer_id, plan_id, technical_configuration)
+
+def delete_technical_configuration_vm_image_version(client, offer_id, plan_id,
+    vm_image_version):
+        technical_configuration = client.get(offer_id, plan_id)
+        technical_configuration.vm_image_versions = [version for version in
+            technical_configuration.vm_image_versions
+            if version["versionNumber"] != vm_image_version]
+
+        return client.update_virtual_machine_technical_configuration(offer_id, plan_id, technical_configuration)
 
 def _has_existing_package(technical_configuration):
     return technical_configuration.get('package_references') and len(technical_configuration['package_references']) > 0

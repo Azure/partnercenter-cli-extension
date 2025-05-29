@@ -11,3 +11,4 @@ class PlanTechnicalConfigurationType(str, Enum, metaclass=CaseInsensitiveEnumMet
 
     Container = "Container"
     ContainerCnab = "ContainerCnab"
+    ThirdPartyVirtualMachine = "ThirdPartyVritualMachine"

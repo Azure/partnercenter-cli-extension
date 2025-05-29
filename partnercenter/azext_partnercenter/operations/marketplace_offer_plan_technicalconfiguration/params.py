@@ -27,3 +27,9 @@ def load_arguments(commands_loader, _):
     with commands_loader.argument_context('partnercenter marketplace offer plan technical-configuration package delete') as c:
         c.argument('repository_name', arg_group='CNAB Resource', options_list=['--repository'], help='The name of the image repository in the Azure Container Registry.')
         c.argument('tag', arg_group='CNAB Resource', options_list=['--tag'], help='The name of the image repository.')
+
+    with commands_loader.argument_context('partnercenter marketplace offer plan technical-configuration vm-image-version add') as c:
+        c.argument('vm-image-version-json-file', arg_group='VMImage', options_list="--vm-image-version-json-file", help="Json file containing the vm image version to add")
+
+    with commands_loader.argument_context('partnercenter marketplace offer plan technical-configuration vm-image-version delete') as c:
+        c.argument('vm-image-version', arg_group='VMImage', options_list="--vm-image-version", help="Version of VM image(s) that you want to remove")
