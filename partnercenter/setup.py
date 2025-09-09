@@ -41,7 +41,7 @@ DEPENDENCIES = [
     "docker",
     "azure-storage-blob",
     "requests",
-    "pydantic ~= 2.5.3",
+    "pydantic ~= 2.11.7",
     "commercial-marketplace-offer-deploy",
 ]
 

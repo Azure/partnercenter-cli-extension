@@ -1,6 +1,6 @@
 docker
 pyyaml
 requests
-pydantic~=2.5.3
+pydantic~=2.11.7
 wrapt
 commercial-marketplace-offer-deploy~=2.0.0
