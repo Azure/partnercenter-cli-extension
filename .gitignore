@@ -132,3 +132,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# IcM and MSRC documentation (local only)
+IcM_*.md
+MSRC_*.md
+**/recordings/*.yaml.backup

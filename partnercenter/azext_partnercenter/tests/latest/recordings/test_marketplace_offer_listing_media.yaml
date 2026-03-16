@@ -120,7 +120,7 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products/8437cb04-634d-41a0-9542-6b8849a91473/listings/542d547b-0c7d-74c9-511f-9b502505fa31/images
   response:
     body:
-      string: '{"resourceType":"ListingImage","fileName":"largelogo.png","type":"AzureLogoLarge","fileSasUri":"https://ingestionpackagesprod1.blob.core.windows.net/file/3050487256057890282?sv=2018-03-28&sr=b&sig=2%2BABQTMmNo3I6I2N4TtleEd98Em4Tlhcqr1rASjRMEg%3D&se=2023-06-19T22%3A52%3A35Z&sp=rwl","state":"PendingUpload","order":0,"@odata.etag":"\"4309431f-0000-0800-0000-648f872f0000\"","id":"aed9ab39-022f-588d-1d4e-73c8bf66fe08"}'
+      string: '{"resourceType":"ListingImage","fileName":"largelogo.png","type":"AzureLogoLarge","fileSasUri":"https://ingestionpackagesprod1.blob.core.windows.net/file/3050487256057890282?sv=2021-01-01&sr=b&sig=SANITIZED_SIGNATURE&se=2099-01-01T00%3A00%3A00Z&sp=r","state":"PendingUpload","order":0,"@odata.etag":"\"4309431f-0000-0800-0000-648f872f0000\"","id":"aed9ab39-022f-588d-1d4e-73c8bf66fe08"}'
     headers:
       content-type:
       - application/json; charset=utf-8
@@ -992,7 +992,7 @@ interactions:
       x-ms-version:
       - '2021-08-06'
     method: PUT
-    uri: https://ingestionpackagesprod1.blob.core.windows.net/file/3050487256057890282?sv=2018-03-28&sr=b&sig=2%2BABQTMmNo3I6I2N4TtleEd98Em4Tlhcqr1rASjRMEg%3D&se=2023-06-19T22%3A52%3A35Z&sp=rwl
+    uri: https://ingestionpackagesprod1.blob.core.windows.net/file/3050487256057890282?sv=2021-01-01&sr=b&sig=SANITIZED_SIGNATURE&se=2099-01-01T00%3A00%3A00Z&sp=rwl
   response:
     body:
       string: ''
@@ -1020,7 +1020,7 @@ interactions:
       message: Created
 - request:
     body: '{"resourceType": "ListingImage", "fileName": "largelogo.png", "type": "AzureLogoLarge",
-      "state": "Uploaded", "order": 0, "fileSasUri": "https://ingestionpackagesprod1.blob.core.windows.net/file/3050487256057890282?sv=2018-03-28&sr=b&sig=2%2BABQTMmNo3I6I2N4TtleEd98Em4Tlhcqr1rASjRMEg%3D&se=2023-06-19T22%3A52%3A35Z&sp=rwl",
+      "state": "Uploaded", "order": 0, "fileSasUri": "https://ingestionpackagesprod1.blob.core.windows.net/file/3050487256057890282?sv=2021-01-01&sr=b&sig=SANITIZED_SIGNATURE&se=2099-01-01T00%3A00%3A00Z&sp=r",
       "ID": "aed9ab39-022f-588d-1d4e-73c8bf66fe08", "@odata.etag": "\"4309431f-0000-0800-0000-648f872f0000\""}'
     headers:
       Accept:
@@ -1035,7 +1035,7 @@ interactions:
     uri: https://api.partner.microsoft.com/v1.0/ingestion/products/8437cb04-634d-41a0-9542-6b8849a91473/listings/542d547b-0c7d-74c9-511f-9b502505fa31/images/aed9ab39-022f-588d-1d4e-73c8bf66fe08
   response:
     body:
-      string: '{"resourceType":"ListingImage","fileName":"largelogo.png","type":"AzureLogoLarge","fileSasUri":"https://ingestionpackagesprod1.blob.core.windows.net/file/3050487256057890282?06%2f18%2f2023+22%3a37%3a37&sv=2018-03-28&sr=b&sig=6uneeVk5kT6zCOBiQzVi4cySX2%2fBmfgP2%2bL%2bioKQ%2b5g%3d&se=2023-06-19T06%3a52%3a37Z&sp=rl","state":"Uploaded","order":0,"@odata.etag":"\"4309641f-0000-0800-0000-648f87310000\"","id":"aed9ab39-022f-588d-1d4e-73c8bf66fe08"}'
+      string: '{"resourceType":"ListingImage","fileName":"largelogo.png","type":"AzureLogoLarge","fileSasUri":"https://ingestionpackagesprod1.blob.core.windows.net/file/3050487256057890282?06%2f18%2f2023+22%3a37%3a37&sv=2021-01-01&sr=b&sig=SANITIZED_SIGNATURE&se=2099-01-01T00%3A00%3A00Z&sp=r","state":"Uploaded","order":0,"@odata.etag":"\"4309641f-0000-0800-0000-648f87310000\"","id":"aed9ab39-022f-588d-1d4e-73c8bf66fe08"}'
     headers:
       content-type:
       - application/json; charset=utf-8

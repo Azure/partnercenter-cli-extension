@@ -1,0 +1,11 @@
+# Gitleaks ignore file
+# This file contains patterns for files/secrets that should be ignored by Gitleaks
+
+# Ignore the backup file with known expired SAS tokens
+partnercenter/azext_partnercenter/tests/latest/recordings/test_marketplace_offer_listing_media.yaml.backup
+
+# Ignore sanitized test recordings (they contain fake tokens like "SANITIZED_SIGNATURE")
+# Note: Real recordings should still be scanned, this is just to reduce noise from
+# the sanitized placeholder values
+# Commented out to ensure we still scan test recordings:
+# partnercenter/azext_partnercenter/tests/latest/recordings/*.yaml
