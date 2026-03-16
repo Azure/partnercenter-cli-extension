@@ -7,10 +7,16 @@ from abc import ABC, abstractmethod
 import os
 import time
 from azure.cli.testsdk import ScenarioTest
+from .recording_processors import SasTokenScrubber
 
 
 class PartnerCenterScenarioTest(ScenarioTest, ABC):
     def __init__(self, method_name, config_file=None, recording_name=None, recording_processors=None, replay_processors=None, recording_patches=None, replay_patches=None):
+        # Add SAS token scrubber to recording processors to sanitize sensitive data
+        if recording_processors is None:
+            recording_processors = []
+        recording_processors.append(SasTokenScrubber())
+
         super().__init__(method_name, config_file, recording_name, recording_processors, replay_processors, recording_patches, replay_patches)
         self.cmd_delay = 0
         self.test_data = TestData()
