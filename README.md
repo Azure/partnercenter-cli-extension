@@ -94,6 +94,11 @@ pip install azdev
 
 azdev setup
 ```
+
+For local setup details specific to `az partnercenter marketplace offer package
+verify` and `az partnercenter marketplace offer package build`, see
+[Developing offer package commands locally](doc/develop_offer_package_commands.md).
+
 ## Trademarks
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
